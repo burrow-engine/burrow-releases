@@ -3,14 +3,14 @@
 # Burrow releases
 
 Signed downloads of **Burrow**, a deterministic voxel game engine in Go with a native editor, WebAssembly and visual scripting, and an agent-friendly API.
-This repository only holds the release files and the website: the zips are the assets of each GitHub Release, and the website is published with GitHub Pages.
+This repository only holds the release files and the website: the installers and archives are the assets of each GitHub Release, and the website is published with GitHub Pages.
 
 * Website, documentation, news and downloads: https://burrow-engine.github.io/burrow-releases/
 * Download page (sizes and SHA-256 sums): https://burrow-engine.github.io/burrow-releases/download/index.html
-* Burrow Hub (the launcher that installs and updates engine versions): included in the creator kit zip, see the download page.
+* Burrow Hub (the one download: it installs and updates engine versions, templates and the Sandbox): see the download page.
 * Licence: free to use, MIT licensed. Third-party licences and credits: https://burrow-engine.github.io/burrow-releases/licences/index.html
 
-**Status: early version.** Engine 0.1.0, public API v0. macOS on Apple silicon is the platform used for development; the Windows builds are cross-compiled and untested on real Windows hardware.
+**Early release (v0.1).** Public API v0. Platform details and known limits: the Platforms page of the documentation.
 
 ## Verify a download
 
@@ -30,4 +30,4 @@ Privacy: the Hub contacts https://burrow-engine.github.io/burrow-releases/manife
 
 ---
 
-*Burrow est un moteur de jeu voxel déterministe en Go. Ce dépôt ne contient que les fichiers des versions publiées (zips signés) et le site web : https://burrow-engine.github.io/burrow-releases/fr/index.html. Version préliminaire ; les versions Windows n'ont pas été testées sur du matériel réel.*
+*Burrow est un moteur de jeu voxel déterministe en Go. Ce dépôt ne contient que les fichiers des versions publiées (zips signés) et le site web : https://burrow-engine.github.io/burrow-releases/fr/index.html. Version préliminaire (v0.1).*
