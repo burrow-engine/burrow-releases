@@ -10,7 +10,7 @@ This repository only holds the release files and the website: the installers and
 * Burrow Hub (the one download: it installs and updates engine versions, templates and the Sandbox): see the download page.
 * Licence: free to use, MIT licensed. Third-party licences and credits: https://burrow-engine.github.io/burrow-releases/licences/index.html
 
-**Early release (v0.2).** Public API v0. Platform details and known limits: the Platforms page of the documentation.
+**Early release (v0.4).** Public API v0. Platform details and known limits: the Platforms page of the documentation.
 
 ## Verify a download
 
@@ -30,4 +30,4 @@ Privacy: the Hub contacts https://burrow-engine.github.io/burrow-releases/manife
 
 ---
 
-*Burrow est un moteur de jeu voxel déterministe en Go. Ce dépôt ne contient que les fichiers des versions publiées (zips signés) et le site web : https://burrow-engine.github.io/burrow-releases/fr/index.html. Version préliminaire (v0.2).*
+*Burrow est un moteur de jeu voxel déterministe en Go. Ce dépôt ne contient que les fichiers des versions publiées (zips signés) et le site web : https://burrow-engine.github.io/burrow-releases/fr/index.html. Version préliminaire (v0.4).*
