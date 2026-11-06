@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Modelling and texturing | Burrow</title>
+<meta name="description" content="Burrow has built-in tools to make voxel models and pixel-art textures, for humans in the editor (Tools &gt; Model editor and Tools &gt; Texture Editor: each opens as a full-window docked panel, or in a…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/modeling.html">
+<meta property="og:title" content="Modelling and texturing | Burrow">
+<meta property="og:description" content="Burrow has built-in tools to make voxel models and pixel-art textures, for humans in the editor (Tools &gt; Model editor and Tools &gt; Texture Editor: each opens as a full-window docked panel, or in a…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/modeling.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Modelling and texturing | Burrow">
+<meta name="twitter:description" content="Burrow has built-in tools to make voxel models and pixel-art textures, for humans in the editor (Tools &gt; Model editor and Tools &gt; Texture Editor: each opens as a full-window docked panel, or in a…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html" aria-current="page">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="modelling-and-texturing">Modelling and texturing<a class="anchor" href="#modelling-and-texturing" aria-label="Link to this section">#</a></h1>
+<p>Burrow has built-in tools to make voxel models and pixel-art textures, for humans in the editor (Tools &gt; Model editor and Tools &gt; Texture Editor: each opens as a full-window docked panel, or in a separate window from the asset&#39;s right-click menu) and for AI agents through MCP (<code>editor_model</code>, <code>editor_texture</code>). Both are <strong>declarative and deterministic</strong>: you send a list of operations (ops), the same ops always give a byte-identical result, and the op list is stored with the asset so it can be edited later. Packages: <code>model/</code> (voxel models), <code>texedit/</code> (textures); windows <code>editor/ui/model_ws.go</code>, <code>editor/ui/texture_ui.go</code>, <code>editor/ui/toolwin.go</code>; tools <code>editor/agent/modeltools.go</code>.</p>
+<p>Everything an agent needs is in the tool descriptions and this page. The loop is: send ops, <strong>look at the returned image</strong>, fix, repeat, save.</p>
+<p>Textures also get surface relief: the texture editor&#39;s <strong>Relief</strong> section derives a height from the colours (dark = deeper), or reads a painted one (<strong>Painted</strong>: a grey layer named <code>height</code>, white = surface, darker = sunk; it is not part of the colours), builds a normal map from it and a constant specular map, and writes <code>&lt;name&gt;_n.png</code> / <code>&lt;name&gt;_s.png</code> next to the texture (see <a href="rendering.html">rendering.md</a>, &#34;Parallax relief&#34;).</p>
+<h2 id="voxel-models-bmodel">Voxel models (<code>.bmodel</code>)<a class="anchor" href="#voxel-models-bmodel" aria-label="Link to this section">#</a></h2>
+<p>A <code>.bmodel</code> is versioned JSON (<code>&#34;format&#34;:&#34;burrow.bmodel&#34;,&#34;version&#34;:1</code>): name, grid size (up to 256 x 256 x 256), a <strong>palette of materials</strong> (<code>color #rrggbb</code>, <code>emissive</code> 0..255, <code>gloss</code> 0..255, <code>alpha</code> 0..255), <strong>named parts</strong> (a part is a rigid bone: <code>parent</code>, <code>pivot</code>), <strong>attachment points</strong> (<code>attach</code>: a hand, a socket, a light position), the voxel grid (run-length encoded, gzip, base64, with a SHA-256) and the <strong>op list</strong> that built it. Decoding is strict: unknown fields, a bad version, a wrong checksum, oversize grids and corrupt runs are rejected (<code>model.Decode</code> never panics, fuzzed).</p>
+<p>Axes: x right, y up, z toward the viewer (Burrow axes). A cell <code>(x,y,z)</code> fills <code>[x,x+1)</code>. Box corners are inclusive cell coordinates; centres, pivots and attachment points are <strong>corner coordinates</strong> (<code>center=[8,8,8]</code> is the corner shared by the eight middle cells, so <code>sphere center=[8,8,8] radius=3</code> is symmetric in a 16 grid).</p>
+<h3 id="two-ways-to-send-ops">Two ways to send ops<a class="anchor" href="#two-ways-to-send-ops" aria-label="Link to this section">#</a></h3>
+<p>JSON list (<code>ops</code>) or the text DSL (<code>dsl</code>), one op per line, <code>op key=value ...</code>; values are JSON or bare words (<code>mat=wood</code>, <code>min=[0,0,0]</code>, <code>colors=[a,b]</code>); <code>repeat count=4 offset=[2,0,0] { ... }</code> opens a block; <code>#</code> starts a comment. <code>model.ParseDSL</code> and <code>model.FormatDSL</code> round-trip; <code>editor_model {action:get}</code> returns the stored recipe as DSL or JSON.</p>
+<pre tabindex="0"><code>editor_model {&#34;action&#34;:&#34;ops&#34;,&#34;dsl&#34;:&#34;size size=[16,16,16]\nmaterial name=wood color=#a67c45\nbox min=[2,0,2] max=[9,5,9] mat=wood&#34;}</code></pre>
+<p><code>ops</code> is <strong>all or nothing</strong> (one undo step; on error nothing changes and the error names the op index and the valid values). <code>build</code> replaces the model by building it from scratch. <code>verify</code> replays the stored ops and compares the result (the determinism check).</p>
+<h3 id="ops">Ops<a class="anchor" href="#ops" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">op</th><th scope="col">what it does</th></tr></thead>
+<tbody>
+<tr><td><code>size {size:[x,y,z]}</code></td><td>grid size, &lt;= 256 per axis (content kept, cropped). First op of a model.</td></tr>
+<tr><td><code>material {name,color,emissive,gloss,alpha}</code></td><td>defines or updates a palette entry (index order = definition order, max 255). <code>mat</code> of any op also accepts <code>#rrggbb</code>, auto-added. <code>material {name,rename:new}</code> renames an entry (index kept); <code>material {name,remove:true}</code> deletes it (its voxels are cleared, higher indexes shift down). <code>material {name,move:n}</code> moves an entry to the 0-based palette index <code>n</code> (voxels are remapped, the model looks the same; drag a swatch in the Palette panel).</td></tr>
+<tr><td><code>use {mat}</code></td><td>default material for the next ops.</td></tr>
+<tr><td><code>part {name,parent,pivot}</code></td><td>creates or selects a part; new voxels belong to the active part. <code>parent</code> must exist already. <code>part {name,rename:new}</code> renames a part (children and attachments follow); <code>part {name,remove:true}</code> deletes it (its voxels are cleared, children re-attached to its parent; the root cannot be removed).</td></tr>
+<tr><td><code>attach {name,pos,part,dir}</code></td><td>a named point. <code>attach {name,remove:true}</code> deletes it.</td></tr>
+<tr><td><code>box {min,max}</code>, <code>sphere {center,radius}</code>, <code>ellipsoid {center,radii}</code>, <code>cylinder {center,radius,height,axis}</code>, <code>cone {center,radius,height,axis}</code>, <code>torus {center,radius,r2,axis}</code>, <code>capsule {a,b,radius}</code></td><td>primitives. A cone&#39;s base is at <code>center</code>, its apex <code>height</code> away (negative flips); a cylinder is centred on <code>center</code>; a torus ring lies in the plane perpendicular to <code>axis</code> (<code>radius</code> = ring, <code>r2</code> = tube).</td></tr>
+<tr><td><code>voxel {pos}</code>, <code>line {a,b,radius}</code></td><td>single cell; 3D line between cells (radius &gt; 0 makes it a capsule).</td></tr>
+<tr><td><code>mode</code> on every shape</td><td><code>add</code> (union, default), <code>sub</code> (subtract), <code>and</code> (intersect: keep only what is inside), <code>paint</code> (recolour existing voxels inside). Aliases <code>union</code>, <code>subtract</code>, <code>intersect</code>.</td></tr>
+<tr><td><code>fill {pos,mat}</code></td><td>flood recolour of the connected region of equal material (<code>mode:sub</code> erases it).</td></tr>
+<tr><td><code>extrude {pos,dir,count}</code></td><td>pushes the face under <code>pos</code> out along <code>dir</code> (negative <code>count</code> carves in).</td></tr>
+<tr><td><code>clear {}</code></td><td>empties the active part (<code>all:true</code>: everything).</td></tr>
+<tr><td><code>mirror {axis,at,side,name}</code></td><td>copies one side onto the other (default plane: middle of the grid). With <code>name</code> the copy becomes a new part (mirrored pivot): left arm to right arm.</td></tr>
+<tr><td><code>array {count,offset,min,max}</code></td><td>copies the (boxed) content <code>count</code> times.</td></tr>
+<tr><td><code>repeat {count,offset,ops}</code></td><td>runs nested ops <code>count</code> times, each shifted by <code>offset</code> more (depth &lt;= 4).</td></tr>
+<tr><td><code>translate</code>, <code>rotate {axis,turns,center}</code>, <code>flip {axis}</code>, <code>scale {factor}</code></td><td>move, rotate by 90 degree turns, mirror in place, grow (2..8) or shrink (-2..-8). Target: active part, <code>part:&#34;name&#34;</code>, or <code>all:true</code>; <code>min</code>/<code>max</code> restrict to a box.</td></tr>
+<tr><td><code>hollow {thickness}</code>, <code>erode {iter}</code>, <code>dilate {iter}</code>, <code>smooth {iter}</code></td><td>remove the inside, shrink, grow, round off (majority filter).</td></tr>
+<tr><td><code>displace {amp,scale,seed,noise,octaves}</code></td><td>noise displacement of the surface (<code>noise</code> value or perlin).</td></tr>
+<tr><td><code>paint {rule,...}</code></td><td><code>all</code>, <code>gradient {colors,axis,jitter,seed}</code> (height bands, low to high), `speckle {mat</td></tr>
+<tr><td><code>stamp {pos,size,mats,data}</code></td><td>writes a copied box of voxels at <code>pos</code> (into the active part): <code>size</code> is the box, <code>mats</code> its material names, <code>data</code> the cells as run-length <code>(count, material index)</code> pairs (x fastest, then y, then z; index 0 = empty) base64 url-encoded. <code>StampOp</code> builds it; it is what Ctrl+C of the editor&#39;s model window captures.</td></tr>
+<tr><td><code>layer {name,rename,move,hidden,locked,copy,remove}</code></td><td>creates a layer on top (<code>copy:other</code> starts it as a duplicate; <code>move:n</code> puts it at index <code>n</code>, 0 = bottom), or renames, reorders, hides, locks or deletes it (the last layer cannot be deleted; variants follow renames and deletions). Every other op takes <code>layer:&#34;name&#34;</code> to draw into that layer (default: the first); on <code>repeat</code> it applies to the body. See <a href="#layers-and-variants">Layers and variants</a>.</td></tr>
+<tr><td><code>variant {name,layers,rename,move,remove}</code></td><td>creates a variant or sets the layers it shows; <code>move:0</code> makes it the default.</td></tr>
+</tbody></table></div>
+<p>Determinism: all geometry is integer arithmetic on 1/32-voxel coordinates, noise is fixed-point hashed noise with an explicit <code>seed</code>; nothing reads a clock, a global random generator or map order. Limits (hostile input): grid &lt;= 256^3, 4096 executed ops, repeat depth 4, a global evaluation budget (an op over the whole grid costs the grid volume), 255 materials, 64 parts, 64 attachments, 1 MiB of ops text, 64 MiB files; floats must be finite and within 512 voxels.</p>
+<h3 id="layers-and-variants">Layers and variants<a class="anchor" href="#layers-and-variants" aria-label="Link to this section">#</a></h3>
+<p>A model has ordered <strong>layers</strong> (up to 32, bottom first), each its own voxel grid of the model&#39;s size with a material and a part per voxel. They are composited bottom to top: a filled voxel of an upper layer replaces the one below. Layers are independent of parts (bones): one part can have voxels in several layers. A layer has a name, a <strong>hidden</strong> flag (editor visibility only: the game ignores it) and a <strong>locked</strong> flag (tools and <code>ModelApply</code> refuse edits to it).</p>
+<p>A <strong>variant</strong> (up to 64) is a named list of layers shown together. With no variants every layer is shown; the first variant is the default. A campfire:</p>
+<pre tabindex="0"><code>size size=[8,8,8]
+material name=wood color=#6b4423
+material name=fire color=#ff8a1e emissive=200
+box min=[1,0,1] max=[6,1,6] mat=wood
+layer name=flame
+box layer=flame min=[3,1,3] max=[4,4,4] mat=fire
+variant name=off layers=[base]
+variant name=on layers=[base,flame]</code></pre>
+<p>All variants share one frame (the union of their bounds), so switching variant does not move the model. Draw into a layer with <code>layer:</code> on the ops. Old files are one layer called <code>base</code>; a model with just that layer is still written in the original format (<code>version 1</code>), others as <code>version 2</code> (voxels stored per layer, plus <code>variants</code>); both versions are read. <code>.vox</code> export (<code>export_vox {variant}</code>) flattens the chosen variant; the asset loader gives <code>render.voxmodel</code> every variant.</p>
+<p>Pick the variant a node shows with <code>render.voxmodel.variant</code> (empty or unknown = the default variant). A script switches it at run time, for instance <code>field_set(node, &#34;render.voxmodel&#34;, &#34;variant&#34;, &#34;\&#34;on\&#34;&#34;)</code> (or <code>entity_set_component</code>) when a campfire is lit; the new variant is meshed once and cached. In the modeler, the <strong>Layers</strong> tab of the settings panel lists the layers (eye = hide in the editor, lock, click to make one active; add, duplicate, move up/down, rename, delete) and the variants (a checkbox per layer, rename, make default, delete, and a <strong>Preview</strong> selector that composites only that variant in the viewport). Tools paint, erase and fill into the active layer; every layer or variant change is one undo step. <code>editor_model {action:layer_list}</code> lists them for an agent (<code>layers</code> is the ASCII slice dump).</p>
+<h3 id="recolor-colour-variants-without-a-new-file">Recolor: colour variants without a new file<a class="anchor" href="#recolor-colour-variants-without-a-new-file" aria-label="Link to this section">#</a></h3>
+<p><code>render.voxmodel.recolor</code> (and <code>character.recolor</code>) changes palette entries for one instance: <code>index=#rrggbb[aa]</code> entries separated by commas, with the 1-based palette indices of the <code>.vox</code>, for instance <code>&#34;3=#c02020,7=#2060d0&#34;</code> makes the red team and the blue team from one model. The recoloured mesh is built once per combination and cached, so there is no per-frame cost. A script sets it at run time with <code>field_set(node, &#34;render.voxmodel&#34;, &#34;recolor&#34;, &#34;\&#34;3=#c02020\&#34;&#34;)</code>. In the editor the inspector shows one colour row per colour the model uses (the 16 most used), with <strong>Reset colours</strong>. It composes with <code>variant</code>. A <code>character</code> with a built-in model (<code>humanoid</code>...) ignores it; use <code>skin</code> there.</p>
+<h3 id="which-way-a-vox-faces">Which way a <code>.vox</code> faces<a class="anchor" href="#which-way-a-vox-faces" aria-label="Link to this section">#</a></h3>
+<p>MagicaVoxel&#39;s front is its -Y side (what its default camera sees). <code>render.voxmodel</code> puts that side toward the engine forward (-Z, yaw 0), the same as a <code>character</code> made from the same file. There is no option: it is the only convention. A project made before it (<code>vox_front</code> absent or <code>&#34;legacy&#34;</code>) is converted by <code>burrow migrate</code>, which turns its <code>render.voxmodel</code> nodes by 180 degrees about Y (and their direct children back) so they look the same. Bounds and editor picking follow the same front. The model editor&#39;s own viewport keeps its fixed view.</p>
+<h3 id="feedback-an-agent-gets">Feedback an agent gets<a class="anchor" href="#feedback-an-agent-gets" aria-label="Link to this section">#</a></h3>
+<p><code>editor_model</code> returns <strong>stats</strong> (voxel count, bounds, colours with counts, per-part counts, mirror symmetry per axis for shape and colour, connected pieces and <strong>floating/disconnected voxels</strong> with their positions) and, for <code>ops</code>/<code>build</code>/<code>load</code>, a <strong>montage image</strong>: front (F), side (S), top (T) and isometric (I) views. <code>preview {view,part,yaw,pitch}</code> renders one view (<code>part</code> dims the others: the onion view). <code>layers</code> prints the voxels as ASCII layers (top layer first). <strong>Read the image after every batch</strong>: stats cannot tell you a nose is on the wrong side.</p>
+<h3 id="scale-and-size-references">Scale and size references<a class="anchor" href="#scale-and-size-references" aria-label="Link to this section">#</a></h3>
+<p>A block is one world voxel edge: 1 m at the default world voxel size 1, 0.25 m in a world with 0.25 m voxels. A model stores its <strong>target scale</strong>, <code>voxels_per_block</code> (default 16, so one model voxel is 6.25 cm and <code>render.voxmodel</code> <code>scale</code> is 1/16), optionally with a <code>kind</code> hint (<code>prop</code>, <code>character</code>, <code>vehicle</code>, <code>building</code>, <code>item</code>). Both are optional fields of the <code>.bmodel</code> (absent = 16 and no kind) and <code>Model.PreferredScale()</code> is the <code>scale</code> the model asks for when placed. Metres per model voxel = world voxel size / <code>voxels_per_block</code>.</p>
+<p>The player is 1.8 m tall (28.8 model voxels at 16 per block), eye line 1.62 m, shoulders 0.6 m; a door is 1 m wide and 2 m high. Typical sizes: character height 1.2-2.5 m, item largest side up to 1 m, prop 0.1-4 m, vehicle 1.5-12 m, building 3-64 m; a model outside its kind&#39;s range gets a warning.</p>
+<p>In the editor, the Advanced tab of Model Settings has a <strong>Scale</strong> section: voxels per block (drag or 8/16/32/64), the kind, the size in metres, blocks and voxels, the ratio to the player, a &#34;fits a 1 x 2 m door&#34; check and the warnings. Its toggles (also in the viewport menu, Scale references) draw over the viewport: a player silhouette, a one-block cube, a block grid on the floor, rulers along the bounds (metres, blocks, voxels), and a doorway with the 2 m door and 3 m ceiling lines. Changing the scale or the kind is one undo step.</p>
+<p>Agents: <code>editor_model</code> results carry <code>dimensions</code> (voxels, blocks, metres, <code>player_ratio</code>, <code>fits_door</code>, <code>warnings</code>) and <code>dimensions_text</code>; the montage draws a blue player figure and a red one-block cube left of and behind the model at the same scale (<code>no_reference</code> turns them off). <code>action: scale</code> with <code>voxels_per_block</code> and/or <code>kind</code> sets the target scale; a rebuild keeps it and <code>spawn</code> uses it when <code>scale</code> is 0.</p>
+<h3 id="assets-instances-bones">Assets, instances, bones<a class="anchor" href="#assets-instances-bones" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><code>save {path}</code> writes <code>assets/models/&lt;name&gt;.bmodel</code> (project relative, confined to the project). <code>export_vox</code> / <code>load</code> handle MagicaVoxel <code>.vox</code> (parts become scene-graph nodes and come back as parts with their pivots; palette colours become materials <code>c&lt;index&gt;</code>; emissive and gloss have no <code>.vox</code> equivalent here).</li>
+<li><code>.bmodel</code> loads through the asset system as the same value as <code>.vox</code>, so it works wherever a <code>.vox</code> does: the <code>render.voxmodel</code> component (props, entities: <code>editor_model {action:spawn}</code> adds the node, saving again hot reloads it), character models (<code>&#34;model&#34;:&#34;assets/x.bmodel&#34;</code>) and the animation skeleton (<code>anim.SkeletonFromVox</code>: each part is a bone with its pivot, <code>parent</code> gives the hierarchy, the root part is the skeleton root; docs/animation.md). Model 0 of the loaded file is the whole model merged (what <code>render.voxmodel</code> draws), models 1.. are the parts.</li>
+<li><strong>Dynamic voxel bodies</strong> (physics3d): <code>model.SolidMask()</code> gives the dense occupancy array for <code>physics3d.VoxelBody</code>.</li>
+<li><strong>Block custom shapes</strong>: a 16 x 16 x 16 model gives <code>BlockBoxes()</code> / <code>editor_model {action:block_shape}</code>: boxes in sixteenths of a block with the axes and units of package <code>shape</code> (<code>shape.Box</code>). Registering a new shape family still means appending to the frozen <code>shape.Models</code> table (a source change); the boxes are the geometry to put there.</li>
+<li><strong>Scripts</strong> (read access only): <code>burrowsdk.SpawnModel(&#34;assets/models/crate.bmodel&#34;, 0, burrowsdk.SpawnOpts{...})</code> spawns a node showing the asset by name. It is sugar over <code>Spawn</code> with a <code>render.voxmodel</code> component: no new host call, the script reads nothing, the sim is unaffected.</li>
+</ul>
+<p><strong>In the editor</strong> the model editor is a docked panel (Unreal-style asset editor): Tools &gt; Model editor, or double-click a <code>.bmodel</code> / <code>.vox</code> in the Content browser, opens the <strong>Model</strong> panel in the dock (a tab next to the Viewport), with <strong>Model settings</strong> on the right and the Content browser below as the content browser. The panel has one header row (document name with an unsaved dot, Save, undo/redo, the Iso / Front / Side / Top views, Frame, and the ⋯ menu), the tool rail on the left with each tool&#39;s key on its button (B place, E erase, C paint, X box, O sphere, L line, F fill, T extrude, S select) and the viewport in the middle. Model settings has three tabs: <strong>Palette</strong> (the material grid with number keys, double-click a swatch for its colour picker, a Recent row, the selected material&#39;s name, colour, emissive and gloss, then the options of the active tool: Add or Carve for the shapes, brush size, mirror, <em>Stay on the start plane</em>, slice), <strong>Parts</strong> and <strong>Advanced</strong> (file, selection, modifiers, recipe, model info). The viewport is a real 3D render (perspective by default, orthographic with the header&#39;s Persp / Ortho switch or P; the picking uses the same camera; daylight lighting) when a GPU is available, with the software render as fallback. Save writes the asset path directly (Ctrl+S); New and Save-as are inline forms in Model settings (New also offers the embedded templates crate / lantern / tree / creature), Open is the Content browser — no modal dialogs. A separate OS window is still available (right-click the asset &gt; &#34;Open in a separate window&#34;, or Window &gt; New window; <code>burrowedit -tool model -project &lt;dir&gt; -asset &lt;file&gt;</code>, a second process that saves into the project and the editor picks the saved file up).</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">input</th><th scope="col">action</th></tr></thead>
+<tbody>
+<tr><td>left click, left drag</td><td>use the tool (place, erase and paint drag as one stroke, held to the plane it started on unless <em>Stay on the start plane</em> is off); a ghost voxel in the material colour shows where a voxel will land, and with brush &gt; 1 the real brush sphere is drawn</td></tr>
+<tr><td>drag (box, sphere, line, select)</td><td>draw the shape live from one end to the other, its size shown next to the pointer; it is placed when the pointer is released. In the docked panel a <strong>Box on a flat footprint takes a second step</strong>: move the pointer up to set the height, click to place, Esc cancels. A click without dragging sets the first corner of the two-click workflow instead. <strong>Hold Shift (or choose Carve) to carve instead of add</strong></td></tr>
+<tr><td>right drag, Alt + left drag</td><td>orbit (Alt + drag for trackpads); the preset views animate</td></tr>
+<tr><td>P</td><td>switch between the perspective and orthographic camera</td></tr>
+<tr><td>orientation cube (bottom left)</td><td>click X, Y or Z to look along that axis; click it again for the opposite side</td></tr>
+<tr><td>middle drag, Shift + right drag, Space + left drag</td><td>pan</td></tr>
+<tr><td>wheel</td><td>zoom toward the pointer</td></tr>
+<tr><td>1 to 9</td><td>pick a material (or click a swatch; Alt + click a voxel picks its material)</td></tr>
+<tr><td>Home</td><td>isometric view (also Front, Side, Top, Back, Left, Right, Bottom in the View menu)</td></tr>
+<tr><td>Shift+F</td><td>frame the selection (or the hovered cell) in the viewport</td></tr>
+<tr><td>Shift+X / Y / Z</td><td>toggle the mirror plane of that axis</td></tr>
+<tr><td>Ctrl+A</td><td>select the whole grid</td></tr>
+<tr><td>Ctrl+C, Ctrl+V</td><td>copy the selection; then a ghost of the copy follows the pointer and the next click drops it (Esc cancels)</td></tr>
+<tr><td>Esc</td><td>cancel the first click of a two-click tool, a paste or a gizmo drag, clear the selection</td></tr>
+<tr><td>Delete</td><td>delete the selection</td></tr>
+<tr><td>+ / -</td><td>brush size</td></tr>
+<tr><td>Ctrl+Z, Ctrl+Y, Ctrl+S, Ctrl+Shift+S, Ctrl+O, Ctrl+N</td><td>undo, redo, save, save as, open, new</td></tr>
+</tbody></table></div>
+<p>Menus: the tool window&#39;s menu bar has <strong>File</strong> (New..., <em>New from template</em> ▸ crate/lantern/tree/creature, Open, Save, Save as, Export .vox), <strong>Edit</strong> (undo/redo, Select all, Copy/Paste/Delete selection, brush size +/−), <strong>View</strong> (presets, Frame selection, Reset zoom and pan, mirror, slice, onion, hide part) and <strong>Help</strong> (keyboard shortcuts). The docked panel exposes the same entries in its <strong>⋯ header menu</strong>, and the viewport opens the same menu on a <strong>right click without drag</strong> (a right drag still orbits). In the main editor, <em>Tools &gt; Model editor</em> opens the panel and also offers New from template and Open in a separate window; the Content browser&#39;s right-click menu on a <code>.bmodel</code> / <code>.vox</code> adds <strong>Spawn in scene at focus</strong> and <strong>Export .vox</strong>, and <em>New &gt; New voxel model from template</em> starts from a template.</p>
+<p>With the Select tool, the selection shows a <strong>move gizmo</strong>: drag one of its three coloured axes to translate the selection (one undo step). The <strong>Modifiers</strong> panel applies the engine&#39;s procedural ops to the selection (or the whole model without one), each one undo step: Hollow (thickness), Smooth / Erode / Dilate (iterations), Displace (noise amp, scale, seed), Paint gradient (from/to material, axis) and speckle (density), mirror fix (copy one half onto the other), and Array (duplicate the selection N times with an offset). The <strong>Palette</strong> panel shows the usage count of each material, renames (name field) and deletes (Delete button or right-click a swatch) entries. The <strong>Parts</strong> panel renames and deletes parts and edits the <strong>attach points</strong> (add one at the hovered cell). The <strong>Model</strong> panel resizes the grid (content kept, cropped if smaller) and shows the stats; the <strong>Recipe</strong> panel shows the stored op list (DSL) that rebuilds the model byte for byte. The status bar shows the active tool, brush, mirror planes, selection and zoom at a glance, and an empty model shows its shortcut hints in the viewport itself.</p>
+<p>Mirror X, Y and Z (the tool options) mirror every edit across the middle plane of the grid; the planes are drawn in the viewport while they are active. The <strong>Slice</strong> buttons (the tool options or View menu) cut the model along an axis to reach the inside: the slider keeps the first N layers, the cut plane is drawn in the viewport and picking ignores the cut cells, so you edit the exposed interior directly. The view draws the floor grid and axes, and renders at half resolution while you orbit, pan or stroke so the view stays smooth on big models. Every stroke is one step of the window&#39;s undo history and appends an op to the recipe. Model edits</p>
+<p>Mirror X, Y and Z (options bar) mirror every edit across the middle plane of the grid; the planes are drawn in the viewport while they are active. The <strong>Slice</strong> buttons (options bar or View menu) cut the model along an axis to reach the inside: the slider keeps the first N layers, the cut plane is drawn in the viewport and picking ignores the cut cells, so you edit the exposed interior directly. The view draws the floor grid and axes, and renders at half resolution while you orbit, pan or stroke so the view stays smooth on big models. Every stroke is one step of the window&#39;s undo history and appends an op to the recipe. Model edits are not part of the simulation hash.</p>
+<h2 id="textures">Textures<a class="anchor" href="#textures" aria-label="Link to this section">#</a></h2>
+<p><code>editor_texture</code> edits one texture at a time: block textures 16 x 16 .. 128 x 128 (square or not), item icons, with layers. Ops are JSON:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">op</th><th scope="col">what it does</th></tr></thead>
+<tbody>
+<tr><td><code>size {count}</code> or <code>{w,h}</code></td><td>texture size (4..128). First op.</td></tr>
+<tr><td><code>palette {name,color}</code></td><td>names a colour; any colour field accepts <code>#rrggbb</code>, <code>#rrggbbaa</code>, <code>transparent</code> or a palette name.</td></tr>
+<tr><td><code>lock {colors}</code></td><td>palette lock: every later op snaps its result to these colours (no <code>colors</code> = unlock).</td></tr>
+<tr><td><code>fill</code>, <code>clear</code>, `erase {rect</td><td>points}`</td></tr>
+<tr><td><code>gradient {from,to,dir,count}</code></td><td><code>dir</code> v, h, d (diagonal) or r (radial); <code>count</code> &gt; 1 makes bands.</td></tr>
+<tr><td>`noise {kind,seed,scale,colors</td><td>from,to,octaves,count,strength}`</td></tr>
+<tr><td>`dither {from,to,kind,dir</td><td>strength}`</td></tr>
+<tr><td><code>speckle {colors,density,seed}</code></td><td>random pixels.</td></tr>
+<tr><td><code>pattern {kind,colors,mortar,seed,...}</code></td><td><code>bricks</code> (bw, bh, gap), <code>planks</code> (bh), <code>cobble</code> (cell), <code>ore</code> (count, depth), <code>grass_edge</code> (depth), <code>checker</code>, <code>stripes</code>. Sizes must divide the texture to tile (the error tells you which).</td></tr>
+<tr><td><code>ascii {grid,legend,pos}</code></td><td>draw from a character grid; <code>.</code> and space are transparent unless the legend says otherwise. <code>editor_texture {action:ascii}</code> dumps the current pixels in the same format.</td></tr>
+<tr><td><code>pixel</code>, <code>line</code>, <code>rect {hollow}</code>, <code>ellipse {hollow}</code>, <code>flood {pos,color,tolerance}</code>, <code>replace {from,to,tolerance}</code></td><td>pixel tools.</td></tr>
+<tr><td><code>outline {kind,color}</code></td><td><code>outer</code>, <code>inner</code>, <code>both</code> or <code>border</code> (tile edge).</td></tr>
+<tr><td><code>shade {kind,amount}</code></td><td><code>edges</code> (light from the top left), <code>bevel</code> (tile border), <code>relief</code> (luminance steps read as height).</td></tr>
+<tr><td><code>hue {deg,sat,light}</code></td><td>hue shift and saturation / lightness percent.</td></tr>
+<tr><td><code>seamless {amount}</code></td><td>cross-fades the shifted copy so the borders match.</td></tr>
+<tr><td><code>quantize {colors,kind:bayer,strength}</code></td><td>nearest-palette (optionally dithered).</td></tr>
+<tr><td><code>offset {dx,dy}</code>, <code>flip {dir}</code>, <code>rotate {count}</code></td><td>wrap shift, mirror, quarter turns.</td></tr>
+<tr><td><code>layer {action,name,opacity,visible,locked,kind}</code></td><td><code>new</code>, <code>duplicate</code>, <code>select</code>, <code>delete</code>, <code>merge_down</code>, <code>opacity</code>, <code>visible</code>, <code>lock</code> (<code>locked</code>: a locked layer refuses drawing ops), <code>blend</code> (<code>kind</code>: <code>normal</code>, <code>multiply</code>, <code>screen</code>, <code>overlay</code>). Ops draw on the active layer.</td></tr>
+</tbody></table></div>
+<p>Limits: 128 x 128, 2048 ops, 8 layers, 1 MiB PNG, 128 x 128 ASCII cells. The same ops always give the same PNG bytes.</p>
+<p>Feedback: <code>ops</code> returns the texture <strong>tiled 3 x 3</strong> (read the seams), a <strong>block-in-world render</strong> (3 x 3 blocks with a pillar, isometric; give <code>top</code>/<code>side</code>/<code>bottom</code> texture names to see a real block), the <strong>mip chain</strong>, and stats: colours and counts, transparent pixels, wrap-around steps (<code>seam_error_h/v</code>) against the largest interior step and <code>tileable_h/v</code>. A grass side texture is meant to tile horizontally only.</p>
+<h3 id="saving-the-project-override-layer">Saving: the project override layer<a class="anchor" href="#saving-the-project-override-layer" aria-label="Link to this section">#</a></h3>
+<p><code>save {kind:block,name:&#34;cobblestone&#34;}</code> or <code>save {block:&#34;grass_block&#34;, face:&#34;side&#34;}</code> writes <code>&lt;project&gt;/textures/block/&lt;texture&gt;.png</code> (and the recipe <code>&lt;texture&gt;.texops.json</code> beside it). <code>block</code>+<code>face</code> resolves the pack texture name that face samples, so the override replaces exactly it (a texture shared by several blocks changes all of them). The bundled third-party pack (Pixel Perfection CC-BY-SA) is <strong>never modified</strong>: overrides live in the project, win over the pack, and are resampled to the pack size (16) because the layer table has one size (the PNG keeps its resolution). The running game (editor Play, <code>burrow run</code>) rebuilds its block texture layers on the next frame (<code>blocktex.OverrideGeneration</code>); <code>burrow build</code> packs only the folders listed in <code>asset_dirs</code> of <code>vox.project</code>: add <code>&#34;textures&#34;</code> there to ship the overrides. Item icons go to <code>textures/item/</code>. Tinted textures (grass top, leaves) are gray luma in the packs and biome tinted at render time.</p>
+<p><strong>In the editor</strong> the texture editor is a window of its own (Tools &gt; Texture Editor, or double-click a <code>.png</code> in the Content browser; <code>burrowedit -tool texture -project &lt;dir&gt; -asset &lt;file&gt;</code>). Tools are on the left (B pencil, E eraser, L line, R rectangle, O ellipse, F fill, A replace colour, I picker, G gradient, plus the Hollow toggle for rectangle and ellipse, mirror left-right and top-bottom and the primary / secondary colours), the canvas takes the middle and the colours, layers, previews, generators and relief maps are on the right.</p>
+<p>A <strong>block texture has three faces</strong>: the side is the main picture, the top and the bottom are drawn only when they differ (the header&#39;s Face selector; a new face starts as a copy of the side). Save writes <code>&lt;name&gt;.png</code>, <code>&lt;name&gt;_top.png</code> and <code>&lt;name&gt;_bottom.png</code> (the packs&#39; naming), open reads them back, and undo goes back to the face it was made on. Layers can be hidden, locked (drawing tools refuse a locked layer) and blended (normal, multiply, screen, overlay) with an opacity.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">input</th><th scope="col">action</th></tr></thead>
+<tbody>
+<tr><td>left button, right button</td><td>draw with the primary, the secondary colour</td></tr>
+<tr><td>Alt + click</td><td>pick the colour under the pointer (any tool)</td></tr>
+<tr><td>wheel</td><td>zoom toward the pointer (the pixel grid shows from 6x)</td></tr>
+<tr><td>middle drag, Space + drag</td><td>pan</td></tr>
+<tr><td>0 or Home, + / -</td><td>fit to the window, zoom</td></tr>
+<tr><td>X</td><td>swap the primary and secondary colours</td></tr>
+<tr><td>Ctrl+Z, Ctrl+Y, Ctrl+S, Ctrl+Shift+S, Ctrl+O, Ctrl+N</td><td>undo, redo, save, save as, open, new</td></tr>
+</tbody></table></div>
+<p><strong>One-click styles</strong> (Generate panel): pick a style (Stone, Planks, Bricks, Cobble, Metal, Grass, Sand, Ore, Fabric), a seed and a base colour, press Generate: the layer is cleared and rebuilt by a curated op stack (pattern, periodic noise, speckle, shading, seamless) as one undo step, the whole &#34;patron&#34; of a block texture. <strong>From a 3D model</strong>: pick a <code>.bmodel</code> or <code>.vox</code> of the project and press Import: its material palette (most used first) fills the swatches and the primary / secondary colours, so the styles match the model they will sit next to. The pattern steps always divide the texture size, so the tiled styles tile by construction; <code>texedit.StyleOps</code> builds the same stacks programmatically.</p>
+<p>Strokes are filled in between mouse samples, so a fast drag leaves no gaps, and each stroke is one undo step. The brush size (pencil and eraser) goes up to 8. A texture made with New saves to <code>textures/&lt;block|item&gt;/&lt;name&gt;.png</code> (the override layer above); a <code>.png</code> opened from the Content browser saves back to that file. File &gt; Save to a block face writes the texture over the one a block uses on a face. The status bar shows the pixel and colour under the pointer.</p>
+<h2 id="examples-generated-by-these-ops-original-work">Examples (generated by these ops, original work)<a class="anchor" href="#examples-generated-by-these-ops-original-work" aria-label="Link to this section">#</a></h2>
+<p>Each one is in <code>docs/examples/</code>; the tests build every file twice and require identical bytes. Montages: <code>MODEL_MONTAGE_DIR=/tmp/m go test ./model -run Montages</code>.</p>
+<h3 id="tree">Tree<a class="anchor" href="#tree" aria-label="Link to this section">#</a></h3>
+<pre tabindex="0"><code># Oak-like tree, 24x32x24. Trunk, three leaf blobs, noise-eroded crown, speckled leaves.
+size size=[24,32,24]
+material name=bark color=#6b4423 gloss=10
+material name=bark_dark color=#4e3118
+material name=leaf color=#3f8f2f
+material name=leaf_light color=#62b341
+material name=leaf_dark color=#2c6a22
+part name=trunk pivot=[12,0,12]
+use mat=bark
+cylinder center=[12,7,12] radius=2.5 height=14 axis=y
+cone center=[12,0,12] radius=4 height=5 axis=y
+capsule a=[12,13,12] b=[7,18,12] radius=1.3
+capsule a=[12,14,12] b=[17,19,13] radius=1.3
+paint rule=speckle colors=[bark,bark_dark] density=0.35 seed=7
+part name=crown parent=trunk pivot=[12,16,12]
+use mat=leaf
+ellipsoid center=[12,22,12] radii=[8,6.5,8]
+ellipsoid center=[6,19,12] radii=[4.5,3.5,4.5]
+ellipsoid center=[18,20,13] radii=[4.5,3.5,4.5]
+ellipsoid center=[12,27,11] radii=[4.5,3,4.5]
+displace amp=1.6 scale=3.5 seed=3 noise=perlin
+erode iter=1 
+smooth iter=1
+paint rule=gradient colors=[leaf_dark,leaf,leaf_light] axis=y jitter=0.8 seed=5
+paint rule=speckle mat=leaf_dark density=0.12 seed=11
+attach name=top pos=[12,31,12] part=crown</code></pre>
+<h3 id="crate">Crate<a class="anchor" href="#crate" aria-label="Link to this section">#</a></h3>
+<pre tabindex="0"><code># Wooden crate, 16x16x16: frame, planks, corner studs, hollow inside, a lid line.
+size size=[16,16,16]
+material name=plank color=#b5854a
+material name=plank_dark color=#8f6636
+material name=frame color=#6d4a24
+box min=[1,0,1] max=[14,13,14] mat=plank
+box min=[2,1,2] max=[13,12,13] mode=sub
+box min=[2,12,2] max=[13,12,13] mat=plank_dark
+paint rule=speckle colors=[plank,plank_dark] density=0.3 seed=2 from=plank
+box min=[1,0,1] max=[2,13,2] mat=frame
+box min=[13,0,1] max=[14,13,2] mat=frame
+box min=[1,0,13] max=[2,13,14] mat=frame
+box min=[13,0,13] max=[14,13,14] mat=frame
+box min=[1,0,1] max=[14,1,14] mat=frame mode=paint
+box min=[1,12,1] max=[14,13,14] mat=frame mode=paint
+box min=[1,6,1] max=[14,7,14] mat=frame mode=paint</code></pre>
+<h3 id="lantern-with-an-emissive-core">Lantern with an emissive core<a class="anchor" href="#lantern-with-an-emissive-core" aria-label="Link to this section">#</a></h3>
+<pre tabindex="0"><code># Lantern with an emissive core (emissive=255 glows), hanging from a ring. 12x16x12.
+size size=[12,16,12]
+material name=iron color=#2e2e36 gloss=90
+material name=glass color=#ffd36a alpha=140 emissive=120
+material name=flame color=#fff3b0 emissive=255
+part name=lantern pivot=[6,16,6]
+use mat=iron
+box min=[3,0,3] max=[8,1,8]
+box min=[3,10,3] max=[8,11,8]
+box min=[3,1,3] max=[3,9,3]
+box min=[8,1,3] max=[8,9,3]
+box min=[3,1,8] max=[3,9,8]
+box min=[8,1,8] max=[8,9,8]
+box min=[4,11,4] max=[7,12,7]
+torus center=[6,12.8,6] radius=1.9 r2=0.9 axis=z
+box min=[4,1,4] max=[7,9,7] mat=glass
+box min=[5,2,5] max=[6,6,6] mat=flame
+attach name=light pos=[6,5,6] part=lantern</code></pre>
+<h3 id="animated-creature-with-bones">Animated creature with bones<a class="anchor" href="#animated-creature-with-bones" aria-label="Link to this section">#</a></h3>
+<p>Parts are bones: <code>body</code> is the root, <code>head</code>, <code>tail</code> and the legs are children (the right legs are <code>mirror ... name=leg_fr part=leg_fl</code> copies). Load it as a skeleton with <code>anim.SkeletonFromVox</code> (or a <code>character</code> with this model) and animate the bone names in an <code>.anim</code> clip (<code>docs/animation.md</code>).</p>
+<pre tabindex="0"><code># Simple animated creature: every part is a bone (body &gt; head, tail, four legs). 24x20x28, faces +z (toward the viewer).
+size size=[24,20,28]
+material name=fur color=#c98a4b
+material name=belly color=#ecd2a4
+material name=dark color=#3b2a1c
+material name=eye color=#ffffff emissive=40
+material name=pupil color=#111111
+part name=body pivot=[12,9,14]
+use mat=fur
+ellipsoid center=[12,10,14] radii=[5,4,8]
+box min=[9,6,8] max=[14,6,19] mat=belly
+part name=head parent=body pivot=[12,12,21]
+sphere center=[12,13,22] radius=3.6
+box min=[10,11,25] max=[13,12,27]
+box min=[9,16,21] max=[10,18,22]
+box min=[14,16,21] max=[15,18,22]
+voxel pos=[10,14,25] mat=eye
+voxel pos=[13,14,25] mat=eye
+voxel pos=[10,14,26] mat=pupil
+voxel pos=[13,14,26] mat=pupil
+voxel pos=[11,12,27] mat=dark
+voxel pos=[12,12,27] mat=dark
+part name=tail parent=body pivot=[12,11,6]
+capsule a=[12,11,5] b=[12,16,1] radius=1.2 mat=fur
+voxel pos=[12,17,1] mat=belly
+part name=leg_fl parent=body pivot=[9,6,18]
+box min=[8,0,17] max=[9,5,18] mat=fur
+box min=[8,0,17] max=[9,0,18] mat=dark
+part name=leg_bl parent=body pivot=[9,6,8]
+box min=[8,0,7] max=[9,5,8] mat=fur
+box min=[8,0,7] max=[9,0,8] mat=dark
+mirror axis=x name=leg_fr part=leg_fl
+mirror axis=x name=leg_br part=leg_bl
+attach name=mouth pos=[12,12,27] part=head dir=[0,0,1]
+attach name=saddle pos=[12,14,14] part=body dir=[0,1,0]</code></pre>
+<h3 id="textures-1">Textures<a class="anchor" href="#textures-1" aria-label="Link to this section">#</a></h3>
+<p>Send each list as <code>editor_texture {&#34;action&#34;:&#34;ops&#34;,&#34;ops&#34;: &lt;list&gt;, &#34;name&#34;:&#34;...&#34;}</code>.</p>
+<p>Cobblestone:</p>
+<pre tabindex="0"><code class="language-json">[
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;size&#34;</span>,<span class="p">&#34;count&#34;</span>:<span class="n">16</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;fill&#34;</span>,<span class="p">&#34;color&#34;</span>:<span class="s">&#34;#6e6e6e&#34;</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;pattern&#34;</span>,<span class="p">&#34;kind&#34;</span>:<span class="s">&#34;cobble&#34;</span>,<span class="p">&#34;cell&#34;</span>:<span class="n">4</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">12</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#8a8a8a&#34;</span>,<span class="s">&#34;#7a7a7a&#34;</span>,<span class="s">&#34;#969696&#34;</span>,<span class="s">&#34;#6f6f72&#34;</span>],<span class="p">&#34;mortar&#34;</span>:<span class="s">&#34;#4a4a4c&#34;</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;noise&#34;</span>,<span class="p">&#34;kind&#34;</span>:<span class="s">&#34;value&#34;</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">3</span>,<span class="p">&#34;scale&#34;</span>:<span class="n">3</span>,<span class="p">&#34;from&#34;</span>:<span class="s">&#34;#00000000&#34;</span>,<span class="p">&#34;to&#34;</span>:<span class="s">&#34;#00000000&#34;</span>,<span class="p">&#34;strength&#34;</span>:<span class="n">0.1</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;speckle&#34;</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#5c5c5c&#34;</span>,<span class="s">&#34;#a4a4a4&#34;</span>],<span class="p">&#34;density&#34;</span>:<span class="n">0.08</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">9</span>}
+]</code></pre>
+<p>Planks:</p>
+<pre tabindex="0"><code class="language-json">[
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;size&#34;</span>,<span class="p">&#34;count&#34;</span>:<span class="n">16</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;pattern&#34;</span>,<span class="p">&#34;kind&#34;</span>:<span class="s">&#34;planks&#34;</span>,<span class="p">&#34;bh&#34;</span>:<span class="n">4</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">5</span>,<span class="p">&#34;strength&#34;</span>:<span class="n">0.5</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#a67c45&#34;</span>,<span class="s">&#34;#b08650&#34;</span>,<span class="s">&#34;#9c7440&#34;</span>,<span class="s">&#34;#ad8049&#34;</span>],<span class="p">&#34;mortar&#34;</span>:<span class="s">&#34;#5e4220&#34;</span>}
+]</code></pre>
+<p>Ore (gold in stone):</p>
+<pre tabindex="0"><code class="language-json">[
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;size&#34;</span>,<span class="p">&#34;count&#34;</span>:<span class="n">16</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;fill&#34;</span>,<span class="p">&#34;color&#34;</span>:<span class="s">&#34;#7d7d7d&#34;</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;noise&#34;</span>,<span class="p">&#34;kind&#34;</span>:<span class="s">&#34;perlin&#34;</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">21</span>,<span class="p">&#34;scale&#34;</span>:<span class="n">5</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#707070&#34;</span>,<span class="s">&#34;#7d7d7d&#34;</span>,<span class="s">&#34;#8a8a8a&#34;</span>],<span class="p">&#34;octaves&#34;</span>:<span class="n">2</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;speckle&#34;</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#6a6a6a&#34;</span>,<span class="s">&#34;#909090&#34;</span>],<span class="p">&#34;density&#34;</span>:<span class="n">0.07</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">4</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;pattern&#34;</span>,<span class="p">&#34;kind&#34;</span>:<span class="s">&#34;ore&#34;</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">8</span>,<span class="p">&#34;count&#34;</span>:<span class="n">6</span>,<span class="p">&#34;depth&#34;</span>:<span class="n">3</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#d8a02a&#34;</span>,<span class="s">&#34;#f2cf5a&#34;</span>],<span class="p">&#34;mortar&#34;</span>:<span class="s">&#34;#5a4a22&#34;</span>}
+]</code></pre>
+<p>Grass top and side (save with <code>block:&#34;grass_block&#34;</code>, <code>face:&#34;top&#34;</code> / <code>&#34;side&#34;</code>):</p>
+<pre tabindex="0"><code class="language-json">[
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;size&#34;</span>,<span class="p">&#34;count&#34;</span>:<span class="n">16</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;noise&#34;</span>,<span class="p">&#34;kind&#34;</span>:<span class="s">&#34;perlin&#34;</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">2</span>,<span class="p">&#34;scale&#34;</span>:<span class="n">4</span>,<span class="p">&#34;octaves&#34;</span>:<span class="n">2</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#4f8f2a&#34;</span>,<span class="s">&#34;#62aa35&#34;</span>,<span class="s">&#34;#74bd42&#34;</span>]},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;speckle&#34;</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#3e7a20&#34;</span>,<span class="s">&#34;#86cf50&#34;</span>],<span class="p">&#34;density&#34;</span>:<span class="n">0.1</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">6</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;seamless&#34;</span>,<span class="p">&#34;amount&#34;</span>:<span class="n">60</span>}
+]</code></pre>
+<pre tabindex="0"><code class="language-json">[
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;size&#34;</span>,<span class="p">&#34;count&#34;</span>:<span class="n">16</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;noise&#34;</span>,<span class="p">&#34;kind&#34;</span>:<span class="s">&#34;value&#34;</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">14</span>,<span class="p">&#34;scale&#34;</span>:<span class="n">4</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#7a5230&#34;</span>,<span class="s">&#34;#866038&#34;</span>,<span class="s">&#34;#6d4828&#34;</span>]},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;speckle&#34;</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#5a3a1e&#34;</span>,<span class="s">&#34;#97703f&#34;</span>],<span class="p">&#34;density&#34;</span>:<span class="n">0.1</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">15</span>},
+ {<span class="p">&#34;op&#34;</span>:<span class="s">&#34;pattern&#34;</span>,<span class="p">&#34;kind&#34;</span>:<span class="s">&#34;grass_edge&#34;</span>,<span class="p">&#34;seed&#34;</span>:<span class="n">33</span>,<span class="p">&#34;depth&#34;</span>:<span class="n">3</span>,<span class="p">&#34;colors&#34;</span>:[<span class="s">&#34;#74bd42&#34;</span>,<span class="s">&#34;#62aa35&#34;</span>,<span class="s">&#34;#4f8f2a&#34;</span>]}
+]</code></pre>
+<div class="pagemeta"><a href="modeling.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#voxel-models-bmodel">Voxel models ( .bmodel )</a></li><li><a class="l3" href="#two-ways-to-send-ops">Two ways to send ops</a></li><li><a class="l3" href="#ops">Ops</a></li><li><a class="l3" href="#layers-and-variants">Layers and variants</a></li><li><a class="l3" href="#recolor-colour-variants-without-a-new-file">Recolor: colour variants without a new file</a></li><li><a class="l3" href="#which-way-a-vox-faces">Which way a .vox faces</a></li><li><a class="l3" href="#feedback-an-agent-gets">Feedback an agent gets</a></li><li><a class="l3" href="#scale-and-size-references">Scale and size references</a></li><li><a class="l3" href="#assets-instances-bones">Assets, instances, bones</a></li><li><a href="#textures">Textures</a></li><li><a class="l3" href="#saving-the-project-override-layer">Saving: the project override layer</a></li><li><a href="#examples-generated-by-these-ops-original-work">Examples (generated by these ops, original work)</a></li><li><a class="l3" href="#tree">Tree</a></li><li><a class="l3" href="#crate">Crate</a></li><li><a class="l3" href="#lantern-with-an-emissive-core">Lantern with an emissive core</a></li><li><a class="l3" href="#animated-creature-with-bones">Animated creature with bones</a></li><li><a class="l3" href="#textures-1">Textures</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

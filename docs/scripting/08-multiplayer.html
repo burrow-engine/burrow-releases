@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Multiplayer | Burrow</title>
+<meta name="description" content="How scripts behave in a multiplayer session, which functions read the players, and what a script must never do. The protocol, hosting and joining are in networking .">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/08-multiplayer.html">
+<meta property="og:title" content="Multiplayer | Burrow">
+<meta property="og:description" content="How scripts behave in a multiplayer session, which functions read the players, and what a script must never do. The protocol, hosting and joining are in networking .">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/08-multiplayer.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Multiplayer | Burrow">
+<meta name="twitter:description" content="How scripts behave in a multiplayer session, which functions read the players, and what a script must never do. The protocol, hosting and joining are in networking .">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html" aria-current="page">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="multiplayer">Multiplayer<a class="anchor" href="#multiplayer" aria-label="Link to this section">#</a></h1>
+<p>How scripts behave in a multiplayer session, which functions read the players, and what a script must never do. The protocol, hosting and joining are in <a href="../networking.html">networking</a>.</p>
+<h2 id="who-runs-what">Who runs what<a class="anchor" href="#who-runs-what" aria-label="Link to this section">#</a></h2>
+<p>Burrow multiplayer is server-authoritative (<a href="../replication.html">replication</a>): the server runs the whole simulation, scripts included, and streams to each client what it needs. So:</p>
+<ul>
+<li><strong>Only the server runs scripts.</strong> Clients run frame stages (rendering, UI, audio) on a replicated copy and never call a script. A script cannot tell which player is &#34;local&#34;; no SDK function returns a local player id. Keep per-player data under the player id and let the game&#39;s presentation code pick the local one.</li>
+<li><strong>Script <code>State</code> never reaches a client.</strong> Anything a client must show or read (an inventory, a furnace, skills, a health bar) belongs in a <strong>component</strong> written by the script, with a visibility rule: everyone, the owner only, or nearby clients (<a href="../replication.html#component-visibility">component visibility</a>). Rule of thumb: keep client-visible state in components, not in script <code>State</code>. A script may keep its working data in <code>State</code> and copy what clients show into the component when it changes.</li>
+<li>Frame-domain effects (<a href="07-effects.html">audio, particles, cameras, UI</a>) are requested by the scripts on the server, which has no plugins for them and ignores them; a client&#39;s own presentation code produces them from the replicated components. A script cannot play a sound &#34;only for player 3&#34;.</li>
+</ul>
+<h2 id="opting-in">Opting in<a class="anchor" href="#opting-in" aria-label="Link to this section">#</a></h2>
+<p>Add <code>&#34;net&#34;: true</code> to <code>runtime.plugins</code> in <code>vox.project</code>. The plugin installs the hashed player registry (<code>net/netsim</code>), so a project without it keeps its old <code>StateHash</code>. Without it the three functions below return <code>UNAVAILABLE</code> (code 7), as they do outside a tick. Host with <code>burrow serve</code>, join with <code>burrowplay -connect</code>; see <a href="../networking.html#playing-host-join-editor">networking</a>.</p>
+<h2 id="player-functions">Player functions<a class="anchor" href="#player-functions" aria-label="Link to this section">#</a></h2>
+<p>Reads of simulation state: free of side effects.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">result</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>NetPlayerCount() (int, error)</code></td><td>number of connected players</td><td><code>UNAVAILABLE</code> without the plugin</td></tr>
+<tr><td><code>NetPlayerAt(i) (uint32, error)</code></td><td>id of the i-th connected player, ascending ids</td><td><code>UNAVAILABLE</code>; <code>NOT_FOUND</code>: <code>i</code> negative or past the end</td></tr>
+<tr><td><code>NetPlayerInfo(id) (NetPlayer, error)</code></td><td>the player&#39;s record</td><td><code>UNAVAILABLE</code>; <code>NOT_FOUND</code>: unknown id</td></tr>
+</tbody></table></div>
+<pre tabindex="0"><code class="language-go"><span class="k">type</span> NetPlayer <span class="k">struct</span> {
+	ID        <span class="k">uint32</span>
+	Name      <span class="k">string</span>
+	Connected <span class="k">bool</span>
+	Input     NetInput
+}</code></pre>
+<ul>
+<li>Ids are assigned by the server and are stable across a reconnect (the token gives the slot back within the 60 s grace).</li>
+<li>A player who leaves stays in the registry with <code>Connected</code> false and an empty <code>Input</code>, so <code>NetPlayerInfo</code> still answers for that id; <code>NetPlayerCount</code> and <code>NetPlayerAt</code> list connected players only. After the grace period the record is removed and <code>NetPlayerInfo</code> gives <code>NOT_FOUND</code>.</li>
+<li>Join and leave are commands applied at a tick of the server.</li>
+<li>The registry also stores a join tick, a spawn point and a spawned flag; scripts cannot read them (<code>NetPlayer</code> has only the four fields above).</li>
+</ul>
+<h3 id="input">Input<a class="anchor" href="#input" aria-label="Link to this section">#</a></h3>
+<p><code>NetInput</code> is quantized to integers so it hashes and travels exactly:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">unit and range</th></tr></thead>
+<tbody>
+<tr><td><code>MoveX</code>, <code>MoveY</code></td><td>thousandths, -1000..1000 (strafe, forward)</td></tr>
+<tr><td><code>Yaw</code></td><td>millidegrees, 0..359999</td></tr>
+<tr><td><code>Pitch</code></td><td>millidegrees, -90000..90000</td></tr>
+<tr><td><code>Buttons</code></td><td>bit field, one bit per game action</td></tr>
+</tbody></table></div>
+<p>The game window fills it from the input map every frame: action <code>move</code> gives the axes, action <code>look</code> (mouse delta) accumulates into yaw (0.1 degree per unit) and pitch (clamped to +-89), and every other action, in name order, is a button bit (bit 0 is the first name, at most 32, pressed above 0.5). Rename or add an action and the bits shift; derive them from the sorted action names of <code>input.json</code>.</p>
+<p><code>Input</code> is the player&#39;s <strong>last applied</strong> input: a client sends its input and the server applies it at a tick. It stays until the next input replaces it, and is cleared when the player leaves. Edges (pressed this tick) are derived by the script from its own <code>State</code>, as in <a href="06-input-events-time.html">input</a>.</p>
+<h3 id="local-input-does-not-exist-in-a-session">Local input does not exist in a session<a class="anchor" href="#local-input-does-not-exist-in-a-session" aria-label="Link to this section">#</a></h3>
+<p>The command that feeds <code>Action(name)</code> (<code>script_set_input</code>) is dropped by the command router on server and clients: in a session read <code>NetPlayerInfo</code> instead of <code>Action</code>. The local player&#39;s input reaches the simulation only through the server, so a script behaves the same for the local and for remote players.</p>
+<h2 id="rules-for-script-authors">Rules for script authors<a class="anchor" href="#rules-for-script-authors" aria-label="Link to this section">#</a></h2>
+<p>A script that follows the <a href="../determinism.html">determinism</a> rules of the single-player engine is multiplayer-ready; these are the ones that bite:</p>
+<ol>
+<li><strong>Only the simulation decides.</strong> Use <code>Tick()</code>, <code>Rand()</code>/<code>RandN</code> (a per-script stream from seed, entity and tick), <code>NetPlayer*</code> and components. Never use anything that differs per machine: wall-clock time, the machine&#39;s locale, <code>os</code> calls, Go map iteration order (iterate sorted keys or slices), goroutines. The sandbox already blocks most of these (see <a href="09-errors-and-limits.html">errors and limits</a>); the rest is your discipline.</li>
+<li><strong>Iterate players in a fixed order.</strong> <code>NetPlayerAt(0..n-1)</code> is ascending by id; keep that order when you spawn, score or tie-break.</li>
+<li><strong>Never branch on frame-domain facts.</strong> Do not use a sound, camera, UI or particle outcome as a condition (you cannot read them anyway), and do not store presentation state in components. UI input comes back only as <code>UIEvents</code> of <code>sim</code> widgets.</li>
+<li><strong>No hidden state.</strong> Guest memory resets before every call; anything that must outlive a tick lives in <code>State</code>, <code>Props</code> or components, which saves and snapshots carry. Only components reach clients.</li>
+<li><strong>No hot reload.</strong> Replacing a script module during a session is refused; modules are pinned by the project hash.</li>
+<li><strong>Respect command whitelists for clients.</strong> A client may submit only <code>net_player_input</code>, <code>set_block</code>, <code>fill_box</code> (4096 voxels), <code>fill_sphere</code> (radius 8) and <code>gameui_event</code> (when the project uses game UI). Script effects are not client commands: they run inside the server&#39;s simulation, so budgets and limits (<a href="09-errors-and-limits.html">errors and limits</a>) apply to the server.</li>
+<li><strong>Level changes</strong> (<code>LevelLoad</code>) are served by the server&#39;s frame; clients load the same level files (they are part of the project hash). Calling it from several scripts in the same tick is a request race: designate one script.</li>
+<li><strong>Test with two runs.</strong> Run the project headless twice and compare <code>StateHash</code> (<a href="10-debugging-and-testing.html">debugging and testing</a>).</li>
+</ol>
+<h2 id="example">Example<a class="anchor" href="#example" aria-label="Link to this section">#</a></h2>
+<p>An avatar per connected player, created on join and moved by that player&#39;s input. It runs unchanged on the host and on every client.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;fmt&#34;</span>
+
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+)
+
+<span class="k">const</span> speed = <span class="n">6.0</span> <span class="c">// blocks per second at full stick</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			n, err := burrowsdk.NetPlayerCount()
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span> <span class="c">// plugin off: nothing to do</span>
+			}
+			<span class="k">for</span> i := <span class="n">0</span>; i &lt; n; i++ { <span class="c">// ascending ids: a fixed order</span>
+				id, err := burrowsdk.NetPlayerAt(i)
+				<span class="k">if</span> err != <span class="k">nil</span> {
+					<span class="k">continue</span>
+				}
+				p, err := burrowsdk.NetPlayerInfo(id)
+				<span class="k">if</span> err != <span class="k">nil</span> {
+					<span class="k">continue</span>
+				}
+				name := fmt.Sprintf(<span class="s">&#34;avatar_%d&#34;</span>, id)
+				avatar, err := burrowsdk.FindByName(name)
+				<span class="k">if</span> err != <span class="k">nil</span> {
+					_, _ = burrowsdk.Spawn(<span class="s">&#34;&#34;</span>, burrowsdk.SpawnOpts{
+						Name:      name,
+						Transform: &amp;burrowsdk.Transform{Pos: [<span class="n">3</span>]<span class="k">float32</span>{<span class="k">float32</span>(id) * <span class="n">3</span>, <span class="n">10</span>, <span class="n">0</span>}, Scale: [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>}},
+					})
+					<span class="k">continue</span> <span class="c">// it exists from the next tick</span>
+				}
+				t, err := burrowsdk.GetTransform(avatar)
+				<span class="k">if</span> err != <span class="k">nil</span> {
+					<span class="k">continue</span>
+				}
+				t.Pos[<span class="n">0</span>] += <span class="k">float32</span>(p.Input.MoveX) / <span class="n">1000</span> * speed * <span class="k">float32</span>(dt)
+				t.Pos[<span class="n">2</span>] -= <span class="k">float32</span>(p.Input.MoveY) / <span class="n">1000</span> * speed * <span class="k">float32</span>(dt)
+				t.Rot[<span class="n">1</span>] = <span class="k">float32</span>(p.Input.Yaw) / <span class="n">1000</span>
+				_ = burrowsdk.SetTransform(avatar, t)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p>Leaving players keep their avatar here; despawn it when <code>p.Connected</code> is false to clean up.</p>
+<h2 id="ready-made-base-script-the-multiplayer-template">Ready-made base script: the <code>multiplayer</code> template<a class="anchor" href="#ready-made-base-script-the-multiplayer-template" aria-label="Link to this section">#</a></h2>
+<p>The <code>multiplayer</code> template (<code>burrow new -t multiplayer</code>) ships exactly this pattern as an overloadable base script, <code>scripts/avatars/main.go</code>: one avatar per connected player, driven by <code>NetPlayerInfo(id).Input</code> into a <code>physics.character</code> component (walk intents + facing), and in solo (no connected players) the same script falls back to <code>Action()</code> on its own <code>player</code> node. Tweak the <code>props</code> of the <code>script</code> component in <code>scenes/main.voxscn</code> (<code>speed</code>, <code>sprint_mul</code>, <code>jump_bit</code>, <code>sprint_bit</code>, <code>auto_test</code> — the last one walks forward regardless of input, so movement is verifiable headlessly), or edit and rebuild the script (<code>burrow script build</code>). Remember the rule above: in a session <code>Action()</code> is empty by design, so a player script must read <code>NetPlayerInfo</code>, not <code>Action</code>.</p>
+<h2 id="lobby-functions">Lobby functions<a class="anchor" href="#lobby-functions" aria-label="Link to this section">#</a></h2>
+<p>With <code>runtime.lobby</code> (<a href="../lobby.html">lobby</a>) three more functions exist, all <code>UNAVAILABLE</code> without it: <code>LobbyPhase() (int, error)</code> (0 lobby, 1 countdown, 2 playing, 3 results), <code>ReadLobby() (LobbyInfo, error)</code> (phase, host, match counter, countdown, slots with team and colour, the chosen settings, the last results, the configuration) and <code>LobbyEndMatch(results []byte) error</code> (ends the running match with a JSON verdict of at most 4096 bytes; <code>REJECTED</code> when no match is running). The end takes effect when the script call commits; clients see the new phase through the replicated lobby state.</p>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="../networking.html">Networking</a>: the model, hosting, pins, limits.</li>
+<li><a href="../lobby.html">Lobby</a>: teams, colours, ready, settings, match results.</li>
+<li><a href="../replication.html">Replication</a>: what clients receive, and component visibility.</li>
+<li><a href="../determinism.html">Determinism</a>: the rules the server relies on.</li>
+<li><a href="02-execution-model.html">Execution model</a>, <a href="06-input-events-time.html">input, events, time</a>.</li>
+<li><a href="07-effects.html">Effects</a>: what runs per peer on the screen.</li>
+<li><a href="12-embedding-and-abi.html">Embedding and ABI</a>: <code>net_player_*</code> in the ABI table.</li>
+</ul>
+<div class="pagemeta"><a href="08-multiplayer.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#who-runs-what">Who runs what</a></li><li><a href="#opting-in">Opting in</a></li><li><a href="#player-functions">Player functions</a></li><li><a class="l3" href="#input">Input</a></li><li><a class="l3" href="#local-input-does-not-exist-in-a-session">Local input does not exist in a session</a></li><li><a href="#rules-for-script-authors">Rules for script authors</a></li><li><a href="#example">Example</a></li><li><a href="#ready-made-base-script-the-multiplayer-template">Ready-made base script: the multiplayer template</a></li><li><a href="#lobby-functions">Lobby functions</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

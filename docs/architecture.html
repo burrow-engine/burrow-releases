@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Architecture and package map | Burrow</title>
+<meta name="description" content="The design rules (two domains, stages, determinism, errors) are in ARCHITECTURE.md ; this page is the map. Determinism, in one sentence: same project, seed and inputs give the same StateHash, on…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/architecture.html">
+<meta property="og:title" content="Architecture and package map | Burrow">
+<meta property="og:description" content="The design rules (two domains, stages, determinism, errors) are in ARCHITECTURE.md ; this page is the map. Determinism, in one sentence: same project, seed and inputs give the same StateHash, on…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/architecture.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Architecture and package map | Burrow">
+<meta name="twitter:description" content="The design rules (two domains, stages, determinism, errors) are in ARCHITECTURE.md ; this page is the map. Determinism, in one sentence: same project, seed and inputs give the same StateHash, on…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html" aria-current="page">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="architecture-and-package-map">Architecture and package map<a class="anchor" href="#architecture-and-package-map" aria-label="Link to this section">#</a></h1>
+<p>The design rules (two domains, stages, determinism, errors) are in <span class="unpub" title="Source file of the repository, not part of this site">ARCHITECTURE.md</span>; this page is the map. Determinism, in one sentence: same project, seed and inputs give the same StateHash, on macOS Apple silicon and Intel (tested). Windows and Linux are checked by the CI workflow against a golden hash, which has not run yet. The simulation uses integer math or explicitly rounded floats with a deterministic math library; rendering is not covered. See <a href="determinism.html">Determinism</a>.</p>
+<pre class="mermaid" tabindex="0">flowchart TB
+  tools[&#34;Tools&lt;br/&gt;cmd/burrow, burrowplay, burrowedit, burrowd, burrowctl&#34;]
+  runtime[&#34;Project runtime&lt;br/&gt;internal/game, gpuenv, pak, templates&#34;]
+  facade[&#34;burrow (root)&lt;br/&gt;public facade: App, Plugin, Stage, Commands&#34;]
+  modules[&#34;Frame and sim modules&lt;br/&gt;engine, scene, physics, input, assets, script, ui&#34;]
+  core[&#34;Deterministic core, no window, no GPU&lt;br/&gt;sim, ecs, voxel, worldgen, mesh, mathx&#34;]
+  frame[&#34;Frame domain&lt;br/&gt;render (vulkan, soft, canvas, rworld), window, app&#34;]
+  front[&#34;Editor and agent front ends&lt;br/&gt;editor (core, ui, gpu, agent), agent (+mcp), live&#34;]
+  tools --&gt; runtime --&gt; facade --&gt; modules --&gt; core
+  front --&gt; facade
+  frame -. reads a snapshot .-&gt; core</pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">package</th><th scope="col">role</th></tr></thead>
+<tbody>
+<tr><td><code>burrow</code></td><td>the stable-ish public API (type aliases and helpers over <code>engine</code>, <code>sim</code>, <code>scene</code>); every exported symbol is documented</td></tr>
+<tr><td><code>engine</code></td><td><code>App</code>, plugins, stages, resources, events, <code>Commands</code>, journal and replay glue, built-in plugins</td></tr>
+<tr><td><code>sim</code></td><td>fixed-step engine: ECS world, chunk map, block registry, RNG, <code>Command</code>s, journal, snapshot, undo, <code>StateHash</code></td></tr>
+<tr><td><code>ecs</code></td><td>entity-component store, queries, per-type hashing, undo logs</td></tr>
+<tr><td><code>voxel</code> / <code>worldgen</code> / <code>mesh</code></td><td>blocks, chunks, raycast and collision / pure terrain generators / greedy mesher</td></tr>
+<tr><td><code>scene</code></td><td>node tree, transforms, <code>.voxscn</code>, prefabs, component schema, scene commands</td></tr>
+<tr><td><code>physics</code></td><td>AABB bodies, character controller, triggers, queries (FixedUpdate)</td></tr>
+<tr><td><code>input</code></td><td>actions and bindings (<code>input.Map</code> JSON), <code>State</code>, <code>Injector</code>, recorder</td></tr>
+<tr><td><code>assets</code></td><td>project manifest (<code>assets/project</code>), DB with GUID sidecars, importers, atlas, watcher</td></tr>
+<tr><td><code>script</code> (+ <code>gas</code>, <code>guestbuild</code>, <code>sdk/burrowsdk</code>)</td><td>wazero host, ABI, gas instrumentation, Go guest SDK and builder</td></tr>
+<tr><td><code>render/*</code>, <code>window</code>, <code>app</code></td><td>Vulkan and CPU renderers, canvas, scene frame extraction, GLFW window, first-person controller</td></tr>
+<tr><td><code>ui</code></td><td>immediate-mode toolkit with golden tests on the CPU canvas</td></tr>
+<tr><td><code>editor/core</code> / <code>ui</code> / <code>gpu</code> / <code>agent</code></td><td>document model, panels, window host, MCP tools</td></tr>
+<tr><td><code>agent</code>, <code>agent/mcp</code></td><td>session API for agents, MCP server</td></tr>
+<tr><td><code>live</code></td><td>browser viewer hub for watching tests and sessions</td></tr>
+<tr><td><code>internal/game</code></td><td>loads a project directory or pak and builds the <code>engine.App</code> for <code>burrowplay</code> and <code>burrow test</code></td></tr>
+<tr><td><code>pak</code></td><td><code>.voxpak</code> archive and the executable trailer</td></tr>
+<tr><td><code>templates</code></td><td>embedded <code>burrow new</code> templates</td></tr>
+</tbody></table></div>
+<p>Feature packages added since the first map. Each is a plugin (<code>runtime.plugins.*</code>, on unless the project sets it <code>false</code>) or a pure library; the ones marked <em>frame</em> never touch the <code>StateHash</code>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">package</th><th scope="col">role</th></tr></thead>
+<tbody>
+<tr><td><code>anim</code></td><td>keyframe clips, players, state machines, voxel skeleton IK (<a href="animation.html">animation.md</a>)</td></tr>
+<tr><td><code>audio</code> (<code>audioplug</code>, <code>soundpack</code>, <code>audioamb</code>)</td><td>mixer, sound packs, sandbox ambience; <em>frame</em> (<a href="audio.html">audio.md</a>)</td></tr>
+<tr><td><code>particles</code> (<code>partplug</code>)</td><td>emitters and effect assets; <em>frame</em> (<a href="particles.html">particles.md</a>)</td></tr>
+<tr><td><code>camera</code> (<code>camplug</code>)</td><td>camera rigs, blends, shake; <em>frame</em> (<a href="cameras.html">cameras.md</a>)</td></tr>
+<tr><td><code>gameui</code> (<code>uiplug</code>)</td><td>the in-game UI toolkit: <code>.ui.json</code> screens, themes, localisation; <em>frame</em> (<a href="game-ui.html">game-ui.md</a>)</td></tr>
+<tr><td><code>level</code>, <code>save</code> (<code>levelplug</code>, <code>saveplug</code>)</td><td>fixed levels and save slots (<a href="levels-saves.html">levels-saves.md</a>)</td></tr>
+<tr><td><code>character</code> (<code>charplay</code>)</td><td>animated player avatar; <em>frame</em> (<a href="character.html">character.md</a>)</td></tr>
+<tr><td><code>nav</code></td><td>navigation graph, pathfinding, behaviour trees (<a href="navigation-ai.html">navigation-ai.md</a>)</td></tr>
+<tr><td><code>physics3d</code></td><td>rigid bodies, joints, voxel bodies, destruction (<a href="physics.html">physics.md</a>)</td></tr>
+<tr><td><code>fluid</code>, <code>weather</code></td><td>water automaton and the deterministic weather (<a href="water-physics.html">water-physics.md</a>, <a href="weather.html">weather.md</a>)</td></tr>
+<tr><td><code>blocklogic</code></td><td>per-cell block data and block events for scripts, project blocks live in <code>blockset</code> (<a href="blocks.html#block-logic">blocks.md</a>)</td></tr>
+<tr><td><code>blockset</code>, <code>shape</code></td><td>the extended block list and non-cubic block shapes (<a href="blocks.html">blocks.md</a>, <a href="block-shapes.html">block-shapes.md</a>)</td></tr>
+<tr><td><code>itemset</code></td><td>the project&#39;s item registry, stable ids and the 6-byte stack (<a href="items.html">items.md</a>)</td></tr>
+<tr><td><code>model</code>, <code>texedit</code></td><td>voxel model and pixel-art texture editing ops (<a href="modeling.html">modeling.md</a>)</td></tr>
+<tr><td><code>docs</code>, <code>editor/help</code>, <code>docs/docgen</code></td><td>the embedded documentation, its Markdown engine and search, and the generator of the reference pages (<a href="documentation.html">documentation.md</a>)</td></tr>
+</tbody></table></div>
+<h2 id="a-run-of-burrowplay">A run of <code>burrowplay</code><a class="anchor" href="#a-run-of-burrowplay" aria-label="Link to this section">#</a></h2>
+<p><code>internal/game.Build</code> reads <code>vox.project</code>, then assembles plugins in this order: Scene, [Window], Assets (dry-run DB + wasm loader), VoxelWorld (generator from <code>runtime</code>), Input, Physics, Script, [Controller, Render], RenderWorld, extras. It builds the app, applies the journaled start-up commands (<code>editor_world_load</code> for <code>runtime.world</code>, <code>scene_load</code> for the default scene) and runs headless ticks (<code>App.Frame(FixedDt)</code>) or the windowed loop. Scripts can queue the same journaled <code>scene_load</code> at runtime with the <code>scene_load</code> host function (<code>burrowsdk.SceneLoad(&#34;scenes/game.voxscn&#34;)</code>, see <code>script/ABI.md</code>): the <code>.voxscn</code> file is read pinned by content hash like <code>asset_read</code>, so a replay loads the same document — a <code>default_scene</code> can be a menu that hands over to the game scene. <code>RenderWorldPlugin</code> is present even headless so scenes with <code>render.*</code> components load and hash identically in both modes.</p>
+<pre class="mermaid" tabindex="0">flowchart LR
+  A[&#34;Read vox.project&#34;] --&gt; B[&#34;Assemble plugins&#34;]
+  B --&gt; C[&#34;Apply journaled start-up commands&lt;br/&gt;editor_world_load, scene_load&#34;]
+  C --&gt; D{&#34;Window?&#34;}
+  D -- no --&gt; E[&#34;Headless ticks&lt;br/&gt;App.Frame(FixedDt)&#34;]
+  D -- yes --&gt; F[&#34;Windowed loop&#34;]</pre>
+<h2 id="dependencies">Dependencies<a class="anchor" href="#dependencies" aria-label="Link to this section">#</a></h2>
+<p><code>github.com/tetratelabs/wazero</code> (scripts), <code>golang.org/x/image</code> and <code>golang.org/x/text</code> (fonts), GLFW bindings and a vendored Vulkan binding (<code>third_party_vulkan</code>, MIT fork of goki/vulkan, a package of the engine module itself: import path <code>burrow-engine/third_party_vulkan</code>, cgo only). Everything else is the standard library.</p>
+<div class="pagemeta"><a href="architecture.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/mermaid.min.js" defer></script>
+<script src="../assets/mermaid-init.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Go game (package gogame) | Burrow</title>
+<meta name="description" content="A project&#39;s game logic can be a plain Go main package that imports burrow-engine/gogame . The project folder still holds the scenes, prefabs, input map and assets ( vox.project ); only the logic…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/gogame.html">
+<meta property="og:title" content="Go game (package gogame) | Burrow">
+<meta property="og:description" content="A project&#39;s game logic can be a plain Go main package that imports burrow-engine/gogame . The project folder still holds the scenes, prefabs, input map and assets ( vox.project ); only the logic…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/gogame.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Go game (package gogame) | Burrow">
+<meta name="twitter:description" content="A project&#39;s game logic can be a plain Go main package that imports burrow-engine/gogame . The project folder still holds the scenes, prefabs, input map and assets ( vox.project ); only the logic…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html" aria-current="page">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="go-game-package-gogame">Go game (package gogame)<a class="anchor" href="#go-game-package-gogame" aria-label="Link to this section">#</a></h1>
+<p>A project&#39;s game logic can be a plain Go <code>main</code> package that imports <code>burrow-engine/gogame</code>. The project folder still holds the scenes, prefabs, input map and assets (<code>vox.project</code>); only the logic moves from WebAssembly scripts to your own Go code, with full access to the engine.</p>
+<h2 id="go-game-or-wasm-scripts">Go game or WASM scripts?<a class="anchor" href="#go-game-or-wasm-scripts" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col"></th><th scope="col">Go game (<code>gogame</code>)</th><th scope="col">WASM scripts (<code>script</code>)</th></tr></thead>
+<tbody>
+<tr><td>Trust</td><td>trusted, native code</td><td>sandboxed, gas-metered</td></tr>
+<tr><td>Delivery</td><td>one Go binary next to the project</td><td><code>.wasm</code> modules inside the project / pak</td></tr>
+<tr><td>Engine access</td><td>everything (<code>Ctx.App()</code>, any Go package)</td><td>host functions only, JSON features</td></tr>
+<tr><td>State</td><td>package variables persist</td><td>memory reset on every call; state lives in components</td></tr>
+<tr><td>Editor</td><td><code>burrow edit</code> shows scenes, but the logic is not hot reloaded</td><td>hot reload, debugger, script panel</td></tr>
+<tr><td>Mods / untrusted content</td><td>no</td><td>yes</td></tr>
+</tbody></table></div>
+<p>Pick the Go game for your own game with an AI agent or a Go programmer at the keyboard. Pick WASM scripts for mods, user-made content and anything that must run in the editor with hot reload.</p>
+<h2 id="quick-start">Quick start<a class="anchor" href="#quick-start" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code>burrow new mygame --template gogame
+cd mygame
+go run .                  # window
+go run . -headless 100    # 100 ticks, one JSON line {&#34;ok&#34;:true,&#34;ticks&#34;:100,&#34;hash&#34;:&#34;...&#34;,&#34;error&#34;:&#34;&#34;}</code></pre>
+<p><code>vox.project</code> keeps <code>&#34;scripts&#34;: []</code>. No scripting plugin is needed: the journaled input snapshot behind <code>Ctx.Action</code> comes from <code>input/inputsnap</code> (older projects that still enable <code>plugins.scripts</code> keep working; the script plugin then produces the same snapshot). Flags of <code>gogame.Main</code>: <code>-dir</code>, <code>-scene</code>, <code>-headless N</code>, <code>-saves</code>.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">func</span> main() {
+    gogame.Main(gogame.Game{
+        OnStart: <span class="k">func</span>(c *gogame.Ctx) <span class="k">error</span> { <span class="k">return</span> <span class="k">nil</span> },
+        OnTick:  <span class="k">func</span>(c *gogame.Ctx) { <span class="k">if</span> c.ActionPressed(<span class="s">&#34;stamp&#34;</span>) { c.SetVoxel(<span class="n">1</span>, <span class="n">9</span>, <span class="n">1</span>, <span class="s">&#34;wood&#34;</span>) } },
+        OnFrame: <span class="k">func</span>(f *gogame.Frame) {},
+        UI:      <span class="k">func</span>(ui *imui.UI) { ui.Label(<span class="s">&#34;hello&#34;</span>) },
+    })
+}</code></pre>
+<p><code>examples/gogame_demo</code> scaffolds the template and runs it. <code>gogame.RunHeadless(game, gogame.Options{Headless: n})</code> returns the <code>Result</code> (with <code>StateHash</code> and the finished <code>App</code>) for tests.</p>
+<h2 id="determinism">Determinism<a class="anchor" href="#determinism" aria-label="Link to this section">#</a></h2>
+<p><code>OnStart</code> and <code>OnTick</code> run inside the fixed step (20 Hz) after the engine&#39;s own fixed systems. Their changes are part of the simulation state, so a run replays to the same StateHash when your code is deterministic: use <code>Ctx.Rand</code> (never <code>math/rand</code> globals), no wall clock, no map-order dependence, no reads of data outside the simulation. Package variables persist but are not saved or rolled back. <code>OnFrame</code> and <code>UI</code> are per rendered frame and cosmetic. A failing call (unknown block, bad component JSON) is returned as the tick&#39;s error and stops the run.</p>
+<h2 id="ctx-reference">Ctx reference<a class="anchor" href="#ctx-reference" aria-label="Link to this section">#</a></h2>
+<p>Writes take effect at once inside the tick.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Method</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>App() *engine.App</code>, <code>Fixed() *engine.FixedContext</code></td><td>escape hatches to the engine</td></tr>
+<tr><td><code>Tick() uint64</code>, <code>Dt() float32</code></td><td>tick index, tick length (1/20 s)</td></tr>
+<tr><td><code>Rand() *rand.Rand</code></td><td>deterministic random source</td></tr>
+<tr><td><code>Log(format, args...)</code></td><td>line on stderr tagged with the tick</td></tr>
+<tr><td><code>Action(name) bool</code>, <code>ActionPressed(name) bool</code></td><td>button held / went down this tick (input map action)</td></tr>
+<tr><td><code>Axis(name) float32</code>, <code>Axis2(name) (x, y)</code></td><td>axis value (sticks, composites, mouse delta, wheel)</td></tr>
+<tr><td><code>Find(name) (Entity, bool)</code>, <code>FindByTag(tag) []Entity</code>, <code>Player()</code></td><td>node lookup (name, or slash path with &#34;/&#34;)</td></tr>
+<tr><td><code>Pos/SetPos</code>, <code>Transform/SetTransform</code></td><td>local transform of a node</td></tr>
+<tr><td><code>Spawn(prefabPath, pos) (Entity, error)</code>, <code>Despawn(e)</code></td><td>prefab instances</td></tr>
+<tr><td><code>Get(e, component, &amp;out) bool</code>, <code>Set(e, component, v) error</code></td><td>component JSON access</td></tr>
+<tr><td><code>Voxel(x,y,z) string</code>, <code>SetVoxel(x,y,z, block) error</code></td><td>blocks by name (&#34;air&#34; clears)</td></tr>
+<tr><td><code>SetVoxels([]VoxelEdit{X,Y,Z,Block}) error</code>, <code>FillVoxels(lo, hi [3]int, block) error</code></td><td>batches: up to 65536 edits, or a box of up to 1 048 576 cells; all or nothing (an unknown block writes nothing)</td></tr>
+<tr><td><code>Raycast(origin, dir, maxDist) (Hit, bool)</code></td><td>solid-voxel ray</td></tr>
+<tr><td><code>LoadScene(path) error</code></td><td>instantiate a <code>.voxscn</code> additively</td></tr>
+<tr><td><code>UISet(key, v)</code>, <code>UIShow(screen)</code>, <code>UIHide(screen)</code>, <code>UIEvents()</code></td><td>bridge to the declarative game UI (needs <code>plugins.gameui</code>)</td></tr>
+<tr><td><code>UIClicked(name) bool</code>, <code>UIValue(name) (float64, bool)</code>, <code>UIEmitted() []UIEvent</code></td><td>signals the imui code sent with <code>ui.Emit</code> since the previous tick (journaled)</td></tr>
+<tr><td><code>BlockInfo(name)</code>, <code>VoxelInfo(x,y,z)</code>, <code>BlockNames()</code></td><td>block properties (solid, opaque, liquid, emit, colour) by name or by cell</td></tr>
+<tr><td><code>Light(x,y,z) Light{R,G,B,Sky}</code></td><td>light of a cell, 0..15 per channel; derived data, never in the StateHash</td></tr>
+<tr><td><code>ParticleBurst(emitter, asset, ParticleOpts)</code>, <code>ParticleBlockBreak(emitter, block, offset)</code></td><td>one-shot effects from a node (frame domain)</td></tr>
+<tr><td><code>CameraShake(amount)</code>, <code>CameraCut()</code>, <code>CameraSwitch(rig, blend)</code></td><td>camera requests (frame domain)</td></tr>
+<tr><td><code>UISetItems(key, []UIItem)</code></td><td>rows of a declarative UI list or grid</td></tr>
+<tr><td><code>SaveSet/SaveGet/SaveDelete(key)</code>, <code>SaveSlot(SlotSave|SlotLoad|SlotDelete, slot, label)</code></td><td>the save store (needs <code>plugins.saves</code>); slots are served at the start of the next tick</td></tr>
+<tr><td><code>SpawnPrefab(path, SpawnOpts{Name, Parent, Transform, Components})</code></td><td>a prefab with a root name, a parent, a placement (scale multiplies the prefab root&#39;s) and extra components; <code>Spawn(path, pos)</code> keeps the root&#39;s rotation and scale</td></tr>
+<tr><td><code>Tolerate(func())</code></td><td>run calls whose failure must not end the run (a missing prefab, a node already gone); they still return their error</td></tr>
+<tr><td><code>SpawnNode(SpawnOpts{Name, Parent, Transform, Components})</code></td><td>a bare node (no prefab) with components; an empty name gets a free generated one</td></tr>
+<tr><td><code>Patch(e, component, patch)</code>, <code>RemoveComponent(e, component)</code></td><td>merge patch (RFC 7386) into a component, remove a component</td></tr>
+<tr><td><code>PlaySound(emitter, sound, SoundOpts) (SoundHandle, error)</code>, <code>StopSound(h, fade)</code>, <code>SetSound(h, volume, pitch)</code>, <code>SetBusVolume(bus, v)</code>, <code>StopAllSounds(bus)</code>, <code>SetListener(node)</code></td><td>sounds come from a node placed in the scene; handles are derived from emitter, tick and order, so replays make the same ones; silent without the audio plugin</td></tr>
+<tr><td><code>RaycastBodies(origin, dir, max, mask)</code>, <code>OverlapBox(lo, hi, mask)</code>, <code>ApplyImpulse(node, impulse)</code></td><td>rigid bodies and terrain (needs <code>plugins.physics3d</code>). A body must have a layer bit (<code>rigidbody.layer</code>) that the query mask includes, or it is invisible to queries; mask 0 = every layer</td></tr>
+<tr><td><code>LoadLevel(id, spawn)</code>, <code>CurrentLevel()</code>, <code>LevelSpawns()</code>, <code>LevelZoneAt(x, y, z)</code>, <code>LevelSettings()</code></td><td>hand-built levels (needs <code>plugins.levels</code>). <code>LoadLevel</code> is a request: the file is read in the background and applied by a journaled command when ready, so the level changes a few frames later, not in the same tick. Positions are in world blocks</td></tr>
+<tr><td><code>BlockData(x,y,z)</code>, <code>SetBlockData</code>, <code>DeleteBlockData</code>, <code>ScheduleBlock(x,y,z, delay, every)</code>, <code>UnscheduleBlock</code>, <code>DueBlocks()</code></td><td>a string bound to a cell (fuel of a furnace, content of a chest) and cells delivered on a schedule (needs <code>plugins.blocks</code>). The data belongs to the block the cell holds when written and is hashed and saved with the world; <code>DueBlocks</code> returns the cells due this tick, once, in due-tick then position order. Block change/break/use events are not delivered to Go games yet</td></tr>
+<tr><td><code>PlayAnim(node, clip, AnimOpts{Mode, Queue, Fade})</code>, <code>StopAnim</code>, <code>SetAnimSpeed</code>, <code>SetAnimParam</code>, <code>TriggerAnim</code>, <code>AnimTime</code></td><td>the node&#39;s <code>anim.player</code> (simulation state, journaled). <code>Queue</code> waits behind a playing clip; <code>Fade &gt; 0</code> crossfades and keeps the queue, <code>Fade == 0</code> cuts and clears it. An unknown clip name plays nothing</td></tr>
+<tr><td><code>NavGoal(node, x, y, z, slack)</code>, <code>NavStop</code>, <code>NavState</code>, <code>NavPath</code>, <code>SetBlackboard</code>, <code>Blackboard</code>, <code>DeleteBlackboard</code>, <code>NavSensed</code></td><td>navigation and AI of a node (<code>nav.agent</code>, <code>ai.brain</code>, <code>ai.perception</code>; plugin <code>nav</code>). A goal is a journaled component write; the path is computed inside later ticks from a queue with a budget, so the node starts moving a few ticks after <code>NavGoal</code>. The blackboard holds numbers here (the typed values of the WebAssembly call are not exposed)</td></tr>
+<tr><td><code>Parent(node)</code>, <code>ScenePath(node)</code>, <code>FindWith(component, root)</code></td><td>scene tree reads; <code>FindWith</code> scans depth first (root 0 = whole scene, at most 65,536 nodes) and fails the run for an unknown component</td></tr>
+<tr><td><code>Field(node, component, path)</code>, <code>FieldNum</code>, <code>SetField(node, component, path, v)</code></td><td>one field of a component by path (<code>pos[0]</code>, <code>bodies[2].mass</code>); writes send the whole component back through the schema, so it is validated like <code>Set</code></td></tr>
+<tr><td><code>BlockEvents()</code></td><td>block events since the last call (a cell changed, or a player used a block); the first call turns collection on, so call it in the first tick. Needs <code>plugins.blocks</code>; fluids do not produce events</td></tr>
+<tr><td><code>FloodBlocks(x,y,z, through, ends, max)</code></td><td>the network of conductor cells connected to a start cell (cables, pipes), breadth first in a fixed order; needs no plugin</td></tr>
+<tr><td><code>SetLevelZone(name, min, max, props)</code>, <code>DeleteLevelZone(name)</code></td><td>zones made by the game in world blocks (simulation state, cleared by a level load); <code>LevelZoneAt</code> finds them after the level&#39;s own</td></tr>
+<tr><td><code>ParticleEmit(node, count)</code>, <code>ParticleStop(node)</code></td><td>extra particles from a node&#39;s emitter; stop one emitter (0 = clear all)</td></tr>
+<tr><td><code>FluidAmount</code>, <code>FluidPour</code>, <code>FluidDrain</code> (<code>FluidUnitsPerBlock</code> = 64)</td><td>water volume of a cell (needs <code>plugins.fluid</code>); the water then flows by the automaton&#39;s rules</td></tr>
+<tr><td><code>SetBlackboardValue</code>, <code>BlackboardValue</code> (<code>BBNum</code>, <code>BBVec</code>, <code>BBNode</code>, <code>BBStr</code>)</td><td>typed blackboard values</td></tr>
+<tr><td><code>SwitchScene(path)</code></td><td>replace the whole running scene (nodes and voxel world) by another <code>.voxscn</code> of the project; served at the end of the tick, one per tick</td></tr>
+<tr><td><code>WorldInfo() (WorldInfo, bool)</code></td><td>slot, name, free-text mode, seed, generator of the world the game was started on</td></tr>
+<tr><td><code>Light.Level(skyDim)</code></td><td>the one brightness a rule such as &#34;mobs spawn in the dark&#34; reads</td></tr>
+<tr><td><code>Tags(e)</code>, <code>HasTag</code>, <code>AddTag</code>, <code>RemoveTag</code>, <code>Children(e)</code>, <code>Has(e, component)</code></td><td>scene tree helpers</td></tr>
+<tr><td><code>State(key, &amp;v)</code>, <code>SetState(key, v)</code>, <code>StateOf[T](c, key)</code>, <code>StateBytes/SetStateBytes/DeleteState</code></td><td>the game state, see below</td></tr>
+</tbody></table></div>
+<p><code>Frame</code> (OnFrame): <code>Dt</code>, <code>Frame</code>, <code>Tick</code>, <code>Alpha</code> (0..1 between ticks), <code>Find(name)</code>, <code>VisualSet/VisualAdd(node, target, v)</code> (render-only overlay, targets of <code>visual.bind</code>; write it every frame), <code>Key(name)</code>, <code>FreeCursor()</code>, <code>Quit()</code>, <code>Context()</code>. While the immediate-mode UI holds the mouse, mouse-button actions read as false in <code>Ctx.Action</code> (the flag is journaled, so replays agree).</p>
+<h2 id="game-state">Game state<a class="anchor" href="#game-state" aria-label="Link to this section">#</a></h2>
+<p>Package variables are not saved or rolled back, so a game keeps its rules (inventory, timers, quests, health, hunger) in <code>Ctx.State</code>: named values stored in one simulation component. They are hashed, snapshotted, saved, rolled back and replayed with the world, with no node and no script. Values are JSON (<code>SetState</code>/<code>State</code>/<code>StateOf</code>) or raw bytes (<code>SetStateBytes</code>/<code>StateBytes</code>, for a binary format of your own). Limits: 256 keys, 1 MiB per key, 4 MiB in all; unchanged writes cost nothing. Use structs, not maps, in JSON you hash. The engine gives the state no meaning: health, death and respawn are rules of the game, written in <code>OnTick</code>.</p>
+<p>Multiplayer note: the whole state is one component value, and a server sends a component value only when its JSON is at most 64 KiB (<code>wire.MaxCompData</code>; bytes are base64, so about 48 KiB of blobs). A game whose state is larger works the same in solo and on the authoritative side, but its state is not mirrored to remote clients; keep what a client must read small.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">type</span> Vitals <span class="k">struct</span>{ HP, Food <span class="k">int</span> }
+
+OnTick: <span class="k">func</span>(c *gogame.Ctx) {
+    v := gogame.StateOf[Vitals](c, <span class="s">&#34;vitals&#34;</span>)
+    <span class="k">if</span> c.ActionPressed(<span class="s">&#34;eat&#34;</span>) { v.Food++ }
+    _ = c.SetState(<span class="s">&#34;vitals&#34;</span>, v)
+}</code></pre>
+<h2 id="network-games">Network games<a class="anchor" href="#network-games" aria-label="Link to this section">#</a></h2>
+<p>A Go game can run as a <strong>dedicated server</strong> and be played from the game&#39;s own window. There is no listen server: nobody hosts from a window.</p>
+<pre tabindex="0"><code class="language-sh">./game -init-server ./srv        <span class="c"># writes srv/server.json and the TLS certificate (Game.Dir is the project)</span>
+./game -serve ./srv              <span class="c"># prints &#34;join link: burrow://host:7777?fp=...&amp;key=...&#34;</span>
+./game -connect <span class="s">&#34;burrow://...&#34;</span> -name ana</code></pre>
+<p><code>Game.NetScene</code> is the scene the server runs and the clients follow. The server alone runs <code>OnTick</code>; a client runs only frame systems (<code>OnFrame</code>, <code>UI</code>) on the replicated copy, and a dedicated server runs neither. So:</p>
+<ul>
+<li>Loop over <code>c.Players()</code> in <code>OnTick</code> (one player, id 0, when the game is played alone), read a player&#39;s input with <code>c.ActionOf(p, name)</code> (in a session an action is a button bit: <code>move</code> gives the axes, the scroll wheel reaches the server in one direction only; at most 30 bit actions), and keep per-player data in <code>c.SetPlayerBytes(p.ID, key, b)</code>.</li>
+<li>Per-player data is replicated to its owner only (component <code>gogame.pdata</code>, tag <code>owner:&lt;id&gt;</code>, at most 64 KiB of JSON per player in all) and saved with the world. A client reads its own with <code>Frame.PlayerBytes(key)</code>.</li>
+<li>What a player must see (HUD values, lists, screens) is written by <code>OnTick</code> into the player&#39;s data and played by <code>OnFrame</code> with <code>Frame.UISet</code>, <code>UISetItems</code>, <code>UIShow</code>, <code>UIHide</code>, <code>CameraShake</code>, <code>CameraCut</code>, <code>ParticleBurst</code>.</li>
+<li><code>UIEvents()</code> events carry <code>Player</code>: the server stamps the sender on every <code>gameui_event</code>.</li>
+<li>The world seed pins the handshake: the client&#39;s <code>-seed</code> (default the project&#39;s) must match the server&#39;s.</li>
+</ul>
+<h2 id="terrain-gamegenerator">Terrain: <code>Game.Generator</code><a class="anchor" href="#terrain-gamegenerator" aria-label="Link to this section">#</a></h2>
+<p><code>runtime.generator</code> in <code>vox.project</code> picks one of the engine terrains (<code>biomes</code>, <code>heightmap</code>, <code>flat</code>, <code>empty</code>). To add features of your own (ores that are not in the engine, ruins, a village) or to replace the terrain, set <code>Game.Generator</code>: a function that receives the generator the project describes and returns the one the world uses.</p>
+<pre tabindex="0"><code class="language-go">gogame.Main(gogame.Game{
+    Generator: <span class="k">func</span>(base worldgen.Generator) worldgen.Generator {
+        <span class="k">return</span> &amp;worldgen.Decorated{
+            Base: base,
+            ID:   <span class="s">&#34;mygame-ores/v1&#34;</span>, <span class="c">// bump it when Decorate changes what it generates</span>
+            Decorate: <span class="k">func</span>(ctx worldgen.DecorateCtx, c *voxel.Chunk) {
+                tin, ok := ctx.Reg.ID(<span class="s">&#34;tin_ore&#34;</span>) <span class="c">// resolve names here, on the first chunk, not earlier</span>
+                <span class="k">if</span> !ok { <span class="k">return</span> }
+                <span class="c">// write only voxels of this chunk, from a hash of (ctx.Seed, ctx.Pos)</span>
+                c.Set(<span class="n">5</span>, <span class="n">12</span>, <span class="n">5</span>, tin)
+            },
+        }
+    },
+    <span class="c">// ...</span>
+})</code></pre>
+<p><code>worldgen.Decorated</code> keeps what the base terrain offers (chunk layers, registry binding, far-terrain sampling, the biome tint) and adds <code>DecorateCtx.Surface(x, z)</code>, the base terrain height in a column, for placing something on the ground from every chunk it overlaps. Rules: the generator is a pure function of <code>(seed, chunk position)</code>, safe for concurrent use, with no clock, global state or other random source; a feature wider than a chunk is computed by each chunk it overlaps, from a position hash, and each writes only its own voxels. <code>ID</code> (and <code>ChangesSilhouette</code>, true for a feature that changes the ground seen from afar) are part of the world identity: change the ID whenever the decoration changes, because a saved world would otherwise mix two versions. A generator of your own works too: implement <code>Generate(seed, chunkPos) *voxel.Chunk</code>, <code>WorldID() string</code> and, to receive the registry, <code>WithRegistry(*voxel.Registry) worldgen.Generator</code>. <code>base</code> is nil when the project has no <code>runtime.generator</code> section.</p>
+<h2 id="imui-reference-burrow-enginegameuiimui">imui reference (<code>burrow-engine/gameui/imui</code>)<a class="anchor" href="#imui-reference-burrow-enginegameuiimui" aria-label="Link to this section">#</a></h2>
+<p>Immediate-mode UI drawn on a <code>render/canvas.Canvas</code>: call widgets every frame, get their result back at once. <code>gogame</code> runs it for you after the declarative game UI; for other hosts call <code>Begin</code> and <code>End</code> yourself.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">API</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>New(theme *gameui.Theme) *UI</code></td><td>nil theme = &#34;dark&#34;</td></tr>
+<tr><td><code>Begin(cv, in Input, w, h)</code>, <code>End()</code></td><td>frame bracket; <code>Input{MouseX, MouseY, Down, Pressed, Released, Text, Backspace, Enter, Escape}</code></td></tr>
+<tr><td><code>Window(title, fn)</code></td><td>centered, dimmed backdrop, sized to content (a first-frame measure pass runs the body once, idle)</td></tr>
+<tr><td><code>Panel(id, rect, fn)</code></td><td>fixed screen rectangle; captures the mouse</td></tr>
+<tr><td><code>Row(fn)</code>, <code>Column(fn)</code>, <code>Spacer(px)</code></td><td>layout; the default flow is a column</td></tr>
+<tr><td><code>Label(text)</code>, <code>Image(path, w, h)</code>, <code>ProgressBar(frac)</code></td><td>display (<code>UI.LoadImage</code> resolves image paths; gogame wires the project files)</td></tr>
+<tr><td><code>Button(label) bool</code>, <code>ButtonID(id, label) bool</code></td><td>true on click (press and release on it)</td></tr>
+<tr><td><code>Checkbox(label, *bool) bool</code>, <code>Slider(label, *float32, min, max) bool</code>, <code>TextInput(id, *string) bool</code></td><td>true when the value changed</td></tr>
+<tr><td><code>Captures() bool</code>, <code>Open() bool</code></td><td>mouse over the UI / a Window is shown (gogame frees the cursor then)</td></tr>
+<tr><td><code>Emit(name, value)</code></td><td>send a signal to <code>OnTick</code> (journaled, next tick): the only way UI code should change the game</td></tr>
+</tbody></table></div>
+<p>Widget identity is the label (or id) plus its place in the container; use <code>ButtonID</code> when labels repeat or change.</p>
+<div class="pagemeta"><a href="gogame.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#go-game-or-wasm-scripts">Go game or WASM scripts?</a></li><li><a href="#quick-start">Quick start</a></li><li><a href="#determinism">Determinism</a></li><li><a href="#ctx-reference">Ctx reference</a></li><li><a href="#game-state">Game state</a></li><li><a href="#network-games">Network games</a></li><li><a href="#terrain-gamegenerator">Terrain: Game.Generator</a></li><li><a href="#imui-reference-burrow-enginegameuiimui">imui reference ( burrow-engine/gameui/imui )</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

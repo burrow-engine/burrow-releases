@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Debugging and testing | Burrow</title>
+<meta name="description" content="How to see what a script does (logs, faults, profile), how to check it ( burrow script check , burrow test , replay, your own headless test), and the problems people hit most, each with cause and fix.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/10-debugging-and-testing.html">
+<meta property="og:title" content="Debugging and testing | Burrow">
+<meta property="og:description" content="How to see what a script does (logs, faults, profile), how to check it ( burrow script check , burrow test , replay, your own headless test), and the problems people hit most, each with cause and fix.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/10-debugging-and-testing.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Debugging and testing | Burrow">
+<meta name="twitter:description" content="How to see what a script does (logs, faults, profile), how to check it ( burrow script check , burrow test , replay, your own headless test), and the problems people hit most, each with cause and fix.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html" aria-current="page">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="debugging-and-testing">Debugging and testing<a class="anchor" href="#debugging-and-testing" aria-label="Link to this section">#</a></h1>
+<p>How to see what a script does (logs, faults, profile), how to check it (<code>burrow script check</code>, <code>burrow test</code>, replay, your own headless test), and the problems people hit most, each with cause and fix.</p>
+<h2 id="logging">Logging<a class="anchor" href="#logging" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-go">burrowsdk.Log(burrowsdk.LevelWarn, <span class="s">&#34;low ammo&#34;</span>)
+burrowsdk.Logf(<span class="s">&#34;tick %d: %d enemies&#34;</span>, burrowsdk.Tick(), n)   <span class="c">// LevelInfo</span></code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Level</th><th scope="col">Constant</th><th scope="col">Shown in the editor console as</th></tr></thead>
+<tbody>
+<tr><td>0</td><td><code>LevelDebug</code></td><td>info</td></tr>
+<tr><td>1</td><td><code>LevelInfo</code> (<code>Logf</code>)</td><td>info</td></tr>
+<tr><td>2</td><td><code>LevelWarn</code></td><td>warning</td></tr>
+<tr><td>3</td><td><code>LevelError</code></td><td>error</td></tr>
+</tbody></table></div>
+<ul>
+<li>A line is cut at 1 KiB, invalid UTF-8 becomes <code>?</code>, a level outside 0..3 is ignored, and only the first 64 lines of a transaction are kept. <code>Log</code> is a host call: it counts against the call budget and is refused (silently) once the budget is used up (<a href="09-errors-and-limits.html#budgets">limits</a>).</li>
+<li>Lines are delivered even when the transaction later faults; the effects are not.</li>
+<li>Log in moderation (<code>if burrowsdk.Tick()%20 == 0</code>): every line costs a host call, and the ring buffer keeps only the last 512 entries.</li>
+</ul>
+<p>Where the output goes:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Host</th><th scope="col">Output</th></tr></thead>
+<tbody>
+<tr><td>Editor</td><td>Console panel, <code>[script &lt;node path&gt; tick &lt;n&gt;] message</code>, with the level filter. Faults appear as errors with the wasm stack under the message.</td></tr>
+<tr><td><code>burrow run</code>, <code>burrowplay</code>, exported game</td><td><strong>Nowhere.</strong> Entries go to the in-memory <code>script.Console</code> ring and nothing prints it. Debug in the editor, or in a headless host that reads the ring (below). <code>burrowplay -headless -json</code> and <code>burrow test</code> only report counts (<code>script_invocations</code>, <code>script_faults</code>).</td></tr>
+<tr><td>Your own Go host</td><td>The <code>*script.Console</code> resource of the app (<code>engine.Res</code>), <code>Entries()</code> oldest first; or the <code>script.ScriptLog</code> and <code>script.ScriptFault</code> events.</td></tr>
+</tbody></table></div>
+<p><code>fmt.Println</code> and <code>println</code> write to stdout/stderr, which the sandbox captures only to enrich a fault message (first 4 KiB); on a successful call the text is discarded. Use <code>Logf</code>.</p>
+<h2 id="reading-a-fault">Reading a fault<a class="anchor" href="#reading-a-fault" aria-label="Link to this section">#</a></h2>
+<p>Faults appear in the console with the reason and a stack. The <a href="09-errors-and-limits.html#reading-a-fault">errors page</a> explains each part. In short: a Go panic shows its message and <code>file:line</code> in <code>guest stderr</code>; <code>gas exhausted</code> means too much work in one call; <code>(script disabled)</code> means three faults. For function names in the wasm stack, build the module with <code>burrowscript build -debug -o assets/scripts/x.wasm scripts/x</code> (bigger file, different hash).</p>
+<p>To stop on the tick of a fault, run in your own host with <code>script.Plugin{PauseOnFault: true}</code>: the simulation pauses with reason <code>script.fault</code> and the node can be inspected. The editor and the game do not set it.</p>
+<h2 id="the-debugger">The debugger<a class="anchor" href="#the-debugger" aria-label="Link to this section">#</a></h2>
+<p>A script is an all-or-nothing transaction: its call cannot be frozen half way, so the debugger stops the simulation at the <strong>end of the tick</strong> in which a script asked for it. The stop gives you the script&#39;s <code>State</code> and <code>Props</code>, the host functions it called (at most 64, in order), the label and variables it passed, and the world as it is at the tick boundary. Then you continue, or step one tick at a time. The debugger only observes: <code>StateHash</code>, journal and replay are the same with it on or off.</p>
+<p><strong>In the editor</strong> it is on while the scene plays. A stop switches the editor to Pause, writes <code>[debugger] stopped: ...</code> in the console, and <strong>Pause</strong> resumes, <strong>Step</strong> runs one tick (the batch of a step ends early at a stop). The MCP tool <code>editor_script_debug</code> does the same from an agent: <code>state</code>, <code>breakpoint_add</code>, <code>breakpoint_remove</code>, <code>breakpoints_clear</code>, <code>resume</code>, <code>step</code>.</p>
+<p><strong>In your script</strong>, a breakpoint written in code:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">if</span> burrowsdk.Debugging() { <span class="c">// true only with the debugger on; Break alone costs one host call when it is off</span>
+	_ = burrowsdk.Break(<span class="s">&#34;low ammo&#34;</span>, <span class="k">map</span>[<span class="k">string</span>]<span class="k">any</span>{<span class="s">&#34;ammo&#34;</span>: st.Ammo, <span class="s">&#34;target&#34;</span>: target})
+}
+_ = burrowsdk.BreakIf(st.Hp &lt; <span class="n">0</span>, <span class="s">&#34;negative hp&#34;</span>, st) <span class="c">// a conditional breakpoint</span></code></pre>
+<p><strong>From the host</strong>, without touching the script: breakpoints match every script run that fits all the fields you set.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">stops when</th></tr></thead>
+<tbody>
+<tr><td><code>module</code></td><td>the script&#39;s module path contains this text</td></tr>
+<tr><td><code>entity</code></td><td>the node has this entity id</td></tr>
+<tr><td><code>from_tick</code></td><td>the tick is at or after this one</td></tr>
+<tr><td><code>on_fault</code></td><td>the script faults (the stop carries the fault text and the host calls made before it)</td></tr>
+<tr><td><code>once</code></td><td>(modifier) the breakpoint removes itself after the first stop</td></tr>
+</tbody></table></div>
+<p>A breakpoint stops <strong>before</strong> the call: the snapshot is the <code>State</code> the script is about to receive (<code>before: true</code>). A <code>Break</code> call snapshots <strong>after</strong> the call, with the <code>State</code> it just saved.</p>
+<pre tabindex="0"><code class="language-go">d := rt.Debug() <span class="c">// *script.Runtime</span>
+d.SetEnabled(<span class="k">true</span>)
+id, _ := d.AddBreakpoint(script.Breakpoint{Module: <span class="s">&#34;enemy&#34;</span>, FromTick: <span class="n">200</span>, Once: <span class="k">true</span>})
+<span class="c">// the engine App pauses itself (reason &#34;script_debugger&#34;) at the end of the tick; read d.Last() / d.Hits(), then:</span>
+d.Step(<span class="n">1</span>) <span class="c">// run one tick and stop again</span>
+d.Resume()</code></pre>
+<p>A game that runs on <code>engine.App</code> pauses the App for you; a host that drives ticks itself (the editor) calls <code>SetManaged(true)</code> and reads <code>TakePending()</code> after each tick. Limits: 64 breakpoints, 32 stops kept, <code>Break</code> variables 4096 bytes, label 256 bytes, one stop per script transaction. <code>Break</code> and <code>Debugging</code> exist in module <code>vox</code> as <code>debug_break</code> and <code>debug_enabled</code> (<span class="unpub" title="Source file of the repository, not part of this site">ABI</span>).</p>
+<p>What it does not do: no stepping through source lines or inspecting local variables of a running call (wasm without debug info and the all-or-nothing transaction rule that keeps scripts deterministic). Put the variables you want to see in <code>Break</code>.</p>
+<h2 id="profiling">Profiling<a class="anchor" href="#profiling" aria-label="Link to this section">#</a></h2>
+<p>Cost is measured in gas, which is deterministic (the same on every machine and in a replay), plus wall time as a hint.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Source</th><th scope="col">What you get</th></tr></thead>
+<tbody>
+<tr><td><code>Runtime.Profile()</code></td><td>One row per script node, most expensive first: <code>Entity</code>, <code>Module</code>, <code>Entry</code>, <code>Ticks</code> (transactions), <code>GasTotal</code>, <code>GasMax</code>, <code>GasLast</code>, <code>HostGas</code> (the part charged by host calls: queries, field access), <code>LastTick</code>, <code>WallNanos</code>, <code>Faults</code>. <code>ResetProfile()</code> clears it.</td></tr>
+<tr><td><code>Runtime.Stats()</code></td><td>Cumulative counters: <code>Invocations</code>, <code>Faults</code>, <code>GasFaults</code>, <code>HostCalls</code>, <code>BudgetDenied</code>, <code>GasUsed</code>, <code>Spawns</code>, <code>VoxelEdits</code>, <code>Instantiations</code>, <code>Resets</code>, <code>ResetBytes</code>, <code>ModulesLoaded</code>, <code>Evicted</code>.</td></tr>
+<tr><td><code>burrowplay -headless -ticks N -json</code></td><td><code>report.script_invocations</code>, <code>report.script_faults</code>.</td></tr>
+<tr><td>Editor Profiler panel</td><td>Frame, render, GPU and simulation times; <strong>no per-script rows</strong>. For a script profile, use a host that calls <code>Profile()</code> (the program below).</td></tr>
+</tbody></table></div>
+<p>Reading the numbers: compare <code>GasMax</code> with the 50,000,000 limit; a high <code>HostGas</code> share means queries and field access dominate (see <a href="../reference/script-api.html#scene">scene queries</a> charges: per node scanned); a <code>GasMax</code> far above <code>GasTotal/Ticks</code> means rare expensive ticks (spread the work). Typical cost: about 1.5 us per call for a trivial script without JSON, much more with <code>encoding/json</code> (<span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span> performance table).</p>
+<h2 id="checking-a-module">Checking a module<a class="anchor" href="#checking-a-module" aria-label="Link to this section">#</a></h2>
+<p><code>burrow script check [dir|file.wasm]</code> runs the same loader the game uses, without running any code of the script beyond <code>init()</code>. Failing reasons and fixes:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Message contains</th><th scope="col">Cause</th><th scope="col">Fix</th></tr></thead>
+<tbody>
+<tr><td><code>module is N bytes, limit is 8388608</code></td><td>module over 8 MiB</td><td>build stripped (the default), drop heavy imports (<code>net/http</code>, big parsers)</td></tr>
+<tr><td><code>exports _start (command build)</code></td><td>built without <code>-buildmode=c-shared</code></td><td>use <code>burrow script build</code>, or the flags in <a href="01-getting-started.html#build-by-hand">getting started</a></td></tr>
+<tr><td><code>does not export vox_abi_version</code></td><td>the package does not import <code>burrowsdk</code></td><td>import it and call <code>burrowsdk.Register</code></td></tr>
+<tr><td><code>forbidden import env...</code> / <code>gojs...</code></td><td>built with <code>GOOS=js</code></td><td><code>GOOS=wasip1 GOARCH=wasm</code></td></tr>
+<tr><td><code>imports unknown host function vox.X</code></td><td>built against a newer SDK than the engine</td><td>rebuild with the SDK of this engine</td></tr>
+<tr><td><code>guest ABI version N, host speaks 1</code></td><td>SDK of another ABI</td><td>same</td></tr>
+<tr><td><code>forbidden import wasi_snapshot_preview1...</code></td><td><code>StrictWASI</code> check</td><td>drop the package that uses files or sockets</td></tr>
+<tr><td><code>initialisation failed</code></td><td><code>init()</code> does heavy work or panics</td><td>move work into hooks; <code>init()</code> gets 4x the gas</td></tr>
+<tr><td><code>malformed or unsupported module</code></td><td>truncated file, SIMD, tail calls, table mutation, structure over the caps</td><td>rebuild; check Go version</td></tr>
+</tbody></table></div>
+<p><code>burrow script build</code> prints the same check after compiling. <code>--json</code> gives <code>entries</code>, <code>size</code> and <code>hash</code> per module.</p>
+<h2 id="burrow-test"><code>burrow test</code><a class="anchor" href="#burrow-test" aria-label="Link to this section">#</a></h2>
+<p>Headless health check of a project; run it in CI.</p>
+<pre tabindex="0"><code class="language-sh">burrow test                       <span class="c"># 200 ticks, 3 runs</span>
+burrow test --ticks <span class="n">2000</span> --runs <span class="n">5</span> --json
+burrow test --go-tests            <span class="c"># also `go test ./...` in the project (unsandboxed)</span>
+burrow test --parity              <span class="c"># also link the scripts natively and require the same StateHash as wasm</span></code></pre>
+<p><code>--parity</code> links the project&#39;s scripts into a headless runner (the same linking as <code>burrow build --native</code>), runs it for the same ticks, once more with <code>BURROW_NATIVE_DEBUG=1</code> (faults any script that keeps state in package-level variables), and fails unless the <code>StateHash</code> equals the wasm one. See <a href="15-native.html">Native scripts</a>.</p>
+<p>It (1) loads the project, default scene, world overlay and input map; (2) builds stale scripts and checks every module listed in <code>vox.project</code> <code>scripts</code>; (3) runs <code>--ticks</code> ticks <code>--runs</code> times (defaults 200 and 3; at most 1,000,000 and 20) under <code>GOMAXPROCS</code> default, 1 and 8, requiring the same <code>StateHash</code> each time; (4) fails on failed commands and any script fault, and replays the journal and compares; (5) with <code>--go-tests</code> runs the project&#39;s own Go tests. Output: <code>PASS name ticks=200 StateHash=... (3 runs identical, replay verified)</code> or <code>FAIL</code> and the problems, exit 1.</p>
+<p>Limits of the check: no device input (scripts reading <code>Action</code> see nothing unless the project queues input), only the default scene, and a scene node whose <code>module</code> ends in <code>.wasm</code> is checked for existence. A different hash between runs means something outside the simulation leaked in: map iteration order, <code>math/rand</code>, <code>time</code>, goroutines, or a float-to-int conversion of NaN (<a href="02-execution-model.html#what-is-deterministic">rules</a>).</p>
+<h3 id="replay-and-journal">Replay and journal<a class="anchor" href="#replay-and-journal" aria-label="Link to this section">#</a></h3>
+<p>A run is a journal of commands; replay re-executes it and must reach the same hash.</p>
+<pre tabindex="0"><code class="language-sh">burrow run -- -headless -ticks <span class="n">400</span> -hash -journal run.json      <span class="c"># prints tick=400 StateHash=...</span>
+burrow run -- -replay run.json -expect &lt;hash&gt;                   <span class="c"># fails unless the hash matches</span>
+burrow run -- -headless -ticks <span class="n">400</span> -hash-every <span class="n">20</span>                <span class="c"># hash every 20 ticks: diff two machines to find the first bad tick</span></code></pre>
+<p><code>StateHash</code> covers every script component (State, props, hash, inbox, timers), so a script that is not deterministic, or a module that changed, shows up as a different hash. Replay needs the exact modules (they are named by content hash) and the same <code>script.Config</code>; the engine fails the tick with an error naming the hash otherwise.</p>
+<h2 id="a-headless-test-of-a-script">A headless test of a script<a class="anchor" href="#a-headless-test-of-a-script" aria-label="Link to this section">#</a></h2>
+<p>Create the runtime, register the module, spawn a node, run ticks, and assert on hash, replay, faults and cost. This program runs <code>assets/scripts/spin.wasm</code> twice and compares:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;encoding/json&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+
+	<span class="s">&#34;burrow-engine/engine&#34;</span>
+	<span class="s">&#34;burrow-engine/scene&#34;</span>
+	<span class="s">&#34;burrow-engine/script&#34;</span>
+)
+
+<span class="c">// play runs the module on one node for the given number of ticks.</span>
+<span class="k">func</span> play(wasm []<span class="k">byte</span>, ticks <span class="k">int</span>) (*engine.App, *script.Runtime, <span class="k">error</span>) {
+	rt, err := script.NewRuntime(script.Config{})
+	<span class="k">if</span> err != <span class="k">nil</span> {
+		<span class="k">return</span> <span class="k">nil</span>, <span class="k">nil</span>, err
+	}
+	<span class="k">if</span> _, err := rt.Register(<span class="s">&#34;spin&#34;</span>, wasm); err != <span class="k">nil</span> { <span class="c">// scenes may now say &#34;module&#34;: &#34;spin&#34;</span>
+		<span class="k">return</span> <span class="k">nil</span>, <span class="k">nil</span>, err
+	}
+	app := engine.New(engine.Options{Seed: <span class="n">1</span>, Blocks: engine.DefaultBlocks(), StrictCommands: <span class="k">true</span>})
+	app.AddPlugin(&amp;engine.ScenePlugin{})
+	app.AddPlugin(&amp;script.Plugin{Runtime: rt})
+	<span class="k">if</span> err := app.Build(); err != <span class="k">nil</span> {
+		<span class="k">return</span> <span class="k">nil</span>, <span class="k">nil</span>, err
+	}
+	<span class="k">if</span> err := app.Do(scene.SpawnNode{Name: <span class="s">&#34;cube&#34;</span>}); err != <span class="k">nil</span> {
+		<span class="k">return</span> <span class="k">nil</span>, <span class="k">nil</span>, err
+	}
+	data := json.RawMessage(<span class="s">`{&#34;module&#34;:&#34;spin&#34;,&#34;props&#34;:{&#34;speed&#34;:90}}`</span>)
+	<span class="k">if</span> err := app.Do(scene.SetComponent{Path: <span class="s">&#34;cube&#34;</span>, Name: script.CompScript, Data: data}); err != <span class="k">nil</span> {
+		<span class="k">return</span> <span class="k">nil</span>, <span class="k">nil</span>, err
+	}
+	<span class="k">return</span> app, rt, app.RunHeadless(ticks)
+}
+
+<span class="k">func</span> main() {
+	wasm, err := os.ReadFile(os.Args[<span class="n">1</span>])
+	<span class="k">if</span> err != <span class="k">nil</span> {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(<span class="n">1</span>)
+	}
+	a1, rt, err := play(wasm, <span class="n">100</span>)
+	<span class="k">if</span> err != <span class="k">nil</span> {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(<span class="n">1</span>)
+	}
+	<span class="k">defer</span> rt.Close()
+	a2, rt2, err := play(wasm, <span class="n">100</span>)
+	<span class="k">if</span> err != <span class="k">nil</span> {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(<span class="n">1</span>)
+	}
+	<span class="k">defer</span> rt2.Close()
+
+	problems := <span class="n">0</span>
+	<span class="k">if</span> a1.StateHash() != a2.StateHash() {
+		fmt.Println(<span class="s">&#34;FAIL: two runs differ&#34;</span>)
+		problems++
+	}
+	<span class="k">for</span> _, p := <span class="k">range</span> rt.Profile() { <span class="c">// most expensive script first (read before the replay runs the scripts again)</span>
+		fmt.Printf(<span class="s">&#34;entity %#x: %d ticks, gas total %d max %d (host %d)\n&#34;</span>, p.Entity, p.Ticks, p.GasTotal, p.GasMax, p.HostGas)
+	}
+	<span class="k">if</span> st := rt.Stats(); st.Faults &gt; <span class="n">0</span> {
+		fmt.Println(<span class="s">&#34;FAIL: script faults:&#34;</span>, st.Faults)
+		<span class="k">for</span> _, e := <span class="k">range</span> engine.Res[*script.Console](a1).Entries() {
+			fmt.Printf(<span class="s">&#34;  tick %d fault=%v %s\n&#34;</span>, e.Tick, e.Fault, e.Msg)
+		}
+		problems++
+	}
+	<span class="k">if</span> err := a1.VerifyReplay(); err != <span class="k">nil</span> { <span class="c">// re-executes the journal and compares the hash</span>
+		fmt.Println(<span class="s">&#34;FAIL: replay:&#34;</span>, err)
+		problems++
+	}
+	fmt.Printf(<span class="s">&#34;tick=%d StateHash=%016x\n&#34;</span>, a1.Tick(), a1.StateHash())
+	<span class="k">if</span> problems &gt; <span class="n">0</span> {
+		os.Exit(<span class="n">1</span>)
+	}
+}</code></pre>
+<p>Notes:</p>
+<ul>
+<li>It needs a Burrow checkout (<code>replace burrow-engine =&gt; checkout</code>); the Windows kit&#39;s <code>sdk/</code> module holds only <code>burrowsdk</code>, so host-side tests are not possible there. Save it as <code>scripttest/main.go</code> in your project and run <code>go run ./scripttest assets/scripts/spin.wasm</code>, or put the body in a <code>_test.go</code> file and let <code>burrow test --go-tests</code> run it.</li>
+<li>To assert behaviour, read components back after the run: <code>engine.Res</code> and the scene API give you the node (see <code>script/harness_test.go</code> and <code>examples/scripting_demo/main.go</code> for complete examples, including voxel setup with <code>sim.FillBox</code>).</li>
+<li>Pure logic of a script (math, parsing, state transitions) can be tested natively with <code>go test</code>: move it into plain functions. On a native build every host call returns <code>ERR_UNAVAILABLE</code>, so code that calls the SDK needs the harness above.</li>
+<li>Scenarios with input: <code>app.Do(script.ScriptSetInput{Names: []string{&#34;jump&#34;}, X: []int32{1000}, Y: []int32{0}})</code> makes <code>Action(&#34;jump&#34;)</code> return 1.0 from the next tick (values in thousandths, names sorted).</li>
+</ul>
+<h2 id="faq">FAQ<a class="anchor" href="#faq" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Problem</th><th scope="col">Cause</th><th scope="col">Fix</th></tr></thead>
+<tbody>
+<tr><td>My global variable resets every tick</td><td>Guest memory is restored before every call, even between <code>OnStart</code> and <code>OnTick</code> of one tick</td><td>Keep it in State or a component (<a href="03-state-and-props.html">state</a>); registrations go in <code>init()</code></td></tr>
+<tr><td>My <code>State</code> seems to save the old value</td><td><code>defer burrowsdk.SaveState(st)</code> copies <code>st</code> when <code>defer</code> runs</td><td><code>defer burrowsdk.SaveState(&amp;st)</code> or save explicitly</td></tr>
+<tr><td><code>LoadState</code> returns an error after I rebuilt</td><td>The struct changed incompatibly (retyped or renamed field), or the codec changed</td><td>Version the state and migrate (<a href="03-state-and-props.html#changing-the-state-format">state</a>); on error, start from a zero value</td></tr>
+<tr><td>Props decode is slow</td><td><code>Props[T]</code> runs <code>encoding/json</code> in the guest on every call</td><td>Decode once in <code>OnStart</code> into State, shrink the props, or parse <code>PropsRaw()</code> by hand</td></tr>
+<tr><td>My voxel edit is not visible</td><td>Edits apply at commit, not at the call; <code>LightAt</code> and physics queries read the committed world; or <code>SetVoxel</code> returned an error you ignored (bad block id, coordinate range, <code>ErrBudget</code>)</td><td>Check the error. <code>Voxel</code> and <code>Raycast</code> do see your own pending edits; other scripts see them after commit</td></tr>
+<tr><td>Only about 1,000 blocks get placed per tick</td><td>Each <code>SetVoxel</code> is a host call and the call budget is 1,000 per transaction</td><td>Spread the work over ticks, or raise <code>PerScript.Calls</code> in your own host (<a href="09-errors-and-limits.html#tuning-the-limits-on-the-host-side">tuning</a>)</td></tr>
+<tr><td><code>Log</code> stops printing in the middle of a hook</td><td>The host-call budget is used up; <code>Log</code> is refused when it is</td><td>Reduce calls; log less</td></tr>
+<tr><td>Script disabled / &#34;script disabled&#34; in the console</td><td>Three faults since its module last changed</td><td>Fix the cause, rebuild (the bytes must change) or press Stop in the editor; see <a href="09-errors-and-limits.html#faults">faults</a></td></tr>
+<tr><td><code>gas exhausted</code></td><td>More than 50,000,000 instructions in one call: an unbounded loop, a large scan, or JSON on big data</td><td>Profile, bound the loop, scan once and cache the result in State, spread work over ticks</td></tr>
+<tr><td>Nothing happens, no error</td><td><code>module</code> does not resolve (typo, <code>.wasm</code> not built, GUID of a deleted asset), the script plugin is off (<code>runtime.plugins.scripts: false</code>), or no hook does anything</td><td>The editor shows the module on the component; run <code>burrow script build</code>; check <code>runtime.plugins</code>; add a <code>Logf</code> in <code>OnStart</code></td></tr>
+<tr><td>Works in the editor but not in the game</td><td>The game has no hot reload and registers modules at start: the <code>.wasm</code> must exist in the project (<code>burrow run</code> rebuilds it, a copied folder may not have it). Also: the editor lacks the level and save plugins, but the game needs <code>runtime.plugins.levels</code> / <code>saves</code> for them; in the game window only the controller&#39;s keys reach the input map (W A S D, E, Q, Shift, Space, F, Z, F2, Esc, 1-9, mouse buttons per the previous documentation, not re-verified here)</td><td>Run <code>burrow test</code> and <code>burrow run</code> before shipping; bind scripts to keys the window reports; enable the plugins in <code>vox.project</code></td></tr>
+<tr><td>Works in the game but not in the editor</td><td>Level and save calls return <code>ERR_UNAVAILABLE</code> in Play; input only reaches scripts while the pointer is over the viewport</td><td>Test those paths with <code>burrow run</code>; hover the viewport</td></tr>
+<tr><td><code>Action</code> returns <code>ok == false</code></td><td>The action is not in the input map, no input snapshot exists yet (headless), or the key is not reported</td><td>Add the action to <code>input.json</code>; see the headless note above</td></tr>
+<tr><td><code>OnStart</code> did not run again after a rebuild</td><td><code>started</code> is part of the node&#39;s state and survives hot reload</td><td>Do set-up in a way that tolerates old State, or reset State on a version change</td></tr>
+<tr><td>An event I emitted arrives one tick late</td><td>Events and bus messages are delivered on a later tick, never in the emitting tick</td><td>Plan for the delay; for same-tick coordination use a shared component</td></tr>
+<tr><td><code>FindByName</code> does not find the node I just spawned</td><td>Spawned nodes exist after commit; queries read the committed scene</td><td>Keep the <code>Entity</code> returned by <code>Spawn</code> and use it in the same call</td></tr>
+<tr><td><code>ERR_UNAVAILABLE</code> from a physics, level or net call</td><td>The plugin is not installed in this host</td><td>Enable it in <code>vox.project</code> <code>runtime.plugins</code>; remember the editor does not install levels or saves</td></tr>
+<tr><td>Two runs give different <code>StateHash</code></td><td>Map iteration order, <code>math/rand</code>, <code>time</code>, goroutines, NaN, or floats converted to ints unclamped</td><td>See the <a href="02-execution-model.html#what-is-deterministic">rules</a>; bisect with <code>-hash-every</code></td></tr>
+<tr><td><code>fmt.Println</code> prints nothing</td><td>stdout and stderr are discarded on success</td><td><code>Logf</code></td></tr>
+<tr><td><code>updates to go.mod needed</code> on the first build</td><td>the project&#39;s <code>go.mod</code> was written by an older <code>burrow</code> with a <code>go</code> line below the SDK&#39;s</td><td><code>go mod tidy</code> once</td></tr>
+<tr><td><code>no required module provides package burrow-engine/sdk/burrowsdk</code></td><td><code>go.mod</code> lacks the <code>require</code> / <code>replace</code> pair or the replace path is wrong</td><td>See <a href="01-getting-started.html#go-version-and-the-sdk">getting started</a></td></tr>
+<tr><td><code>the Go toolchain cannot build GOOS=wasip1</code></td><td>Go older than 1.24 or a build without the wasip1 port</td><td>Install a current Go from go.dev</td></tr>
+<tr><td>Replay fails with <code>needs module sha256:...</code></td><td>The runtime lacks the module bytes the journal names, or a rebuilt module replaced them</td><td>Keep the <code>.wasm</code> files used for a recording next to the journal</td></tr>
+</tbody></table></div>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="02-execution-model.html">Execution model</a>: why memory resets and how effects commit.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a>: every code, limit and fault reason.</li>
+<li><a href="01-getting-started.html">Getting started</a>: commands and project layout.</li>
+<li><a href="12-embedding-and-abi.html">Embedding and the ABI</a>: hosting scripts in your own program. <a href="11-cookbook.html">Cookbook</a>.</li>
+<li><a href="../determinism.html">Determinism</a>, <a href="../troubleshooting.html">troubleshooting</a>, <a href="../reference/cli.html#burrow-test">CLI reference</a>.</li>
+</ul>
+<div class="pagemeta"><a href="10-debugging-and-testing.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#logging">Logging</a></li><li><a href="#reading-a-fault">Reading a fault</a></li><li><a href="#the-debugger">The debugger</a></li><li><a href="#profiling">Profiling</a></li><li><a href="#checking-a-module">Checking a module</a></li><li><a href="#burrow-test">burrow test</a></li><li><a class="l3" href="#replay-and-journal">Replay and journal</a></li><li><a href="#a-headless-test-of-a-script">A headless test of a script</a></li><li><a href="#faq">FAQ</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Getting started with scripts | Burrow</title>
+<meta name="description" content="A script is a Go program compiled to WebAssembly that runs inside the deterministic simulation; this page takes you from nothing to a spinning cube and lists the project layout, the script hooks and…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/01-getting-started.html">
+<meta property="og:title" content="Getting started with scripts | Burrow">
+<meta property="og:description" content="A script is a Go program compiled to WebAssembly that runs inside the deterministic simulation; this page takes you from nothing to a spinning cube and lists the project layout, the script hooks and…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/01-getting-started.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Getting started with scripts | Burrow">
+<meta name="twitter:description" content="A script is a Go program compiled to WebAssembly that runs inside the deterministic simulation; this page takes you from nothing to a spinning cube and lists the project layout, the script hooks and…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html" aria-current="page">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="getting-started-with-scripts">Getting started with scripts<a class="anchor" href="#getting-started-with-scripts" aria-label="Link to this section">#</a></h1>
+<p>A script is a Go program compiled to WebAssembly that runs inside the deterministic simulation; this page takes you from nothing to a spinning cube and lists the project layout, the script hooks and every <code>burrow script</code> command.</p>
+<h2 id="what-a-script-is">What a script is<a class="anchor" href="#what-a-script-is" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>One Go package (<code>scripts/&lt;name&gt;/</code>) = one <code>.wasm</code> module = one behaviour. Attach it to any number of nodes with the <code>script</code> component; each node has its own <code>props</code> and <code>state</code>.</li>
+<li>It is called by the engine, never the other way round: the host calls <code>OnStart</code>, <code>OnTick</code>, <code>OnEvent</code> and <code>OnDestroy</code> inside a fixed tick (20 per second). A script has no loop of its own, no window, no files, no network, no clock.</li>
+<li>Guest memory is reset before every call, so a script keeps nothing in globals. It remembers things in components: <a href="03-state-and-props.html">Props and State</a>.</li>
+<li>The Go SDK is <code>burrow-engine/sdk/burrowsdk</code>. Any other language that targets the ABI works too (<span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span>); this documentation covers Go.</li>
+</ul>
+<h2 id="quickstart-5-minutes">Quickstart (5 minutes)<a class="anchor" href="#quickstart-5-minutes" aria-label="Link to this section">#</a></h2>
+<p>Requirements: Go with the <code>wasip1</code> port (<a href="#go-version-and-the-sdk">Go version</a>), and <code>burrow</code> on your path.</p>
+<pre tabindex="0"><code class="language-sh">burrow new mygame --template empty     <span class="c"># or open any project folder</span>
+<span class="k">cd</span> mygame
+burrow script new spin                 <span class="c"># scripts/spin/main.go (+ go.mod when the project has none)</span>
+burrow script build                    <span class="c"># scripts/*/ -&gt; assets/scripts/*.wasm</span>
+burrow script check                    <span class="c"># re-verify the modules</span></code></pre>
+<p><code>scripts/spin/main.go</code> is a complete script that turns its node around the Y axis:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="c">// props is the designer configuration: JSON from the script component, read-only.</span>
+<span class="k">type</span> props <span class="k">struct</span> {
+	Speed <span class="k">float32</span> <span class="s">`json:&#34;speed&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			p, _ := burrowsdk.Props[props]()
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			t.Rot[<span class="n">1</span>] += p.Speed * <span class="k">float32</span>(dt)
+			burrowsdk.SetTransform(self, t)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p>Attach it, then run:</p>
+<ol>
+<li>Editor: select a node (for example <strong>Edit &gt; Create &gt; Cube</strong>), <strong>Add component</strong>, pick <code>script</code>, set <code>module</code> to <code>assets/scripts/spin.wasm</code> and <code>props</code> to <code>{&#34;speed&#34;: 90}</code>.</li>
+<li>Press <strong>Ctrl+Shift+P</strong> (Play). The node turns at 90 degrees per second. <strong>Esc</strong> stops and restores the scene exactly.</li>
+<li>Outside the editor: <code>burrow run</code> (rebuilds stale scripts, then plays) or <code>burrow test</code> (headless, prints the <code>StateHash</code>).</li>
+<li>Edit the code, run <code>burrow script build</code> again: the editor re-registers a changed <code>.wasm</code> within about a second and bound scripts keep their State.</li>
+</ol>
+<p>The editor never compiles Go: build with <code>burrow script build</code> (or let <code>burrow run</code>, <code>burrow test</code> and <code>burrow build</code> do it).</p>
+<h2 id="the-script-component">The script component<a class="anchor" href="#the-script-component" aria-label="Link to this section">#</a></h2>
+<p>Attach the same data from a scene file (<code>.voxscn</code>) instead of the inspector:</p>
+<pre tabindex="0"><code class="language-json"><span class="p">&#34;script&#34;</span>: { <span class="p">&#34;module&#34;</span>: <span class="s">&#34;assets/scripts/spin.wasm&#34;</span>, <span class="p">&#34;props&#34;</span>: { <span class="p">&#34;speed&#34;</span>: <span class="n">90</span> } }</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">type</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>module</code></td><td>string</td><td>Required. A name registered on the runtime, an asset GUID, or a project-relative path of the <code>.wasm</code>. Resolved in that order. A game registers every <code>.wasm</code> under the project&#39;s asset folders and the <code>scripts</code> list of <code>vox.project</code> by project-relative path (at most 256 modules).</td></tr>
+<tr><td><code>entry</code></td><td>string</td><td>Optional. Selects a <code>RegisterNamed</code> script inside the module. Empty = the <code>Register</code> script.</td></tr>
+<tr><td><code>props</code></td><td>JSON object</td><td>Optional designer configuration, at most 16 KiB. Read-only for the script.</td></tr>
+<tr><td><code>state</code>, <code>hash</code>, <code>cfg</code>, <code>started</code>, <code>disabled</code>, <code>faults</code>, <code>inbox</code>, <code>subs</code>, <code>timers</code>, <code>reads</code></td><td></td><td>Managed by the engine. Do not write them in scenes. <code>hash</code> pins the module by content on first run.</td></tr>
+</tbody></table></div>
+<p>Full schema: <a href="../reference/components.html#script">components reference</a>. An unresolved <code>module</code> is not an error: the node is retried every frame and its script never runs (see <a href="10-debugging-and-testing.html#faq">debugging</a>).</p>
+<h2 id="the-burrowsdkscript-struct">The <code>burrowsdk.Script</code> struct<a class="anchor" href="#the-burrowsdkscript-struct" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-go"><span class="k">type</span> Script <span class="k">struct</span> {
+	OnStart   <span class="k">func</span>(self Entity)
+	OnTick    <span class="k">func</span>(self Entity, dt <span class="k">float64</span>)
+	OnEvent   <span class="k">func</span>(self Entity, ev Event)
+	OnDestroy <span class="k">func</span>(self Entity)
+}
+<span class="k">type</span> Event <span class="k">struct</span> {
+	From    Entity <span class="c">// sender (the script&#39;s own entity for timers)</span>
+	Kind    <span class="k">int32</span>
+	Payload []<span class="k">byte</span>
+}</code></pre>
+<p>A nil hook is skipped. Every hook runs inside the node&#39;s transaction (<a href="02-execution-model.html">execution model</a>).</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">hook</th><th scope="col">called</th><th scope="col">notes</th></tr></thead>
+<tbody>
+<tr><td><code>OnStart(self)</code></td><td>once, in the first transaction of the node after the script is bound</td><td>Runs again if that transaction faulted (the <code>started</code> flag is saved only on success). Not re-run after hot reload or restore.</td></tr>
+<tr><td><code>OnTick(self, dt)</code></td><td>every fixed tick</td><td><code>dt</code> is <code>1 / rate</code>, <code>0.05</code> (50 ms) at the default 20 Hz (<code>runtime.tick_rate</code> can raise it). Use <code>Tick()</code> for time.</td></tr>
+<tr><td><code>OnEvent(self, ev)</code></td><td>once per event emitted on an earlier tick, in emission order</td><td>Events come from <code>Emit</code>, <code>Publish</code> and timers. A matching <code>OnMessage</code> or <code>OnTimer</code> handler consumes its event first, so <code>OnEvent</code> does not see it. Keep your own kinds below <code>0x40000000</code>: <code>0x40000000..0x7fffffff</code> is reserved for bus topics and timers.</td></tr>
+<tr><td><code>OnDestroy(self)</code></td><td>when a script&#39;s <code>Despawn</code> of the node (or of an ancestor) commits</td><td>Not called for editor deletion or scene unload. Runs as its own transaction; effects commit with it. Its own <code>Despawn</code> calls do not cascade.</td></tr>
+</tbody></table></div>
+<p>Registration rules:</p>
+<ul>
+<li>Register from <code>init()</code> (or package-level variable initialisers). <code>init()</code> runs once; the host snapshots memory right after it, so what <code>init()</code> set up is restored before every call. Anything registered later, inside a hook, is lost at the next reset.</li>
+<li><code>Register(s)</code> sets the default script; calling it twice keeps the last. <code>RegisterNamed(name, s)</code> adds scripts selected per node with the component&#39;s <code>entry</code>. If a module has named scripts and <code>entry</code> is empty, the default runs; if <code>entry</code> names something unknown, no hook runs (silently).</li>
+<li><code>OnMessage(topic, fn)</code> and <code>OnTimer(id, fn)</code> are also registered from <code>init()</code> (see the <a href="../reference/script-api.html#bus">API reference</a>).</li>
+<li>Do not call host functions from <code>init()</code>: they return <code>ERR_UNAVAILABLE</code> (<code>Rand()</code> would return a garbage value). Pure Go set-up is fine.</li>
+<li>The SDK exports all four entry points whatever hooks you set, so <code>burrow script check</code> always lists <code>on_destroy on_event on_start on_tick</code>.</li>
+</ul>
+<p>This script uses every hook:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">const</span> kindPing <span class="k">int32</span> = <span class="n">1</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			burrowsdk.Logf(<span class="s">&#34;started at tick %d&#34;</span>, burrowsdk.Tick())
+		},
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			<span class="k">if</span> burrowsdk.Tick()%<span class="n">20</span> == <span class="n">0</span> {
+				_ = burrowsdk.Emit(<span class="n">0</span>, kindPing, []<span class="k">byte</span>(<span class="s">&#34;hi&#34;</span>)) <span class="c">// target 0 = every script, delivered next tick</span>
+			}
+		},
+		OnEvent: <span class="k">func</span>(self burrowsdk.Entity, ev burrowsdk.Event) {
+			<span class="k">if</span> ev.Kind == kindPing {
+				burrowsdk.Logf(<span class="s">&#34;ping from %#x: %s&#34;</span>, <span class="k">uint64</span>(ev.From), ev.Payload)
+			}
+		},
+		OnDestroy: <span class="k">func</span>(self burrowsdk.Entity) {
+			burrowsdk.Log(burrowsdk.LevelInfo, <span class="s">&#34;bye&#34;</span>)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="project-layout">Project layout<a class="anchor" href="#project-layout" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-text">mygame/
+  vox.project                 manifest (optional &#34;scripts&#34;: [&#34;assets/scripts/spin.wasm&#34;])
+  go.mod  go.sum              require burrow-engine, replace burrow-engine =&gt; checkout or kit sdk
+  scripts/
+    spin/main.go              one package per module (more .go files allowed)
+    shared/...                helper packages are fine, they compile into every module that imports them
+  assets/scripts/spin.wasm    build output: commit it or ignore it, but it must exist to play
+  scenes/main.voxscn          nodes with the script component</code></pre>
+<p><code>burrow script build</code> treats each directory <code>scripts/&lt;name&gt;/</code> that holds a <code>.go</code> file as one script and writes <code>assets/scripts/&lt;name&gt;.wasm</code>. A module is about 4 MiB (the Go runtime), about 1 MiB inside a <code>.voxpak</code>. That cost is per module: prefer <strong>one module with several named entry points</strong> (<code>RegisterNamed</code>, <code>Script.Entry</code>) to many small ones. For release, <code>burrow build --native</code> links the scripts into the game executable instead (<a href="15-native.html">Native scripts</a>).</p>
+<h2 id="go-toolchain-and-script-templates">Go toolchain and script templates<a class="anchor" href="#go-toolchain-and-script-templates" aria-label="Link to this section">#</a></h2>
+<p>You do not have to install Go. When <code>burrow script build</code> (or the editor&#39;s build button, <code>burrow run</code>, <code>burrow build</code>) finds no <code>go</code> of at least Go 1.27.2 (the version in Burrow&#39;s <code>go.mod</code>), it downloads the official release for your OS and CPU into <code>&lt;user cache&gt;/burrow/go/go1.27.2</code> (about 70 MB, once, with a progress message). The archive comes from <code>https://go.dev/dl/</code> over HTTPS, its SHA-256 is checked against the release list before anything is unpacked, and the unpacking refuses absolute paths, <code>..</code>, links that leave the folder and oversized archives. Only one process downloads at a time.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Variable</th><th scope="col">Effect</th></tr></thead>
+<tbody>
+<tr><td><code>BURROW_GO</code></td><td>Use this <code>go</code> binary (or GOROOT folder) and never download.</td></tr>
+<tr><td><code>BURROW_OFFLINE=1</code></td><td>Never download: build fails with a clear message when no suitable Go is installed.</td></tr>
+<tr><td><code>BURROW_CACHE_DIR</code></td><td>Move the cache (default: the OS user cache directory + <code>burrow</code>).</td></tr>
+</tbody></table></div>
+<p><code>burrow doctor</code> shows which Go the scripts compile with, or that one will be downloaded.</p>
+<p>Ready-made behaviours: <code>burrow script templates</code> lists them, <code>burrow script new &lt;name&gt; --template &lt;t&gt;</code> starts a script from one. Each is a complete script with its Props documented in the header.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Template</th><th scope="col">Does</th></tr></thead>
+<tbody>
+<tr><td><code>rotate</code></td><td>turns the node around an axis</td></tr>
+<tr><td><code>bob</code></td><td>floats up and down</td></tr>
+<tr><td><code>door</code></td><td>opens and closes on the <code>door.open</code>, <code>door.close</code>, <code>door.toggle</code> bus events (AnimPlay when the node has an <code>anim.player</code>, else slides)</td></tr>
+<tr><td><code>pickup</code></td><td>collected when a tagged node (the player) comes close: publishes <code>pickup.collected</code>, disappears</td></tr>
+<tr><td><code>platform</code></td><td>moves between its start and a second point</td></tr>
+<tr><td><code>zone</code></td><td>publishes <code>zone.enter</code> / <code>zone.exit</code> for tagged nodes inside a box</td></tr>
+<tr><td><code>spawner</code></td><td>spawns a prefab on a timer</td></tr>
+<tr><td><code>follow</code></td><td>walks toward the nearest tagged node and faces it</td></tr>
+<tr><td><code>state</code></td><td>on/off state for a prefab: switches the model variant (<code>render.voxmodel.variant</code>), the particles (<code>enabled</code>) and the sounds (<code>muted</code>) under the node on the <code>state.on</code>, <code>state.off</code>, <code>state.toggle</code> bus events; prop <code>on</code> sets the start state, <code>group</code> limits which messages reach it (see <a href="../prefabs.html#a-campfire-with-on-and-off">Linked prefabs</a>)</td></tr>
+</tbody></table></div>
+<p>In the editor, the Script panel has a &#34;New script from a template&#34; button (sparkle icon): choose a template, type a name, and the editor writes <code>scripts/&lt;name&gt;/main.go</code>, attaches a script component with sensible Props to the selected node (one undoable step), opens the file and builds it in the background. The zap button rebuilds all scripts; changed modules hot-reload.</p>
+<h2 id="go-version-and-the-sdk">Go version and the SDK<a class="anchor" href="#go-version-and-the-sdk" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><p>The guest needs <code>GOOS=wasip1</code> and <code>//go:wasmexport</code>: <strong>Go 1.24 or newer</strong> (Burrow fetches Go 1.27.2 itself when needed, see above). TinyGo and cgo are not used (<code>CGO_ENABLED=0</code>). Recent toolchains (Go 1.26, 1.27) need no special flags: their wasm output stays under the engine&#39;s structural caps.</p></li>
+<li><p>The engine caps module structure before compiling it (its own <code>gas.Limits</code> check, not a wazero limit): block depth 512, 100k functions, 3M instructions. A Go compiler that inlines deep enough to exceed the block-depth cap makes the load fail with <code>blocks nested deeper than 512</code>; <code>burrow script build</code> / <code>burrowscript build</code> then retry automatically with <code>-gcflags=all=-l</code> (inlining disabled), and the error message names that flag. Build by hand with <code>-gcflags=all=-l</code> if you compile yourself (see below).</p></li>
+<li><p>The SDK is the package <code>burrow-engine/sdk/burrowsdk</code>. The module <code>burrow-engine</code> is not published; <code>go.mod</code> must point at it:</p>
+<pre tabindex="0"><code class="language-text">require burrow-engine v0.0.0
+replace burrow-engine =&gt; /path/to/burrow-checkout-or-sdk-folder</code></pre></li>
+</ul>
+<ul>
+<li>Where the <code>replace</code> target comes from, in order: <code>--burrow-root</code>, <code>$BURROW_SDK</code> (a kit SDK folder), <code>$BURROW_ROOT</code> or the checkout <code>burrow</code> was built from, the <code>sdk/</code> folder next to the executable (Windows creator kit). The kit&#39;s <code>sdk/</code> holds only <code>sdk/burrowsdk</code> and declares <code>go 1.24</code>.</li>
+<li><code>burrow script new</code> writes the <code>go</code> line of the SDK module it points at (a checkout&#39;s current version, <code>go 1.24</code> for the creator kit), so install that Go or let <code>GOTOOLCHAIN</code> fetch it. A <code>go.mod</code> written by an older <code>burrow</code> declared <code>go 1.24</code> and made the first build fail with <code>updates to go.mod needed</code>: run <code>go mod tidy</code> once in the project.</li>
+<li>Inside the Burrow repository no <code>go.mod</code> is needed.</li>
+</ul>
+<h2 id="build-by-hand">Build by hand<a class="anchor" href="#build-by-hand" aria-label="Link to this section">#</a></h2>
+<p><code>burrow script build</code> is <code>go build</code> with fixed flags. If you build yourself, keep them: the module bytes (and so the pinned hash) then do not depend on where the engine or your project lives.</p>
+<pre tabindex="0"><code class="language-sh">GOOS=wasip1 GOARCH=wasm CGO_ENABLED=<span class="n">0</span> go build -buildmode=c-shared -trimpath \
+  -ldflags=<span class="s">&#34;-s -w -X=runtime.modinfo= -buildid=&#34;</span> -o assets/scripts/spin.wasm ./scripts/spin
+burrow script check assets/scripts/spin.wasm</code></pre>
+<p><code>-buildmode=c-shared</code> makes a reactor module (exports <code>_initialize</code>, no <code>_start</code>); a plain <code>go build</code> produces a command module the engine rejects. Drop <code>-s -w</code> for a debug build with function names in fault traces.</p>
+<p>If the engine refuses the module with <code>blocks nested deeper than 512</code> (deep inlining), add <code>-gcflags=all=-l</code>:</p>
+<pre tabindex="0"><code class="language-sh">GOOS=wasip1 GOARCH=wasm CGO_ENABLED=<span class="n">0</span> go build -buildmode=c-shared -trimpath -gcflags=all=-l \
+  -ldflags=<span class="s">&#34;-s -w -X=runtime.modinfo= -buildid=&#34;</span> -o assets/scripts/spin.wasm ./scripts/spin</code></pre>
+<p>The module gets bigger and slightly slower; <code>burrow script build</code> and <code>burrowscript build</code> apply this flag automatically when needed.</p>
+<h2 id="commands">Commands<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
+<p><code>burrow script &lt;build|new|check&gt;</code>; <code>dir</code> defaults to the current folder. Every subcommand accepts <code>--json</code> (machine-readable result on stdout; <code>{&#34;ok&#34;:false,&#34;error&#34;:...}</code> on failure). Exit codes: 0 ok, 1 failure, 2 usage error.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">command</th><th scope="col">does</th></tr></thead>
+<tbody>
+<tr><td><code>burrow script new &lt;name&gt; [dir] [--template &lt;t&gt;]</code></td><td>Writes <code>dir/scripts/&lt;name&gt;/main.go</code> (the skeleton above, or the template). <code>burrow script templates</code> lists them. <code>name</code>: lowercase letters, digits, <code>-</code>, <code>_</code>. Refuses to overwrite. Writes <code>dir/go.mod</code> only when absent; with no SDK found it warns and prints the lines to add.</td></tr>
+<tr><td><code>burrow script build [dir]</code></td><td>Compiles every <code>dir/scripts/&lt;name&gt;/</code> to <code>dir/assets/scripts/&lt;name&gt;.wasm</code> (stripped), then loads each module through the engine&#39;s checker. Skips a module whose <code>.wasm</code> is newer than every file in its folder and than <code>go.mod</code>/<code>go.sum</code>. Fails with <code>no scripts found</code> when there is none. If the checker rejects a module for block depth (<code>blocks nested deeper than 512</code>), it is rebuilt once with <code>-gcflags=all=-l</code> before failing.</td></tr>
+<tr><td><code>burrow script check [dir|file.wasm]</code></td><td>Verifies ABI version, imports, exports, size and structure of one file, or of every <code>.wasm</code> found anywhere under <code>dir</code> (default <code>.</code>). Prints <code>OK path (bytes, entries)</code> or <code>FAIL path: reason</code>; exit 1 if any fails or none exists.</td></tr>
+</tbody></table></div>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">flag</th><th scope="col">subcommand</th><th scope="col">default</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>--force</code></td><td>build</td><td>off</td><td>Rebuild even when up to date. Needed after changing a shared package outside <code>scripts/&lt;name&gt;/</code>.</td></tr>
+<tr><td><code>--burrow-root path</code></td><td>new</td><td>see above</td><td>Burrow checkout for the <code>replace</code> line. <code>--vox-root</code> is an alias.</td></tr>
+<tr><td><code>--json</code></td><td>all</td><td>off</td><td>JSON output. build: <code>{&#34;ok&#34;,&#34;scripts&#34;:[{name,source,wasm,bytes,hash,up_to_date}]}</code>; check: <code>{&#34;ok&#34;,&#34;modules&#34;:[{file,ok,error,size,hash,entries}]}</code>.</td></tr>
+</tbody></table></div>
+<p>Related: <code>burrow run [dir]</code> and <code>burrow test [dir]</code> rebuild stale scripts first (<code>burrow run --no-scripts</code> skips it); <code>burrow build</code> packs the modules into the game. The standalone tool <code>burrowscript</code> does the same per package:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col"><code>burrowscript</code></th><th scope="col">flags</th></tr></thead>
+<tbody>
+<tr><td><code>build &lt;pkg-dir&gt;</code></td><td><code>-o out.wasm</code> (default <code>&lt;dir&gt;.wasm</code>), <code>-debug</code> keeps symbols and DWARF (bigger module, function names in fault traces)</td></tr>
+<tr><td><code>new &lt;dir&gt;</code></td><td><code>-burrow /path</code> (alias <code>-vox</code>)</td></tr>
+<tr><td><code>check &lt;file.wasm&gt;</code></td><td><code>-max-bytes N</code> (default 8 MiB), <code>-strict-wasi</code> rejects every WASI import beyond the startup set; prints imports, memory pages and gas-check counts</td></tr>
+</tbody></table></div>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="02-execution-model.html">Execution model</a>: transactions, order, time, randomness, determinism rules.</li>
+<li><a href="03-state-and-props.html">State and props</a>: how a script remembers things.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a> and <a href="10-debugging-and-testing.html">debugging and testing</a>.</li>
+<li>Next: <a href="04-entities-and-scene.html">entities and scene</a>, <a href="05-world.html">world</a>, <a href="06-input-events-time.html">input, events and time</a>, <a href="07-effects.html">effects</a>, <a href="08-multiplayer.html">multiplayer</a>, <a href="11-cookbook.html">cookbook</a>, <a href="12-embedding-and-abi.html">embedding and the ABI</a>, <a href="13-go-sdk.html">the Go SDK in depth</a>.</li>
+<li><a href="../reference/script-api.html">Script API reference</a>: every host function, SDK function, type and constant (generated); <a href="13-go-sdk.html">the Go SDK in depth</a> maps the package file by file.</li>
+<li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: a scripted entity</a>, <span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span>.</li>
+</ul>
+<div class="pagemeta"><a href="01-getting-started.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#what-a-script-is">What a script is</a></li><li><a href="#quickstart-5-minutes">Quickstart (5 minutes)</a></li><li><a href="#the-script-component">The script component</a></li><li><a href="#the-burrowsdkscript-struct">The burrowsdk.Script struct</a></li><li><a href="#project-layout">Project layout</a></li><li><a href="#go-toolchain-and-script-templates">Go toolchain and script templates</a></li><li><a href="#go-version-and-the-sdk">Go version and the SDK</a></li><li><a href="#build-by-hand">Build by hand</a></li><li><a href="#commands">Commands</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

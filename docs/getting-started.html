@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Getting started | Burrow</title>
+<meta name="description" content="New here? The tutorials walk through a first project in the editor; this page covers installation and the command line. Inside the editor, press F1 for the same pages.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/getting-started.html">
+<meta property="og:title" content="Getting started | Burrow">
+<meta property="og:description" content="New here? The tutorials walk through a first project in the editor; this page covers installation and the command line. Inside the editor, press F1 for the same pages.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/getting-started.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Getting started | Burrow">
+<meta name="twitter:description" content="New here? The tutorials walk through a first project in the editor; this page covers installation and the command line. Inside the editor, press F1 for the same pages.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html" aria-current="page">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="getting-started">Getting started<a class="anchor" href="#getting-started" aria-label="Link to this section">#</a></h1>
+<p>New here? The <a href="tutorials/01-first-project.html">tutorials</a> walk through a first project in the editor; this page covers installation and the command line. Inside the editor, press F1 for the same pages.</p>
+<h2 id="1-install">1. Install<a class="anchor" href="#1-install" aria-label="Link to this section">#</a></h2>
+<p>You need macOS on Apple silicon, Go 1.24+ (the repository targets Go 1.27), and Homebrew packages:</p>
+<pre tabindex="0"><code class="language-sh">brew install go molten-vk vulkan-loader glfw shaderc vulkan-validationlayers
+git clone &lt;this repository&gt; burrow &amp;&amp; <span class="k">cd</span> burrow
+go install ./cmd/burrow ./cmd/burrowplay ./cmd/burrowedit        <span class="c"># puts the tools in $(go env GOPATH)/bin</span>
+burrow doctor</code></pre>
+<p><code>burrow doctor</code> checks Go, the Homebrew formulae, the MoltenVK ICD file, a Metal device, the <code>GOOS=wasip1</code> toolchain (needed to compile scripts), the Burrow binaries and whether the default (restricted-licence) block texture pack is embedded in this build, and prints the exact fix for every problem. Only Go, MoltenVK and Metal are required; the rest is optional (<code>shaderc</code> only if you rebuild shaders, validation layers only for GPU debugging).</p>
+<p>Keep <code>burrow</code>, <code>burrowplay</code> and <code>burrowedit</code> in the same directory: <code>burrow</code> looks next to itself first, then on <code>PATH</code>, then builds them from a trusted Burrow source checkout: <code>--burrow-root</code>, <code>$BURROW_ROOT</code>, or the checkout <code>burrow</code> itself was built from (not available in <code>-trimpath</code> builds: set <code>BURROW_ROOT</code>). <strong>The working directory and the project are never searched</strong>, so opening somebody else&#39;s project cannot make <code>burrow</code> build and run its code as &#34;burrow&#34;. Tools are built with <code>-trimpath</code> into a private (0700) cache keyed by the checkout path, a hash of its sources and <code>go.sum</code>, the platform and the build tags; a cached binary that is not yours or is group/world-writable is refused. Set <code>BURROW_ROOT=/path/to/burrow</code> if you moved the checkout. Without any checkout (the Windows creator kit), script projects <code>replace burrow-engine</code> with the kit&#39;s minimal <code>sdk/</code> module (found next to <code>burrow.exe</code>, or <code>$BURROW_SDK</code>): it holds only <code>sdk/burrowsdk</code>. See <a href="security.html">security.md</a> for the trust model.</p>
+<p>You never need to export the MoltenVK variables for <code>burrow</code> commands: <code>burrow run</code> and <code>burrow edit</code> pass <code>DYLD_FALLBACK_LIBRARY_PATH</code> and <code>VK_ICD_FILENAMES</code> (and <code>VK_LAYER_PATH</code> with <code>--validate</code>) to the child explicitly. For manual <code>go run</code> / <code>go test</code> use <code>eval &#34;$(burrow shell-env)&#34;</code>.</p>
+<h2 id="2-create-a-game">2. Create a game<a class="anchor" href="#2-create-a-game" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-sh">burrow new mygame --template sandbox     <span class="c"># sandbox | empty | builder | models | scripted | multiplayer</span>
+<span class="k">cd</span> mygame</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">template</th><th scope="col">what you get</th></tr></thead>
+<tbody>
+<tr><td><code>sandbox</code></td><td>streamed hills with trees, first-person controller, HUD (the <code>voxel_sandbox</code> example as a project)</td></tr>
+<tr><td><code>empty</code></td><td>a flat world and an empty scene: your starting point</td></tr>
+<tr><td><code>builder</code></td><td>flat world + one Go script: keys 1-4 stamp a tower, wall, pyramid or house</td></tr>
+<tr><td><code>models</code></td><td>flat world + an <code>.obj</code> mesh with a textured material, a <code>.vox</code> model and a billboard sprite, all resolved through the asset registry (also from a packed game)</td></tr>
+<tr><td><code>scripted</code></td><td>flat world + three scripts: a spinning cube, a voxel painter, a wandering AI</td></tr>
+<tr><td><code>multiplayer</code></td><td>flat world + first-person controller + a base <code>avatars</code> script that moves one avatar per connected player from the server registry (<code>net_player_info</code>); overload it for your game (see <a href="scripting/08-multiplayer.html">multiplayer scripting</a>)</td></tr>
+</tbody></table></div>
+<p>A project directory:</p>
+<pre tabindex="0"><code>vox.project          manifest (JSON): name, asset directories, default scene, input map, runtime section
+scenes/main.voxscn   the default scene (node tree + components)
+input.json           input actions and bindings
+assets/              textures, models, worlds, compiled scripts (assets/scripts/*.wasm)
+scripts/&lt;name&gt;/      Go source of scripts (scripted and builder templates), with go.mod at the root
+worlds/              optional .voxworld edit overlays</code></pre>
+<h3 id="the-voxproject-runtime-section">The <code>vox.project</code> runtime section<a class="anchor" href="#the-voxproject-runtime-section" aria-label="Link to this section">#</a></h3>
+<p>Everything is optional; defaults in brackets.</p>
+<pre tabindex="0"><code class="language-json">{
+  <span class="p">&#34;schema&#34;</span>: <span class="n">1</span>,
+  <span class="p">&#34;name&#34;</span>: <span class="s">&#34;mygame&#34;</span>,
+  <span class="p">&#34;engine&#34;</span>: <span class="s">&#34;0.2.1&#34;</span>,
+  <span class="p">&#34;asset_dirs&#34;</span>: [<span class="s">&#34;assets&#34;</span>, <span class="s">&#34;scenes&#34;</span>],
+  <span class="p">&#34;default_scene&#34;</span>: <span class="s">&#34;scenes/main.voxscn&#34;</span>,
+  <span class="p">&#34;input_map&#34;</span>: <span class="s">&#34;input.json&#34;</span>,
+  <span class="p">&#34;scripts&#34;</span>: [<span class="s">&#34;assets/scripts/spin.wasm&#34;</span>],
+  <span class="p">&#34;runtime&#34;</span>: {
+    <span class="p">&#34;title&#34;</span>: <span class="s">&#34;My Game&#34;</span>,            <span class="c">// window title [project name]</span>
+    <span class="p">&#34;width&#34;</span>: <span class="n">1280</span>, <span class="p">&#34;height&#34;</span>: <span class="n">720</span>,  <span class="c">// window size [1280x720]</span>
+    <span class="p">&#34;radius&#34;</span>: <span class="n">8</span>,                   <span class="c">// terrain load radius in chunk columns [8]</span>
+    <span class="p">&#34;mode&#34;</span>: <span class="s">&#34;fly&#34;</span>,                 <span class="c">// &#34;fly&#34; or &#34;walk&#34; [fly]</span>
+    <span class="p">&#34;start&#34;</span>: [<span class="n">0</span>, <span class="n">40</span>, <span class="n">0</span>],           <span class="c">// player start (feet) [above the terrain at 0,0]</span>
+    <span class="p">&#34;yaw&#34;</span>: <span class="n">0</span>, <span class="p">&#34;pitch&#34;</span>: <span class="n">0</span>,          <span class="c">// start orientation in degrees</span>
+    <span class="p">&#34;seed&#34;</span>: <span class="n">1</span>,                     <span class="c">// world seed [the .voxworld&#39;s seed, else 1]</span>
+    <span class="p">&#34;world&#34;</span>: <span class="s">&#34;worlds/a.voxworld&#34;</span>,  <span class="c">// edit overlay loaded at start</span>
+    <span class="p">&#34;tick_rate&#34;</span>: <span class="n">20</span>,               <span class="c">// fixed; only 20 is accepted</span>
+    <span class="p">&#34;weather&#34;</span>: <span class="k">false</span>, <span class="p">&#34;seasons&#34;</span>: <span class="k">false</span>, <span class="c">// deterministic weather simulation, see docs/weather.md [off]</span>
+    <span class="p">&#34;vsync&#34;</span>: <span class="k">true</span>,
+    <span class="p">&#34;generator&#34;</span>: { <span class="p">&#34;kind&#34;</span>: <span class="s">&#34;heightmap&#34;</span>, <span class="p">&#34;base&#34;</span>: <span class="n">24</span>, <span class="p">&#34;amp&#34;</span>: <span class="n">20</span>, <span class="p">&#34;scale&#34;</span>: <span class="n">64</span>, <span class="p">&#34;octaves&#34;</span>: <span class="n">4</span>,
+                   <span class="p">&#34;sea_level&#34;</span>: <span class="n">20</span>, <span class="p">&#34;caves&#34;</span>: <span class="k">false</span>, <span class="p">&#34;trees&#34;</span>: <span class="k">true</span> },
+    <span class="c">// or { &#34;kind&#34;: &#34;flat&#34;, &#34;surface_y&#34;: 8, &#34;depth&#34;: 8 }</span>
+    <span class="p">&#34;plugins&#34;</span>: { <span class="p">&#34;physics&#34;</span>: <span class="k">true</span>, <span class="p">&#34;scripts&#34;</span>: <span class="k">true</span>, <span class="p">&#34;input&#34;</span>: <span class="k">true</span>, <span class="p">&#34;controller&#34;</span>: <span class="k">true</span>, <span class="p">&#34;render&#34;</span>: <span class="k">true</span> }
+  }
+}</code></pre>
+<p>(The JSON above has comments for illustration; real files must not.) Unknown fields are rejected with a spelling hint. <code>plugins.render: false</code> runs the project without a window. Only <code>render</code>, <code>input</code>, <code>controller</code>, <code>character</code> and <code>fine_water</code> are on by default; every plugin that adds simulation state (physics, nav, net, scripts, levels, saves, audio, ...) is off until you set it to <code>true</code>, and <code>scripts</code> is required as soon as <code>vox.project</code> lists scripts (the defaults table is in <a href="reference/project-config.html#runtimeplugins">reference/project-config.md</a>). <code>burrow new</code> templates enable exactly what they use. Settings come from, in order of priority: command-line flags, <code>BURROW_*</code> environment variables, <code>vox.project</code>, then the defaults of the engine; a scene&#39;s <code>scene.settings</code> (<code>controller</code>, <code>hud</code>) only applies while that scene runs.</p>
+<h2 id="3-play-edit-test-ship">3. Play, edit, test, ship<a class="anchor" href="#3-play-edit-test-ship" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-sh">burrow run                       <span class="c"># = burrowplay . (builds stale scripts first)</span>
+burrow run -- -shot out.png -frames <span class="n">60</span>     <span class="c"># flags after -- go to burrowplay: render a PNG and exit</span>
+burrow edit                      <span class="c"># = burrowedit -project .  (Play button runs the game inside the editor)</span>
+burrow test                      <span class="c"># headless check, exits 1 on any problem</span>
+burrow build -o mygame           <span class="c"># single-file game</span></code></pre>
+<h3 id="burrowplay-the-game-runner">burrowplay (the game runner)<a class="anchor" href="#burrowplay-the-game-runner" aria-label="Link to this section">#</a></h3>
+<pre tabindex="0"><code>burrowplay [flags] [project-dir | game.voxpak]      # no argument: the pak appended to the executable, else &#34;.&#34;
+  -headless -ticks N -hash       no window or GPU; print &#34;tick=N StateHash=&lt;hex&gt;&#34;
+  -shot out.png -frames N        render N frames in a hidden window, save a PNG (needs the GPU); the game keeps running
+                                 while it settles, add -freeze for a reproducible shot (no ticks, sky/water frozen)
+  -ticks N (with a window)       warm start: run N REAL fixed ticks first (journaled Step commands, so -journal/-replay
+                                 reproduce the same StateHash as -headless -ticks N), then show/shoot that state
+  -journal j.json                write the session journal on exit
+  -replay j.json -expect &lt;hex&gt;   replay a journal with the project&#39;s configuration; exit 1 on mismatch
+  -json                          machine-readable results
+  -scene scenes/x.voxscn         start on this scene of the project instead of its default_scene
+  -level id [-spawn name]        start in this level of levels/ (at this spawn point) instead of levels.initial
+  -seed N -radius N -w N -h N -novsync -validate -nocapture -check</code></pre>
+<p>Headless runs are deterministic: the same project, seed and tick count print the same hash on every run and every <code>GOMAXPROCS</code>, and on macOS Apple silicon and Intel (Windows and Linux are checked by CI, which has not run yet); <code>burrow test</code> verifies exactly that (runs with GOMAXPROCS = default, 1 and 8) and also replays the journal. In a window, one fixed tick passes every 50 ms of wall time; the window and renderer are frame-domain and never affect the <code>StateHash</code>.</p>
+<h3 id="editing-files-from-the-shell">Editing files from the shell<a class="anchor" href="#editing-files-from-the-shell" aria-label="Link to this section">#</a></h3>
+<p>No hand-written JSON, no quoting fights (also on Windows):</p>
+<pre tabindex="0"><code class="language-sh">burrow config get runtime.plugins.controller        <span class="c"># read vox.project by dotted path</span>
+burrow config <span class="k">set</span> runtime.plugins.controller false  <span class="c"># JSON value, else a string; validated, atomic, formatting kept</span>
+burrow config <span class="k">set</span> runtime.camera.rigs[<span class="n">1</span>].fov <span class="n">70</span>     <span class="c"># array element by index (a.b[2] or a.b.2); a.b[] appends; rm removes</span>
+burrow config rm runtime.camera.rigs[<span class="n">1</span>]
+burrow scene get scenes/main.voxscn                 <span class="c"># nodes with their ids, paths and components</span>
+burrow scene <span class="k">set</span>-component scenes/main.voxscn /Sun render.pointlight intensity=<span class="n">3</span> range=<span class="n">20</span>
+burrow scene rm-component scenes/main.voxscn /Sun render.pointlight
+burrow docs search icon names                       <span class="c"># ranked file:line hits in the embedded docs</span>
+burrow ui icons                                     <span class="c"># builtin game UI icon names</span>
+burrow icon from logo.png -out icon.png             <span class="c"># square 1024 app icon (pad or -mode crop, -crop x,y,w,h)</span></code></pre>
+<p>Every write is checked with the project and scene loaders first; a refused edit leaves the file untouched.</p>
+<h3 id="burrow-test">burrow test<a class="anchor" href="#burrow-test" aria-label="Link to this section">#</a></h3>
+<p><code>burrow test [dir] [--ticks 200] [--runs 3] [--json]</code> loads the project, builds stale scripts, runs the ticks several times under different <code>GOMAXPROCS</code>, requires identical hashes, no failed commands, no script faults and an exact journal replay, and, with <code>--go-tests</code> only, runs <code>go test ./...</code> of the project when it has its own tests (<strong>that compiles and runs the project&#39;s Go code natively and unsandboxed</strong>: use it only on projects you trust). Typical CI use:</p>
+<pre tabindex="0"><code class="language-sh">burrow test --json | jq -e .ok</code></pre>
+<h3 id="burrow-build">burrow build<a class="anchor" href="#burrow-build" aria-label="Link to this section">#</a></h3>
+<pre tabindex="0"><code class="language-sh">burrow build -o mygame            <span class="c"># copy of burrowplay + game archive + trailer</span>
+./mygame                       <span class="c"># runs anywhere on the same OS/arch, no Go, no project folder</span>
+./mygame -headless -ticks <span class="n">200</span> -hash
+burrow build -o mygame --app      <span class="c"># mygame.app (INSTEAD of the plain executable) + mygame.build.json</span>
+burrow build --pak game.voxpak    <span class="c"># only the archive (burrowplay game.voxpak runs it)</span></code></pre>
+<p>The archive (<code>.voxpak</code>) holds <code>vox.project</code>, every file under <code>asset_dirs</code> (compiled scripts included), the default scene, input map and world overlay. Paths are sorted, each file is stored or zlib-compressed with its SHA-256, and the whole archive is hashed: building twice gives identical bytes, and <code>./mygame</code> verifies the hash before unpacking it into a private (0700, random-named) temp directory that is removed on exit (also on SIGINT/SIGTERM). The build result is recorded next to the output as <code>&lt;out&gt;.build.json</code> (with <code>--app</code>: <code>mygame.app</code> and <code>mygame.build.json</code>). Hash and replay a scripted or builder game with <code>./mygame -headless -ticks 200 -hash -journal j.json</code> and <code>./mygame -replay j.json -expect &lt;hash&gt;</code>.</p>
+<p>Limits: <code>--target</code> accepts only the native target (<code>darwin-arm64</code>): burrowplay needs cgo (GLFW, Cocoa) and MoltenVK, so cross-compiling needs the target SDK. <code>--app</code> bundles <code>libvulkan.1.dylib</code> and <code>libMoltenVK.dylib</code> from Homebrew (with a driver manifest, <code>install_name_tool</code> sets their ids); the game archive ships once, as <code>Contents/Resources/game.voxpak</code> (the executable loads it from its bundle), and the whole bundle is ad-hoc signed once, so <code>codesign --verify --deep --strict mygame.app</code> passes; the app is not notarised. If bundling is not possible the app still runs on Macs that have Homebrew <code>molten-vk</code> installed, and macOS prints the missing library path.</p>
+<p>Signing and distribution (checked on macOS 15+): the game and the <code>.app</code> carry an ad-hoc signature, which is enough to run on the Mac that built them (the <code>.app</code> passes <code>codesign --verify --deep --strict</code>; the plain executable has the archive appended after the Mach-O, which strict validation reports, so for strict validation, Gatekeeper and notarisation distribute the <code>.app</code>). A copy that is downloaded, AirDropped or unzipped gets the <code>com.apple.quarantine</code> flag and Gatekeeper rejects it (<code>spctl --assess</code> says &#34;rejected&#34;; double-click shows &#34;cannot be opened because the developer cannot be verified&#34;). The recipient can clear the flag with <code>xattr -dr com.apple.quarantine mygame.app</code>. To distribute without that step, sign with a Developer ID certificate and notarise (<code>codesign --force --deep --options runtime -s &#34;Developer ID Application: NAME&#34; mygame.app</code>, zip it, <code>xcrun notarytool submit mygame.zip --wait</code>, <code>xcrun stapler staple mygame.app</code>); Burrow does not do this for you. The default block textures are restricted-licence: see <a href="texture-packs.html">texture-packs.md</a> before you distribute.</p>
+<h2 id="4-scripts">4. Scripts<a class="anchor" href="#4-scripts" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-sh">burrow script new spin               <span class="c"># scripts/spin/main.go (+ go.mod if missing)</span>
+burrow script build                  <span class="c"># scripts/*/ -&gt; assets/scripts/*.wasm</span>
+burrow script check                  <span class="c"># ABI check of every module</span></code></pre>
+<p>Attach a script to a node with the <code>script</code> component: <code>{&#34;module&#34;: &#34;assets/scripts/spin.wasm&#34;, &#34;props&#34;: {&#34;speed&#34;: 90}}</code>. See <a href="scripting.html">scripting.md</a>.</p>
+<h2 id="5-next">5. Next<a class="anchor" href="#5-next" aria-label="Link to this section">#</a></h2>
+<p><a href="concepts.html">concepts.md</a> explains the two domains and the determinism rules; <a href="editor.html">editor.md</a> the editor; <a href="troubleshooting.html">troubleshooting.md</a> the usual macOS problems.</p>
+<h2 id="naming-and-compatibility">Naming and compatibility<a class="anchor" href="#naming-and-compatibility" aria-label="Link to this section">#</a></h2>
+<p>The engine was called &#34;vox&#34; before it became Burrow. The product, the Go module and the programs are renamed; the file formats and the wire-level identifiers are not, so existing projects, worlds, packs, scripts and agent integrations keep working.</p>
+<p>Renamed:</p>
+<ul>
+<li>Go module <code>vox</code> -&gt; <code>burrow-engine</code> (import <code>&#34;burrow-engine&#34;</code>, package name <code>burrow</code>; <code>burrow-engine/sdk/burrowsdk</code> for scripts).</li>
+<li>Programs: <code>vox</code> -&gt; <code>burrow</code>, <code>voxedit</code> -&gt; <code>burrowedit</code>, <code>voxd</code> -&gt; <code>burrowd</code>, <code>voxctl</code> -&gt; <code>burrowctl</code>, <code>voxplay</code> -&gt; <code>burrowplay</code>, <code>voxasset</code> -&gt; <code>burrowasset</code>, <code>voxscript</code> -&gt; <code>burrowscript</code>, <code>voxshot</code> -&gt; <code>burrowshot</code>, <code>voxgen</code> -&gt; <code>burrowgen</code>, <code>voxlive</code> -&gt; <code>burrowlive</code>, <code>voxshader</code> -&gt; <code>burrowshader</code>, <code>voxpacktool</code> -&gt; <code>burrowpacktool</code> (<code>vkprobe</code> and <code>lookmeasure</code> are unchanged).</li>
+<li>The <code>--vox-root</code> flag of <code>burrow new</code> / <code>burrow script new</code> is now <code>--burrow-root</code> (the old spelling still works), and <code>burrowctl</code> keeps its session in <code>.burrow/</code> by default (pass <code>-dir .vox</code> to continue an old session).</li>
+<li>Environment variables are <code>BURROW_*</code> (<code>BURROW_ROOT</code>, <code>BURROW_GPU</code>, <code>BURROW_LIVE</code>, ...). The old <code>VOX_*</code> names are still read as a fallback when the <code>BURROW_*</code> one is not set (an explicitly empty <code>BURROW_X</code> wins). All reads go through <code>internal/envx</code>.</li>
+</ul>
+<p>Kept on purpose:</p>
+<ul>
+<li>File names and formats: <code>vox.project</code>, <code>.voxscn</code>, <code>.voxworld</code>, <code>.voxpak</code> (trailer <code>VOXGAME1</code>), <code>.vmeta</code>, and the MagicaVoxel <code>.vox</code> format.</li>
+<li>MCP tool names (<code>vox_*</code>, <code>editor_*</code>) and the agent/JSON-RPC schemas.</li>
+<li>The WASM ABI: its version, the <code>vox</code> host import module and the export names, so compiled scripts keep loading.</li>
+<li>The <code>voxel_*</code> host functions, shader names and the word &#34;voxel&#34; everywhere.</li>
+</ul>
+<div class="pagemeta"><a href="getting-started.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#1-install">1. Install</a></li><li><a href="#2-create-a-game">2. Create a game</a></li><li><a class="l3" href="#the-voxproject-runtime-section">The vox.project runtime section</a></li><li><a href="#3-play-edit-test-ship">3. Play, edit, test, ship</a></li><li><a class="l3" href="#burrowplay-the-game-runner">burrowplay (the game runner)</a></li><li><a class="l3" href="#editing-files-from-the-shell">Editing files from the shell</a></li><li><a class="l3" href="#burrow-test">burrow test</a></li><li><a class="l3" href="#burrow-build">burrow build</a></li><li><a href="#4-scripts">4. Scripts</a></li><li><a href="#5-next">5. Next</a></li><li><a href="#naming-and-compatibility">Naming and compatibility</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Entities and scene | Burrow</title>
+<meta name="description" content="How a script reaches nodes of the scene: entity handles, components, transforms, spawning, searching and tags.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/04-entities-and-scene.html">
+<meta property="og:title" content="Entities and scene | Burrow">
+<meta property="og:description" content="How a script reaches nodes of the scene: entity handles, components, transforms, spawning, searching and tags.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/04-entities-and-scene.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Entities and scene | Burrow">
+<meta name="twitter:description" content="How a script reaches nodes of the scene: entity handles, components, transforms, spawning, searching and tags.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html" aria-current="page">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="entities-and-scene">Entities and scene<a class="anchor" href="#entities-and-scene" aria-label="Link to this section">#</a></h1>
+<p>How a script reaches nodes of the scene: entity handles, components, transforms, spawning, searching and tags.</p>
+<p>Every function here is a host call: it costs one call of the budget (<a href="09-errors-and-limits.html">limits</a>) and returns an <code>*burrowsdk.Error</code> on failure, never a trap. The generated signature list is <a href="../reference/script-api.html">reference/script-api.md</a>; this page gives the semantics. Error codes: <code>1 INVALID</code>, <code>2 MEMORY</code>, <code>3 NOT_FOUND</code>, <code>4 TOO_SMALL</code> (handled by the SDK), <code>5 BUDGET</code>, <code>6 DENIED</code>, <code>7 UNAVAILABLE</code>, <code>8 REJECTED</code>, <code>9 LIMIT</code>. <code>burrowsdk.IsNotFound(err)</code> tests code 3.</p>
+<h2 id="entities">Entities<a class="anchor" href="#entities" aria-label="Link to this section">#</a></h2>
+<p>An <code>Entity</code> is a <code>uint64</code> handle to a scene node. The low 32 bits are the slot, the high 32 bits a generation, so a handle to a despawned node never matches a later node that reuses the slot. <code>0</code> means &#34;no entity&#34; (root parent, &#34;everything&#34; as an event target, &#34;whole scene&#34; as a search root).</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>Self()</code></td><td>the node that carries this script</td><td>none</td></tr>
+<tr><td><code>Exists(e)</code></td><td><code>true</code> for a live node, a handle returned by <code>Spawn</code> in this call, and not for a node despawned in this call</td><td>none (<code>false</code> on any failure)</td></tr>
+</tbody></table></div>
+<p>Rules:</p>
+<ul>
+<li>A handle is only meaningful inside the run that obtained it. Keeping an <code>Entity</code> in <code>State</code> between ticks is fine for ordinary nodes (it is a plain number), but check <code>Exists</code> before use: the node may be gone.</li>
+<li>A call on a dead or unknown handle fails with <code>NOT_FOUND</code>. <code>0</code> is never alive.</li>
+<li><code>Spawn</code> returns a <strong>pending handle</strong>, valid only until the end of the call that created it. Never store it. See <a href="#spawn-and-despawn">Spawn and Despawn</a>.</li>
+<li>Node names are unique among siblings only, so a name does not identify a node globally; use a handle, a path or a tag.</li>
+</ul>
+<h2 id="components">Components<a class="anchor" href="#components" aria-label="Link to this section">#</a></h2>
+<p>Components are addressed by their schema name (<code>&#34;transform&#34;</code>, <code>&#34;physics.body&#34;</code>, <code>&#34;tags&#34;</code>, ...). The list with every field, range and default is <a href="../reference/components.html">reference/components.md</a>. <code>Registry(&#34;components&#34;)</code> lists the names a running game knows (<a href="05-world.html#project-data-and-registries">world</a>).</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>GetRaw(e, name)</code></td><td>canonical JSON of the component</td><td><code>NOT_FOUND</code> (dead entity, unknown name, component absent)</td></tr>
+<tr><td><code>Get[T](e, name)</code></td><td><code>GetRaw</code> + <code>json.Unmarshal</code> into <code>T</code></td><td>as <code>GetRaw</code>; a decoding failure is a plain <code>error</code></td></tr>
+<tr><td><code>SetRaw(e, name, json)</code></td><td>attach or replace the whole component</td><td><code>REJECTED</code>, <code>DENIED</code>, <code>NOT_FOUND</code>, <code>INVALID</code></td></tr>
+<tr><td><code>Set[T](e, name, v)</code></td><td><code>json.Marshal</code> + <code>SetRaw</code></td><td>as <code>SetRaw</code>; a marshal failure is a plain <code>error</code></td></tr>
+<tr><td><code>Has(e, name)</code></td><td><code>true</code> when attached</td><td>none (<code>false</code> on any failure)</td></tr>
+<tr><td><code>Remove(e, name)</code></td><td>detach the component</td><td><code>DENIED</code>, <code>NOT_FOUND</code></td></tr>
+</tbody></table></div>
+<p>Behaviour:</p>
+<ul>
+<li><strong>Immediate checks, deferred effect.</strong> <code>SetRaw</code> validates the JSON against the schema at once and returns <code>REJECTED</code> on failure; the write itself is queued and applied when the script call commits. A fault drops it. <code>Remove</code> is queued the same way. The failure text of a rejection is shown in the console.</li>
+<li><strong>Reads see your own writes.</strong> After <code>Set</code>, <code>Get</code> and <code>Has</code> in the same call return the new value, and after <code>Remove</code>, <code>Has</code> is <code>false</code> and <code>Get</code> is <code>NOT_FOUND</code>. Other scripts see the change from the next script run (the commit happens before the next script of the tick starts).</li>
+<li><strong>Set replaces the whole component.</strong> Fields you leave out take the zero value of their type (only <code>transform</code> fills identity defaults: scale 1). For a partial change use <a href="#field-access">field access</a>.</li>
+<li><strong>Strict validation.</strong> Unknown fields, a wrong JSON type, an out-of-range value and the component&#39;s own consistency rules (for example <code>physics.body</code> needs non-zero <code>half</code> for a dynamic body) all give <code>REJECTED</code>. The value must be a single JSON object.</li>
+<li><strong>Canonical output.</strong> <code>GetRaw</code> returns the schema&#39;s own field order, with every field present.</li>
+<li><strong>Absent is not an error for <code>Remove</code>.</strong> Removing a component the node does not have succeeds and does nothing.</li>
+<li><strong>Sizes.</strong> A component name is 1..128 bytes (<code>INVALID</code> otherwise); one argument is at most 64 KiB (<code>MEMORY</code>). Bytes moved count against the per-call byte budget.</li>
+</ul>
+<p>Components a script cannot write (in <code>SpawnOpts.Components</code> the same three names are refused with <code>REJECTED</code>):</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">component</th><th scope="col"><code>Set</code> and field writes</th><th scope="col"><code>Remove</code></th><th scope="col"><code>Get</code> / <code>Has</code></th></tr></thead>
+<tbody>
+<tr><td><code>script</code></td><td><code>DENIED</code> (use <code>SaveState</code>)</td><td><code>DENIED</code></td><td>allowed</td></tr>
+<tr><td><code>script.input</code></td><td><code>DENIED</code></td><td><code>DENIED</code></td><td>allowed</td></tr>
+<tr><td><code>transform</code></td><td>allowed (see <a href="#transforms">Transforms</a>)</td><td><code>DENIED</code></td><td>allowed</td></tr>
+<tr><td><code>scene.name</code>, <code>scene.parent</code>, <code>scene.children</code></td><td><code>REJECTED</code> (structural, not writable)</td><td><code>DENIED</code></td><td><code>Get</code> returns the value, <code>Has</code> is <code>false</code></td></tr>
+</tbody></table></div>
+<p>Names, parents and children cannot be changed after creation: there is no rename or reparent call. Spawn under the right parent and despawn to remove.</p>
+<p>A component that exists in the schema only when a plugin is on (<code>physics3d.*</code>, <code>nav.*</code>, <code>ai.*</code>, <code>anim.player</code>, ...) is <code>NOT_FOUND</code> on <code>Get</code> and <code>REJECTED</code> on <code>Set</code> when the project does not enable that plugin.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> body <span class="k">struct</span> {
+	Kind <span class="k">string</span> <span class="s">`json:&#34;kind&#34;`</span>
+	Half <span class="k">struct</span>{ X, Y, Z <span class="k">float32</span> } <span class="s">`json:&#34;half&#34;`</span>
+	Mass <span class="k">float32</span> <span class="s">`json:&#34;mass&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			<span class="k">if</span> !burrowsdk.Has(self, <span class="s">&#34;physics.body&#34;</span>) {
+				<span class="k">return</span>
+			}
+			b, err := burrowsdk.Get[body](self, <span class="s">&#34;physics.body&#34;</span>)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				burrowsdk.Logf(<span class="s">&#34;get: %v&#34;</span>, err)
+				<span class="k">return</span>
+			}
+			b.Mass *= <span class="n">2</span>
+			<span class="k">if</span> err := burrowsdk.Set(self, <span class="s">&#34;physics.body&#34;</span>, b); err != <span class="k">nil</span> {
+				burrowsdk.Logf(<span class="s">&#34;set: %v&#34;</span>, err) <span class="c">// REJECTED: schema refused the value</span>
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="field-access">Field access<a class="anchor" href="#field-access" aria-label="Link to this section">#</a></h2>
+<p>Field calls read or write one value by path. A read costs a few microseconds against about a millisecond for a whole-component JSON round trip in Go-in-wasm, and a write sends only the change. Writes follow the same rules as <code>Set</code>: the whole resulting component is validated (<code>REJECTED</code> if invalid), queued, applied at commit, dropped on a fault. Reads see this call&#39;s writes. <code>script</code> and <code>graph_script</code> are <code>DENIED</code> for writes and readable.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>FieldRaw(e, comp, path)</code></td><td>JSON text of the value</td><td><code>NOT_FOUND</code>, <code>INVALID</code> (bad path)</td></tr>
+<tr><td><code>GetFloat</code> / <code>GetInt</code> / <code>GetBool</code></td><td>number (bool as 0/1); <code>GetInt</code> truncates</td><td>as above, <code>INVALID</code> for a non-number</td></tr>
+<tr><td><code>GetString</code></td><td>string value</td><td>as above, <code>INVALID</code> for a non-string</td></tr>
+<tr><td><code>GetFloats(e, comp, paths...)</code></td><td>several numbers in one call, in order; <code>NaN</code> for a missing or non-numeric path</td><td><code>INVALID</code>, <code>LIMIT</code> (more than 32 paths)</td></tr>
+<tr><td><code>GetFields(e, comp, paths...)</code></td><td>several raw JSON values; <code>nil</code> for a missing path</td><td><code>INVALID</code>, <code>LIMIT</code> (more than 32 paths)</td></tr>
+<tr><td><code>SetFieldRaw(e, comp, path, json)</code></td><td>set one value from JSON text</td><td><code>NOT_FOUND</code>, <code>REJECTED</code>, <code>DENIED</code>, <code>INVALID</code></td></tr>
+<tr><td><code>SetFloat</code> / <code>SetInt</code> / <code>SetBool</code> / <code>SetString</code></td><td>typed setters; <code>SetFloat</code> writes an integer when the value is integral</td><td>as above; <code>INVALID</code> for NaN or Inf</td></tr>
+<tr><td><code>Patch(e, comp, json)</code></td><td>RFC 7386 merge patch of the component</td><td><code>NOT_FOUND</code>, <code>REJECTED</code> (not a JSON object, or invalid result), <code>DENIED</code></td></tr>
+</tbody></table></div>
+<p>Path syntax: dot separated keys with optional <code>[n]</code> indexes, <code>pos[1]</code>, <code>bodies[2].mass</code>, at most 256 bytes and 16 segments. An empty segment, a negative or non-numeric index is <code>INVALID</code>. Intermediate keys and indexes must exist, otherwise <code>NOT_FOUND</code>; the last key of a write may be new (the schema then accepts or rejects it). The component must be present on the node (<code>NOT_FOUND</code>); field writes never attach a component.</p>
+<p>Merge patch: objects merge recursively, <code>null</code> deletes a key, anything else (including arrays) replaces the value.</p>
+<p>Vector fields have two JSON shapes, and the path must match the shape:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">shape</th><th scope="col">where</th><th scope="col">path example</th></tr></thead>
+<tbody>
+<tr><td>array <code>[x,y,z]</code></td><td><code>transform</code>, <code>camera_rig</code> (<code>offset</code>, <code>bounds</code>, ...)</td><td><code>pos[1]</code></td></tr>
+<tr><td>object <code>{&#34;X&#34;:..,&#34;Y&#34;:..,&#34;Z&#34;:..}</code></td><td>fields typed <code>vec3</code> in <code>physics.body</code>, <code>physics.character</code>, <code>physics.velocity</code>, <code>nav.*</code>, <code>ai.perception</code></td><td><code>half.Y</code></td></tr>
+</tbody></table></div>
+<p>Check with <code>GetRaw</code> when unsure. The typed vec3 accessors (see below) use the right form for each field; with <code>GetFloat</code> / <code>SetFloat</code> you choose the path yourself.</p>
+<p><strong>Typed accessors.</strong> <code>components_gen.go</code> holds one getter and one setter per scalar field of every built-in component, generated from the schema (<code>make sdk-gen</code>): <code>AiBrainInterval(e)</code>, <code>SetAiBrainInterval(e, v)</code>, <code>CameraRigFov(e)</code>, ... plus a <code>Comp&lt;Name&gt;</code> constant per component (<code>CompNavAgent</code>). Types: <code>string</code>, <code>int64</code>, <code>float64</code>, <code>bool</code>, <code>[3]float64</code> for vec3. They are thin wrappers over the calls above and obey the same errors. The full list is in <a href="../reference/script-api.html#components_gen">reference/script-api.md</a>. The vec3 accessors of object-shaped fields (<code>PhysicsBodyHalf</code>, <code>NavAgentVel</code>, ...) read the <code>.X</code>, <code>.Y</code>, <code>.Z</code> paths and write an object. Before this was fixed (0.2.2 and earlier) they used array paths and failed: reads gave NaN and writes were <code>REJECTED</code>.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			<span class="c">// one value, not the whole body</span>
+			m, err := burrowsdk.GetFloat(self, <span class="s">&#34;physics.body&#34;</span>, <span class="s">&#34;mass&#34;</span>)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			_ = burrowsdk.SetFloat(self, <span class="s">&#34;physics.body&#34;</span>, <span class="s">&#34;mass&#34;</span>, m+<span class="n">0.01</span>)
+			_ = burrowsdk.SetFloat(self, <span class="s">&#34;physics.body&#34;</span>, <span class="s">&#34;half.Y&#34;</span>, <span class="n">0.5</span>)       <span class="c">// object-shaped vec3</span>
+			_ = burrowsdk.Patch(self, <span class="s">&#34;physics.body&#34;</span>, []<span class="k">byte</span>(<span class="s">`{&#34;trigger&#34;:true}`</span>))
+			xs, _ := burrowsdk.GetFloats(self, <span class="s">&#34;transform&#34;</span>, <span class="s">&#34;pos[0]&#34;</span>, <span class="s">&#34;pos[1]&#34;</span>, <span class="s">&#34;pos[2]&#34;</span>)
+			_ = xs
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="transforms">Transforms<a class="anchor" href="#transforms" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>GetTransform(e)</code></td><td>local <code>Transform{Pos, Rot, Scale}</code></td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>SetTransform(e, t)</code></td><td>replace the local transform (queued, applied at commit)</td><td><code>NOT_FOUND</code>, <code>INVALID</code> (any NaN or Inf), <code>BUDGET</code></td></tr>
+</tbody></table></div>
+<p><code>Transform</code> holds three <code>[3]float32</code>:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">unit</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>Pos</code></td><td>blocks (1 voxel = 1 block)</td><td>position relative to the parent</td></tr>
+<tr><td><code>Rot</code></td><td>degrees, <code>[pitch, yaw, roll]</code> = rotation about X, Y, Z</td><td>Euler angles</td></tr>
+<tr><td><code>Scale</code></td><td>factor, 1 = unscaled</td><td>per axis</td></tr>
+</tbody></table></div>
+<ul>
+<li><strong>Rotation order.</strong> The matrix is <code>R = Ry(yaw) * Rx(pitch) * Rz(roll)</code> and the local matrix <code>T(Pos) * R * S(Scale)</code>: roll is applied first, then pitch, then yaw.</li>
+<li><strong>Local only.</strong> The SDK has no world transform. A child&#39;s <code>Pos</code> is relative to its parent and rotates and scales with it. To get world coordinates, walk <code>Parent</code> and compose the transforms yourself, or keep such nodes at the root. Physics and voxel APIs use world coordinates.</li>
+<li><strong>Replace, not merge.</strong> <code>SetTransform</code> writes all nine floats. A <code>Scale</code> of exactly <code>{0, 0, 0}</code>, which a literal <code>Transform{Pos: p}</code> holds, is written as <code>{1, 1, 1}</code> (older SDKs wrote scale 0 and made the node invisible). Any other scale, even one with a single <code>0</code> axis, is written as given. To hide a node use its render component.</li>
+<li><strong>Same data as the component.</strong> <code>Get(e, &#34;transform&#34;)</code> / <code>Set(e, &#34;transform&#34;, ...)</code> and the field paths <code>pos[0]</code>, <code>rot[1]</code>, <code>scale[2]</code> read and write the same value, with the same read-your-writes view. The component JSON form is <code>{&#34;pos&#34;:[x,y,z],&#34;rot&#34;:[p,y,r],&#34;scale&#34;:[x,y,z]}</code>; omitted fields default to <code>0, 0, 1</code>.</li>
+<li><strong>Bodies overwrite it.</strong> A rigid body (<code>physics3d</code>) and a <code>physics.character</code> write the node&#39;s transform every tick they move, so a script that also sets it fights the simulation. Move bodies with velocity, intent or impulse (<a href="05-world.html#physics-components-and-bodies">world</a>).</li>
+<li><strong>Pending handles.</strong> On a node spawned in this call, <code>GetTransform</code> returns the identity until you call <code>SetTransform</code> on it; the <code>Transform</code> option passed to <code>Spawn</code> is applied at commit and is not visible to reads.</li>
+</ul>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			t.Rot[<span class="n">1</span>] += <span class="n">90</span> * <span class="k">float32</span>(dt) <span class="c">// 90 degrees per second of yaw</span>
+			t.Pos[<span class="n">1</span>] += <span class="n">0.5</span> * <span class="k">float32</span>(dt)
+			_ = burrowsdk.SetTransform(self, t)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="spawn-and-despawn">Spawn and Despawn<a class="anchor" href="#spawn-and-despawn" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>Spawn(prefab, opts)</code></td><td>queue a new node, return a pending handle</td><td><code>NOT_FOUND</code> (unknown prefab or parent), <code>REJECTED</code>, <code>BUDGET</code></td></tr>
+<tr><td><code>Despawn(e)</code></td><td>queue removal of <code>e</code> and its whole subtree</td><td><code>NOT_FOUND</code>, <code>BUDGET</code></td></tr>
+<tr><td><code>SceneLoad(path)</code></td><td>queue a <code>.voxscn</code> project file, instantiated under the root at commit</td><td><code>DENIED</code> (unsafe path or not <code>.voxscn</code>), <code>NOT_FOUND</code> (unknown file), <code>REJECTED</code> (invalid document), <code>LIMIT</code> (&gt; 8 MiB), <code>BUDGET</code></td></tr>
+</tbody></table></div>
+<p><code>SpawnOpts</code> (all optional, zero value = default):</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">default</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>Name</code></td><td><code>&lt;prefab or &#34;node&#34;&gt;_&lt;tick&gt;_&lt;your entity&gt;_&lt;n&gt;</code></td><td>node name; 1..128 bytes, valid UTF-8 in NFC form, no <code>/</code>, not <code>.</code> or <code>..</code>, no control characters</td></tr>
+<tr><td><code>Parent</code></td><td><code>0</code> = scene root</td><td>a live node or a pending handle from this call</td></tr>
+<tr><td><code>Transform</code></td><td>identity (<code>pos 0, rot 0, scale 1</code>)</td><td>local transform; a non-nil value replaces all nine floats, so set <code>Scale</code></td></tr>
+<tr><td><code>Components</code></td><td>none</td><td><code>name -&gt; JSON</code>, validated like <code>Set</code>; <code>script</code> and <code>script.input</code> are refused</td></tr>
+</tbody></table></div>
+<p>Behaviour:</p>
+<ul>
+<li><strong>The node appears at commit</strong>, after the call finishes without a fault. Until then no search sees it; scripts that run later in the same tick do see it.</li>
+<li><strong>The handle is call-local.</strong> It lets you <code>Set</code>, <code>Remove</code>, <code>SetTransform</code>, <code>Despawn</code> or use the node as <code>Parent</code> of another <code>Spawn</code> or as an <code>Emit</code> target within the same call. Reads (<code>Get</code>, <code>Has</code>, <code>GetTransform</code>) of a pending node see only writes made through the handle in this call, not the options given to <code>Spawn</code>. The real entity is not returned: find it later by name, path or tag (give it a unique <code>Name</code> or a tag via <code>Components: {&#34;tags&#34;: {&#34;tags&#34;:[&#34;x&#34;]}}</code>).</li>
+<li><strong>Validation split.</strong> The call checks name syntax, the component JSON and the parent now. A sibling name clash, a parent that is gone, or a tree deeper than 4096 is only found at commit: it is reported as a non-fatal fault in the console, the node is not created, and later queued operations on its handle fail the same way. The rest of the call&#39;s queued effects still apply (commit is not rolled back by such failures). Use unique names (the default name is unique per script, tick and call).</li>
+<li><strong>Prefabs.</strong> <code>prefab</code> names a scene document saved as <code>&lt;name&gt;.prefab</code> or <code>prefabs/&lt;name&gt;.prefab</code> in the project (so <code>Spawn(&#34;crate&#34;, ...)</code> loads <code>prefabs/crate.prefab</code>). The name may use letters, digits, <code>_ - . /</code> and no <code>..</code>; anything else, or a missing file, is <code>NOT_FOUND</code>. A prefab is read once and cached. The standard runners (<code>burrow run</code>, <code>burrowplay</code>, exported games, the editor Play mode) all load them; an embedding program can also fill <code>script.Plugin.Prefabs</code> or <code>PrefabSource</code> (<a href="12-embedding-and-abi.html">embedding</a>). Before 0.2.2 the standard runners had no prefabs and only <code>&#34;&#34;</code> (a bare node) worked. The prefab root takes <code>Name</code> and <code>Transform</code>; its child nodes keep the prefab&#39;s names.</li>
+<li><strong>Prefabs.</strong> A spawned prefab keeps its root&#39;s scale: the spawn transform places it and its scale multiplies the root&#39;s. Without a <code>Name</code>, the node is named after the prefab file (<code>wolf_&lt;tick&gt;_&lt;entity&gt;_&lt;n&gt;</code> for <code>assets/prefabs/wolf.prefab</code>). A prefab counts as one spawn whatever its size, so an articulated model of many nodes is spawned as a prefab.</li>
+<li><strong>Limits.</strong> 32 spawns per script call and 1024 per tick (<code>BUDGET</code>); at most 4096 queued operations per call (<code>BUDGET</code>).</li>
+</ul>
+<p><strong><code>SceneLoad(path)</code></strong> loads a whole scene document at once — the same journaled <code>scene_load</code> start-up command a <code>default_scene</code> uses, so a menu can hand over to the game (<code>burrowsdk.SceneLoad(&#34;scenes/game.voxscn&#34;)</code>). The path follows the <code>ReadAsset</code> rules (project relative, no <code>..</code>/absolute/backslash/hidden segment) and must end in <code>.voxscn</code>. The file is read <strong>pinned by content hash</strong> like <code>asset_read</code> — a replay loads the same document — and validated against the scene schema at call time, so a broken file is an error and nothing is committed. It instantiates under the <strong>root</strong> at commit (later scripts of the same tick see the nodes); its bytes, spawned nodes and one event count against the transaction budgets, and the gas is 200 + 1 per 64 bytes read.</p>
+<p><strong><code>SceneSwitch(path)</code></strong> replaces the whole running scene by another scene of the project, <strong>world included</strong>: every root is despawned, the base terrain is rebuilt from the target scene&#39;s world file (the <code>.voxworld</code> next to the scene: its seed, generator and voxel edits; the project&#39;s terrain when the scene has none), and the document is instantiated. The path rules, the pinned read and the schema validation are <code>SceneLoad</code>&#39;s (an unsafe, missing, non-<code>.voxscn</code> or invalid path is an error and nothing happens). The scripts of the running scene get <code>on_destroy</code> when the request is accepted (like a despawn). The switch is one journaled command applied right after the tick (it carries the document and the world file, so a replay never reads the project); later scripts of the same tick still see the old scene, only the first request of a tick is served, and a second call in one invocation fails with a budget error. The player is put back at <code>runtime.start</code> (or above the terrain at the origin). Limits: the generators the game can rebuild are <code>heightmap</code>, <code>flat</code>, <code>biomes</code> and <code>empty</code>, and a scene keeps the project&#39;s generator when its world file records a &#34;custom&#34; one (it can then only have its own seed); a world file made with another generator or seed than the one the scene runs is refused (logged, nothing changes). A save made after a switch reloads into that scene (see <a href="../levels-saves.html">levels and saves</a>). The camera history is cut (<code>FrameState.CameraCut</code>), so temporal anti-aliasing does not smear the old world into the new one.</p>
+<p><code>Despawn</code> removes the node and all descendants at commit. If the node or any descendant carries a script with an <code>OnDestroy</code> handler, that handler runs first (in the same commit, before removal, in tree order) and its own effects are committed; despawns requested from inside an <code>OnDestroy</code> do not run further <code>OnDestroy</code> hooks. Nodes removed by the engine, the editor or a level switch do not call <code>OnDestroy</code>. Despawning a handle spawned in the same call cancels the spawn. After <code>Despawn(e)</code>, <code>Exists(e)</code> is <code>false</code> and every search in the same call skips <code>e</code> and its subtree.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;encoding/json&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+)
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			<span class="k">if</span> burrowsdk.Tick()%<span class="n">20</span> != <span class="n">0</span> {
+				<span class="k">return</span>
+			}
+			at, _ := burrowsdk.GetTransform(self)
+			t := burrowsdk.Transform{Pos: at.Pos, Scale: [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>}}
+			h, err := burrowsdk.Spawn(<span class="s">&#34;&#34;</span>, burrowsdk.SpawnOpts{
+				Name:      fmt.Sprintf(<span class="s">&#34;marker_%d&#34;</span>, burrowsdk.Tick()),
+				Transform: &amp;t,
+				Components: <span class="k">map</span>[<span class="k">string</span>]json.RawMessage{
+					<span class="s">&#34;tags&#34;</span>: json.RawMessage(<span class="s">`{&#34;tags&#34;:[&#34;marker&#34;]}`</span>),
+				},
+			})
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				burrowsdk.Logf(<span class="s">&#34;spawn: %v&#34;</span>, err)
+				<span class="k">return</span>
+			}
+			_ = burrowsdk.SetTransform(h, t) <span class="c">// the handle works within this call</span>
+			<span class="k">if</span> old, ok := oldest(); ok {
+				_ = burrowsdk.Despawn(old)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> oldest() (burrowsdk.Entity, <span class="k">bool</span>) {
+	list, _, err := burrowsdk.FindTag(<span class="s">&#34;marker&#34;</span>, <span class="n">0</span>)
+	<span class="k">if</span> err != <span class="k">nil</span> || len(list) &lt; <span class="n">8</span> {
+		<span class="k">return</span> <span class="n">0</span>, <span class="k">false</span>
+	}
+	<span class="k">return</span> list[<span class="n">0</span>], <span class="k">true</span>
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="finding-things">Finding things<a class="anchor" href="#finding-things" aria-label="Link to this section">#</a></h2>
+<p>Queries read the <strong>committed scene</strong>: what earlier scripts of this tick left, minus nodes this call has despawned. Nodes spawned by this very call, and tags or components you set in this call, are not visible to them. Results are deterministic: children in child order; searches depth-first in child order from the roots in ascending entity-index order.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>FindByName(name)</code></td><td>first node with that name, depth-first from the roots</td><td><code>NOT_FOUND</code>, <code>INVALID</code> (empty or over 1024 bytes)</td></tr>
+<tr><td><code>FindByPath(path)</code></td><td>node at a slash path such as <code>world/tower/top</code>; a leading <code>/</code> is ignored</td><td><code>NOT_FOUND</code>, <code>INVALID</code></td></tr>
+<tr><td><code>ScenePath(e)</code></td><td>slash path of <code>e</code> (a root is just its name)</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>Parent(e)</code></td><td>parent of a committed node, <code>0</code> for a root</td><td><code>NOT_FOUND</code> (dead or pending handle)</td></tr>
+<tr><td><code>Children(e)</code></td><td>children in child order, at most 4096</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>FindWith(component, root)</code></td><td>nodes under <code>root</code> carrying the component</td><td><code>NOT_FOUND</code> (unknown component or dead root), <code>INVALID</code> (empty or over 128 bytes)</td></tr>
+<tr><td><code>FindTag(tag, root)</code></td><td>nodes under <code>root</code> carrying the tag</td><td><code>INVALID</code> (bad tag syntax), <code>NOT_FOUND</code> (dead root)</td></tr>
+</tbody></table></div>
+<p><code>root = 0</code> searches the whole scene; a non-zero root is included in the search and its subtree walked. <code>FindWith(&#34;transform&#34;, 0)</code> returns every node.</p>
+<p><strong>Bounds and truncation.</strong></p>
+<ul>
+<li><code>MaxQueryResults = 4096</code>. <code>FindWith</code> and <code>FindTag</code> return <code>truncated = true</code> when more than 4096 nodes match, or when the scan hit its cap of 100,000 nodes before finishing; the matches found so far (at most 4096, in search order) are returned. <code>Children</code> also stops at 4096 but does not report truncation.</li>
+<li>A search stops after <strong>100,000 nodes scanned</strong> and returns what it found so far; this limit is not reported in <code>truncated</code>. Scenes that large need narrower roots.</li>
+<li><code>FindByName</code> and <code>FindByPath</code> do not see nodes spawned in this call and skip nodes despawned in it.</li>
+</ul>
+<p><strong>Cost.</strong> Every query is charged deterministic gas on top of its call:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">call</th><th scope="col">gas</th></tr></thead>
+<tbody>
+<tr><td><code>Parent</code></td><td>4</td></tr>
+<tr><td><code>Children</code></td><td>8 + 1 per child</td></tr>
+<tr><td><code>ScenePath</code></td><td>8 + 1 per 8 bytes of path</td></tr>
+<tr><td><code>FindWith</code>, <code>FindTag</code></td><td>16 + 1 per node scanned</td></tr>
+</tbody></table></div>
+<p>The SDK starts with room for 64 results and retries with 256, 1024, then 4096 when more matched, so a search with many results scans up to four times. Run a search once, keep the result in <code>State</code> or a local, and avoid scanning the whole scene every tick.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			coins, truncated, err := burrowsdk.FindTag(<span class="s">&#34;coin&#34;</span>, <span class="n">0</span>)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				burrowsdk.Logf(<span class="s">&#34;find: %v&#34;</span>, err)
+				<span class="k">return</span>
+			}
+			kids, _ := burrowsdk.Children(self)
+			path, _ := burrowsdk.ScenePath(self)
+			parent, _ := burrowsdk.Parent(self)
+			burrowsdk.Logf(<span class="s">&#34;%s (parent %d): %d children, %d coins, truncated %v&#34;</span>, path, parent, len(kids), len(coins), truncated)
+			<span class="k">if</span> door, err := burrowsdk.FindByPath(<span class="s">&#34;world/door&#34;</span>); err == <span class="k">nil</span> {
+				_ = burrowsdk.AddTag(door, <span class="s">&#34;interactive&#34;</span>)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="tags">Tags<a class="anchor" href="#tags" aria-label="Link to this section">#</a></h2>
+<p>Tags label nodes so scripts find groups without knowing names. They live in the scene component <code>tags</code>, which is an ordinary component: saved with the scene, editable in the inspector, hashed.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>TagsOf(e)</code></td><td>sorted tags of <code>e</code>; <code>nil</code> when the component is absent or on any error</td><td>none</td></tr>
+<tr><td><code>HasTag(e, tag)</code></td><td>whether <code>e</code> carries the tag</td><td>none</td></tr>
+<tr><td><code>AddTag(e, tag)</code></td><td>add a tag (no-op if present)</td><td><code>REJECTED</code> (invalid tag or more than 16), <code>NOT_FOUND</code></td></tr>
+<tr><td><code>RemoveTag(e, tag)</code></td><td>remove a tag (no-op if absent)</td><td><code>NOT_FOUND</code></td></tr>
+</tbody></table></div>
+<ul>
+<li>A tag is <code>[A-Za-z0-9_.:/-]{1,32}</code> (letters, digits and <code>_ . : / -</code>), at most <strong>16 per node</strong>. The stored list is sorted and unique.</li>
+<li><code>AddTag</code> and <code>RemoveTag</code> read and rewrite the whole <code>tags</code> component, so they follow <code>Set</code>: validated now, applied at commit, readable by <code>TagsOf</code> in the same call, and visible to <code>FindTag</code> only after the commit.</li>
+<li><code>FindTag</code> with an invalid tag string fails with <code>INVALID</code>; <code>AddTag</code> with one fails with <code>REJECTED</code>.</li>
+<li>Tags can also be set in <code>SpawnOpts.Components</code> and in the scene file (<code>&#34;tags&#34;: {&#34;tags&#34;: [&#34;coin&#34;]}</code>).</li>
+</ul>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="02-execution-model.html">Execution model</a>: transactions, commit order, faults.</li>
+<li><a href="03-state-and-props.html">State and props</a>: what to keep between ticks.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a>: error codes, budgets, gas.</li>
+<li><a href="05-world.html">World</a>: voxels, physics queries, navigation, levels.</li>
+<li><a href="06-input-events-time.html">Input, events and time</a>: events to entities, timers.</li>
+<li><a href="../reference/script-api.html">reference/script-api.md</a> and <a href="../reference/components.html">reference/components.md</a>: generated lists.</li>
+</ul>
+<div class="pagemeta"><a href="04-entities-and-scene.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#entities">Entities</a></li><li><a href="#components">Components</a></li><li><a href="#field-access">Field access</a></li><li><a href="#transforms">Transforms</a></li><li><a href="#spawn-and-despawn">Spawn and Despawn</a></li><li><a href="#finding-things">Finding things</a></li><li><a href="#tags">Tags</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

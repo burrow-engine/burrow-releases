@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Lobby | Burrow</title>
+<meta name="description" content="An Age-of-Empires-style lobby for multiplayer games: players connect, sit in the lobby, pick a team and a colour, toggle ready; the host changes the game settings and starts; a countdown runs; the…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/lobby.html">
+<meta property="og:title" content="Lobby | Burrow">
+<meta property="og:description" content="An Age-of-Empires-style lobby for multiplayer games: players connect, sit in the lobby, pick a team and a colour, toggle ready; the host changes the game settings and starts; a countdown runs; the…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/lobby.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lobby | Burrow">
+<meta name="twitter:description" content="An Age-of-Empires-style lobby for multiplayer games: players connect, sit in the lobby, pick a team and a colour, toggle ready; the host changes the game settings and starts; a countdown runs; the…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html" aria-current="page">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="lobby">Lobby<a class="anchor" href="#lobby" aria-label="Link to this section">#</a></h1>
+<p>An Age-of-Empires-style lobby for multiplayer games: players connect, sit in the lobby, pick a team and a colour, toggle ready; the host changes the game settings and starts; a countdown runs; the match plays; scripts end it with a verdict and everybody returns to the lobby.</p>
+<p>The lobby is <strong>simulation state of the server</strong> (<a href="networking.html">networking</a>). There is no extra network protocol: its commands travel as ordinary whitelisted commands, the state is hashed with the simulation, saved in snapshots, and replicated to every client with the other extra states (<a href="replication.html">replication</a>). Package: <code>net/lobby</code>.</p>
+<h2 id="contents">Contents<a class="anchor" href="#contents" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="#the-model">The model</a></li>
+<li><a href="#turning-it-on">Turning it on</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#phases">Phases</a></li>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#slots-host-and-countdown">Slots, host and countdown</a></li>
+<li><a href="#script-api">Script API</a></li>
+<li><a href="#loading-the-chosen-map-when-the-match-starts">Loading the chosen map when the match starts</a></li>
+<li><a href="#lobby-screen">Lobby screen</a></li>
+<li><a href="#match-results-convention">Match results convention</a></li>
+<li><a href="#go-api">Go API</a></li>
+<li><a href="#limits">Limits</a></li>
+</ul>
+<h2 id="the-model">The model<a class="anchor" href="#the-model" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>State</strong> (<code>sim.Extra</code> <code>net.lobby</code>, hashed): phase, host, match counter, countdown ticks, start tick, one <strong>slot</strong> per player (team, colour, ready, spectator, absent), the <strong>settings</strong> chosen so far and the <strong>results</strong> of the last match.</li>
+<li><strong>Commands</strong> (journaled, validated again by every <code>Apply</code>): <code>lobby_ready</code>, <code>lobby_slot</code>, <code>lobby_setting</code>, <code>lobby_start</code>, <code>lobby_cancel</code>, <code>lobby_end</code>, <code>lobby_return</code>. A command that is refused leaves the state untouched.</li>
+<li><strong>A fixed system</strong> (<code>lobby.sync</code>) keeps the slots, the host and the countdown consistent with the player registry of <a href="networking.html"><code>net/netsim</code></a>: it gives new players a slot, drops the slots of players who left, migrates the host and counts the countdown down. It runs first in every tick, before the game&#39;s systems and scripts, so scripts always see a synchronised lobby. The player registry changes only through commands applied between ticks, so the order against netsim is the same on every peer.</li>
+<li><strong>Authority.</strong> Clients may submit every kind except <code>lobby_end</code>; the whitelist rules (<code>lobby.Rules()</code>) force the <code>player</code> field of the payload to the sender, so a client cannot act for another player. Player 0 is the server. Settings, start, cancel and return need the host (or the server); <code>lobby_end</code> is the server&#39;s (scripts end matches through <a href="#script-api"><code>lobby_end_match</code></a>).</li>
+</ul>
+<h2 id="turning-it-on">Turning it on<a class="anchor" href="#turning-it-on" aria-label="Link to this section">#</a></h2>
+<p>Add a <code>runtime.lobby</code> section to <code>vox.project</code>. <code>runtime.plugins.net</code> must be <code>true</code> (it is off by default): the lobby reads the player registry.</p>
+<pre tabindex="0"><code class="language-json">{
+  <span class="p">&#34;runtime&#34;</span>: {
+    <span class="p">&#34;lobby&#34;</span>: {
+      <span class="p">&#34;min_players&#34;</span>: <span class="n">2</span>,
+      <span class="p">&#34;max_players&#34;</span>: <span class="n">8</span>,
+      <span class="p">&#34;teams&#34;</span>: <span class="n">2</span>,
+      <span class="p">&#34;team_names&#34;</span>: [<span class="s">&#34;Red&#34;</span>, <span class="s">&#34;Blue&#34;</span>],
+      <span class="p">&#34;countdown_seconds&#34;</span>: <span class="n">5</span>,
+      <span class="p">&#34;host&#34;</span>: <span class="s">&#34;first&#34;</span>,
+      <span class="p">&#34;spectators&#34;</span>: <span class="k">true</span>,
+      <span class="p">&#34;settings&#34;</span>: [
+        { <span class="p">&#34;key&#34;</span>: <span class="s">&#34;map&#34;</span>, <span class="p">&#34;label&#34;</span>: <span class="s">&#34;Map&#34;</span>, <span class="p">&#34;choices&#34;</span>: [<span class="s">&#34;meadow&#34;</span>, <span class="s">&#34;canyon&#34;</span>], <span class="p">&#34;default&#34;</span>: <span class="s">&#34;meadow&#34;</span> },
+        { <span class="p">&#34;key&#34;</span>: <span class="s">&#34;speed&#34;</span>, <span class="p">&#34;label&#34;</span>: <span class="s">&#34;Game speed&#34;</span>, <span class="p">&#34;choices&#34;</span>: [<span class="s">&#34;1x&#34;</span>, <span class="s">&#34;2x&#34;</span>] }
+      ]
+    }
+  }
+}</code></pre>
+<p>The section is part of the simulation identity: it is inside the <code>runtime</code> hash the handshake pins (<code>game.NetPins</code>), so a peer with a different lobby configuration is refused at the handshake. With the section present the game installs <code>lobby.Plugin</code> right after <code>netsim.Plugin</code>.</p>
+<h2 id="configuration">Configuration<a class="anchor" href="#configuration" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">key</th><th scope="col">type</th><th scope="col">default</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>min_players</code></td><td>int</td><td>2</td><td>non-spectator connected players needed to start (1 to <code>max_players</code>)</td></tr>
+<tr><td><code>max_players</code></td><td>int</td><td>8</td><td>non-spectator slots, 1 to 64</td></tr>
+<tr><td><code>teams</code></td><td>int</td><td>0</td><td>number of teams, 0 to 16; 0 is free for all (everybody is team 0)</td></tr>
+<tr><td><code>team_names</code></td><td>list</td><td><code>Team 1</code>...</td><td>optional display names, exactly one per team (so <code>teams</code> must be set), printable UTF-8, at most 32 bytes each; part of the pinned configuration, returned by <code>lobby_info</code> (<code>config.team_names</code>)</td></tr>
+<tr><td><code>colors</code></td><td>int</td><td><code>max_players</code></td><td>number of colours, <code>max_players</code> to 32; colours are unique among players</td></tr>
+<tr><td><code>countdown_seconds</code></td><td>int</td><td>5</td><td>1 to 60, counted in ticks (20 per second)</td></tr>
+<tr><td><code>late_join</code></td><td>bool</td><td>false</td><td>players connecting during a match get a player slot</td></tr>
+<tr><td><code>spectators</code></td><td>bool</td><td>false</td><td>players may watch instead of playing; also where overflow players go</td></tr>
+<tr><td><code>host</code></td><td>string</td><td><code>&#34;first&#34;</code></td><td><code>&#34;first&#34;</code>: the first connected player hosts and the role moves to the lowest connected id when the host leaves. <code>&#34;server&#34;</code>: only the server (player 0) changes settings and starts (dedicated servers, matchmaking)</td></tr>
+<tr><td><code>settings</code></td><td>list</td><td>none</td><td>up to 16 game settings: <code>key</code> (letters, digits, <code>_ - .</code>, 32 bytes), <code>label</code> (64 bytes), <code>choices</code> (1 to 32 values of at most 64 bytes), <code>default</code> (one of the choices, else the first)</td></tr>
+</tbody></table></div>
+<p>Zero fields take the default; invalid values fail <code>vox.project</code> validation (<code>runtime.lobby</code>).</p>
+<h2 id="phases">Phases<a class="anchor" href="#phases" aria-label="Link to this section">#</a></h2>
+<pre class="mermaid" tabindex="0">stateDiagram-v2
+    [*] --&gt; lobby
+    lobby --&gt; countdown: lobby_start (host/server, enough players, all ready)
+    countdown --&gt; lobby: lobby_cancel, a player leaves or un-readies, a new player joins
+    countdown --&gt; playing: countdown ends (match counter +1, start tick set)
+    playing --&gt; results: lobby_end (server) or lobby_end_match (script)
+    results --&gt; lobby: lobby_return (host/server)</pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">phase</th><th scope="col">id</th><th scope="col">what happens</th></tr></thead>
+<tbody>
+<tr><td><code>lobby</code></td><td>0</td><td>players change team, colour, spectator and ready; the host changes settings</td></tr>
+<tr><td><code>countdown</code></td><td>1</td><td><code>countdown_ticks</code> counts down; any change that makes the start invalid returns to <code>lobby</code></td></tr>
+<tr><td><code>playing</code></td><td>2</td><td>the match runs; ready flags are cleared; slots of players who leave are kept and marked <code>absent</code></td></tr>
+<tr><td><code>results</code></td><td>3</td><td><code>results</code> holds the verdict; <code>lobby_return</code> reopens the lobby</td></tr>
+</tbody></table></div>
+<h2 id="commands">Commands<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
+<p>All payloads are JSON objects with a <code>player</code> field. On the wire the server overwrites it with the sender&#39;s id.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">kind</th><th scope="col">payload</th><th scope="col">accepted when</th></tr></thead>
+<tbody>
+<tr><td><code>lobby_ready</code></td><td><code>{player, ready}</code></td><td>lobby or countdown phase; the player has a slot and is not a spectator. Un-readying during the countdown cancels it</td></tr>
+<tr><td><code>lobby_slot</code></td><td><code>{player, team, color, spectator}</code></td><td>lobby phase; team and colour in range and the colour free (a spectator sends 0 and 0 and needs <code>spectators</code>); a change clears the player&#39;s ready flag</td></tr>
+<tr><td><code>lobby_setting</code></td><td><code>{player, key, value}</code></td><td>host or server, lobby phase; <code>value</code> is one of the setting&#39;s choices. A change clears every ready flag</td></tr>
+<tr><td><code>lobby_start</code></td><td><code>{player}</code></td><td>host or server, lobby phase, at least <code>min_players</code> connected non-spectators and all of them ready; goes to <code>countdown</code></td></tr>
+<tr><td><code>lobby_cancel</code></td><td><code>{player}</code></td><td>host or server, countdown phase</td></tr>
+<tr><td><code>lobby_end</code></td><td><code>{player: 0, results}</code></td><td>server only, playing phase; <code>results</code> is JSON, at most 4096 bytes after compaction</td></tr>
+<tr><td><code>lobby_return</code></td><td><code>{player}</code></td><td>host or server, results phase; clears ready flags and drops the slots of absent players</td></tr>
+</tbody></table></div>
+<p>Rates per player: <code>lobby_ready</code>, <code>lobby_slot</code>, <code>lobby_setting</code> 5 per second (burst 10); <code>lobby_start</code>, <code>lobby_cancel</code>, <code>lobby_return</code> 2 per second (burst 4); payloads are at most 512 bytes and decoded strictly (unknown fields are refused). Add them to a server whitelist with:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">for</span> kind, rule := <span class="k">range</span> lobby.Rules() {
+	wl.Allow(kind, rule)
+}</code></pre>
+<h2 id="slots-host-and-countdown">Slots, host and countdown<a class="anchor" href="#slots-host-and-countdown" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>New player.</strong> The first tick after a player connects gives it a slot: team = the least populated team (lowest index on ties; always 0 in a free for all), colour = the lowest free colour. When all <code>max_players</code> slots are taken, or a match is running without <code>late_join</code>, the player becomes a spectator if <code>spectators</code> is on, else gets <strong>no slot</strong> (the server decides what to do with a connected player the lobby has no place for).</li>
+<li><strong>Leaving.</strong> In the lobby and the countdown the slot disappears (a leave during the countdown cancels it). During a match and in the results phase the slot is kept with <code>absent: true</code>; the player&#39;s return clears the flag; <code>lobby_return</code> drops what is still absent.</li>
+<li><strong>Host.</strong> With <code>host: &#34;first&#34;</code> the host is the lowest connected player id; when the host leaves, the next lowest connected id takes over (a lower id that connects later does not take it back). With <code>host: &#34;server&#34;</code> the host is always 0.</li>
+<li><strong>Countdown.</strong> <code>lobby_start</code> sets <code>countdown_seconds * 20</code> ticks. Each tick the system re-checks the start condition (enough connected players, all ready) and decrements; at 0 the phase is <code>playing</code>, <code>match</code> increases and <code>start_tick</code> is the tick the match began.</li>
+</ul>
+<h2 id="script-api">Script API<a class="anchor" href="#script-api" aria-label="Link to this section">#</a></h2>
+<p>Host functions of module <code>vox</code> (also in <span class="unpub" title="Source file of the repository, not part of this site">script ABI</span> and the <a href="reference/script-api.html">Script API reference</a>); without <code>runtime.lobby</code> they return <code>UNAVAILABLE</code>:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">result</th></tr></thead>
+<tbody>
+<tr><td><code>lobby_phase() i32</code></td><td>0 lobby, 1 countdown, 2 playing, 3 results</td></tr>
+<tr><td><code>lobby_info(out, cap) i32</code></td><td>JSON of the whole lobby: <code>phase</code>, <code>phase_id</code>, <code>host</code>, <code>match</code>, <code>countdown_ticks</code>, <code>start_tick</code>, <code>slots</code>, <code>settings</code> (key to value), <code>results</code>, <code>config</code></td></tr>
+<tr><td><code>lobby_end_match(results, len) i32</code></td><td>0. Ends the running match with a JSON verdict (empty = none, at most 4096 bytes); <code>INVALID</code>, <code>REJECTED</code> when no match is running</td></tr>
+</tbody></table></div>
+<p>Go SDK: <code>burrowsdk.LobbyPhase()</code>, <code>burrowsdk.ReadLobby()</code> (a <code>LobbyInfo</code>), <code>burrowsdk.LobbyEndMatch(results)</code>.</p>
+<p><strong>How scripts end a match.</strong> A script runs inside the tick, where nothing can be journaled, so <code>lobby_end_match</code> does not create a command. Like <code>save_set</code> it queues an operation that is applied when the script call commits, and the commit calls <code>lobby.EndMatch</code> on the lobby state. Every peer (and every replay) runs the same script on the same state, so every peer makes the same transition on the same tick; the <code>lobby_end</code> command is the equivalent for the server&#39;s own code.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">func</span> OnTick() {
+	l, err := burrowsdk.ReadLobby()
+	<span class="k">if</span> err != <span class="k">nil</span> || l.Phase != <span class="s">&#34;playing&#34;</span> {
+		<span class="k">return</span>
+	}
+	<span class="k">if</span> winner, done := checkVictory(l); done {
+		res, _ := json.Marshal(<span class="k">map</span>[<span class="k">string</span>]<span class="k">any</span>{<span class="s">&#34;winner&#34;</span>: winner})
+		burrowsdk.LobbyEndMatch(res)
+	}
+}</code></pre>
+<h2 id="loading-the-chosen-map-when-the-match-starts">Loading the chosen map when the match starts<a class="anchor" href="#loading-the-chosen-map-when-the-match-starts" aria-label="Link to this section">#</a></h2>
+<p>Settings are plain strings; the game decides what they mean. Detect the start by the match counter (it changes exactly once per match, on the same tick everywhere), read the setting, and load the level:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">var</span> lastMatch <span class="k">uint32</span>
+
+<span class="k">func</span> OnTick() {
+	l, _ := burrowsdk.ReadLobby()
+	<span class="k">if</span> l.Phase == <span class="s">&#34;playing&#34;</span> &amp;&amp; l.Match != lastMatch {
+		lastMatch = l.Match <span class="c">// keep it in State if the script can be reloaded</span>
+		burrowsdk.LevelLoad(l.Settings[<span class="s">&#34;map&#34;</span>], <span class="s">&#34;&#34;</span>) <span class="c">// the server&#39;s request becomes a journaled level_load for everyone</span>
+		<span class="c">// spawn each slot&#39;s player at its team&#39;s start: l.Slots[i].Team, .Color</span>
+	}
+}</code></pre>
+<p><code>level_load</code> is served by the server&#39;s frame and reaches clients inside a tick batch (<a href="networking.html#engine-integration">networking</a>); on clients the request is dropped, so call it from the script on every peer without special-casing. Keep the &#34;last match&#34; in <code>State</code> (not in a Go global) when the module can be reloaded or a late joiner restores a snapshot.</p>
+<h2 id="lobby-screen">Lobby screen<a class="anchor" href="#lobby-screen" aria-label="Link to this section">#</a></h2>
+<p>The game UI template <strong>Lobby</strong> (File &gt; New &gt; Start from &gt; Lobby in the Game UI designer, <code>gameui.Template(&#34;Lobby&#34;)</code>) is a ready-made lobby: a scrolling player list with aligned columns (name, team, colour, ready, under a header row that stays above the scrolling list), a list of spectators, Ready, Team, Colour and Spectate / Play buttons (only the ones that apply to the local player), a scrolling settings list (the host clicks a row to cycle its value; for everybody else the rows are disabled list items: dimmed, no highlight, no command), Start / Cancel start for the host, a countdown, and a results panel (winner or draw, the placements by name in order and, with teams, the team placements: the best place among a team&#39;s members, teams named after <code>team_names</code>, else &#34;Team 1&#34;, &#34;Team 2&#34;...) with Back to lobby (host). The lists scale to any lobby (up to 64 players and 16 settings). The <code>lobby_match</code> project template ships it wired to a script (<code>burrow new mygame -template lobby_match</code>); its <code>ui/lobby.ui.json</code> is the compact JSON of the template.</p>
+<p><strong>How UI events become lobby commands.</strong> Scripts cannot submit commands (they run inside the tick), so the buttons do it on the frame side. A button or list whose action starts with <code>lobby:</code> is turned by <code>gameui/uiplug</code> (<code>LobbyCommand</code>) into the matching command, queued like any frame command; a client&#39;s network layer forwards it to the server (<code>netapp.ClientKinds</code> already holds the lobby kinds), the whitelist forces <code>player</code> to the sender and the simulation validates it again. A listen server&#39;s own player submits as itself (not as the server). No script code is needed for input:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">action</th><th scope="col">command</th></tr></thead>
+<tbody>
+<tr><td><code>lobby:ready</code></td><td><code>lobby_ready</code> with the flag toggled</td></tr>
+<tr><td><code>lobby:team</code></td><td><code>lobby_slot</code> with the next team</td></tr>
+<tr><td><code>lobby:color</code></td><td><code>lobby_slot</code> with the next free colour</td></tr>
+<tr><td><code>lobby:spectate</code></td><td><code>lobby_slot</code> that makes the player a spectator, or back a player on the least populated team with the first free colour</td></tr>
+<tr><td><code>lobby:setting</code> (a list; <code>lobby:setting:&lt;n&gt;</code> names the row)</td><td><code>lobby_setting</code> with the value of <code>lobby_set&lt;n&gt;_next</code>, n being the clicked row (the host only, the simulation refuses others)</td></tr>
+<tr><td><code>lobby:start</code>, <code>lobby:cancel</code>, <code>lobby:return</code></td><td><code>lobby_start</code>, <code>lobby_cancel</code>, <code>lobby_return</code></td></tr>
+</tbody></table></div>
+<p><strong>What the script publishes.</strong> The screen shows UI values; the script (<code>burrowsdk.UISetStr/Num/Bool/Items</code>, only on change) fills them from <code>ReadLobby</code>. <code>lobby_me</code> (the local player id) is set by the network layer; what depends on it (host buttons, the Ready / Team / Colour / Spectate texts and visibility, the visible panel) is derived by the engine every frame (<code>uiplug.DeriveLobby</code>), so the same script serves every peer.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">value</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>lobby_phase</code> (num), <code>lobby_host</code> (num)</td><td>phase id 0 to 3 and host player id: required, nothing is derived before <code>lobby_phase</code> is set</td></tr>
+<tr><td><code>lobby_slots</code> (str)</td><td><code>id,team,color,state</code> entries separated by spaces (state 0 not ready, 1 ready, 2 spectator; 1024 bytes hold 64 players): the data of the buttons</td></tr>
+<tr><td><code>lobby_teams</code>, <code>lobby_colors</code> (num), <code>lobby_color_names</code> (str, space separated), <code>lobby_team_names</code> (str, tab separated, empty = &#34;Team N&#34;), <code>lobby_spectators_on</code> (bool)</td><td>lobby configuration</td></tr>
+<tr><td><code>lobby_status</code> (str), <code>lobby_countdown</code> (num, seconds)</td><td>status line and countdown</td></tr>
+<tr><td><code>lobby_players</code>, <code>lobby_spectators</code> (items), <code>lobby_spectators_any</code> (bool)</td><td>one item per player or spectator; a player row is <code>name&lt;TAB&gt;team&lt;TAB&gt;colour&lt;TAB&gt;status</code> (the list&#39;s <code>col_widths</code> align it); the screen&#39;s fixed header row is a separate list above it</td></tr>
+<tr><td><code>lobby_settings_on</code> (bool), <code>lobby_settings</code> (items, &#34;Label:  value&#34;; the engine derives <code>lobby_settings_view</code> from it, disabled unless the local player is the host, and the screen&#39;s list binds that), <code>lobby_set&lt;n&gt;_key</code>, <code>lobby_set&lt;n&gt;_next</code> (str)</td><td>settings list and, per row, the key and the choice a click selects</td></tr>
+<tr><td><code>lobby_result_title</code> (str), <code>lobby_result_list</code>, <code>lobby_team_list</code> (items), <code>lobby_team_results</code> (bool)</td><td>results panel (the team list only with teams): &#34;Winner: x&#34;, &#34;Tie for first: x, y&#34; or &#34;Draw&#34;, then one &#34;place.  name&#34; line per placement</td></tr>
+</tbody></table></div>
+<p>The screen is modal: show it in the lobby and results phases (<code>UIShow(&#34;lobby&#34;)</code>) and hide it while the match plays (<code>UIHide(&#34;lobby&#34;)</code>), as <code>scripts/lobby</code> of the template does. The screen is data: rename widgets, restyle it or add widgets freely, as long as the values and <code>lobby:</code> actions it uses stay.</p>
+<h2 id="match-results-convention">Match results convention<a class="anchor" href="#match-results-convention" aria-label="Link to this section">#</a></h2>
+<p><code>lobby_end_match</code> accepts any JSON. Games that run on a dedicated server with a matchmaker should use</p>
+<pre tabindex="0"><code class="language-json">{ <span class="p">&#34;placements&#34;</span>: { <span class="p">&#34;&lt;player id&gt;&#34;</span>: <span class="n">1</span>, <span class="p">&#34;&lt;player id&gt;&#34;</span>: <span class="n">2</span> } }</code></pre>
+<p>where the key is the player id as a decimal string and the value the final place (1 is the winner; equal values are a draw or a shared place). This is the shape a dedicated server forwards to a matchmaker. The <code>lobby_match</code> template ends its matches this way.</p>
+<h2 id="go-api">Go API<a class="anchor" href="#go-api" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-go">lobby.Install(e *sim.Engine, cfg lobby.Config) <span class="k">error</span>      <span class="c">// needs netsim installed</span>
+lobby.Plugin{Config: cfg}                                  <span class="c">// engine.Plugin, add after netsim.Plugin</span>
+lobby.Installed(e *sim.Engine) <span class="k">bool</span>
+lobby.ViewOf(x sim.Extra, ok <span class="k">bool</span>) (lobby.View, <span class="k">bool</span>)      <span class="c">// from FixedContext.Extra(lobby.ExtraName)</span>
+lobby.ViewOfEngine(e *sim.Engine) (lobby.View, <span class="k">bool</span>)
+lobby.Rules() <span class="k">map</span>[<span class="k">string</span>]netbase.Rule                      <span class="c">// whitelist rules for the client kinds</span>
+lobby.ServerOnly(kind <span class="k">string</span>) <span class="k">bool</span>                         <span class="c">// lobby_end</span>
+lobby.EndMatch(x sim.Extra, ok <span class="k">bool</span>, results []<span class="k">byte</span>) <span class="k">error</span> <span class="c">// used by the script host</span></code></pre>
+<p><code>View</code> has <code>Config</code>, <code>Phase</code>, <code>Host</code>, <code>Match</code>, <code>CountdownTicks</code>, <code>StartTick</code>, <code>Slots</code>, <code>Slot</code>, <code>Settings</code>, <code>Setting</code>, <code>Results</code> and <code>InfoJSON</code>.</p>
+<h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">limit</th><th scope="col">value</th></tr></thead>
+<tbody>
+<tr><td>players per match</td><td>64</td></tr>
+<tr><td>slots (players and spectators)</td><td>256 (the player registry bound)</td></tr>
+<tr><td>teams / colours</td><td>16 / 32</td></tr>
+<tr><td>settings / choices per setting</td><td>16 / 32</td></tr>
+<tr><td>key / value / label</td><td>32 / 64 / 64 bytes</td></tr>
+<tr><td>results</td><td>4096 bytes of compact JSON</td></tr>
+<tr><td>countdown</td><td>1 to 60 seconds</td></tr>
+<tr><td>command payload</td><td>512 bytes</td></tr>
+</tbody></table></div>
+<p>The decoder of the state is strict (bounds, sorted slots, ranges, unique colours, settings equal to the configured keys and choices, compact JSON results, canonical varints), so a corrupt or hostile snapshot is refused. A snapshot restores only under the same lobby configuration, which the handshake pins already guarantee.</p>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="dedicated-server.html#lobby-mode">Dedicated server</a>: <code>&#34;mode&#34;: &#34;lobby&#34;</code> hosts matches on a real machine, with <code>lobby start|end|set</code> admin commands.</li>
+<li><a href="networking.html">Networking</a>: the whitelist, pins and limits.</li>
+<li><a href="scripting/08-multiplayer.html">Multiplayer scripting</a>.</li>
+<li><a href="determinism.html">Determinism</a>.</li>
+</ul>
+<div class="pagemeta"><a href="lobby.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#contents">Contents</a></li><li><a href="#the-model">The model</a></li><li><a href="#turning-it-on">Turning it on</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#phases">Phases</a></li><li><a href="#commands">Commands</a></li><li><a href="#slots-host-and-countdown">Slots, host and countdown</a></li><li><a href="#script-api">Script API</a></li><li><a href="#loading-the-chosen-map-when-the-match-starts">Loading the chosen map when the match starts</a></li><li><a href="#lobby-screen">Lobby screen</a></li><li><a href="#match-results-convention">Match results convention</a></li><li><a href="#go-api">Go API</a></li><li><a href="#limits">Limits</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/mermaid.min.js" defer></script>
+<script src="../assets/mermaid-init.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

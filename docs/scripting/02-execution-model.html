@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Execution model | Burrow</title>
+<meta name="description" content="How and when the engine calls a script, what a call can see and change, and the rules that keep a script deterministic.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/02-execution-model.html">
+<meta property="og:title" content="Execution model | Burrow">
+<meta property="og:description" content="How and when the engine calls a script, what a call can see and change, and the rules that keep a script deterministic.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/02-execution-model.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Execution model | Burrow">
+<meta name="twitter:description" content="How and when the engine calls a script, what a call can see and change, and the rules that keep a script deterministic.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html" aria-current="page">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="execution-model">Execution model<a class="anchor" href="#execution-model" aria-label="Link to this section">#</a></h1>
+<p>How and when the engine calls a script, what a call can see and change, and the rules that keep a script deterministic.</p>
+<h2 id="the-rules-in-short">The rules in short<a class="anchor" href="#the-rules-in-short" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Guest memory is not persistent</strong> (unless you opt in to <a href="#persistent-memory-keep_memory"><code>keep_memory</code></a>). Before every call the instance is reset to the image taken right after <code>init()</code>. Globals, heap and stack do not survive. Persistent data lives in components (<a href="03-state-and-props.html">Props and State</a>).</li>
+<li><strong>Calls happen only inside the fixed tick</strong> (20 per second), one <em>transaction</em> per script node per tick.</li>
+<li><strong>Effects are buffered</strong> and applied only if every call of the transaction finished. A fault drops them all.</li>
+<li><strong>Time is the tick.</strong> <code>dt</code> is always 50 ms; there is no wall clock.</li>
+<li><strong>Reads see your own writes</strong> inside a call (with the exceptions listed below).</li>
+</ul>
+<h2 id="one-tick">One tick<a class="anchor" href="#one-tick" aria-label="Link to this section">#</a></h2>
+<pre class="mermaid" tabindex="0">flowchart TB
+  T[&#34;FixedUpdate tick&#34;] --&gt; E[&#34;Next script entity, ascending id&#34;]
+  E --&gt; R[&#34;Reset the instance to the image taken after init()&#34;]
+  R --&gt; S[&#34;OnStart (first tick only)&#34;]
+  S --&gt; V[&#34;Pending OnEvent calls&#34;]
+  V --&gt; K[&#34;OnTick&#34;]
+  K --&gt; Q{&#34;Every call finished?&#34;}
+  Q -- yes --&gt; A[&#34;Apply the buffered effects&#34;]
+  Q -- no --&gt; D[&#34;Fault: drop all of them&#34;]</pre>
+<p>Details the chart leaves out:</p>
+<ul>
+<li>The system is <code>script.run</code>. With the physics plugin it runs before <code>physics.character</code>.</li>
+<li><strong>Order between nodes</strong>: ascending entity index (the low 32 bits of the id), recomputed every tick. A node that reuses the slot of a deleted node runs early. Nodes that are <code>disabled</code>, have no module bound yet, or were spawned during this tick are not in the list (a node spawned by a script first runs on the next tick).</li>
+<li><strong>Order inside a transaction</strong>: <code>OnStart</code> (if not started), then the inbox events in emission order, then due timers (as events, ordered by due tick then id), then <code>OnTick</code>. Each hook is a separate guest call with its own gas budget and a memory reset between calls; the budgets of <a href="09-errors-and-limits.html#budgets">host calls and effects</a> are shared by the whole transaction.</li>
+<li><strong>Commit</strong>: effects are applied in the order the script requested them, then State, subscriptions and timers are saved, then the next node runs. Node B therefore sees the committed voxels, components and spawns of node A in the same tick; A never sees B&#39;s.</li>
+<li><strong>Events and messages</strong> sent during tick N reach <code>OnEvent</code> at tick N+1 or later, never in the same tick, even for a later node.</li>
+<li><strong>Input</strong> is a journaled snapshot taken before the tick; every script sees the same values (<a href="06-input-events-time.html">input, events and time</a>).</li>
+<li>A paused game or editor runs no ticks. Several ticks can run in one frame; the frame rate does not change what scripts see.</li>
+</ul>
+<h2 id="20-hz-scripts-and-smooth-visuals">20 Hz scripts and smooth visuals<a class="anchor" href="#20-hz-scripts-and-smooth-visuals" aria-label="Link to this section">#</a></h2>
+<p>A script runs 20 times a second on purpose: the same ticks give the same result on every machine, in a replay and in multiplayer. It cannot run per frame. What the player sees is still smooth:</p>
+<ul>
+<li><strong>Moved nodes are interpolated.</strong> Meshes, sprites, voxel models and point lights are drawn between their previous and current tick by the frame&#39;s phase (<code>App.TickAlpha</code>), so a node a script moves 20 times a second glides at the screen rate. A teleport (more than 8 blocks), a new node and a gap of ticks are drawn as they are. Frame domain only: scripts, physics and the hash see the real 20 Hz value. <code>engine.NodeInterp.Off</code> turns it off.</li>
+<li><strong>Per-frame behaviour is data, not script.</strong> Use the frame-domain components: <code>visual.spring</code>, <code>visual.sway</code> and <code>visual.bind</code> (<a href="../visual-effects.html">frame visuals</a>), <code>render.viewattach</code> (held items), <code>character</code> (<code>fp_*</code>, <code>held_model</code>), <code>camera_rig</code> (follow, smooth, shake), animation clips and tracks, particles, <code>audio_source</code>. A script starts them (<code>CameraSwitch</code>, <code>AnimPlay</code>, <code>Emit</code>...); the engine plays them every frame.</li>
+<li><strong>Do not read frame-rate values in a script</strong> (mouse look, camera pose between ticks): input is a snapshot per tick, so a script that must feel instant (an aim reticle, a cursor) belongs to the game UI (<code>game.ui</code>), which runs per frame.</li>
+</ul>
+<h2 id="reads-and-writes-inside-a-call">Reads and writes inside a call<a class="anchor" href="#reads-and-writes-inside-a-call" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Operation</th><th scope="col">Takes effect</th><th scope="col">Visible to the same call</th><th scope="col">Visible to other scripts</th></tr></thead>
+<tbody>
+<tr><td><code>Set</code>, <code>SetRaw</code>, field setters, <code>Patch</code>, <code>Remove</code></td><td>at commit</td><td>yes (<code>Get</code>, <code>Has</code>, field getters)</td><td>after commit</td></tr>
+<tr><td><code>SetTransform</code></td><td>at commit</td><td>yes (<code>GetTransform</code>, <code>Get(...,&#34;transform&#34;)</code>)</td><td>after commit</td></tr>
+<tr><td><code>SetVoxel</code></td><td>at commit</td><td>yes (<code>Voxel</code>, <code>Raycast</code>)</td><td>after commit</td></tr>
+<tr><td><code>Spawn</code></td><td>node appears at commit</td><td>the handle works for <code>Set</code>, <code>SetTransform</code>, <code>Despawn</code>, <code>Get</code></td><td>after commit</td></tr>
+<tr><td><code>Despawn</code></td><td>at commit; runs <code>OnDestroy</code> of the subtree</td><td><code>Exists</code>, <code>FindByName</code> report it gone</td><td>after commit</td></tr>
+<tr><td><code>SaveState</code></td><td>persisted at commit</td><td>yes (<code>LoadState</code> returns it, also in later hooks of the transaction)</td><td>never (State is private to the node)</td></tr>
+<tr><td><code>Emit</code>, <code>Publish</code></td><td>delivered at commit into the inboxes, handled on a later tick</td><td></td><td>next tick</td></tr>
+<tr><td><code>After</code>, <code>Every</code>, <code>Subscribe</code>, <code>CancelTimer</code></td><td>saved at commit</td><td>yes (<code>TimerRemaining</code>)</td><td></td></tr>
+<tr><td>audio, particles, camera, game UI, level and save requests</td><td>queued at commit as frame-domain requests</td><td></td><td></td></tr>
+<tr><td><code>SaveSet</code>, <code>SaveDelete</code></td><td>at commit</td><td><code>SaveGet</code> sees them</td><td>after commit</td></tr>
+</tbody></table></div>
+<p>Reads that do <strong>not</strong> reflect the call&#39;s own writes: <code>LightAt</code>, <code>PhysicsRaycast</code>, <code>PhysicsOverlap</code>, and the scene queries (<code>Parent</code>, <code>Children</code>, <code>ScenePath</code>, <code>FindWith</code>, <code>FindTag</code>, which read the committed scene only; nodes spawned by this call are absent). <code>FindByName</code> and <code>FindByPath</code> also read the committed scene.</p>
+<p><code>Voxel</code> and <code>SetVoxel</code> accept coordinates in <code>[-16777216, 16777216]</code> on each axis (<code>ERR_INVALID</code> outside) and block ids below <code>BlockCount()</code> (<code>ERR_INVALID</code> otherwise). A call that exceeds a budget returns <code>ERR_BUDGET</code> instead of trapping; once the per-transaction call budget is used up, almost every host call (including <code>Log</code> and <code>Voxel</code>) fails that way, see <a href="09-errors-and-limits.html#budgets">budgets</a>.</p>
+<h2 id="persistent-memory-keep_memory">Persistent memory (<code>keep_memory</code>)<a class="anchor" href="#persistent-memory-keep_memory" aria-label="Link to this section">#</a></h2>
+<p>Opt in for single-player games when ordinary Go code (package variables, maps, slices that live between ticks) must work. Project-wide: <code>&#34;runtime&#34;: {&#34;script_limits&#34;: {&#34;keep_memory&#34;: true}}</code> in <code>vox.project</code>; or per node: <code>&#34;keep_memory&#34;: true</code> in its <code>script</code> component.</p>
+<ul>
+<li>Each such node gets its own instance, never pooled or shared with other nodes. Its globals and heap are <strong>not</strong> reset between calls (OnStart, events, timers, OnTick, OnDestroy).</li>
+<li><code>OnFrame</code> (the visual domain) keeps using a reset instance; it does not see these globals.</li>
+<li>Gas, host budgets and the memory cap are unchanged. Memory growth persists, so the 32 MiB cap (<code>memory_pages</code>) bounds the heap for good.</li>
+<li><strong>Fault</strong>: the instance is discarded and recreated from the init image on the next call; the memory is lost (the fault is reported as usual).</li>
+<li><strong>Determinism</strong>: same inputs give the same results, so replaying from tick 0 and <code>StateHash</code> runs still match.</li>
+<li><strong>Save and load</strong>, snapshot restore and the editor hot reload drop every memory: scripts restart from the init image. Whatever must survive goes in <code>State</code>/components (<code>SaveState</code>).</li>
+<li><strong>Networked games refuse it</strong> (<code>runtime.plugins.net</code>, <code>net_model: &#34;replicated&#34;</code>, dedicated server): guest memory can be neither restored nor sent to a late joiner. The project fails to load with an error.</li>
+<li>Native builds: globals already persist; <code>BURROW_NATIVE_DEBUG</code> skips the package-variable check for a module with a <code>keep_memory</code> script.</li>
+</ul>
+<h2 id="time">Time<a class="anchor" href="#time" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">API</th><th scope="col">Value</th></tr></thead>
+<tbody>
+<tr><td><code>Tick()</code></td><td>Index of the current fixed tick. The first scripted tick of a new game is 1. Identical on every machine and in a replay.</td></tr>
+<tr><td><code>dt</code> of <code>OnTick</code></td><td><code>1 / rate</code> seconds: <code>0.05</code> at the default 20 Hz (the host passes <code>50</code> ms), <code>0.033</code>, <code>0.025</code> or <code>0.017</code> with <code>runtime.tick_rate</code> 30, 40 or 60. <code>burrowsdk.TickRate()</code> and <code>TickDt()</code> give it.</td></tr>
+<tr><td>Duration in seconds</td><td><code>ticks * TickDt()</code>. Keep durations as tick counts in State (<code>Tween</code>, <code>Cooldown</code>, <code>After</code>, <code>Every</code> do this for you).</td></tr>
+<tr><td>WASI clock (<code>time.Now</code> in a Go script)</td><td><code>tick * 50 ms + 1 us</code> per query. Monotonic and deterministic, but it measures ticks, not time. Do not use it.</td></tr>
+<tr><td><code>time.Sleep</code>, timers of the standard library</td><td>Nothing waits. Use <code>After</code> and <code>Every</code>.</td></tr>
+</tbody></table></div>
+<h2 id="randomness">Randomness<a class="anchor" href="#randomness" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">API</th><th scope="col">Result</th></tr></thead>
+<tbody>
+<tr><td><code>Rand()</code></td><td>Next <code>uint64</code> of the script&#39;s stream.</td></tr>
+<tr><td><code>RandFloat()</code></td><td><code>[0, 1)</code> from the top 53 bits of <code>Rand()</code>.</td></tr>
+<tr><td><code>RandN(n)</code></td><td><code>[0, n)</code>; <code>0</code> when <code>n &lt;= 0</code>.</td></tr>
+</tbody></table></div>
+<p>The stream is a hash of (project seed, entity, tick, draw index). The draw index counts every <code>Rand*</code> call of the transaction, across <code>OnStart</code>, events, timers and <code>OnTick</code>, so an extra draw in one hook shifts only the later draws of the same node in the same tick. Adding or removing other scripts never shifts it, and it never consumes the shared simulation RNG. The seed is <code>runtime.seed</code> in <code>vox.project</code> (override: <code>burrowplay -seed N</code>). <code>rand_u64</code> is not a free call: it counts against the call budget.</p>
+<p><code>math/rand</code> and <code>crypto/rand</code> read the WASI <code>random_get</code>, a fixed stream seeded by the module hash: deterministic, but the same sequence every call (memory is reset) and unrelated to the project seed. Do not use them.</p>
+<h2 id="faults">Faults<a class="anchor" href="#faults" aria-label="Link to this section">#</a></h2>
+<p>A trap, a Go <code>panic</code>, <code>os.Exit</code>, gas exhaustion or out-of-memory fails the whole transaction:</p>
+<ul>
+<li>all buffered effects of the node&#39;s transaction are dropped; the node&#39;s State, inbox, timers and <code>started</code> flag stay as they were (the same events are delivered again next tick);</li>
+<li><code>Log</code> lines the script wrote before the fault are still delivered;</li>
+<li>a <code>ScriptFault</code> event is sent, the node&#39;s fault counter goes up, and at 3 faults the node is disabled until its module changes;</li>
+<li>other nodes are unaffected, the engine never crashes.</li>
+</ul>
+<p>Reasons, counters and how to read one: <a href="09-errors-and-limits.html#faults">errors and limits</a>.</p>
+<h2 id="what-is-deterministic">What is deterministic<a class="anchor" href="#what-is-deterministic" aria-label="Link to this section">#</a></h2>
+<p>The same project, seed, inputs and module bytes give the same <code>StateHash</code> (<a href="../determinism.html">determinism</a>). The sandbox enforces most of it: no clock, entropy, files, network, threads or floating-point fusion (the WebAssembly spec forbids fused multiply-add, so Go&#39;s <code>math</code> is portable inside a guest), and gas is counted per instruction. What remains is your responsibility.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Do</th><th scope="col">Do not</th></tr></thead>
+<tbody>
+<tr><td>Keep time as ticks: <code>Tick()</code>, <code>After</code>, <code>Every</code>, <code>Tween</code>, <code>Cooldown</code></td><td>Use <code>time.Now</code>, <code>time.Since</code>, <code>time.Sleep</code></td></tr>
+<tr><td>Draw randomness from <code>Rand</code>, <code>RandFloat</code>, <code>RandN</code></td><td>Use <code>math/rand</code>, <code>crypto/rand</code>, a hand-seeded generator that is not part of State</td></tr>
+<tr><td>Keep everything that must persist in State, Props or components</td><td>Keep it in package variables, closures, maps or slices that outlive a call</td></tr>
+<tr><td>Iterate maps through sorted keys, or use slices</td><td>Rely on <code>range</code> order over a map</td></tr>
+<tr><td>Keep floats finite; clamp before converting to an integer; let <code>SetTransform</code> reject NaN and Inf</td><td>Store NaN or Inf in State or components; use <code>CanonF32</code> when a value may be NaN</td></tr>
+<tr><td>Run every effect through the SDK so it is buffered and journaled</td><td>Start goroutines, wait on channels, read files, environment variables or the network (they do not exist)</td></tr>
+<tr><td>Store entity ids as <code>burrowsdk.Entity</code> or <code>uint64</code></td><td>Round-trip entity ids through <code>float64</code> or <code>any</code> (they are 64-bit: slot index plus generation)</td></tr>
+<tr><td>Re-read the world each tick, check <code>Exists</code> before using a saved entity</td><td>Assume a saved entity still exists (a stale id is not alive: its generation differs)</td></tr>
+<tr><td>Pass the same <code>Config</code> limits when replaying</td><td>Change gas, memory, budgets or <code>MaxFaults</code> between recording and replay</td></tr>
+</tbody></table></div>
+<p>Do not print for debugging with <code>fmt.Println</code>: stdout and stderr are captured only for fault messages. Use <code>Log</code>/<code>Logf</code> (<a href="10-debugging-and-testing.html">debugging</a>).</p>
+<h2 id="where-scripts-run">Where scripts run<a class="anchor" href="#where-scripts-run" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Context</th><th scope="col">Behaviour</th></tr></thead>
+<tbody>
+<tr><td><strong>Editor, edit mode</strong></td><td>Scripts do not run. A rebuilt <code>.wasm</code> is picked up about once a second: the module is re-registered and bound nodes are re-pinned (journaled <code>script_module_changed</code>), faults reset.</td></tr>
+<tr><td><strong>Editor, Play</strong> (Ctrl+Shift+P)</td><td>Scripts run in the editor&#39;s simulation. Keyboard and mouse go to the game&#39;s input map while the pointer is over the viewport. <strong>Esc</strong> or Stop restores the snapshot taken at Play: State, timers, faults and every edit made during play are discarded, and the <code>StateHash</code> after Stop equals the one before Play. The editor installs neither the level plugin nor the save plugin, so <code>LevelLoad</code>, <code>SaveSet</code> and <code>SaveSlot</code> fail with <code>ERR_UNAVAILABLE</code> there; run the project with <code>burrow run</code> to test them. Hot reload works.</td></tr>
+<tr><td><strong><code>burrow run</code> / <code>burrowplay</code> / exported game</strong></td><td>Same simulation. Modules are fixed at start: no hot reload. <code>runtime.plugins.scripts: true</code> (default off, required when scripts are listed) installs the plugin.</td></tr>
+<tr><td><strong>Headless</strong> (<code>burrow test</code>, <code>burrowplay -headless -ticks N</code>)</td><td>No window and no device input: <code>Action</code> returns <code>ok == false</code> unless the host queues an input snapshot. <code>burrow test</code> runs the project several times and requires an identical <code>StateHash</code> (<a href="10-debugging-and-testing.html#burrow-test">testing</a>).</td></tr>
+<tr><td><strong>Replay and journal</strong></td><td>The journal names each node&#39;s module by hash; replay re-executes the scripts with exactly those bytes. A runtime that lacks a module, runs under another <code>Config</code> fingerprint, or finds a data file (<code>ReadAsset</code>) whose content changed since recording fails the tick with an error (never a silent skip).</td></tr>
+<tr><td><strong>Snapshot, undo, rollback, save games</strong></td><td>Every piece of script state is a component, so these are exact. A fixed tick that fails for any reason is rolled back by the engine, script effects and random draws included.</td></tr>
+<tr><td><strong>Multiplayer</strong> (<a href="../networking.html">networking</a>)</td><td>Scripts run on every peer from the same commands (<a href="08-multiplayer.html">multiplayer</a>). The local <code>script_set_input</code> snapshot is dropped: read the player registry instead (<code>NetPlayerCount</code>, <code>NetPlayerAt</code>, <code>NetPlayerInfo</code>). Binding is done from simulation state before every session tick, so a late joiner binds at the same tick; modules are pinned by the project content hash; hot reload is refused.</td></tr>
+</tbody></table></div>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="01-getting-started.html">Getting started</a>: hooks and registration.</li>
+<li><a href="03-state-and-props.html">State and props</a>: what survives between calls.</li>
+<li><a href="15-native.html">Native scripts</a>: the shipped game links scripts natively (no wasm reset, no gas): the same rules, enforced by a parity test.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a>: gas, budgets, faults.</li>
+<li><a href="10-debugging-and-testing.html">Debugging and testing</a>: logs, profiling, <code>burrow test</code>.</li>
+<li><a href="06-input-events-time.html">Input, events and time</a>, <a href="08-multiplayer.html">multiplayer</a>, <a href="12-embedding-and-abi.html">embedding and the ABI</a>.</li>
+<li><a href="../determinism.html">Determinism</a>, <a href="../networking.html">networking</a>, <span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span>.</li>
+</ul>
+<div class="pagemeta"><a href="02-execution-model.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#the-rules-in-short">The rules in short</a></li><li><a href="#one-tick">One tick</a></li><li><a href="#20-hz-scripts-and-smooth-visuals">20 Hz scripts and smooth visuals</a></li><li><a href="#reads-and-writes-inside-a-call">Reads and writes inside a call</a></li><li><a href="#persistent-memory-keep_memory">Persistent memory ( keep_memory )</a></li><li><a href="#time">Time</a></li><li><a href="#randomness">Randomness</a></li><li><a href="#faults">Faults</a></li><li><a href="#what-is-deterministic">What is deterministic</a></li><li><a href="#where-scripts-run">Where scripts run</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/mermaid.min.js" defer></script>
+<script src="../../assets/mermaid-init.js" defer></script>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>State and props | Burrow</title>
+<meta name="description" content="Guest memory is wiped before every call, so a script keeps data in components: Props for read-only designer settings, State for its own memory, and other components or the save data for everything…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/03-state-and-props.html">
+<meta property="og:title" content="State and props | Burrow">
+<meta property="og:description" content="Guest memory is wiped before every call, so a script keeps data in components: Props for read-only designer settings, State for its own memory, and other components or the save data for everything…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/03-state-and-props.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="State and props | Burrow">
+<meta name="twitter:description" content="Guest memory is wiped before every call, so a script keeps data in components: Props for read-only designer settings, State for its own memory, and other components or the save data for everything…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html" aria-current="page">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="state-and-props">State and props<a class="anchor" href="#state-and-props" aria-label="Link to this section">#</a></h1>
+<p>Guest memory is wiped before every call, so a script keeps data in components: <code>Props</code> for read-only designer settings, <code>State</code> for its own memory, and other components or the save data for everything shared.</p>
+<h2 id="where-to-keep-what">Where to keep what<a class="anchor" href="#where-to-keep-what" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Need</th><th scope="col">Use</th><th scope="col">Writable by the script</th><th scope="col">Size limit</th><th scope="col">Saved with the game, snapshotted, hashed</th></tr></thead>
+<tbody>
+<tr><td>Designer settings (speed, block name, radius)</td><td><code>Props</code></td><td>no</td><td>16 KiB</td><td>yes</td></tr>
+<tr><td>The script&#39;s own memory between calls</td><td><code>State</code></td><td>yes, own node only</td><td>64 KiB</td><td>yes</td></tr>
+<tr><td>Data other scripts or the editor should see</td><td>an existing component (<code>Get</code>/<code>Set</code>, field setters, <code>tags</code>)</td><td>yes (except protected ones)</td><td>schema</td><td>yes</td></tr>
+<tr><td>Game-wide values (score, flags, unlocked items)</td><td><code>SaveSet</code> / <code>SaveGet</code> (plugin <code>runtime.plugins.saves</code>)</td><td>yes</td><td>1024 keys, 64 KiB per value, 1 MiB total</td><td>yes</td></tr>
+<tr><td>Timers and subscriptions</td><td><code>After</code>, <code>Every</code>, <code>OnMessage</code> (stored in the <code>script</code> component)</td><td>through the API</td><td>64 timers, 32 topics</td><td>yes</td></tr>
+<tr><td>Static game tables (items, recipes)</td><td>project data files read with <code>ReadAsset</code></td><td>no</td><td>256 KiB per file</td><td>pinned by content hash</td></tr>
+<tr><td>Cache that can be recomputed</td><td>nothing: recompute it, or keep it in State</td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<p>Globals, closures and heap values live for one call only. Even <code>OnStart</code> and <code>OnTick</code> of the same tick do not share them; they share State, because <code>SaveState</code> is visible to later calls of the same transaction.</p>
+<blockquote>
+<p>With the opt-in <code>keep_memory</code> (<a href="02-execution-model.html#persistent-memory-keep_memory">execution model</a>) Go globals persist between ticks in single-player games, but are lost on fault, hot reload and save load: keep what must survive in <code>State</code>.</p>
+</blockquote>
+<h2 id="props">Props<a class="anchor" href="#props" aria-label="Link to this section">#</a></h2>
+<p><code>Props</code> is the <code>props</code> field of the <code>script</code> component: one JSON object per node, edited in the inspector or in the scene file.</p>
+<pre tabindex="0"><code class="language-json"><span class="p">&#34;script&#34;</span>: { <span class="p">&#34;module&#34;</span>: <span class="s">&#34;assets/scripts/painter.wasm&#34;</span>, <span class="p">&#34;props&#34;</span>: { <span class="p">&#34;block&#34;</span>: <span class="s">&#34;wood&#34;</span>, <span class="p">&#34;every&#34;</span>: <span class="n">3</span>, <span class="p">&#34;len&#34;</span>: <span class="n">18</span> } }</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Rule</th><th scope="col">Detail</th></tr></thead>
+<tbody>
+<tr><td>Limit</td><td>16,384 bytes of JSON after canonicalisation. A larger value is refused when the component is set or the scene loads: <code>script props are 17008 bytes, limit 16384</code>.</td></tr>
+<tr><td>Shape</td><td>Any JSON value is accepted by the component, but <code>Props[T]</code> decodes into your type, so use an object. <code>null</code> or absent means &#34;no props&#34;.</td></tr>
+<tr><td>Canonical form</td><td>Keys are sorted and whitespace removed; numbers keep their written text (<code>90</code> stays <code>90</code>, <code>1e2</code> stays <code>1e2</code>). Equal settings hash equally.</td></tr>
+<tr><td>Read</td><td><code>Props[T]()</code> decodes into <code>T</code>; empty props give the zero <code>T</code> and a nil error; a shape mismatch returns the JSON error and a partly filled value. <code>PropsRaw()</code> returns the bytes. <code>props_get</code> does not use up the call budget.</td></tr>
+<tr><td>Write</td><td>Never. A script that sets the <code>script</code> component gets <code>ERR_DENIED</code> (6), as for <code>script.input</code>.</td></tr>
+<tr><td>Change</td><td>Edit in the inspector or the scene file. Edits made during Play are discarded by Stop, like every other change.</td></tr>
+</tbody></table></div>
+<p>Use pointer-free structs with JSON tags and give every field a sane zero value, because a missing key leaves the field at zero:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Block <span class="k">string</span>  <span class="s">`json:&#34;block&#34;`</span>
+	Every <span class="k">int</span>     <span class="s">`json:&#34;every&#34;`</span>
+	Speed <span class="k">float32</span> <span class="s">`json:&#34;speed&#34;`</span>
+}
+
+<span class="k">func</span> (p props) withDefaults() props {
+	<span class="k">if</span> p.Every &lt;= <span class="n">0</span> {
+		p.Every = <span class="n">3</span>
+	}
+	<span class="k">if</span> p.Speed == <span class="n">0</span> {
+		p.Speed = <span class="n">1</span>
+	}
+	<span class="k">return</span> p
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			p, err := burrowsdk.Props[props]()
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				burrowsdk.Logf(<span class="s">&#34;bad props: %v&#34;</span>, err)
+				<span class="k">return</span>
+			}
+			p = p.withDefaults()
+			<span class="k">if</span> burrowsdk.Tick()%<span class="k">uint64</span>(p.Every) == <span class="n">0</span> {
+				burrowsdk.Logf(<span class="s">&#34;block %q speed %v&#34;</span>, p.Block, p.Speed)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p>Decoding costs: <code>Props[T]</code> runs <code>encoding/json</code> inside the guest on every call that asks. The <code>spin</code> script (decode one field, read and write the transform) uses about 480,000 gas per tick, roughly 1% of the default 50,000,000; heavier JSON costs more, and <span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span> measures about 1.4 ms of wall time per JSON-using call on an Apple M2 Max. If the props are large, decode them once in <code>OnStart</code> and keep what you need in State (props edited later are then ignored), or parse with <code>PropsRaw()</code> yourself.</p>
+<h2 id="state">State<a class="anchor" href="#state" aria-label="Link to this section">#</a></h2>
+<p><code>State</code> is an opaque byte string (<code>state</code> in the component, base64 in scene files). The SDK stores JSON by default; a binary codec is also available.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">API</th><th scope="col">Does</th></tr></thead>
+<tbody>
+<tr><td><code>LoadState[T]()</code></td><td>Decodes the JSON state into <code>T</code>. Empty state (first call) returns the zero <code>T</code> and a nil error.</td></tr>
+<tr><td><code>SaveState(v)</code></td><td><code>json.Marshal(v)</code> then <code>SetStateRaw</code>. Pass a pointer when you <code>defer</code> it (see below). A marshal error (NaN, unsupported type) is returned and the state is left unchanged.</td></tr>
+<tr><td><code>StateRaw()</code> / <code>SetStateRaw(b)</code></td><td>The bytes. <code>SetStateRaw</code> fails with <code>ERR_LIMIT</code> (9, <code>burrow state_set: limit exceeded (9)</code>) above 65,536 bytes; the old state stays.</td></tr>
+<tr><td><code>Writer</code> / <code>Reader</code></td><td>Compact little-endian codec, no reflection (below).</td></tr>
+</tbody></table></div>
+<p>Semantics:</p>
+<ul>
+<li>A write is visible at once to <code>LoadState</code>/<code>StateRaw</code> in later hooks of the same transaction, and persisted at commit. If the transaction faults, the old state stays and the <code>OnStart</code>/events are retried next tick.</li>
+<li>Persisted only when the bytes changed. The raw bytes are hashed into <code>StateHash</code>, so a byte difference is a determinism difference.</li>
+<li>It is snapshotted, restored by undo and Stop, written into save games and rolled back with the tick, with no work from the script.</li>
+<li>Hot reload keeps it. The new module sees the old bytes (<a href="#changing-the-state-format">migration</a>).</li>
+<li><code>state_get</code> and <code>state_set</code> are free calls (they do not use the host-call budget) but their bytes count against the 1 MiB per transaction copy budget.</li>
+</ul>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Version <span class="k">int</span>  <span class="s">`json:&#34;v&#34;`</span>
+	WasDown <span class="k">bool</span> <span class="s">`json:&#34;was_down&#34;`</span>
+	Presses <span class="k">int</span>  <span class="s">`json:&#34;presses&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, err := burrowsdk.LoadState[state]()
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				st = state{} <span class="c">// unreadable state: start over</span>
+			}
+			st.Version = <span class="n">1</span>
+			<span class="k">defer</span> burrowsdk.SaveState(&amp;st) <span class="c">// pointer: saves the value as it is when OnTick returns</span>
+
+			x, _, ok := burrowsdk.Action(<span class="s">&#34;jump&#34;</span>)
+			down := ok &amp;&amp; x &gt; <span class="n">0.5</span>
+			<span class="k">if</span> down &amp;&amp; !st.WasDown { <span class="c">// derive edges from your own State</span>
+				st.Presses++
+				burrowsdk.Logf(<span class="s">&#34;jump pressed %d times&#34;</span>, st.Presses)
+			}
+			st.WasDown = down
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p><code>defer burrowsdk.SaveState(st)</code> with a value saves the copy taken when <code>defer</code> ran, before your changes. Use <code>&amp;st</code>, or call <code>SaveState</code> explicitly at each exit.</p>
+<h3 id="json-rules-and-gotchas">JSON rules and gotchas<a class="anchor" href="#json-rules-and-gotchas" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Topic</th><th scope="col">Rule</th></tr></thead>
+<tbody>
+<tr><td>Types that work</td><td>Structs (exported fields only), maps with string or integer keys (written in sorted key order, so the bytes are deterministic), slices, arrays, strings, bools, all integer and float types, pointers, <code>json.RawMessage</code>, <code>burrowsdk.Entity</code>, <code>burrowsdk.Tween</code>, <code>burrowsdk.Cooldown</code>.</td></tr>
+<tr><td>Types that fail</td><td><code>chan</code>, <code>func</code>, <code>complex</code>, cyclic pointers: <code>SaveState</code> returns the error. <code>time.Time</code> marshals but is meaningless here.</td></tr>
+<tr><td>Field tags</td><td><code>json:&#34;name&#34;</code> sets the key; <code>omitempty</code> drops zero values; <code>json:&#34;-&#34;</code> skips a field. Unexported fields are silently not saved.</td></tr>
+<tr><td>Missing and unknown keys</td><td>A missing key leaves the field at its zero value; an unknown key is ignored. This makes adding fields safe. Renaming or retyping a field loses data or returns a decode error.</td></tr>
+<tr><td>Floats</td><td><code>float32</code> and <code>float64</code> round-trip exactly. NaN and Inf cannot be encoded (<code>json: unsupported value</code>): the save fails and the old state stays. Clamp or <code>CanonF32</code> values that may be NaN.</td></tr>
+<tr><td>Integers</td><td><code>int</code> is 64-bit in the guest. Typed integer fields keep all 64 bits. Through <code>any</code> or <code>map[string]any</code> numbers decode as <code>float64</code> and lose precision above 2^53 (entity ids are 64-bit): use typed fields.</td></tr>
+<tr><td><code>[]byte</code></td><td>Encoded as base64 (33% larger).</td></tr>
+<tr><td>Maps</td><td><code>range</code> order is unspecified: copy the keys to a slice and sort before you act on them. (Marshalling sorts keys for you.)</td></tr>
+<tr><td>Cost</td><td>Marshal plus unmarshal of a small struct is millions of gas. A full 64 KiB state costs much more. Keep State small, or use <code>Writer</code>/<code>Reader</code>.</td></tr>
+<tr><td>Size</td><td>JSON is verbose. Check <code>len(burrowsdk.StateRaw())</code> while developing; 64 KiB is a hard limit.</td></tr>
+</tbody></table></div>
+<h3 id="binary-state">Binary state<a class="anchor" href="#binary-state" aria-label="Link to this section">#</a></h3>
+<p><code>Writer</code> and <code>Reader</code> skip reflection and JSON, so they avoid the roughly 1.4 ms a JSON decode costs inside the guest, and allocate one buffer. Supported: <code>U8</code>, <code>Bool</code>, <code>U32</code>, <code>I32</code>, <code>U64</code>, <code>F32</code> (NaN canonicalised), <code>String</code> (u32 length prefix). There is no <code>F64</code>; store <code>math.Float64bits</code> with <code>U64</code>. <code>Reader</code> returns zeros and sets <code>Err</code> on short input, so an empty first-call state decodes to all zeros.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			r := burrowsdk.NewReader(burrowsdk.StateRaw())
+			count := r.U32()
+			lastTick := r.U64()
+			first := r.Err <span class="c">// true on the very first call: nothing was stored yet</span>
+			count++
+
+			<span class="k">var</span> w burrowsdk.Writer
+			w.U32(count).U64(burrowsdk.Tick())
+			<span class="k">if</span> err := burrowsdk.SetStateRaw(w.Bytes()); err != <span class="k">nil</span> {
+				burrowsdk.Logf(<span class="s">&#34;save: %v&#34;</span>, err)
+			}
+			<span class="k">if</span> !first &amp;&amp; count%<span class="n">100</span> == <span class="n">0</span> {
+				burrowsdk.Logf(<span class="s">&#34;100 more ticks, last was %d&#34;</span>, lastTick)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p>Do not mix codecs on the same node: <code>LoadState</code> on binary bytes returns a JSON error.</p>
+<h3 id="changing-the-state-format">Changing the state format<a class="anchor" href="#changing-the-state-format" aria-label="Link to this section">#</a></h3>
+<p>The module can change while State stays (hot reload, a new game version loading old saves). The new code must read the old bytes.</p>
+<ol>
+<li><p>Add a version field first (<code>Version int</code> in JSON; a leading <code>U8</code> in binary), starting at 1.</p></li>
+<li><p>Only add fields (they decode as zero in old data) and handle old versions explicitly:</p>
+<pre tabindex="0"><code class="language-go">st, err := burrowsdk.LoadState[state]()
+<span class="k">if</span> err != <span class="k">nil</span> {
+    st = state{}            <span class="c">// unreadable: reset</span>
+}
+<span class="k">switch</span> st.Version {
+<span class="k">case</span> <span class="n">0</span>, <span class="n">1</span>:                  <span class="c">// 0 = first run or written before versioning</span>
+    st.Name = <span class="s">&#34;default&#34;</span>     <span class="c">// field added in version 2</span>
+    st.Version = <span class="n">2</span>
+}</code></pre></li>
+</ol>
+<ol start="3">
+<li>Binary: append new fields at the end and read them after the old ones; an old, shorter blob sets <code>Err</code> and yields zeros for the new fields.</li>
+<li>To drop State altogether, <code>SetStateRaw(nil)</code>.</li>
+</ol>
+<p>Hot reload clears the fault counter and the <code>disabled</code> flag but does not reset State or <code>started</code>, so <code>OnStart</code> does not run again after a rebuild.</p>
+<h2 id="other-components-as-storage">Other components as storage<a class="anchor" href="#other-components-as-storage" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>Get[T]</code>, <code>Set[T]</code>, <code>GetRaw</code>, <code>SetRaw</code>, <code>Has</code>, <code>Remove</code> and the field accessors (<code>GetFloat</code>, <code>SetString</code>, <code>Patch</code>, ...) work on any node and any registered component; <code>Registry(&#34;components&#34;)</code> lists them. Writes are validated against the component schema and applied at commit.</li>
+<li>There is no free-form &#34;data&#34; component: you cannot invent component names. Store private data in State, shared data in an existing component that fits (<code>tags</code> for labels, <code>physics.velocity</code>, <code>nav.target</code>, ...), or in the save data.</li>
+<li>Protected components that a script can read but never write, remove or spawn with: <code>script</code>, <code>script.input</code> (<code>ERR_DENIED</code>). Also protected against removal: <code>transform</code>, <code>scene.name</code>, <code>scene.parent</code>, <code>scene.children</code>.</li>
+<li>Another node&#39;s State is not reachable: it lives in its <code>script</code> component. Exchange data with <code>Emit</code> (to one node or all) or <code>Publish</code> on a topic instead.</li>
+<li>Save data (<code>SaveSet(key, val string)</code>, <code>SaveGet</code>, <code>SaveDelete</code>) is global to the game, shared by all scripts, hashed and rolled back with the world. Keys match <code>[A-Za-z0-9_.:/-]{1,128}</code> (<code>ERR_INVALID</code> otherwise); a value over 64 KiB is <code>ERR_MEMORY</code> (the per-argument cap); it is <code>ERR_UNAVAILABLE</code> without <code>runtime.plugins.saves</code> and in the editor&#39;s Play mode. Writes are visible to your own <code>SaveGet</code> at once and to others after commit. Encode structured values as JSON strings.</li>
+</ul>
+<h2 id="module-pinning">Module pinning<a class="anchor" href="#module-pinning" aria-label="Link to this section">#</a></h2>
+<p>A node records the content hash of the module it runs in <code>hash</code> (<code>sha256:&lt;hex&gt;</code>), part of <code>StateHash</code>.</p>
+<ul>
+<li>The first time a node is seen without a <code>hash</code>, the engine resolves <code>module</code> and queues a journaled bind command that stores the hash and a fingerprint of the runtime configuration. Do not write <code>hash</code> by hand in scenes.</li>
+<li>A replay re-executes every script with the module whose hash the journal names. The runtime keeps module versions by content (at most 256; versions the journal needs are pinned and never evicted).</li>
+<li>When a <code>.wasm</code> file changes under the editor, a journaled <code>script_module_changed</code> command re-pins every node with that <code>module</code> to the new hash on a tick boundary, re-enables them and clears their fault count. A file that fails to load keeps the old module.</li>
+<li>Restoring a snapshot or a save into a runtime that does not have the module named by a node&#39;s hash fails the next tick with an error naming the hash. Rebuilding a script therefore changes the game&#39;s identity: version your saves (<code>Plugin.GameVersion</code> and <code>Migrate</code> in <a href="../levels-saves.html">levels and saves</a>) and keep State changes backward compatible.</li>
+<li>A game build registers the modules at start and has no hot reload, so a running game never changes a node&#39;s module.</li>
+<li><code>Script.Cfg</code> fingerprints gas, memory, budgets, <code>MaxFaults</code>, WASI strictness and module size cap; a replay under another configuration fails instead of diverging (<a href="09-errors-and-limits.html#tuning-the-limits-on-the-host-side">host tuning</a>).</li>
+</ul>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="02-execution-model.html">Execution model</a>: reset, transactions, what survives a fault.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a>: <code>ERR_LIMIT</code>, budgets, byte counts.</li>
+<li><a href="10-debugging-and-testing.html#faq">Debugging and testing</a>: &#34;my global variable resets&#34;, &#34;Props decode is slow&#34;.</li>
+<li><a href="04-entities-and-scene.html">Entities and scene</a>: component access, field accessors, tags. <a href="11-cookbook.html">Cookbook</a>: state patterns.</li>
+<li><a href="../reference/components.html#script">Components reference: script</a>, <a href="../reference/script-api.html#codec">script API: codec and data</a>.</li>
+</ul>
+<div class="pagemeta"><a href="03-state-and-props.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#where-to-keep-what">Where to keep what</a></li><li><a href="#props">Props</a></li><li><a href="#state">State</a></li><li><a class="l3" href="#json-rules-and-gotchas">JSON rules and gotchas</a></li><li><a class="l3" href="#binary-state">Binary state</a></li><li><a class="l3" href="#changing-the-state-format">Changing the state format</a></li><li><a href="#other-components-as-storage">Other components as storage</a></li><li><a href="#module-pinning">Module pinning</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Effects: audio, particles, animation, cameras, UI, models | Burrow</title>
+<meta name="description" content="What a script can trigger outside the simulation core, and which of it is replayed, hashed or only presented.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/07-effects.html">
+<meta property="og:title" content="Effects: audio, particles, animation, cameras, UI, models | Burrow">
+<meta property="og:description" content="What a script can trigger outside the simulation core, and which of it is replayed, hashed or only presented.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/07-effects.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Effects: audio, particles, animation, cameras, UI, models | Burrow">
+<meta name="twitter:description" content="What a script can trigger outside the simulation core, and which of it is replayed, hashed or only presented.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html" aria-current="page">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="effects-audio-particles-animation-cameras-ui-models">Effects: audio, particles, animation, cameras, UI, models<a class="anchor" href="#effects-audio-particles-animation-cameras-ui-models" aria-label="Link to this section">#</a></h1>
+<p>What a script can trigger outside the simulation core, and which of it is replayed, hashed or only presented.</p>
+<h2 id="two-domains">Two domains<a class="anchor" href="#two-domains" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">domain</th><th scope="col">functions</th><th scope="col">when applied</th><th scope="col">in the <code>StateHash</code></th><th scope="col">replay</th></tr></thead>
+<tbody>
+<tr><td>frame (presentation)</td><td><code>Audio*</code>, <code>Particle*</code>, <code>Camera*</code>, <code>UI*</code> setters</td><td>queued at commit, delivered after the tick, in call order</td><td>no</td><td>the same requests are re-emitted when ticks are re-executed</td></tr>
+<tr><td>simulation</td><td><code>Anim*</code>, <code>SpawnModel</code>, <code>UIEvents</code> (read)</td><td><code>Anim*</code> and <code>SpawnModel</code>: at commit, like <code>Set</code> / <code>Spawn</code>; <code>UIEvents</code>: reads the journaled inbox now</td><td>yes</td><td>exact</td></tr>
+</tbody></table></div>
+<p>Rules for every frame-domain call:</p>
+<ul>
+<li>Queued with the buffered effects of the transaction: if the script faults, its sounds, bursts, camera and UI requests are dropped with everything else.</li>
+<li>Deterministic and never read back. There is no return value that depends on the presentation (a handle is derived from the tick, never from the mixer). A script cannot learn whether a sound loaded, a voice was stolen, a rig exists or a screen exists.</li>
+<li>Ignored, with <code>nil</code> error, when the plugin is off: <code>runtime.plugins.audio: false</code>, <code>particles: false</code>, <code>camera: false</code>, <code>gameui: false</code> in <code>vox.project</code> (all on by default, see <a href="../reference/project-config.html">project-config</a>). <code>App.VerifyReplay</code> and rolled-back ticks drop the requests; headless runs with the plugin installed process them (audio on the silent null backend). The <code>StateHash</code> is identical with or without them.</li>
+<li>Each request costs one host call and one <strong>event</strong> of the budget (64 per script per tick, 4096 per tick overall, shared with <code>Emit</code> and <code>Publish</code>; see <a href="09-errors-and-limits.html">errors and limits</a>). Over budget the call returns <code>BUDGET</code> (code 5). A HUD that sets 70 keys every tick exhausts it: set a key only when it changes.</li>
+<li>A NaN or Inf in <code>SoundOpts</code> / <code>ParticleOpts</code> makes the SDK&#39;s JSON encoding fail silently and the call goes out with no options (defaults). In the camera and UI setters it returns the Go encoding error instead of a <code>*burrowsdk.Error</code>.</li>
+<li>Argument errors come back at call time: <code>INVALID</code> (1) for NaN or out-of-range numbers, <code>REJECTED</code> (8) for malformed option JSON, <code>LIMIT</code> (9) for oversized options, <code>UNAVAILABLE</code> (7) outside a tick. Validation of the engine side (unknown rig, unknown screen, missing file) happens later, in the frame, and is silent for the script.</li>
+<li>Per frame the plugins consume a bounded number of requests and drop the rest: camera 64, game UI 128, particles 256. Audio has no such cap, but the mixer has 32 voices by default.</li>
+</ul>
+<p>See the generated signatures in <a href="../reference/script-api.html#audio">Script API</a>.</p>
+<h2 id="audio">Audio<a class="anchor" href="#audio" aria-label="Link to this section">#</a></h2>
+<p>Plugin: <code>runtime.plugins.audio</code>. Subsystem: <a href="../audio.html">audio</a>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>PlayOn(entity, name, SoundOpts) (SoundHandle, error)</code></td><td>start a sound emitted by an entity (self or another node), return its handle</td><td><code>INVALID</code>: no entity (0), a pending entity, unknown <code>Mode</code>, empty name, name over 256 bytes, unknown bus, NaN, volume or pitch outside 0..8 or negative, fade NaN. <code>NOT_FOUND</code>: no such entity. <code>REJECTED</code>: bad options JSON</td></tr>
+<tr><td><code>AudioStop(h, fade)</code></td><td>fade the sound out over <code>fade</code> seconds (0..60, clamped)</td><td><code>INVALID</code>: handle 0</td></tr>
+<tr><td><code>AudioSet(h, volume, pitch)</code></td><td>change a playing sound; a negative value keeps the parameter</td><td><code>INVALID</code>: handle 0, NaN, a value over 8</td></tr>
+<tr><td><code>AudioBus(bus, volume)</code></td><td>volume of <code>sfx</code>, <code>music</code>, <code>ambient</code>, <code>ui</code> or <code>master</code>, 0..4</td><td><code>INVALID</code>: unknown bus, NaN, outside 0..4</td></tr>
+<tr><td><code>AudioListener(e)</code></td><td>use entity <code>e</code> as the ears; 0 returns to the default listener</td><td><code>NOT_FOUND</code>: no such entity</td></tr>
+</tbody></table></div>
+<p><code>SoundOpts</code> (zero value = all defaults):</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">default</th><th scope="col">range</th></tr></thead>
+<tbody>
+<tr><td><code>Bus</code></td><td><code>sfx</code></td><td><code>sfx</code>, <code>music</code>, <code>ambient</code>, <code>ui</code></td></tr>
+<tr><td><code>Volume</code></td><td>1</td><td>0..8 (0 means 1, not silence)</td></tr>
+<tr><td><code>Pitch</code></td><td>1</td><td>0.05..8 after clamping (0 means 1)</td></tr>
+<tr><td><code>Loop</code></td><td>false</td><td></td></tr>
+<tr><td><code>Priority</code></td><td>0</td><td>-100..100; a higher priority survives voice stealing</td></tr>
+<tr><td><code>Fade</code></td><td>0</td><td>fade-in seconds</td></tr>
+<tr><td><code>Mode</code></td><td><code>localized</code></td><td><code>global</code> (every player, no position), <code>local</code> (one player, no position) or <code>localized</code> (3D at the entity: distance attenuation, panning, occlusion through voxels)</td></tr>
+<tr><td><code>Player</code></td><td>0</td><td><code>local</code> only: the player that hears it; 0 = the player owning the entity, else the local player</td></tr>
+<tr><td><code>Offset</code></td><td>none</td><td><code>localized</code> only: position relative to the entity</td></tr>
+</tbody></table></div>
+<p><strong>Breaking change.</strong> Every sound comes from an entity placed in the scene. <code>AudioPlay</code>, <code>AudioPlayAt</code> and <code>AudioMusic</code> are gone; the music is the <code>audio.music</code> component of an entity (write its <code>sound</code> / <code>context</code> fields with the component functions). The raw <code>audio_music</code> host function always returns <code>DENIED</code>.</p>
+<p><strong>Names.</strong> A sound name is a project-relative path to a <code>.wav</code> or <code>.ogg</code> file (<code>assets/sfx/coin.ogg</code>), read through the project source (files in a packed game included, 64 MiB per file). Files are decoded on first use, at most 8 new loads per frame; a sound requested while the budget is spent is skipped. <code>builtin:&lt;name&gt;</code> is documented in the SDK comment and used by some templates, but <strong>the engine has no builtin sounds any more</strong> (the synthesised set was removed), so such a call returns a handle and plays nothing.</p>
+<p><strong>Sound pack.</strong> The pack (default and user packs, <code>sounds.json</code>) belongs to the engine&#39;s ambience hook: it maps engine events (<code>step.stone</code>, <code>ui.click</code>, music scheduling) to files and plays them itself. Scripts cannot trigger pack events and the pack cannot see script sounds. They share the same mixer: buses, the 32-voice limit and ducking (a sound on <code>ui</code> lowers <code>music</code> and <code>ambient</code>) apply to both. The <code>audio.music</code> component picks between the pack&#39;s scheduler and a looped <code>sound</code> asset, so a game that drives its music from a script writes that component instead of fighting the pack.</p>
+<p><strong>Handles.</strong> <code>SoundHandle</code> is positive and derived from (entity, entry point, tick, request index): a replay produces the same values, and it is valid for the voice that call started. A handle may be kept in <code>State</code> and used in later ticks as long as the voice exists. <code>AudioStop</code> / <code>AudioSet</code> on a finished, stolen or never-started voice succeed and do nothing. A one-shot ends by itself; only loops need a stop.</p>
+<p><strong>Other details.</strong></p>
+<ul>
+<li><code>AudioSet</code> clamps: volume 0..8, pitch 0.05..8. Here <code>0</code> really sets 0 (silent) and 0.05 for pitch; only negative means &#34;keep&#34;. It cannot move a 3D sound (position is fixed at play time).</li>
+<li><code>AudioListener</code> beats an <code>audio_listener</code> component and the camera. If the entity is despawned the default listener comes back.</li>
+<li>Without a sound device or in headless runs the null backend runs the mixer silently.</li>
+</ul>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Engine burrowsdk.SoundHandle <span class="s">`json:&#34;engine&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			h, err := burrowsdk.PlayOn(self, <span class="s">&#34;assets/sfx/engine.ogg&#34;</span>,
+				burrowsdk.SoundOpts{Bus: <span class="s">&#34;ambient&#34;</span>, Loop: <span class="k">true</span>, Volume: <span class="n">0.6</span>, Fade: <span class="n">1</span>})
+			<span class="k">if</span> err == <span class="k">nil</span> {
+				_ = burrowsdk.SaveState(state{Engine: h})
+			}
+		},
+		OnDestroy: <span class="k">func</span>(self burrowsdk.Entity) {
+			st, _ := burrowsdk.LoadState[state]()
+			_ = burrowsdk.AudioStop(st.Engine, <span class="n">0.5</span>)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="particles">Particles<a class="anchor" href="#particles" aria-label="Link to this section">#</a></h2>
+<p>Plugin: <code>runtime.plugins.particles</code>. Subsystem: <a href="../particles.html">particles</a>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>ParticleBurstOn(entity, effect, ParticleOpts)</code></td><td>one-shot effect emitted by an entity (self or another node), at <code>Offset</code> from it; lives on its own</td><td><code>INVALID</code>: no entity (0), empty or over-long (256) effect, huge offset, count outside 0..4096, scale outside 0..16. <code>NOT_FOUND</code>: no such entity. <code>REJECTED</code>: bad options JSON</td></tr>
+<tr><td><code>ParticleBlockBreakOn(entity, block, ox, oy, oz)</code></td><td>debris of a broken block, centred on the offset from the entity</td><td>as above</td></tr>
+<tr><td><code>ParticleEmit(e, count)</code></td><td>emit <code>count</code> extra particles from the <code>particle_emitter</code> component of <code>e</code></td><td><code>INVALID</code>: entity 0, count outside 1..4096. <code>NOT_FOUND</code>: no such entity</td></tr>
+<tr><td><code>ParticleStop(e)</code></td><td>stop the emitter of <code>e</code> and clear its particles; entity 0 clears every particle</td><td><code>NOT_FOUND</code>: no such entity</td></tr>
+<tr><td><code>Shockwave(entity, ox, oy, oz, radius, strength, duration)</code></td><td>expanding ring of distorted air emitted by an entity, centred on its position plus the offset (heat-haze style lens ripple, see <a href="../rendering.html">rendering.md</a> &#34;Air distortion&#34;): grows to <code>radius</code> blocks over <code>duration</code> seconds and fades; needs shader level medium and up</td><td><code>INVALID</code>: no entity (0), NaN or huge offset, radius outside 0..256, strength outside 0..8 (0 means 1), duration outside 0..30 s</td></tr>
+</tbody></table></div>
+<p><code>effect</code> is <code>builtin:smoke</code>, <code>sparks</code>, <code>dust</code>, <code>splash</code>, <code>fire</code>, <code>debris</code> or a <code>.particles.json</code> project path. <code>ParticleOpts</code>: <code>Offset</code> (from the emitter, default at it; <code>Entity</code> is filled by <code>ParticleBurstOn</code>), <code>Dir</code> (emission axis override, world space), <code>Count</code> (default the asset&#39;s burst, else 16), <code>Scale</code> (size, spawn volume and speed multiplier, 0 means 1), <code>Block</code> (block name whose texture replaces the sprite, for debris).</p>
+<ul>
+<li>Randomness is seeded from the tick and the request index, so a replay shows the same burst. An unknown effect or block draws nothing and raises no error.</li>
+<li><code>ParticleEmit</code> / <code>ParticleStop</code> need the entity only to exist: an entity without <code>particle_emitter</code> is accepted and ignored. An emitter is switched on and off with its <code>enabled</code> field (<code>Set</code> / <code>SetBool</code>, simulation domain).</li>
+</ul>
+<pre tabindex="0"><code class="language-go">_ = burrowsdk.ParticleBurstOn(self, <span class="s">&#34;builtin:sparks&#34;</span>, burrowsdk.ParticleOpts{Offset: &amp;[<span class="n">3</span>]<span class="k">float32</span>{<span class="n">4</span>, <span class="n">20</span>, -<span class="n">3</span>}, Count: <span class="n">24</span>, Scale: <span class="n">0.5</span>})
+_ = burrowsdk.ParticleBlockBreakOn(self, <span class="s">&#34;stone&#34;</span>, <span class="n">4.5</span>, <span class="n">20.5</span>, -<span class="n">2.5</span>)
+_ = burrowsdk.ParticleEmit(self, <span class="n">50</span>)</code></pre>
+<h2 id="animation">Animation<a class="anchor" href="#animation" aria-label="Link to this section">#</a></h2>
+<p>Not a frame-domain effect. <code>Anim*</code> edit the <code>anim.player</code> component of the entity: the change is applied at commit, journaled, hashed and replayed exactly, and the <code>anim.step</code> system advances the player with the fixed tick. Use it for animation that matters to gameplay (moving platforms, doors, hazards); purely visual animation runs in the frame domain on the host. Subsystem: <a href="../animation.html">animation</a>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>AnimPlay(e, clip, AnimPlayOpts)</code></td><td>play <code>clip</code> now (or queued)</td><td><code>NOT_FOUND</code>: entity or its <code>anim.player</code> missing. <code>LIMIT</code>: queue already holds 64. <code>INVALID</code>: empty or over-long (128) clip name. <code>NOT_FOUND</code> also for entity 0</td></tr>
+<tr><td><code>AnimStop(e)</code></td><td>halt the player, the pose stays</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>AnimSetSpeed(e, speed)</code></td><td>speed multiplier, 0..100 (0 means 1)</td><td><code>INVALID</code>: NaN or outside the range</td></tr>
+<tr><td><code>AnimSetParam(e, name, v)</code></td><td>set a state machine parameter (bool = 0/1)</td><td><code>INVALID</code>: NaN or Inf. <code>LIMIT</code>: 64 parameters already set</td></tr>
+<tr><td><code>AnimTrigger(e, name)</code></td><td>raise a trigger parameter; the next transition that tests it consumes it</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>AnimTime(e) (int64, error)</code></td><td>playhead in microseconds</td><td><code>NOT_FOUND</code></td></tr>
+</tbody></table></div>
+<p><code>AnimPlayOpts</code>: <code>Mode</code> (<code>AnimMode</code>: <code>AnimDefault</code> = the clip&#39;s flag, <code>AnimOnce</code>, <code>AnimLoop</code>, <code>AnimPingPong</code>), <code>Queue</code> (play after the current clip ends; if nothing is playing it starts now), <code>FadeMillis</code> (crossfade, 0..65535 ms).</p>
+<ul>
+<li>The clip name is not checked: an unknown clip plays nothing and is not an error. Clips and machines come from <code>.anim</code> files of the project.</li>
+<li><code>AnimPlay</code> detaches the player from its state machine (<code>machine</code> and <code>state</code> are cleared); to drive a machine, set <code>machine</code> on the component and use <code>AnimSetParam</code> / <code>AnimTrigger</code> only.</li>
+<li>Reads see your own writes in the same call. Events crossed by the last advance are in <code>anim.player.fired</code> (read with <code>FieldRaw(e, &#34;anim.player&#34;, &#34;fired&#34;)</code>), at most 256 per tick.</li>
+<li>The component must already be on the entity (scene or prefab); these calls never add it.</li>
+</ul>
+<pre tabindex="0"><code class="language-go">_ = burrowsdk.AnimPlay(door, <span class="s">&#34;open&#34;</span>, burrowsdk.AnimPlayOpts{Mode: burrowsdk.AnimOnce, FadeMillis: <span class="n">150</span>})
+_ = burrowsdk.AnimSetParam(door, <span class="s">&#34;locked&#34;</span>, <span class="n">0</span>)
+_ = burrowsdk.AnimTrigger(door, <span class="s">&#34;slam&#34;</span>)</code></pre>
+<h2 id="cameras">Cameras<a class="anchor" href="#cameras" aria-label="Link to this section">#</a></h2>
+<p>Plugin: <code>runtime.plugins.camera</code> (also enabled by a scene that uses <code>camera_rig</code>). Subsystem: <a href="../cameras.html">cameras</a>. Rig names are the <code>name</code> of a <code>camera_rig</code> component or of a rig in <code>runtime.camera.rigs</code>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>CameraSwitch(rig, blend)</code></td><td>activate a rig, blending over <code>blend</code> seconds</td><td><code>INVALID</code>: empty rig name, name over 64, blend NaN or outside 0..1000</td></tr>
+<tr><td><code>CameraShake(amount)</code></td><td>add trauma 0..1 (the total is capped at 1; amplitude grows with its square)</td><td><code>INVALID</code>: NaN or outside 0..1000</td></tr>
+<tr><td><code>CameraCut()</code></td><td>mark a discontinuity (teleport, respawn): temporal history is dropped</td><td>none</td></tr>
+</tbody></table></div>
+<p><code>blend</code> 0 is a cut that resets TAA/FSR2 history; blends longer than 30 s are clamped; switching between perspective and orthographic rigs always cuts; switching to the active rig is a no-op. An unknown rig is dropped in the frame without a trace in the script. Shake values above 1 are accepted and clamped by the controller.</p>
+<pre tabindex="0"><code class="language-go">_ = burrowsdk.CameraSwitch(<span class="s">&#34;iso&#34;</span>, <span class="n">0.6</span>)
+_ = burrowsdk.CameraShake(<span class="n">0.4</span>)</code></pre>
+<h2 id="game-ui">Game UI<a class="anchor" href="#game-ui" aria-label="Link to this section">#</a></h2>
+<p>Plugin: <code>runtime.plugins.gameui</code>. Subsystem: <a href="../game-ui.html">game UI</a>. Screens are <code>*.ui.json</code> files named after the file (or listed in <code>runtime.gameui.screens</code>).</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>UISetNum(key, v)</code> / <code>UISetStr(key, v)</code> / <code>UISetBool(key, v)</code></td><td>bind a value to <code>key</code> (bars, <code>{key}</code> in labels, <code>bind_visible</code>)</td><td><code>INVALID</code>: NaN, over 1e15, string over 4096 bytes, key over 128</td></tr>
+<tr><td><code>UISetItems(key, []UIItem)</code></td><td>bind an item list (grid, list); <code>UIItem{Icon, Text, Count}</code>, empty <code>Icon</code> = empty slot</td><td><code>INVALID</code>: more than 4096 items, text or icon over 4096</td></tr>
+<tr><td><code>UIShow(screen)</code> / <code>UIHide(screen)</code> / <code>UIToggle(screen)</code></td><td>screen visibility</td><td><code>INVALID</code>: name over 128</td></tr>
+<tr><td><code>UILocale(code)</code></td><td>switch locale (<code>&#34;&#34;</code> or over 16 bytes is dropped in the frame)</td><td></td></tr>
+<tr><td><code>UILabel(id, x, y, z, text, bar)</code></td><td>persistent world-space nameplate; <code>bar</code> 0 = none, else (0,1]</td><td><code>INVALID</code>: NaN</td></tr>
+<tr><td><code>UIPopup(x, y, z, text, life)</code></td><td>floating number that rises and fades over <code>life</code> seconds</td><td><code>INVALID</code>: NaN</td></tr>
+<tr><td><code>UIRemoveLabel(id)</code></td><td>remove a nameplate</td><td></td></tr>
+<tr><td><code>UIEvents(since) ([]UIEvent, uint32)</code></td><td>journaled UI events newer than <code>since</code>, and the latest sequence number</td><td>no error: returns nothing without the plugin</td></tr>
+</tbody></table></div>
+<p>Details:</p>
+<ul>
+<li><p>Setters are frame domain and last-write-wins per key. An unknown screen, a full value store (1024 keys) or a pool of 128 labels / 128 popups drops the request in the frame. <code>UIShow</code> of a modal screen takes input focus.</p></li>
+<li><p>The host also accepts <code>focus</code> (<code>ui:focus</code>) and <code>clear_labels</code> and a label <code>color</code>/<code>size</code>; the Go SDK has no wrapper for them (use a UI action in the <code>.ui.json</code> instead).</p></li>
+<li><p><strong>Events back.</strong> A widget with <code>&#34;sim&#34;: true</code>, or an action starting with <code>sim:</code>, becomes the journaled command <code>gameui_event</code> stored in a 32-event ring (simulation state, hashed). <code>UIEvents</code> returns events with <code>Seq &gt; since</code> and the new last sequence; keep it in <code>State</code>:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>Seq</code></td><td>increasing event number</td></tr>
+<tr><td><code>Screen</code>, <code>Widget</code></td><td>screen name and widget <code>id</code></td></tr>
+<tr><td><code>Kind</code></td><td><code>click</code>, <code>select</code>, <code>move</code>, <code>use</code>, <code>change</code>, <code>submit</code>, <code>cancel</code></td></tr>
+<tr><td><code>Action</code></td><td>the widget&#39;s <code>action</code> string</td></tr>
+<tr><td><code>Value</code></td><td>text (input fields, up to 1 KiB)</td></tr>
+<tr><td><code>Index</code>, <code>To</code></td><td>slot index; <code>To</code> is the destination of a <code>move</code></td></tr>
+</tbody></table></div></li>
+</ul>
+<ul>
+<li>Poll every tick: the reply buffer is 4096 bytes. If the JSON of the pending events is larger (a full ring of long names can be), the call returns nothing and <code>since</code> does not advance. Events a widget does not mark <code>sim</code> never reach scripts.</li>
+</ul>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Seen  <span class="k">uint32</span> <span class="s">`json:&#34;seen&#34;`</span>
+	Coins <span class="k">int</span>    <span class="s">`json:&#34;coins&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			evs, last := burrowsdk.UIEvents(st.Seen)
+			<span class="k">for</span> _, e := <span class="k">range</span> evs {
+				<span class="k">if</span> e.Kind == <span class="s">&#34;click&#34;</span> &amp;&amp; e.Action == <span class="s">&#34;sim:buy&#34;</span> {
+					st.Coins--
+					_ = burrowsdk.UISetNum(<span class="s">&#34;coins&#34;</span>, <span class="k">float64</span>(st.Coins))
+					_ = burrowsdk.UIPopup(<span class="n">0</span>, <span class="n">12</span>, <span class="n">0</span>, <span class="s">&#34;-1&#34;</span>, <span class="n">1</span>)
+					_ = burrowsdk.CameraShake(<span class="n">0.2</span>)
+				}
+			}
+			<span class="k">if</span> last != st.Seen {
+				st.Seen = last
+				_ = burrowsdk.SaveState(st)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="models">Models<a class="anchor" href="#models" aria-label="Link to this section">#</a></h2>
+<p><code>SpawnModel(asset, voxelScale, SpawnOpts) (Entity, error)</code> is <code>Spawn</code> with a <code>render.voxmodel</code> component (<code>cast_shadow</code> on). It adds no host call: the spawn is an ordinary journaled command with the same rules and budgets as <a href="04-entities-and-scene.html">Spawn</a> (32 per script per tick), and errors are <code>Spawn</code>&#39;s. <code>asset</code> is a project path to a <code>.bmodel</code> or <code>.vox</code>; <code>voxelScale</code> is the world size of one voxel (0 means 1/16). An unknown asset spawns the node and draws nothing (a warning is logged by the host). Model editing and character models: <a href="../modeling.html">modeling</a>, <a href="../character.html">character</a>.</p>
+<pre tabindex="0"><code class="language-go">crate, err := burrowsdk.SpawnModel(<span class="s">&#34;assets/models/crate.bmodel&#34;</span>, <span class="n">0.0625</span>, burrowsdk.SpawnOpts{
+	Name: <span class="s">&#34;crate&#34;</span>, Transform: &amp;burrowsdk.Transform{Pos: [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">4</span>, <span class="n">10</span>, <span class="n">4</span>}, Scale: [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>}},
+})</code></pre>
+<h2 id="editor-overlay-and-editor-commands">Editor overlay and editor commands<a class="anchor" href="#editor-overlay-and-editor-commands" aria-label="Link to this section">#</a></h2>
+<p><code>DrawBox(min, max, opts)</code>, <code>DrawLine(a, b, opts)</code>, <code>DrawSphere(center, r, opts)</code> and <code>DrawLabel(pos, text, opts)</code> (<code>DrawOpts{Color, Layer, Life}</code>) draw debug shapes in the editor viewport. <code>EditorZoneAdd</code>, <code>EditorZoneRemove</code>, <code>EditorSpawnAdd</code> and <code>EditorSpawnRemove</code> queue authoring edits for the level. All take <strong>world</strong> blocks.</p>
+<p>They are <strong>frame domain</strong>, like particles: queued at commit, never part of the simulation state (the state hash and replays are unchanged), and ignored when the game runs outside the editor. <code>Life</code> is a number of frames (0 = this frame only, at most 600); a label is at most 128 bytes and a layer name at most 32. The editor applies the queued <code>Editor*</code> commands to the level draft as <strong>one undo step when Play stops</strong>, so the edit survives the snapshot restore of Stop. Errors: <code>INVALID</code> for a bad shape or command.</p>
+<pre tabindex="0"><code class="language-go">burrowsdk.DrawBox([<span class="n">3</span>]<span class="k">float32</span>{<span class="n">0</span>, <span class="n">10</span>, <span class="n">0</span>}, [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">8</span>, <span class="n">14</span>, <span class="n">8</span>}, burrowsdk.DrawOpts{Color: burrowsdk.RGBA{<span class="n">255</span>, <span class="n">80</span>, <span class="n">0</span>, <span class="n">255</span>}, Life: <span class="n">60</span>})
+burrowsdk.EditorZoneAdd(<span class="s">&#34;arena&#34;</span>, [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">0</span>, <span class="n">10</span>, <span class="n">0</span>}, [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">8</span>, <span class="n">14</span>, <span class="n">8</span>}, <span class="k">map</span>[<span class="k">string</span>]<span class="k">string</span>{<span class="s">&#34;team&#34;</span>: <span class="s">&#34;red&#34;</span>})</code></pre>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="02-execution-model.html">Execution model</a>: transactions, commit, what a fault drops.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a>: error codes, event and call budgets.</li>
+<li><a href="04-entities-and-scene.html">Entities and scene</a>: <code>Spawn</code>, components, tags.</li>
+<li><a href="08-multiplayer.html">Multiplayer</a>: effects run on every peer.</li>
+<li><a href="11-cookbook.html">Cookbook</a>: sound on event, burst on hit, HUD counter.</li>
+<li><a href="../reference/script-api.html">Script API reference</a>, <span class="unpub" title="Source file of the repository, not part of this site">ABI</span>.</li>
+<li>Subsystems: <a href="../audio.html">audio</a>, <a href="../particles.html">particles</a>, <a href="../animation.html">animation</a>, <a href="../cameras.html">cameras</a>, <a href="../game-ui.html">game UI</a>.</li>
+</ul>
+<h2 id="application-control">Application control<a class="anchor" href="#application-control" aria-label="Link to this section">#</a></h2>
+<p>Plugin: none (the launcher, <code>burrowplay</code>, serves it). A script can quit the game, join or host a multiplayer game, play or create a world and go back to the title screen, the same things the game UI actions <code>app:*</code>, <code>net:*</code> and <code>world:*</code> do:</p>
+<pre tabindex="0"><code class="language-go">burrowsdk.AppQuit()
+burrowsdk.NetJoin(<span class="s">&#34;burrow://host:7777?fp=...&amp;key=...&#34;</span>, <span class="s">&#34;Ada&#34;</span>) <span class="c">// name &#34;&#34; = the user name</span>
+burrowsdk.NetHost(<span class="s">&#34;Ada&#34;</span>)                                      <span class="c">// embedded server, you play on it; the join link is printed</span>
+burrowsdk.WorldPlay(<span class="s">&#34;w1&#34;</span>)                                     <span class="c">// a world is a save slot (docs/levels-saves.md)</span>
+burrowsdk.WorldCreate(<span class="s">&#34;w2&#34;</span>, <span class="s">&#34;My world&#34;</span>, <span class="n">0</span>, <span class="s">&#34;flat&#34;</span>, <span class="s">&#34;creative&#34;</span>) <span class="c">// seed 0 = random, generator &#34;&#34; = the project&#39;s</span>
+burrowsdk.Title()                                             <span class="c">// back to the start scene</span>
+burrowsdk.SetShaders(<span class="s">&#34;high&#34;</span>)                                  <span class="c">// shader level, no restart (docs/rendering.md)</span>
+burrowsdk.SetGraphics(<span class="s">&#34;god_rays&#34;</span>, <span class="n">32</span>)                          <span class="c">// one graphics setting on top of the level</span>
+burrowsdk.SetGraphicsOn(<span class="s">&#34;bloom&#34;</span>, <span class="k">false</span>)
+burrowsdk.ResetGraphics()                                      <span class="c">// back to the level&#39;s preset</span></code></pre>
+<p>These are frame domain (<code>app_cmd</code>): they only queue a request that ends the windowed run when the invocation commits, then the launcher builds what was asked. The window stays open across the change, like in Minecraft: the old game shows the loading screen, the new one keeps it up while the world around the player streams in (the simulation is held meanwhile, so nobody falls through missing terrain; 15 s at most), then the game starts. To move between scenes of the same game without rebuilding it, use <code>SceneSwitch</code>. They never change the <code>StateHash</code>; headless runs, replays and <code>-shot</code> runs ignore them, and only the first request of a run is served. A bad slot name or link returns <code>INVALID</code>.</p>
+<div class="pagemeta"><a href="07-effects.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#two-domains">Two domains</a></li><li><a href="#audio">Audio</a></li><li><a href="#particles">Particles</a></li><li><a href="#animation">Animation</a></li><li><a href="#cameras">Cameras</a></li><li><a href="#game-ui">Game UI</a></li><li><a href="#models">Models</a></li><li><a href="#editor-overlay-and-editor-commands">Editor overlay and editor commands</a></li><li><a href="#see-also">See also</a></li><li><a href="#application-control">Application control</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

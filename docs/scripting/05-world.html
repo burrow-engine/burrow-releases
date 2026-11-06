@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>World | Burrow</title>
+<meta name="description" content="How a script reads and edits voxels, casts rays, queries and drives physics bodies, steers navigation agents, talks to levels and saves, and reads project data.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/05-world.html">
+<meta property="og:title" content="World | Burrow">
+<meta property="og:description" content="How a script reads and edits voxels, casts rays, queries and drives physics bodies, steers navigation agents, talks to levels and saves, and reads project data.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/05-world.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="World | Burrow">
+<meta name="twitter:description" content="How a script reads and edits voxels, casts rays, queries and drives physics bodies, steers navigation agents, talks to levels and saves, and reads project data.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html" aria-current="page">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="world">World<a class="anchor" href="#world" aria-label="Link to this section">#</a></h1>
+<p>How a script reads and edits voxels, casts rays, queries and drives physics bodies, steers navigation agents, talks to levels and saves, and reads project data.</p>
+<p>Signatures are in <a href="../reference/script-api.html">reference/script-api.md</a>; this page gives units, limits, timing and edge cases. Error codes: <code>1 INVALID</code>, <code>2 MEMORY</code>, <code>3 NOT_FOUND</code>, <code>4 TOO_SMALL</code> (handled by the SDK), <code>5 BUDGET</code>, <code>6 DENIED</code>, <code>7 UNAVAILABLE</code>, <code>8 REJECTED</code>, <code>9 LIMIT</code> (<a href="09-errors-and-limits.html">errors and limits</a>).</p>
+<h2 id="coordinates-and-units">Coordinates and units<a class="anchor" href="#coordinates-and-units" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>One voxel is one block, one unit of length. Voxel cells are integers <code>(x, y, z)</code>; the cell <code>(x, y, z)</code> covers the float range <code>[x, x+1)</code> on each axis, so <code>floor</code> maps a position to its cell. <code>+Y</code> is up.</li>
+<li>World coordinates, shared by voxels, rays, physics and navigation. Only <code>Transform.Pos</code> of a child node is relative to its parent (<a href="04-entities-and-scene.html#transforms">entities</a>).</li>
+<li>Voxel cells must satisfy <code>|x|, |y|, |z| &lt;= 16,777,216</code> (2^24), otherwise <code>INVALID</code>. Chunks are 32 blocks wide.</li>
+<li><strong>Space that is not loaded or not generated reads as air (id 0).</strong> There is no error for it. A write there creates the chunk in the world&#39;s edit overlay.</li>
+<li>Rays and boxes take <code>float32</code>; non-finite values are <code>INVALID</code>.</li>
+</ul>
+<h2 id="voxels">Voxels<a class="anchor" href="#voxels" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>Voxel(x, y, z)</code></td><td>block id at the cell, including this call&#39;s earlier writes</td><td><code>INVALID</code> (out of range)</td></tr>
+<tr><td><code>SetVoxel(x, y, z, id)</code></td><td>write a block id</td><td><code>INVALID</code> (out of range or unregistered id), <code>BUDGET</code></td></tr>
+<tr><td><code>BlockByName(name)</code></td><td>id of a registered block; <code>&#34;air&#34;</code> and <code>&#34;&#34;</code> give 0</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>LightAt(x, y, z)</code></td><td>light of the cell</td><td><code>INVALID</code></td></tr>
+<tr><td><code>Raycast(origin, dir, max)</code></td><td>first solid voxel along a ray</td><td><code>INVALID</code></td></tr>
+</tbody></table></div>
+<p><code>BlockID</code> is an <code>int32</code> (<code>0</code> = air); ids are defined by the project&#39;s block registry (<a href="#block-registry">below</a>).</p>
+<p><strong>When a write is visible.</strong> <code>SetVoxel</code> is validated at once and buffered; the chunk changes when the script call commits (and not at all if it faults). Until then <code>Voxel</code> and <code>Raycast</code> of the same call see it; <code>LightAt</code>, <code>PhysicsRaycast</code> and the other physics queries do not. After the commit, scripts that run later in the same tick see it, then the physics step, then meshing and rendering. Writing the block already there still costs one edit of the budget.</p>
+<p><strong>Budget.</strong> 4096 voxel edits per script call and 262,144 per tick; the next one returns <code>BUDGET</code> and nothing is written for it. <code>Physics3DRemoveVoxel</code> counts as one edit too.</p>
+<p><strong>Light.</strong> <code>Light{R, G, B, Sky}</code> holds block light per colour channel and skylight, each <code>0..15</code>. <code>Block()</code> is the brightest block channel; <code>Level(skyDim)</code> is <code>max(Block(), Sky - skyDim)</code>, with <code>skyDim</code> 0 at noon up to 15 at night (the &#34;mobs spawn in the dark&#34; rule). <code>LightAt</code> is deterministic and a function of the committed blocks only, so it ignores writes made in this call. Details: <a href="../lighting.html">lighting</a>.</p>
+<p><strong>Voxel raycast.</strong> <code>Raycast(origin, dir, max)</code> returns a <code>Hit{X, Y, Z, NX, NY, NZ, Dist, Block}</code> and <code>ok</code>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">input</th><th scope="col">rule</th></tr></thead>
+<tbody>
+<tr><td><code>dir</code></td><td>any non-zero vector; it is normalised, so <code>Dist</code> is in blocks along the ray</td></tr>
+<tr><td><code>max</code></td><td>must be <code>&gt; 0</code>; clamped to 4096</td></tr>
+<tr><td>hits</td><td>blocks whose registry entry is solid; air, water and non-solid plants are passed through</td></tr>
+<tr><td>origin inside a solid voxel</td><td>hit on that voxel with <code>Dist = 0</code> and a zero normal</td></tr>
+<tr><td><code>NX, NY, NZ</code></td><td>normal of the entered face (points back toward the origin), one component is <code>+-1</code></td></tr>
+<tr><td>miss</td><td><code>ok = false</code>, no error</td></tr>
+</tbody></table></div>
+<p>It reads the world as this call sees it (earlier <code>SetVoxel</code> included) and respects block shapes when the project uses shaped blocks.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			stone, err := burrowsdk.BlockByName(<span class="s">&#34;stone&#34;</span>)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span> <span class="c">// not in this registry</span>
+			}
+			<span class="c">// look straight down and fill the cell above the first solid block</span>
+			hit, ok, err := burrowsdk.Raycast(t.Pos, [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">0</span>, -<span class="n">1</span>, <span class="n">0</span>}, <span class="n">32</span>)
+			<span class="k">if</span> err != <span class="k">nil</span> || !ok {
+				<span class="k">return</span>
+			}
+			x, y, z := <span class="k">int</span>(hit.X+hit.NX), <span class="k">int</span>(hit.Y+hit.NY), <span class="k">int</span>(hit.Z+hit.NZ)
+			<span class="k">if</span> id, _ := burrowsdk.Voxel(x, y, z); id == <span class="n">0</span> {
+				_ = burrowsdk.SetVoxel(x, y, z, stone)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="block-registry">Block registry<a class="anchor" href="#block-registry" aria-label="Link to this section">#</a></h2>
+<p>The registry is the list of block types of the running project: the shaped set (<code>runtime.blocks: &#34;shapes&#34;</code>, the only supported value; <code>&#34;classic&#34;</code> and <code>&#34;extended&#34;</code> are deprecated and resolve to it), plus plugin blocks such as water levels. Ids follow registration order and differ between those sets, so <strong>always resolve blocks by name</strong> (<code>BlockByName</code>), never hard-code ids. See <a href="../blocks.html">blocks</a> and <a href="../block-shapes.html">block shapes</a>; a shaped block keeps its bare item name for the default state (<code>oak_stairs</code>) and <code>name[prop=value,...]</code> for the others.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>BlockCount()</code></td><td>number of registered blocks, air included (ids are <code>0..count-1</code>); returns the negative error code instead when the host is unavailable</td><td>none</td></tr>
+<tr><td><code>BlockName(id)</code></td><td>name of a block id</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>BlockInfo(id)</code></td><td><code>BlockProps</code> of a block id</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>Registry(&#34;blocks&#34;)</code></td><td>all block names, index = id</td><td><code>INVALID</code> (unknown kind)</td></tr>
+</tbody></table></div>
+<p><code>BlockProps</code>: <code>ID</code>, <code>Name</code>, <code>Solid</code> (blocks movement and rays), <code>Opaque</code> (stops light, hides faces), <code>Color</code> (RGB 0..255), <code>Emit</code> (light level 0..15; 0 also for blocks that emit by well-known name, such as torches), <code>Liquid</code> (0 not a liquid, 1..7 flowing level, 8 source), <code>Fragile</code> (flowing liquid destroys it), <code>LightLoss</code> (extra light levels lost per RGB channel), <code>Shape</code> (0 = cube, otherwise a shape model id).</p>
+<h2 id="item-registry">Item registry<a class="anchor" href="#item-registry" aria-label="Link to this section">#</a></h2>
+<p>The project&#39;s items come from <code>runtime.items</code> (package <code>itemset</code>; <a href="../items.html">items</a>). The engine has no built-in item list and no inventory: the registry gives scripts identity, ids and stack limits, and the mod keeps counts in block data, <code>Script.State</code> or the save store. Ids are <code>1..ItemCount()</code>, item 0 is the empty stack, and a project without the file has none. Resolve items by name, never hard-code ids.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>ItemCount()</code></td><td>number of registered items</td><td>none</td></tr>
+<tr><td><code>ItemName(id)</code></td><td>registry name of an item id</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>ItemIDByName(name)</code></td><td>id of an item name (case and the <code>burrow:</code> prefix are ignored)</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>ItemInfo(id)</code></td><td><code>ItemProps{ID, Name, Display, MaxStack, Block}</code></td><td><code>NOT_FOUND</code></td></tr>
+</tbody></table></div>
+<p>A stack is 6 bytes, little endian: <code>u16</code> item id then <code>u32</code> count. <code>burrowsdk.ItemStack</code> has <code>Encode</code>, <code>DecodeItemStack</code>, <code>Split(n)</code> and <code>Merge(src, maxStack)</code>; the engine counterparts are in <code>itemset</code>. <code>ItemProps.Block</code> is the registry name the item stands for or places, and is only reported: the engine never places or drops it.</p>
+<h2 id="physics-queries">Physics queries<a class="anchor" href="#physics-queries" aria-label="Link to this section">#</a></h2>
+<p>Two independent physics plugins exist, and the functions are separate:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">plugin</th><th scope="col">project setting</th><th scope="col">script functions</th><th scope="col">when absent</th></tr></thead>
+<tbody>
+<tr><td><code>physics</code> (AABB bodies, characters, triggers: <a href="../character.html">character</a>)</td><td><code>runtime.plugins.physics</code></td><td><code>PhysicsRaycast</code>, <code>PhysicsOverlap</code></td><td><code>UNAVAILABLE</code></td></tr>
+<tr><td><code>physics3d</code> (rigid bodies, voxel bodies, joints: <a href="../physics.html">physics</a>)</td><td><code>runtime.plugins.physics3d</code> (off by default)</td><td><code>Physics3DRaycast</code>, <code>Physics3DOverlap</code>, <code>Physics3DApplyImpulse</code>, <code>Physics3DBody</code>, <code>Physics3DRemoveVoxel</code></td><td><code>UNAVAILABLE</code></td></tr>
+</tbody></table></div>
+<p>Layers: a body has a <code>layer</code> bitmask and a <code>mask</code> of the layers it collides with. A query <code>mask</code> selects which layers it sees. <code>LayerDefault</code> is bit 0 (<code>1</code>), terrain (voxels) is bit 31 (<code>0x80000000</code>), all bits is <code>0xFFFFFFFF</code>. Terrain is only tested when the mask has bit 31.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col"></th><th scope="col"><code>PhysicsRaycast</code> / <code>PhysicsOverlap</code></th><th scope="col"><code>Physics3DRaycast</code> / <code>Physics3DOverlap</code></th></tr></thead>
+<tbody>
+<tr><td>mask <code>0</code></td><td>sees nothing</td><td>sees every layer</td></tr>
+<tr><td>triggers</td><td>ignored by the ray, included by the overlap</td><td>ignored by the ray, included by the overlap</td></tr>
+<tr><td>body state read</td><td>committed state of this tick, before this tick&#39;s physics step</td><td>same, shapes as of the end of the previous step</td></tr>
+<tr><td>this call&#39;s voxel writes</td><td>not seen</td><td>not seen</td></tr>
+</tbody></table></div>
+<p>Both read the simulation as it stands when your script runs (scripts run before the physics step of the same tick).</p>
+<p><strong>Rays.</strong> <code>origin</code> and <code>dir</code> as for <code>Raycast</code> (<code>dir</code> non-zero, <code>max &gt; 0</code>, finite), else <code>INVALID</code>.</p>
+<ul>
+<li><code>PhysicsRaycast(origin, dir, max, mask) (PhysicsHit, ok, err)</code>: <code>PhysicsHit{Entity, Voxel, Point, Normal, Dist}</code>. <code>Entity == 0</code> means terrain, and <code>Voxel</code> is then the cell; for a body, <code>Voxel</code> is zero. On equal distance terrain wins, then the lower entity id. The terrain part looks at most 4096 blocks.</li>
+<li><code>Physics3DRaycast(...) (RayHit3D, ok, err)</code>: <code>RayHit3D{Entity, Terrain, Cell, Point, Normal, Dist}</code>. <code>Terrain</code> is true for a voxel hit (<code>Entity == 0</code>); <code>Cell</code> is the terrain voxel, or the grid cell of a voxel body.</li>
+</ul>
+<p><strong>Overlaps.</strong> <code>PhysicsOverlap(min, maxp, mask, max)</code> and <code>Physics3DOverlap(...)</code> test the axis-aligned box <code>[min, maxp]</code> and return <code>bodies []Entity</code> (ascending entity id, at most <code>max</code>), <code>terrain bool</code> (a solid voxel overlaps, only when the mask has bit 31) and <code>total</code> (all bodies found, may exceed <code>max</code>).</p>
+<ul>
+<li><code>min &lt;= maxp</code> on every axis and finite, else <code>INVALID</code>. <code>max &lt;= 0</code> is treated as 1; <code>max &gt; 4096</code> is <code>INVALID</code>.</li>
+<li><code>PhysicsOverlap</code> needs a strict overlap (touching faces do not count). <code>Physics3DOverlap</code> inflates a flat axis by 0.001 and rejects a box wider than 2048 on any axis (<code>INVALID</code>).</li>
+</ul>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			<span class="k">const</span> bit31 = <span class="k">uint32</span>(<span class="n">1</span>) &lt;&lt; <span class="n">31</span>
+			hit, ok, err := burrowsdk.PhysicsRaycast(t.Pos, [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">0</span>, -<span class="n">1</span>, <span class="n">0</span>}, <span class="n">2</span>, bit31|<span class="n">1</span>)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span> <span class="c">// UNAVAILABLE: the physics plugin is off</span>
+			}
+			grounded := ok
+			bodies, terrain, total, _ := burrowsdk.PhysicsOverlap(
+				[<span class="n">3</span>]<span class="k">float32</span>{t.Pos[<span class="n">0</span>] - <span class="n">1</span>, t.Pos[<span class="n">1</span>] - <span class="n">1</span>, t.Pos[<span class="n">2</span>] - <span class="n">1</span>},
+				[<span class="n">3</span>]<span class="k">float32</span>{t.Pos[<span class="n">0</span>] + <span class="n">1</span>, t.Pos[<span class="n">1</span>] + <span class="n">1</span>, t.Pos[<span class="n">2</span>] + <span class="n">1</span>}, bit31|<span class="n">1</span>, <span class="n">16</span>)
+			burrowsdk.Logf(<span class="s">&#34;grounded %v on %d, %d bodies near (listed %d), terrain %v&#34;</span>, grounded, hit.Entity, total, len(bodies), terrain)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="physics-components-and-bodies">Physics components and bodies<a class="anchor" href="#physics-components-and-bodies" aria-label="Link to this section">#</a></h2>
+<p>Physics bodies are ordinary components, so scripts configure them with <code>Get</code>/<code>Set</code>, field access and the typed accessors (<a href="04-entities-and-scene.html#components">entities</a>): <code>physics.body</code>, <code>physics.velocity</code>, <code>physics.character</code> (set its <code>move</code> and <code>jump</code> intent fields before the physics step), <code>physics3d.rigidbody</code>, <code>physics3d.collider</code>, <code>physics3d.voxelbody</code>, <code>physics3d.joint</code>. Fields, ranges and defaults: <a href="../reference/components.html">reference/components.md</a>. Writes follow the usual rule: validated now, applied at commit.</p>
+<p><code>physics3d</code> adds direct calls:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>Physics3DApplyImpulse(e, impulse)</code></td><td>adds a momentum impulse (mass x blocks per second) to a dynamic body, applied at the next physics step, wakes it</td><td><code>UNAVAILABLE</code>, <code>NOT_FOUND</code> (not a dynamic body), <code>INVALID</code> (non-finite)</td></tr>
+<tr><td><code>Physics3DBody(e)</code></td><td><code>Body3D</code> state: <code>Pos</code> (centre of mass, world), <code>Rot</code> (quaternion x, y, z, w), <code>Vel</code> (blocks per second), <code>AngVel</code> (radians per second, world frame), <code>Sleeping</code>, <code>Dynamic</code>, <code>Kinematic</code>, <code>InvMass</code></td><td><code>UNAVAILABLE</code>, <code>NOT_FOUND</code> (no rigid body)</td></tr>
+<tr><td><code>Physics3DRemoveVoxel(e, x, y, z)</code></td><td>clears one cell of a voxel body (grid coordinates inside the body, not world cells); returns whether the cell held a voxel; disconnected islands split off at the next step</td><td><code>UNAVAILABLE</code>, <code>NOT_FOUND</code> (no voxel body), <code>BUDGET</code></td></tr>
+</tbody></table></div>
+<p>These three act on the physics state <strong>immediately</strong>, not through the buffered effect list: a later fault of the same call does not undo them. <code>Body3D</code> values are <code>float32</code> views of the <code>float64</code> simulation. A body writes its node transform every tick it moves, so drive bodies with impulses, velocity or intent and not with <code>SetTransform</code>.</p>
+<h2 id="navigation-and-ai">Navigation and AI<a class="anchor" href="#navigation-and-ai" aria-label="Link to this section">#</a></h2>
+<p>Needs <code>runtime.plugins.nav</code> and a node with the matching component; otherwise every call is <code>NOT_FOUND</code> (the component does not exist). All calls edit the nav components like <code>Set</code>: validated now, applied at commit, reads see this call&#39;s writes. Concepts and budgets: <a href="../navigation-ai.html">navigation and AI</a>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">needs</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>NavSetGoal(e, goal, slack)</code></td><td><code>nav.agent</code></td><td>send the agent to the feet voxel <code>goal</code> (<code>NavNode{X, Y, Z}</code>); <code>slack</code> blocks away counts as arrived (0 = the node)</td><td><code>INVALID</code> (slack negative or NaN, coordinate beyond +-1,048,575), <code>NOT_FOUND</code></td></tr>
+<tr><td><code>NavStop(e)</code></td><td><code>nav.agent</code></td><td>clear goal and path, state becomes idle</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>NavGetState(e)</code></td><td><code>nav.agent</code></td><td><code>NavIdle</code> 0, <code>NavPending</code> 1, <code>NavQueued</code> 2, <code>NavMoving</code> 3, <code>NavArrived</code> 4, <code>NavFailed</code> 5</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>NavPath(e)</code></td><td><code>nav.agent</code></td><td>waypoints still to visit (<code>[]NavNode</code>, at most 128)</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>NavSetBB(e, key, v)</code></td><td><code>ai.brain</code></td><td>number on the behaviour tree blackboard</td><td><code>INVALID</code> (NaN or Inf, key over 128 bytes), <code>LIMIT</code> (key over 32 bytes or 64 keys already), <code>NOT_FOUND</code></td></tr>
+<tr><td><code>NavGetBB(e, key)</code></td><td><code>ai.brain</code></td><td>read a blackboard number</td><td><code>NOT_FOUND</code> (unset key too)</td></tr>
+<tr><td><code>NavPutBB(e, key, v)</code></td><td><code>ai.brain</code></td><td>typed blackboard value <code>BBValue</code> (<code>BBNum</code>, <code>BBVec</code>, <code>BBEnt</code>, <code>BBStr</code> up to 64 bytes)</td><td><code>INVALID</code> (bad kind, NaN or Inf), <code>LIMIT</code>, <code>NOT_FOUND</code></td></tr>
+<tr><td><code>NavReadBB(e, key)</code></td><td><code>ai.brain</code></td><td>read a typed blackboard value</td><td><code>NOT_FOUND</code> (unset key too)</td></tr>
+<tr><td><code>NavDelBB(e, key)</code></td><td><code>ai.brain</code></td><td>remove a blackboard key</td><td><code>NOT_FOUND</code></td></tr>
+<tr><td><code>NavSetGoalPos(e, pos, slack)</code></td><td><code>nav.agent</code></td><td>like <code>NavSetGoal</code> with a world position (<code>NavVec3</code>, floored to its voxel)</td><td>as <code>NavSetGoal</code></td></tr>
+<tr><td><code>NavSensed(e)</code></td><td><code>ai.perception</code></td><td>nearest remembered target, <code>0</code> for none</td><td><code>NOT_FOUND</code></td></tr>
+</tbody></table></div>
+<p>Timing: <code>NavSetGoal</code> does not compute a path in the call. The state goes <code>Pending</code> (goal set), <code>Queued</code> (request in the deterministic queue), then <code>Moving</code> or <code>Failed</code> a few ticks later within the plugin&#39;s per-tick budget; a <code>Failed</code> agent retries after a delay. Calling <code>NavSetGoal</code> again within 2 blocks of the current goal while the agent is pending, queued or moving only updates <code>slack</code> and keeps the path. Poll <code>NavGetState</code> for <code>NavArrived</code>.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, err := burrowsdk.NavGetState(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span> <span class="c">// no nav.agent</span>
+			}
+			<span class="k">switch</span> st {
+			<span class="k">case</span> burrowsdk.NavIdle, burrowsdk.NavArrived, burrowsdk.NavFailed:
+				<span class="k">if</span> target, _ := burrowsdk.NavSensed(self); target != <span class="n">0</span> {
+					<span class="k">if</span> p, err := burrowsdk.GetTransform(target); err == <span class="k">nil</span> {
+						_ = burrowsdk.NavSetGoal(self, burrowsdk.NavNode{X: <span class="k">int32</span>(p.Pos[<span class="n">0</span>]), Y: <span class="k">int32</span>(p.Pos[<span class="n">1</span>]), Z: <span class="k">int32</span>(p.Pos[<span class="n">2</span>])}, <span class="n">1.5</span>)
+						_ = burrowsdk.NavSetBB(self, <span class="s">&#34;alert&#34;</span>, <span class="n">1</span>)
+					}
+				}
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="levels-and-saves">Levels and saves<a class="anchor" href="#levels-and-saves" aria-label="Link to this section">#</a></h2>
+<p>Needs the level plugin (<code>runtime.plugins.levels</code>) and the save plugin (<code>runtime.plugins.saves</code>); without them the calls are <code>UNAVAILABLE</code> (the editor&#39;s Play mode has no level plugin). Concepts and file formats: <a href="../levels-saves.html">levels and saves</a>.</p>
+<p><strong>Requests.</strong> <code>LevelLoad</code>, <code>SaveSlot</code>, <code>LoadSlot</code> and <code>DeleteSlot</code> only queue a request, served by the host between frames (a level switch becomes a journaled command). They return success whatever the host does later, so a script behaves the same live and in a replay; a missing level or slot is not reported to the script. The cost is one event of the budget (<code>BUDGET</code>).</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>LevelLoad(id, spawn)</code></td><td>switch to level <code>id</code> at spawn point <code>spawn</code> (<code>&#34;&#34;</code> = default); id and spawn match <code>[A-Za-z0-9][A-Za-z0-9_.-]{0,63}</code></td><td><code>INVALID</code>, <code>UNAVAILABLE</code>, <code>BUDGET</code></td></tr>
+<tr><td><code>SaveSlot(slot, label)</code></td><td>save the game to a slot, served at the start of the next frame, between ticks (with several ticks per frame the snapshot is taken after all of them)</td><td><code>INVALID</code>, <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>LoadSlot(slot)</code></td><td>restore a slot at the same point</td><td><code>INVALID</code>, <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>DeleteSlot(slot)</code></td><td>delete a slot</td><td><code>INVALID</code>, <code>UNAVAILABLE</code></td></tr>
+</tbody></table></div>
+<p>A slot name is <code>[a-z0-9][a-z0-9_-]{0,47}</code>; a label is at most 128 bytes.</p>
+<p><strong>Queries of the loaded level</strong> (read-only, no budget beyond the call):</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>LevelCurrent()</code></td><td>id of the loaded level, <code>&#34;&#34;</code> when none</td><td><code>UNAVAILABLE</code></td></tr>
+<tr><td><code>LevelSpawnCount()</code></td><td>number of spawn points</td><td><code>NOT_FOUND</code> (no level loaded), <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>LevelSpawnAt(i)</code></td><td><code>LevelSpawn{Name, Pos, Yaw, Tags}</code>; <code>Pos</code> in <strong>world</strong> blocks</td><td><code>NOT_FOUND</code> (bad index or no level)</td></tr>
+<tr><td><code>LevelZoneAt(x, y, z)</code></td><td>first zone (in file order) containing the <strong>world</strong> point; <code>ok = false</code> when none</td><td><code>NOT_FOUND</code> (no level)</td></tr>
+<tr><td><code>LevelSettings()</code></td><td>JSON of the level settings</td><td><code>NOT_FOUND</code> (no level)</td></tr>
+</tbody></table></div>
+<p><code>LevelZone{Name, Kind, Min, Max, Target, TargetSpawn, Props}</code>: <code>Kind</code> is <code>&#34;zone&#34;</code> or <code>&#34;trigger&#34;</code>; <code>Min</code> (inclusive) and <code>Max</code> (exclusive) are <strong>level-local</strong> blocks, relative to the level&#39;s minimum corner, while the query point is in world blocks. A <code>trigger</code> zone switches level by itself when an actor stands in it; scripts only read zones. <code>LevelSettings</code> keys (each present only when set): <code>sky</code>, <code>weather</code>, <code>weather_intensity</code>, <code>fog</code> (<code>density</code>, <code>color</code>), <code>gravity</code>, <code>kill_y</code> (level-local Y), <code>bounds</code> (<code>min</code>, <code>max</code>, level-local). The engine itself enforces <code>kill_y</code> and <code>bounds</code>; the rest is data for your game.</p>
+<p><strong>Dynamic zones.</strong> <code>ZoneSet(name, min, max, props)</code> creates or replaces a zone at run time and <code>ZoneDel(name)</code> removes it (no error when absent); both apply at commit and return <code>INVALID</code> or <code>UNAVAILABLE</code> (no level plugin). <code>min</code> and <code>max</code> are <strong>world</strong> blocks (unlike the level-local zones of the file). Dynamic zones are simulation state: rolled back, hashed and saved with the game, and <strong>cleared on a level switch</strong>. <code>LevelZoneAt</code> checks the zones of the loaded level first (file order), then the zones made by scripts.</p>
+<pre tabindex="0"><code class="language-go">burrowsdk.ZoneSet(<span class="s">&#34;arena&#34;</span>, [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">0</span>, <span class="n">10</span>, <span class="n">0</span>}, [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">8</span>, <span class="n">14</span>, <span class="n">8</span>}, <span class="k">map</span>[<span class="k">string</span>]<span class="k">string</span>{<span class="s">&#34;team&#34;</span>: <span class="s">&#34;red&#34;</span>})
+z, ok, _ := burrowsdk.LevelZoneAt(<span class="n">2</span>, <span class="n">11</span>, <span class="n">2</span>) <span class="c">// ok, z.Name == &#34;arena&#34;</span></code></pre>
+<p><strong>Game data (save keys).</strong> <code>SaveSet</code>, <code>SaveGet</code>, <code>SaveDelete</code> read and write a key/value store that is part of the simulation state: it is hashed, rolled back and saved with the game.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>SaveSet(key, val)</code></td><td>store a string, applied at commit</td><td><code>INVALID</code>, <code>UNAVAILABLE</code>, <code>BUDGET</code></td></tr>
+<tr><td><code>SaveGet(key)</code></td><td><code>(val, ok, err)</code>; <code>ok = false</code> when the key is not set; sees this call&#39;s own writes</td><td><code>UNAVAILABLE</code></td></tr>
+<tr><td><code>SaveDelete(key)</code></td><td>remove a key</td><td><code>INVALID</code>, <code>UNAVAILABLE</code>, <code>BUDGET</code></td></tr>
+</tbody></table></div>
+<p>Key <code>[A-Za-z0-9_.:/-]{1,128}</code>, value at most 64 KiB (bytes, so store JSON or text), at most 1024 keys and 1 MiB of keys and values together. Going over the totals is not an error at the call: the write fails at commit and shows as a non-fatal fault in the console.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			p, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			zone, ok, err := burrowsdk.LevelZoneAt(p.Pos[<span class="n">0</span>], p.Pos[<span class="n">1</span>], p.Pos[<span class="n">2</span>])
+			<span class="k">if</span> err != <span class="k">nil</span> || !ok || zone.Name != <span class="s">&#34;checkpoint&#34;</span> {
+				<span class="k">return</span>
+			}
+			<span class="k">if</span> _, seen, _ := burrowsdk.SaveGet(<span class="s">&#34;checkpoint.reached&#34;</span>); !seen {
+				_ = burrowsdk.SaveSet(<span class="s">&#34;checkpoint.reached&#34;</span>, <span class="s">&#34;1&#34;</span>)
+				_ = burrowsdk.SaveSlot(<span class="s">&#34;auto&#34;</span>, <span class="s">&#34;checkpoint&#34;</span>)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="block-data-and-block-events">Block data and block events<a class="anchor" href="#block-data-and-block-events" aria-label="Link to this section">#</a></h2>
+<p>With <code>runtime.plugins.blocks</code> a script can attach data to a cell that holds a block (the block entity of a machine) and receive the changes of the world. Full guide, scaling figures and an example furnace: <a href="../blocks.html#block-logic">blocks</a>. The block calls are binary where they are hot (a few instructions per cell), because decoding JSON in a guest costs tens of thousands of instructions per cell.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>BlockData(x, y, z)</code></td><td>data of the cell, <code>ok = false</code> when it has none; sees this call&#39;s writes</td><td><code>UNAVAILABLE</code> (plugin off)</td></tr>
+<tr><td><code>SetBlockData(x, y, z, data)</code> / <code>SetBlockDataJSON</code></td><td>store up to 16 KiB; the cell must hold a block (a pending <code>SetVoxel</code> counts)</td><td><code>INVALID</code> (air), <code>LIMIT</code>, <code>BUDGET</code>, <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>DeleteBlockData(x, y, z)</code></td><td>remove it</td><td><code>BUDGET</code>, <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>BlockDataIn(min, max, limit)</code></td><td>cells with data in a box, sorted by x, y, z (committed state)</td><td><code>INVALID</code>, <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>BlockDataMany(cells)</code></td><td>the data of up to 4,096 cells in one host call (binary)</td><td><code>INVALID</code>, <code>LIMIT</code>, <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>BlockDataApply(ops)</code></td><td>up to 4,096 set or delete operations in one host call (binary), each counted as a voxel edit</td><td><code>INVALID</code>, <code>LIMIT</code>, <code>BUDGET</code></td></tr>
+<tr><td><code>BlockSchedule(x, y, z, delay, every)</code> / <code>BlockUnschedule</code></td><td>make a cell a ticking machine delivered to <code>OnBlockTick</code> when due</td><td><code>INVALID</code> (air), <code>BUDGET</code>, <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>BlockFlood(x, y, z, through, ends, max)</code></td><td>the cable, pipe or belt network connected to a cell, walked natively (up to 60,000 cells)</td><td><code>INVALID</code>, <code>UNAVAILABLE</code></td></tr>
+<tr><td><code>OnBlockChange</code>, <code>OnBlockSet(name)</code>, <code>OnBlockBreak(name)</code>, <code>OnBlockUse(name)</code>, <code>OnBlockTick(name)</code>, <code>OnBlockRandomTick(name)</code></td><td>handlers for the block events, delivered in batches; random ticks need <code>&#34;random_tick&#34;: true</code> on the block and <code>runtime.random_tick_rate</code> (default 24 per chunk), see <a href="../blocks.html">blocks</a></td><td></td></tr>
+<tr><td><code>OnContact(fn)</code></td><td>contacts and trigger overlaps of the script&#39;s own physics3d rigid body, both sides of the pair (<code>Contact{Kind, Other, Point, Normal}</code>, kinds <code>ContactBegin</code>, <code>ContactEnd</code>, <code>TriggerEnter</code>, <code>TriggerExit</code>); handled the tick after the physics step, in step order, counted in the per-tick event budget. The <code>physics.character</code> controller does not produce them</td><td></td></tr>
+<tr><td><code>FluidAmount</code>, <code>FluidPour</code>, <code>FluidDrain</code></td><td>read, add and remove water of a cell, in units of <code>FluidFull</code> (64) per full cell; they act at once</td><td><code>INVALID</code>, <code>REJECTED</code> (outside the world), <code>BUDGET</code>, <code>UNAVAILABLE</code></td></tr>
+</tbody></table></div>
+<p>On a micro-voxel brick the events name the micro voxel: <code>BlockEvent.MicroN</code> (the brick resolution, 0 for a whole-cell event), <code>Micro</code> (<code>[x, y, z]</code>) and <code>MicroBlock</code>. A use event reports the micro voxel&#39;s block in <code>Block</code>/<code>ID</code> (so <code>OnBlockUse(&#34;mymod:lamp&#34;)</code> fires for a lamp chiselled into a brick) and a micro change goes through <code>OnBlockBreak(old)</code> / <code>OnBlockSet(new)</code> with the micro blocks (see docs/blocks.md &#34;Micro block events&#34;).</p>
+<p>The data is bound to the block of the cell: another block there deletes it, and the <code>OnBlockBreak</code> / <code>OnBlockChange</code> event carries what was lost. Writes follow the same commit rules as <code>SetVoxel</code> (at commit, in order, dropped by a fault); a block write budget of 4096 edits per call counts data writes too.</p>
+<h2 id="project-data-and-registries">Project data and registries<a class="anchor" href="#project-data-and-registries" aria-label="Link to this section">#</a></h2>
+<p><code>ReadAsset(path)</code> returns the bytes of a project data file; <code>ReadAssetJSON</code> (generic over the target type <code>T</code>, same path rules) decodes JSON into <code>T</code> (a decoding failure is a plain <code>error</code>). Items, recipes and balance tables belong here: the engine has no item registry.</p>
+<p>Rules:</p>
+<ul>
+<li><code>path</code> is project-relative with <code>/</code> separators, at most 512 bytes: no <code>..</code>, no absolute path, no backslash, no segment starting with <code>.</code>, not <code>vox.project</code>. A violation is <code>DENIED</code>.</li>
+<li>Extension one of <code>.json .txt .csv .tsv .md .toml .yaml .yml .dat</code>, else <code>DENIED</code>.</li>
+<li>The file must be known to the project&#39;s asset database (<code>NOT_FOUND</code> otherwise, also when the host has no database) and at most 256 KiB (<code>LIMIT</code>).</li>
+<li>At most 16 files are read from disk per script call (<code>BUDGET</code>). Gas: 200 + 1 per 64 bytes.</li>
+<li><strong>Frozen and pinned.</strong> Data files are not simulation state, so replays stay exact like this: the first content a session sees for a path is frozen, and every script remembers the hash of each file it read (up to 64 files, <code>LIMIT</code> after that; part of its hashed state). Re-reading a file you already read is served from that frozen copy and does not use one of the 16 disk reads. Editing a data file while the game runs does not change what scripts see; restoring or replaying against a different file fails the tick with an error that names the file.</li>
+<li>Read in <code>OnStart</code> and keep what you need in <code>State</code>, since a Go script parses JSON slowly.</li>
+</ul>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>Registry(&#34;components&#34;)</code></td><td>scene schema component names</td><td><code>UNAVAILABLE</code></td></tr>
+<tr><td><code>Registry(&#34;assets&#34;)</code></td><td>readable data files (extension rule above), sorted, at most 4096, frozen per session</td><td><code>NOT_FOUND</code> (no database)</td></tr>
+<tr><td><code>Registry(&#34;blocks&#34;)</code></td><td>block names, index = id</td><td>see <a href="#block-registry">block registry</a></td></tr>
+</tbody></table></div>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> item <span class="k">struct</span> {
+	Name   <span class="k">string</span>  <span class="s">`json:&#34;name&#34;`</span>
+	Weight <span class="k">float64</span> <span class="s">`json:&#34;weight&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			items, err := burrowsdk.ReadAssetJSON[<span class="k">map</span>[<span class="k">string</span>]item](<span class="s">&#34;data/items.json&#34;</span>)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				burrowsdk.Logf(<span class="s">&#34;items: %v&#34;</span>, err)
+				<span class="k">return</span>
+			}
+			<span class="k">if</span> id, err := burrowsdk.BlockByName(<span class="s">&#34;stone&#34;</span>); err == <span class="k">nil</span> {
+				info, _ := burrowsdk.BlockInfo(id)
+				burrowsdk.Logf(<span class="s">&#34;%d items, stone is block %d (solid %v)&#34;</span>, len(items), id, info.Solid)
+			}
+			files, _ := burrowsdk.Registry(<span class="s">&#34;assets&#34;</span>)
+			burrowsdk.Logf(<span class="s">&#34;%d readable data files&#34;</span>, len(files))
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="04-entities-and-scene.html">Entities and scene</a>: components and transforms that bodies and agents use.</li>
+<li><a href="06-input-events-time.html">Input, events and time</a>: timers and events for AI and level logic.</li>
+<li><a href="02-execution-model.html">Execution model</a>: commit order and what a fault drops.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a>: budgets and error codes.</li>
+<li><a href="07-effects.html">Effects</a>: audio, particles and cameras that react to world events.</li>
+<li><a href="../physics.html">physics</a>, <a href="../character.html">character</a>, <a href="../navigation-ai.html">navigation and AI</a>, <a href="../levels-saves.html">levels and saves</a>, <a href="../blocks.html">blocks</a>, <a href="../lighting.html">lighting</a>.</li>
+</ul>
+<div class="pagemeta"><a href="05-world.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#coordinates-and-units">Coordinates and units</a></li><li><a href="#voxels">Voxels</a></li><li><a href="#block-registry">Block registry</a></li><li><a href="#item-registry">Item registry</a></li><li><a href="#physics-queries">Physics queries</a></li><li><a href="#physics-components-and-bodies">Physics components and bodies</a></li><li><a href="#navigation-and-ai">Navigation and AI</a></li><li><a href="#levels-and-saves">Levels and saves</a></li><li><a href="#block-data-and-block-events">Block data and block events</a></li><li><a href="#project-data-and-registries">Project data and registries</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Voice chat | Burrow</title>
+<meta name="description" content="Proximity voice chat lets players talk through their microphone. The others hear them spatialised by the engine mixer: louder when close, panned left or right by direction, fading to silence at a…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/voice.html">
+<meta property="og:title" content="Voice chat | Burrow">
+<meta property="og:description" content="Proximity voice chat lets players talk through their microphone. The others hear them spatialised by the engine mixer: louder when close, panned left or right by direction, fading to silence at a…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/voice.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Voice chat | Burrow">
+<meta name="twitter:description" content="Proximity voice chat lets players talk through their microphone. The others hear them spatialised by the engine mixer: louder when close, panned left or right by direction, fading to silence at a…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html" aria-current="page">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="voice-chat">Voice chat<a class="anchor" href="#voice-chat" aria-label="Link to this section">#</a></h1>
+<p>Proximity voice chat lets players talk through their microphone. The others hear them <strong>spatialised</strong> by the engine mixer: louder when close, panned left or right by direction, fading to silence at a radius, and not played at all beyond it. Voice is frame domain like chat: it is <strong>never simulation state</strong>, never journaled, never part of a snapshot or a <code>StateHash</code>.</p>
+<p>Packages: <code>voice</code> (the client and the engine plugin), <code>voice/capture</code> (microphones), <code>voice/codec</code> (frame format and codec), <code>voice/route</code> (the server&#39;s routing and limits), <code>voice/voicecfg</code> (the <code>runtime.voice</code> section).</p>
+<h2 id="setup">Setup<a class="anchor" href="#setup" aria-label="Link to this section">#</a></h2>
+<p>Voice chat is <strong>off by default</strong> because it opens the microphone. Turn it on in <code>vox.project</code> (multiplayer, <code>runtime.plugins.net</code>, must stay on):</p>
+<pre tabindex="0"><code class="language-json">{
+  <span class="p">&#34;runtime&#34;</span>: {
+    <span class="p">&#34;plugins&#34;</span>: { <span class="p">&#34;voice&#34;</span>: <span class="k">true</span> },
+    <span class="p">&#34;voice&#34;</span>: { <span class="p">&#34;radius&#34;</span>: <span class="n">32</span>, <span class="p">&#34;mode&#34;</span>: <span class="s">&#34;push_to_talk&#34;</span>, <span class="p">&#34;key&#34;</span>: <span class="s">&#34;V&#34;</span> }
+  }
+}</code></pre>
+<p>Hold <strong>V</strong> to talk. When the project&#39;s input map defines a <code>push_to_talk</code> button action (or the action named by <code>runtime.voice.action</code>), that action is used and can be rebound like any other. Otherwise the plugin reads <code>runtime.voice.key</code> directly, ignored while a modal UI context is open so typing in a text field never transmits. The plugin never adds the action to the map itself: the action list is journaled script input and gives the network button bits, so adding one would change the simulation. (Defining it in your own map does add it there, on purpose.)</p>
+<p>Playback needs the audio plugin (<code>runtime.plugins.audio: true</code>): each remote speaker is a spatial stream voice on the <code>sfx</code> bus at mixer priority 50. The listener is the audio listener (the active camera).</p>
+<h2 id="configuration-reference-runtimevoice">Configuration reference (<code>runtime.voice</code>)<a class="anchor" href="#configuration-reference-runtimevoice" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">key</th><th scope="col">default</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>radius</code></td><td>32</td><td>blocks; farther speakers are not heard (1..512)</td></tr>
+<tr><td><code>ref_distance</code></td><td>2</td><td>full volume up to this distance, then inverse-distance falloff, fading to 0 over the last 10% of the radius</td></tr>
+<tr><td><code>mode</code></td><td><code>push_to_talk</code></td><td>or <code>voice_activation</code> (energy detector with an adaptive noise floor and 300 ms hangover)</td></tr>
+<tr><td><code>action</code></td><td><code>push_to_talk</code></td><td>input action held to talk, when the input map defines it</td></tr>
+<tr><td><code>key</code></td><td><code>V</code></td><td>key held to talk when the map has no such action</td></tr>
+<tr><td><code>max_speakers</code></td><td>8</td><td>remote speakers heard at once (1..32); further speakers are dropped until one stops</td></tr>
+<tr><td><code>channels</code></td><td><code>[&#34;proximity&#34;]</code></td><td>channels the player may speak on: <code>proximity</code>, <code>team</code>, <code>global</code> (the server allows <code>global</code> to admins only)</td></tr>
+<tr><td><code>vad_threshold_db</code></td><td>-40</td><td>voice activation level in dBFS</td></tr>
+<tr><td><code>noise_gate_db</code></td><td>-55</td><td>frames quieter than this are silenced while transmitting (-100 = off)</td></tr>
+<tr><td><code>mic_gain</code></td><td>1</td><td>microphone gain (0..8)</td></tr>
+<tr><td><code>volume</code></td><td>1</td><td>volume of every received voice (0..4)</td></tr>
+</tbody></table></div>
+<p><code>burrow check</code> validates the section (an unknown key, mode, channel or key name is an error, and <code>runtime.voice</code> needs <code>plugins.voice: true</code>).</p>
+<p><strong>Configuration hash.</strong> Voice is presentation, so <code>runtime.voice</code> is not part of the session configuration hash. The radius matters for fairness (who can eavesdrop), but the <strong>server</strong> enforces it with its own <code>route.Config</code> and its own authoritative positions; a client that changes its radius only changes what it plays, never what it receives.</p>
+<h2 id="in-game-code">In game code<a class="anchor" href="#in-game-code" aria-label="Link to this section">#</a></h2>
+<p>The plugin inserts a <code>*voice.Voice</code> resource:</p>
+<pre tabindex="0"><code class="language-go">v := engine.Res[*voice.Voice](app)
+v.SetMuted(playerID, <span class="k">true</span>)            <span class="c">// personal mute (also sent to the server when the transport supports it)</span>
+v.SetMicMuted(<span class="k">true</span>)                   <span class="c">// close the microphone</span>
+v.SetMode(voicecfg.ModeVoiceActivation)
+v.SetPushToTalk(<span class="k">true</span>)                 <span class="c">// push-to-talk from a UI button or a script</span>
+v.SetChannel(codec.ChannelTeam)       <span class="c">// one of runtime.voice.channels</span>
+v.SetMicGain(<span class="n">1.5</span>); v.SetVolume(<span class="n">0.8</span>)
+<span class="k">for</span> _, t := <span class="k">range</span> v.Talking() { fmt.Println(t.Name, t.Distance) } <span class="c">// closest first</span>
+state, err := v.Mic()                 <span class="c">// &#34;none&#34;, &#34;off&#34;, &#34;starting&#34;, &#34;on&#34;, &#34;error&#34; + why</span></code></pre>
+<p><code>voice.SpeakerGain(cfg, listener, pos)</code> returns the distance gain the mixer applies, for UI hints.</p>
+<h3 id="hud-values">HUD values<a class="anchor" href="#hud-values" aria-label="Link to this section">#</a></h3>
+<p>Every change is published to the game UI (<code>gameui.Request</code> events, frame domain), so a <code>.ui.json</code> screen can show speaker icons without code:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">value</th><th scope="col">type</th><th scope="col">content</th></tr></thead>
+<tbody>
+<tr><td><code>voice_talking</code></td><td>items</td><td>one row per remote speaker heard now: icon <code>builtin:volume-2</code>, text = name</td></tr>
+<tr><td><code>voice_talking_count</code></td><td>number</td><td>rows of <code>voice_talking</code></td></tr>
+<tr><td><code>voice_transmitting</code></td><td>bool</td><td>the local player is sending</td></tr>
+</tbody></table></div>
+<p>Names come from <code>Plugin.NameOf</code> (default <code>Player &lt;id&gt;</code>).</p>
+<h2 id="network">Network<a class="anchor" href="#network" aria-label="Link to this section">#</a></h2>
+<p>Voice rides the multiplayer session next to chat. Nothing to wire in a game: when the project has <code>runtime.plugins.voice</code>, <code>netplay.StartHost</code> (<code>burrow serve</code>, <code>burrow-server</code>) relays voice with the project&#39;s <code>runtime.voice</code> routing, and <code>netplay.Join</code> (<code>burrowplay -connect</code>) attaches the session to the voice plugin. <code>netplay.StartHostApp</code> (the editor&#39;s listen server) relays voice only when <code>HostOptions.Voice</code> is set.</p>
+<p><strong>Messages</strong> (see <a href="networking.html#protocol">Networking</a>):</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">type</th><th scope="col">name</th><th scope="col">direction</th><th scope="col">fields</th></tr></thead>
+<tbody>
+<tr><td><code>0x80</code></td><td>VoiceUp</td><td>C→S</td><td><code>bytes</code> voice frame (1..256): the sender&#39;s own voice; there is no speaker field to forge</td></tr>
+<tr><td><code>0x81</code></td><td>VoiceDown</td><td>S→C</td><td><code>uv</code> speaker (≥1), <code>bytes</code> voice frame (1..256), forwarded unchanged</td></tr>
+<tr><td><code>0x82</code></td><td>VoiceBlock</td><td>C→S</td><td><code>uv</code> player (≥1), <code>bool</code> blocked: a personal mute</td></tr>
+</tbody></table></div>
+<p><strong>Server.</strong> <code>replica.ServerConfig.Voice</code> (a <code>*VoiceConfig</code> with the <code>route.Config</code>) turns relaying on; nil refuses every voice message, counts it (<code>VoiceStatus</code>, <code>Disabled</code>) and records a violation. With voice on, each frame goes through <code>voice/route</code> with the <strong>server&#39;s</strong> positions, never the client&#39;s:</p>
+<ul>
+<li>the player&#39;s interest center (its authoritative avatar, else its leashed view), the position of replicated proximity chat; the listen host&#39;s own player uses the avatar / spawn point rule.</li>
+</ul>
+<p>Teams come from the lobby (<code>net/lobby</code>, spectators have none) when installed; on a listen server only the host&#39;s own player is an admin (may speak on <code>global</code>). A listener is <code>Congested</code> when its connection holds 64 KiB or more not yet consumed (<code>VoiceConfig.Congestion</code>): its copy is dropped, never queued, so voice never delays a batch or a frame, and a full window never kicks anyone because of voice. Voice is not part of the replicated bandwidth budget, the journal, a snapshot or a <code>StateHash</code>. A player who leaves is forgotten (limits, block lists); a server mute stays until lifted.</p>
+<p>Violations (each counts toward the kick for abuse like any refused message): a frame over the speaker&#39;s rate limit, a malformed frame header, more than 256 personal blocks, any voice message to a server without voice. An oversized message (over 256 bytes) or a <code>VoiceDown</code> sent by a client is a protocol error and ends the connection.</p>
+<p>Server API (both servers, and the <code>netplay.Server</code> interface):</p>
+<pre tabindex="0"><code class="language-go">srv.MuteVoice(player, <span class="k">true</span>)              <span class="c">// moderation: nobody hears the player (false when voice is off)</span>
+on, m, muted := srv.VoiceStatus()        <span class="c">// m: gate.VoiceMetrics{In, Out, Dropped, Refused, Disabled, Bad}</span>
+srv.SubmitVoice(localPlayer, frame)      <span class="c">// a listen server&#39;s own player (AddLocalPlayer)</span>
+srv.BlockVoice(localPlayer, speaker, <span class="k">true</span>)</code></pre>
+<p>A dedicated server has the admin commands <code>voice mute &lt;name&gt;</code>, <code>voice unmute &lt;name&gt;</code> and <code>voice status</code> (<a href="dedicated-server.html">Dedicated server</a>).</p>
+<p><strong>Client.</strong> <code>replica.Client</code> implements <code>voice.Transport</code> and <code>voice.Blocker</code>: <code>SendVoice</code> never blocks and drops the frame (<code>ErrVoiceDropped</code>) when the client is not in a game or 32 KiB are already queued; <code>OnVoice</code> runs on the goroutine that polls the client. <code>internal/netplay</code> attaches them: <code>Guest.Voice</code> and <code>Host.Voice</code> (a listen server&#39;s own player) are the app&#39;s <code>*voice.Voice</code> with <code>SetTransport</code> done, <code>PositionOf</code> the world transform of each player&#39;s avatar as drawn (smoothed in the replicated model) and <code>NameOf</code> the registry name. A guest sends its personal mutes again after a reconnect. <code>HostOptions.Voice</code> (a <code>*route.Config</code>, default <code>netplay.VoiceRoute(runtime)</code>) overrides the routing.</p>
+<p>For other transports the client side is one interface:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">type</span> Transport <span class="k">interface</span> {
+	SendVoice(frame []<span class="k">byte</span>) <span class="k">error</span>           <span class="c">// must not block: drop the frame when congested</span>
+	OnVoice(<span class="k">func</span>(from <span class="k">uint32</span>, frame []<span class="k">byte</span>)) <span class="c">// frames from other players, any goroutine</span>
+}</code></pre>
+<p><code>Voice.SetTransport(t)</code> attaches it after the session connects. A transport that also implements <code>SetVoiceBlocked(player uint32, blocked bool) error</code> (<code>voice.Blocker</code>) receives personal mutes so the server stops sending them. <code>Plugin.PositionOf(player) (mathx.Vec3, bool)</code> gives each speaker&#39;s frame-domain position (the interpolated avatar head); without it, or for team and global frames, voices play centred.</p>
+<p>The routing itself is <code>voice/route</code>, which has no session dependency:</p>
+<pre tabindex="0"><code class="language-go">r := route.NewRouter(route.Config{Radius: <span class="n">32</span>, Channels: []codec.Channel{codec.ChannelProximity, codec.ChannelTeam}})
+to, err := r.Route(time.Now(), from, frame, players, <span class="k">nil</span>) <span class="c">// players: []route.Player{ID, Pos, HasPos, Team, Admin, Congested}</span>
+<span class="k">for</span> _, id := <span class="k">range</span> to {
+	sendVoiceTo(id, from, frame) <span class="c">// forward the frame unchanged</span>
+}</code></pre>
+<p><code>Route</code> checks the header, the server mute (<code>SetServerMuted</code>), the speaker&#39;s rate limits (60 frames/s and 12000 bytes/s with a 1 s burst by default), the channel rules, the radius against the <strong>server&#39;s</strong> positions and each listener&#39;s block list (<code>SetBlocked</code>), then drops the copy for a listener whose connection is <code>Congested</code>, who is over its byte budget (50400 bytes/s by default) or who already hears <code>MaxSpeakers</code> others. Voice is always the first traffic to drop: losing a frame costs 20 ms of concealed audio, nothing else. <code>route.Recipients</code> is the stateless part (channel, radius, blocks) for callers that keep their own limits. <code>Forget(id)</code> cleans up after a player leaves. <code>net/gate.VoiceHub</code> wraps a router with the per-player bookkeeping both servers share (block list bound, persistent server mutes, counters).</p>
+<h2 id="format-and-bandwidth">Format and bandwidth<a class="anchor" href="#format-and-bandwidth" aria-label="Link to this section">#</a></h2>
+<p>16 kHz mono, 20 ms frames, IMA ADPCM (4 bits per sample). A frame is an 8-byte header (codec id, flags: start/end of a talk spurt and the channel, a 16-bit sequence number, the ADPCM predictor and step index) and 160 bytes of audio: 168 bytes, 50 per second, about <strong>67 kbit/s per active speaker</strong> (plus the transport&#39;s own framing). Each frame carries the decoder state it starts from, so a lost frame is a 20 ms gap, never a corrupted stream. The codec id leaves room for a better codec later.</p>
+<p>Receivers keep a jitter buffer per speaker: 60 ms target, growing by 20 ms after an underrun (up to 200 ms) and shrinking back after 5 s without one, frames reordered by sequence number, late frames dropped, a missing frame replaced by the previous one attenuated (up to 80 ms), and a backlog skipped down to the target.</p>
+<h2 id="privacy">Privacy<a class="anchor" href="#privacy" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Voice is <strong>never recorded or stored</strong>. Frames exist in memory between capture and send, and between receive and playback. Nothing is written to disk, to a replay or to a save.</li>
+<li>In push-to-talk mode the microphone is <strong>open only while the key is held</strong>. In voice activation mode it stays open while voice activation is enabled (<code>SetVoiceActivation(false)</code> or <code>SetMicMuted(true)</code> close it); only frames above the threshold are sent.</li>
+<li>Muting a player drops their frames locally and, with a supporting transport, asks the server not to send them.</li>
+<li>Servers forward frames without decoding them and keep no copy.</li>
+</ul>
+<h2 id="microphone-permissions">Microphone permissions<a class="anchor" href="#microphone-permissions" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">OS</th><th scope="col">backend</th><th scope="col">permission</th></tr></thead>
+<tbody>
+<tr><td>macOS</td><td>AudioToolbox AudioQueue through purego (no cgo)</td><td>the system asks once per app. A packaged <code>.app</code> must declare <code>NSMicrophoneUsageDescription</code> in <code>Info.plist</code>, or macOS terminates it on first access: <code>burrow build</code> writes it for game apps, and the editor installer&#39;s plist has it. A binary started from a terminal is attributed to the terminal app. Denied: System Settings &gt; Privacy &amp; Security &gt; Microphone.</td></tr>
+<tr><td>Linux</td><td>PulseAudio record stream (PipeWire&#39;s pulse server works) through <code>jfreymuth/pulse</code> (pure Go)</td><td>none beyond access to the user&#39;s sound server; sandboxed (Flatpak) builds need the <code>--socket=pulseaudio</code> permission</td></tr>
+<tr><td>Windows</td><td>winmm <code>waveIn</code> through <code>golang.org/x/sys/windows</code></td><td>Settings &gt; Privacy &gt; Microphone &gt; &#34;Let desktop apps access your microphone&#34;</td></tr>
+</tbody></table></div>
+<p>Opening the microphone never blocks a frame: it runs on a worker goroutine (the macOS prompt can take seconds). Failures are reported by <code>Voice.Mic()</code> (<code>capture.ErrNoDevice</code>, <code>capture.ErrPermissionDenied</code>) and retried every 5 s while push-to-talk is held. A microphone that delivers only digital silence for 2 s is reported too (a denied permission on some systems looks like that). <code>BURROW_VOICE_MIC=off</code> disables the microphone. Headless runs and servers never open one.</p>
+<h2 id="testing">Testing<a class="anchor" href="#testing" aria-label="Link to this section">#</a></h2>
+<p>Tests need no microphone: <code>capture.Fake</code> feeds samples, a fake transport links two apps, and the null audio backend advances the mixer. <code>go test ./voice/...</code> covers the codec (SNR thresholds and a decoder fuzz target), voice activation, the jitter buffer (reorder, loss, late frames, wrap-around, adaptation), the spatial gain, the routing rules and limits, and a two-app loopback. <code>BURROW_VOICE_REAL_MIC=1 go test ./voice/capture -run Real</code> records one second from the real default microphone.</p>
+<h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>The capture backends build without cgo on all three systems, but automated tests use the fake device only: run the opt-in real-microphone test on each platform before relying on it.</li>
+<li>No echo cancellation: use headphones, or push-to-talk.</li>
+<li>No resampling on capture: the device must accept 16 kHz mono (PulseAudio and the Windows wave mapper convert; AudioQueue converts).</li>
+<li>IMA ADPCM is simple and robust but costs about 67 kbit/s per speaker; a narrowband codec would cut that by 4 to 8.</li>
+<li>Speakers beyond <code>max_speakers</code> are dropped first come, not by distance.</li>
+<li>Voice uses the <code>sfx</code> bus: the sound effects volume applies to it, and voice does not duck music.</li>
+</ul>
+<div class="pagemeta"><a href="voice.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#setup">Setup</a></li><li><a href="#configuration-reference-runtimevoice">Configuration reference ( runtime.voice )</a></li><li><a href="#in-game-code">In game code</a></li><li><a class="l3" href="#hud-values">HUD values</a></li><li><a href="#network">Network</a></li><li><a href="#format-and-bandwidth">Format and bandwidth</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#microphone-permissions">Microphone permissions</a></li><li><a href="#testing">Testing</a></li><li><a href="#limits">Limits</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

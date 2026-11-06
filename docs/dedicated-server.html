@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Dedicated server | Burrow</title>
+<meta name="description" content="burrow-server is a headless server for Burrow multiplayer : it hosts one game, keeps the world on disk and runs until you stop it. Players join with burrowplay -connect , exactly as for burrow serve…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/dedicated-server.html">
+<meta property="og:title" content="Dedicated server | Burrow">
+<meta property="og:description" content="burrow-server is a headless server for Burrow multiplayer : it hosts one game, keeps the world on disk and runs until you stop it. Players join with burrowplay -connect , exactly as for burrow serve…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/dedicated-server.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dedicated server | Burrow">
+<meta name="twitter:description" content="burrow-server is a headless server for Burrow multiplayer : it hosts one game, keeps the world on disk and runs until you stop it. Players join with burrowplay -connect , exactly as for burrow serve…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html" aria-current="page">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="dedicated-server">Dedicated server<a class="anchor" href="#dedicated-server" aria-label="Link to this section">#</a></h1>
+<p><code>burrow-server</code> is a headless server for <a href="networking.html">Burrow multiplayer</a>: it hosts one game, keeps the world on disk and runs until you stop it. Players join with <code>burrowplay -connect</code>, exactly as for <code>burrow serve</code>, but nobody has to keep a game window open.</p>
+<h2 id="contents">Contents<a class="anchor" href="#contents" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="#what-it-is">What it is</a></li>
+<li><a href="#quick-start">Quick start</a></li>
+<li><a href="#data-directory">Data directory</a></li>
+<li><a href="#serverjson">server.json</a></li>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#admin-control">Admin control</a></li>
+<li><a href="#large-servers">Large servers</a></li>
+<li><a href="#saves-and-game-changes">Saves and game changes</a></li>
+<li><a href="#lobby-mode">Lobby mode</a></li>
+<li><a href="#deploying">Deploying</a></li>
+<li><a href="#firewall-and-ports">Firewall and ports</a></li>
+<li><a href="#backups-and-restore">Backups and restore</a></li>
+<li><a href="#upgrading-the-game">Upgrading the game</a></li>
+<li><a href="#security-notes">Security notes</a></li>
+<li><a href="#limits">Limits</a></li>
+</ul>
+<h2 id="what-it-is">What it is<a class="anchor" href="#what-it-is" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Headless.</strong> No window, no GPU, no audio. It runs on any small Linux VPS.</li>
+<li><strong>cgo-free.</strong> A single static binary (<code>CGO_ENABLED=0</code>); it cross-builds for Linux, macOS and Windows with <code>make server-dist</code>.</li>
+<li><strong>Persistent world.</strong> The world is restored from <code>world/world.snap</code> at start and saved on a timer, on <code>save</code> and on shutdown.</li>
+<li><strong>Same protocol as <code>burrow serve</code>.</strong> Clients need nothing special; see <a href="networking.html">Networking</a>.</li>
+</ul>
+<h2 id="quick-start">Quick start<a class="anchor" href="#quick-start" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-sh">burrow-server init --data ./srv --project ../mygame     <span class="c"># writes srv/server.json and the TLS certificate</span>
+burrow-server run  --data ./srv                         <span class="c"># starts the server on :7777</span>
+burrow-server ctl  --data ./srv link                    <span class="c"># prints the join link (from another terminal)</span></code></pre>
+<p><code>--project</code> is a path relative to the data directory: a project directory or a <code>.voxpak</code>. Give the join link to your players.</p>
+<h2 id="data-directory">Data directory<a class="anchor" href="#data-directory" aria-label="Link to this section">#</a></h2>
+<p>Everything the server writes lives in one directory (<code>--data</code>, default <code>.</code>):</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">path</th><th scope="col">content</th></tr></thead>
+<tbody>
+<tr><td><code>server.json</code></td><td>the configuration (<a href="#serverjson">below</a>)</td></tr>
+<tr><td><code>join.key</code></td><td>the generated join password, mode <code>0600</code> (only when no password is set)</td></tr>
+<tr><td><code>cert/</code></td><td><code>server.crt</code> and <code>server.key</code> (mode <code>0600</code>): the TLS identity, created by <code>init</code></td></tr>
+<tr><td><code>world/world.snap</code></td><td>the current world snapshot</td></tr>
+<tr><td><code>world/meta.json</code></td><td>metadata of the world: seed, tick, save time, engine version, project name and content hash</td></tr>
+<tr><td><code>world/backups/world-&lt;UTC timestamp&gt;.snap</code></td><td>rotated backups</td></tr>
+<tr><td><code>players.json</code></td><td>roster <code>{&#34;players&#34;: {&#34;&lt;key&gt;&#34;: {&#34;id&#34;: N, &#34;name&#34;: &#34;last name&#34;}}}</code>. The key is the player&#39;s identity id (anonymous players: <code>name:&lt;lowercased name&gt;</code>), so a player keeps its id after renaming and a name owned by one identity is refused to others. The old <code>{&#34;ids&#34;: {...}}</code> format is migrated on start</td></tr>
+<tr><td><code>bans.json</code></td><td>banned names, identities (<code>identities</code>) and addresses</td></tr>
+<tr><td><code>whitelist.json</code></td><td>allowed names or identity ids</td></tr>
+<tr><td><code>control.sock</code></td><td>unix socket of the admin control, mode <code>0600</code></td></tr>
+</tbody></table></div>
+<h2 id="serverjson">server.json<a class="anchor" href="#serverjson" aria-label="Link to this section">#</a></h2>
+<p><code>burrow-server init</code> writes the defaults. Unknown fields are an error.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">default</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>project</code></td><td>none</td><td>game to host, path relative to the data directory: a project directory or a <code>.voxpak</code></td></tr>
+<tr><td><code>world</code></td><td><code>&#34;world&#34;</code></td><td>directory of the world, relative to the data directory</td></tr>
+<tr><td><code>addr</code></td><td><code>&#34;:7777&#34;</code></td><td>listen address (TCP, TLS)</td></tr>
+<tr><td><code>advertise</code></td><td><code>&#34;&#34;</code></td><td><code>host:port</code> written in the join link; set it to the public name when it differs from <code>addr</code></td></tr>
+<tr><td><code>password</code></td><td><code>&#34;&#34;</code></td><td>join password. Empty and <code>open</code> false: a random key is generated once and kept in <code>join.key</code></td></tr>
+<tr><td><code>open</code></td><td><code>false</code></td><td><code>true</code> accepts players without any password</td></tr>
+<tr><td><code>max_players</code></td><td><code>16</code></td><td>players connected at the same time: at most 1024</td></tr>
+<tr><td><code>view</code></td><td><code>0</code> (default)</td><td>view distance in chunks of each player (<a href="replication.html">Replication</a>)</td></tr>
+<tr><td><code>bytes_per_second</code></td><td><code>0</code> (default)</td><td>bandwidth budget per player</td></tr>
+<tr><td><code>migrate</code></td><td><code>false</code></td><td>start a saved world after the game lost a component, dropping its saved values (see <a href="#saves-and-game-changes">Saves and game changes</a>)</td></tr>
+<tr><td><code>seed</code></td><td><code>0</code></td><td>world seed; <code>0</code> means the project&#39;s. Ignored once a world exists: the world&#39;s seed wins</td></tr>
+<tr><td><code>autosave_minutes</code></td><td><code>5</code></td><td>autosave period; <code>0</code> disables it</td></tr>
+<tr><td><code>backups</code></td><td><code>5</code></td><td>rotated backup copies kept</td></tr>
+<tr><td><code>motd</code></td><td><code>&#34;&#34;</code></td><td>chat line sent by the server whenever a player joins (at most 200 bytes)</td></tr>
+<tr><td><code>whitelist</code></td><td><code>false</code></td><td>only names or identities in <code>whitelist.json</code> may join</td></tr>
+<tr><td><code>mode</code></td><td><code>&#34;persistent&#34;</code></td><td><code>&#34;persistent&#34;</code>: the world is restored, autosaved and saved on shutdown (a survival-style server). <code>&#34;lobby&#34;</code>: matches (see <a href="#lobby-mode">Lobby mode</a>).</td></tr>
+<tr><td><code>claim_anonymous</code></td><td><code>false</code></td><td>let the first identity that joins with a name take the anonymous roster entry of that name. Off by default, because anybody could claim someone else&#39;s past; use the <code>claim</code> command instead</td></tr>
+<tr><td><code>require_identity</code></td><td><code>true</code> from <code>init</code>; <code>false</code> when absent</td><td>reject clients without an identity key (<code>&lt;config dir&gt;/burrow/identity.key</code>, created by the client)</td></tr>
+</tbody></table></div>
+<p>The environment variable <code>BURROW_SERVE_PASSWORD</code> overrides <code>password</code>.</p>
+<h2 id="commands">Commands<a class="anchor" href="#commands" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code>burrow-server init [--data DIR] --project PATH     write DIR/server.json with defaults (fails if it exists), create cert
+burrow-server run  [--data DIR] [--config FILE] [--addr A] [--advertise H:P] [--password P | --open] [--max-players N]
+burrow-server ctl  [--data DIR] &lt;command...&gt;       send an admin command to the running server
+burrow-server version</code></pre>
+<p><code>--data</code> defaults to <code>.</code>; <code>--config</code> defaults to <code>DIR/server.json</code>. The flags of <code>run</code> override the file. <code>init</code> fails if <code>server.json</code> already exists. <code>ctl</code> talks to the unix socket <code>DIR/control.sock</code>.</p>
+<p>Signals: <code>SIGTERM</code> and <code>SIGINT</code> save the world, then stop. On start the world is restored from <code>world.snap</code>, and players still marked connected (after a crash) are marked left. The journal is trimmed before each save so snapshots stay small.</p>
+<h2 id="admin-control">Admin control<a class="anchor" href="#admin-control" aria-label="Link to this section">#</a></h2>
+<p>The same commands work on the console (stdin, when the server runs in a terminal) and through <code>burrow-server ctl</code>:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">command</th><th scope="col">effect</th></tr></thead>
+<tbody>
+<tr><td><code>list</code></td><td>connected players</td></tr>
+<tr><td><code>status</code></td><td>JSON: project, tick, players, max players, uptime, last save, motd, whitelist, require_identity, connected players with their identity ids, certificate fingerprint, engine</td></tr>
+<tr><td><code>link</code></td><td>print the join link</td></tr>
+<tr><td><code>say &lt;text&gt;</code></td><td>message to every player</td></tr>
+<tr><td><code>kick &lt;name&gt; [reason]</code></td><td>disconnect a player</td></tr>
+<tr><td><code>ban &lt;name&gt; [reason]</code></td><td>ban the identity of the known player with that name (an anonymous one: the name) and kick it</td></tr>
+<tr><td><code>ban-ip &lt;addr&gt;</code></td><td>ban an address</td></tr>
+<tr><td><code>pardon &lt;name|identity|addr&gt;</code></td><td>lift a ban</td></tr>
+<tr><td><code>claim &lt;name&gt; &lt;identity id&gt;</code></td><td>bind an anonymous player&#39;s roster entry (its id, so its per-player state) to an identity; the player sees the exact command when the server refuses its name</td></tr>
+<tr><td><code>whitelist on|off|add &lt;name|identity&gt;|remove &lt;name|identity&gt;|list</code></td><td>manage the whitelist</td></tr>
+<tr><td><code>lobby</code></td><td>the lobby state as JSON (games with <code>runtime.lobby</code>)</td></tr>
+<tr><td><code>lobby start|cancel|return</code></td><td>start the countdown, cancel it, go back to the lobby after a match (the server acts as player 0, always an authority)</td></tr>
+<tr><td><code>lobby end [results JSON]</code></td><td>end the running match</td></tr>
+<tr><td><code>lobby set &lt;key&gt; &lt;value&gt;</code></td><td>change a game setting</td></tr>
+<tr><td><code>voice mute &lt;name&gt;</code></td><td>mute a player&#39;s voice chat for everyone; kept across reconnects until lifted (<a href="voice.html">voice chat</a>)</td></tr>
+<tr><td><code>voice unmute &lt;name&gt;</code></td><td>lift a voice mute</td></tr>
+<tr><td><code>voice status</code></td><td>voice relaying on/off, frame counters (in, out, dropped, refused, malformed) and muted players, as JSON</td></tr>
+<tr><td><code>save</code></td><td>save the world now (persistent mode only)</td></tr>
+<tr><td><code>stop</code></td><td>save and stop</td></tr>
+</tbody></table></div>
+<p><code>control.sock</code> is mode <code>0600</code>: whoever can open it is an admin, so only the user running the server (and root) can use <code>ctl</code>.</p>
+<h2 id="large-servers">Large servers<a class="anchor" href="#large-servers" aria-label="Link to this section">#</a></h2>
+<p>The server alone simulates (<a href="replication.html">Replication</a>), and each player receives only the chunks and entities around it, so a server holds up to 1024 players and a big world. Tune <code>view</code> and <code>bytes_per_second</code>; roughly 300 busy players per core at 20 ticks per second, about 100 KB/s per player in a busy area and a few hundred bytes per second in a quiet one. Lobby mode works the same way: the lobby state is replicated to every client.</p>
+<h2 id="saves-and-game-changes">Saves and game changes<a class="anchor" href="#saves-and-game-changes" aria-label="Link to this section">#</a></h2>
+<p>The world restored at start must fit the game. A component the game gained is added empty (logged). A component the game lost would lose its saved values: the server refuses to start with <code>the saved world holds component data the game no longer has: &lt;component&gt; (&lt;n&gt; values)</code>. Restore the previous component name, set <code>&#34;migrate&#34;: true</code> in <code>server.json</code> to drop that data (the previous save stays in <code>world/backups</code>), or move the <code>world</code> directory away for a new world. A plugin turned on or off (lobby, weather, fluid) cannot be converted and is named in the error.</p>
+<h2 id="lobby-mode">Lobby mode<a class="anchor" href="#lobby-mode" aria-label="Link to this section">#</a></h2>
+<p>With <code>&#34;mode&#34;: &#34;lobby&#34;</code> the server hosts matches instead of a lasting world, for games with a lobby (<code>runtime.lobby</code>, see <a href="lobby.html">Lobby</a>): players gather, pick teams and colours, get ready, and the host starts the match.</p>
+<ul>
+<li>Nothing is saved or restored: every server start is a fresh world. The journal is still trimmed every <code>autosave_minutes</code>.</li>
+<li>While a match runs (countdown or playing), new players are refused with &#34;a match is running&#34; unless the lobby sets <code>late_join</code>; players who lost their connection may still come back. A full lobby (<code>max_players</code> of the lobby, without spectators) refuses new players too.</li>
+<li>With <code>&#34;host&#34;: &#34;server&#34;</code> in the lobby configuration, only the server changes settings and starts matches: use <code>lobby set</code>, <code>lobby start</code> and <code>lobby end</code> (from <code>ctl</code>, or from a script of your own). With <code>&#34;host&#34;: &#34;first&#34;</code> the first player hosts.</li>
+<li>The world is not reset between matches by the server: the game does it when the match starts (load the map level, see <a href="lobby.html#loading-the-chosen-map-when-the-match-starts">Loading the chosen map</a>).</li>
+</ul>
+<h2 id="deploying">Deploying<a class="anchor" href="#deploying" aria-label="Link to this section">#</a></h2>
+<h3 id="systemd">systemd<a class="anchor" href="#systemd" aria-label="Link to this section">#</a></h3>
+<p><code>deploy/install.sh</code> (also in the <code>server-dist</code> archives) does it all, on Linux as root:</p>
+<pre tabindex="0"><code class="language-sh">sudo sh deploy/install.sh ./burrow-server ./mygame        <span class="c"># or ./mygame.voxpak</span></code></pre>
+<p>It creates the system user <code>burrow</code>, <code>/var/lib/burrow-server</code> (mode <code>0750</code>), copies the binary to <code>/usr/local/bin</code>, the game to <code>/var/lib/burrow-server/game</code>, runs <code>init</code> if <code>server.json</code> is missing, then installs, enables and starts <code>burrow-server.service</code>. It is safe to run again (to update the binary or the game). The unit is hardened (<code>ProtectSystem=strict</code>, no capabilities, restricted address families) and reads optional settings from <code>/etc/burrow-server.env</code>, for example <code>BURROW_SERVE_PASSWORD=...</code>.</p>
+<pre tabindex="0"><code class="language-sh">sudo systemctl status burrow-server
+sudo journalctl -u burrow-server -f
+sudo runuser -u burrow -- burrow-server ctl --data /var/lib/burrow-server link</code></pre>
+<h3 id="docker">Docker<a class="anchor" href="#docker" aria-label="Link to this section">#</a></h3>
+<pre tabindex="0"><code class="language-sh">make server-image                       <span class="c"># docker build -f deploy/docker/Dockerfile -t burrow-server .</span>
+mkdir -p data &amp;&amp; cp -R ./mygame data/game &amp;&amp; sudo chown -R <span class="n">65532</span> data
+docker compose -f deploy/docker/compose.yaml run --rm burrow-server init --data /data --project game
+docker compose -f deploy/docker/compose.yaml up -d</code></pre>
+<p>The image is distroless, runs as <code>nonroot</code> (uid 65532), keeps everything in the <code>/data</code> volume and exposes <code>7777/tcp</code>. The game goes to <code>/data/game</code>, either copied into the volume as above or mounted: <code>-v /path/to/mygame:/data/game:ro</code> (or a single file, <code>-v /path/mygame.voxpak:/data/game.voxpak:ro</code> with <code>--project game.voxpak</code>). The compose file gives the server 30 s to save on <code>docker stop</code>. Admin commands: <code>docker compose exec burrow-server /burrow-server ctl --data /data status</code>.</p>
+<h3 id="plain-binary">Plain binary<a class="anchor" href="#plain-binary" aria-label="Link to this section">#</a></h3>
+<p>Run <code>burrow-server run --data DIR</code> under any supervisor (tmux, launchd, a Windows service wrapper). The <code>server-dist</code> archives contain builds for Linux amd64/arm64, macOS arm64 and Windows amd64. On Windows (10 1803 and later) the control socket works too, so <code>ctl</code> is available everywhere.</p>
+<h2 id="firewall-and-ports">Firewall and ports<a class="anchor" href="#firewall-and-ports" aria-label="Link to this section">#</a></h2>
+<p>The server listens on one TCP port, <code>7777</code> by default (<code>addr</code>). Open it inbound: <code>ufw allow 7777/tcp</code>, or the equivalent on your cloud provider&#39;s security group and any router in front of the machine. Set <code>advertise</code> to the public <code>host:port</code> so the join link is right behind NAT or a proxy.</p>
+<h2 id="backups-and-restore">Backups and restore<a class="anchor" href="#backups-and-restore" aria-label="Link to this section">#</a></h2>
+<p>Autosave rotates <code>backups</code> copies in <code>world/backups/world-&lt;UTC timestamp&gt;.snap</code>. To back up by hand, run <code>save</code> then copy the data directory (or only <code>world/</code>, <code>players.json</code>, <code>bans.json</code>, <code>whitelist.json</code>, <code>server.json</code>, <code>cert/</code> and <code>join.key</code>).</p>
+<p>To restore: stop the server, copy the chosen <code>world/backups/world-&lt;timestamp&gt;.snap</code> over <code>world/world.snap</code>, start the server.</p>
+<h2 id="upgrading-the-game">Upgrading the game<a class="anchor" href="#upgrading-the-game" aria-label="Link to this section">#</a></h2>
+<p>A world snapshot must match the project that loads it. If you change the components of the game (new, removed or reshaped components), restoring the old snapshot fails with a clear error and the server does not start. Before replacing the game in <code>game/</code>: stop the server, make a backup of the data directory, replace the game, start. If the start fails, put the previous game back (and the backup if needed). Changes that do not touch components (scripts logic, assets, text) restore normally, but clients must have the same game version to join (<a href="networking.html">Networking</a> pins).</p>
+<h2 id="security-notes">Security notes<a class="anchor" href="#security-notes" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Identity is a key, a name is only a label.</strong> With <code>require_identity</code> (the default of <code>init</code>) every player proves it owns an ed25519 key, bans and the roster follow the key, and nobody can take a name another identity uses. Anonymous clients (identified by name only, so anyone knowing a name can join as it) are admitted only when <code>require_identity</code> is false, as in a <code>server.json</code> written before this option. Protect the server with the password (the default: a random key in <code>join.key</code>) and, for a closed group, the whitelist. <code>list</code> and <code>status</code> show identity ids.</li>
+<li><strong>Treat the join link as a secret.</strong> It carries the key; anyone with it can join. Rotate it by changing <code>password</code> (or deleting <code>join.key</code>) and restarting.</li>
+<li><strong>TLS.</strong> The connection is encrypted with the certificate in <code>cert/</code>; clients pin it by fingerprint, which the join link contains. Keep <code>server.key</code> private; if you regenerate the certificate, previous links stop working.</li>
+<li><code>--open</code> accepts anyone: use it only on a private network.</li>
+<li>The admin control is the unix socket only; nothing admin is reachable over the network.</li>
+</ul>
+<h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Server cost.</strong> The server runs the whole simulation and builds one stream per player; clients only draw it, so the weakest player&#39;s machine does not limit the game.</li>
+<li>The player registry keeps up to <strong>1024 players</strong> at the same time.</li>
+<li>Roster ids go up to <strong>65535</strong>: <code>players.json</code> assigns a new id to each new player (identity or anonymous name), so a public server with many one-off identities eventually exhausts them.</li>
+<li><code>max_players</code> counts connected players only.</li>
+</ul>
+<div class="pagemeta"><a href="dedicated-server.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#contents">Contents</a></li><li><a href="#what-it-is">What it is</a></li><li><a href="#quick-start">Quick start</a></li><li><a href="#data-directory">Data directory</a></li><li><a href="#serverjson">server.json</a></li><li><a href="#commands">Commands</a></li><li><a href="#admin-control">Admin control</a></li><li><a href="#large-servers">Large servers</a></li><li><a href="#saves-and-game-changes">Saves and game changes</a></li><li><a href="#lobby-mode">Lobby mode</a></li><li><a href="#deploying">Deploying</a></li><li><a class="l3" href="#systemd">systemd</a></li><li><a class="l3" href="#docker">Docker</a></li><li><a class="l3" href="#plain-binary">Plain binary</a></li><li><a href="#firewall-and-ports">Firewall and ports</a></li><li><a href="#backups-and-restore">Backups and restore</a></li><li><a href="#upgrading-the-game">Upgrading the game</a></li><li><a href="#security-notes">Security notes</a></li><li><a href="#limits">Limits</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Networking | Burrow</title>
+<meta name="description" content="Burrow multiplayer is server-authoritative replication : the server alone runs the simulation (scripts, physics, water, block logic, weather) and streams to each client the part of the state around…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/networking.html">
+<meta property="og:title" content="Networking | Burrow">
+<meta property="og:description" content="Burrow multiplayer is server-authoritative replication : the server alone runs the simulation (scripts, physics, water, block logic, weather) and streams to each client the part of the state around…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/networking.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Networking | Burrow">
+<meta name="twitter:description" content="Burrow multiplayer is server-authoritative replication : the server alone runs the simulation (scripts, physics, water, block logic, weather) and streams to each client the part of the state around…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html" aria-current="page">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="networking">Networking<a class="anchor" href="#networking" aria-label="Link to this section">#</a></h1>
+<p>Burrow multiplayer is <strong>server-authoritative replication</strong>: the server alone runs the simulation (scripts, physics, water, block logic, weather) and streams to each client the part of the state around its player. Clients run only frame stages (rendering, UI, audio, prediction) on the replicated copy and send whitelisted commands. There is one network model; <code>burrow serve</code>, <code>burrow-server</code>, the lobby and the matchmaker, <code>burrowplay -connect</code> and the editor&#39;s host session all use it. How the state is selected, encoded and budgeted is in <a href="replication.html">Replication</a>.</p>
+<p>This page describes the connection layer shared by every server: the protocol (<code>net/wire</code>), the transports (<code>net/transport</code>), the handshake, security and limits (<code>net/gate</code>, <code>net/netbase</code>), the simulation side (<code>net/netsim</code>), the engine integration (<code>net/netapp</code>, <code>internal/netplay</code>) and how to play. For an always-on headless server see <a href="dedicated-server.html">Dedicated server</a>; for matches between players, the <a href="lobby.html">Lobby</a>. The player registry is off by default; <code>runtime.plugins.net: true</code> installs it.</p>
+<h2 id="contents">Contents<a class="anchor" href="#contents" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="#what-a-game-author-must-know">What a game author must know</a></li>
+<li><a href="#playing-host-join-editor">Playing: host, join, editor</a></li>
+<li><a href="#engine-integration">Engine integration</a></li>
+<li><a href="#remote-player-movement">Remote player movement</a></li>
+<li><a href="#using-the-api">Using the API</a></li>
+<li><a href="#protocol">Protocol</a></li>
+<li><a href="#security-and-threat-model">Security and threat model</a></li>
+<li><a href="#limits">Limits</a></li>
+<li><a href="#how-it-is-tested">How it is tested</a></li>
+<li><a href="#what-is-not-covered">What is not covered</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#joining-and-hosting-from-the-game">Joining and hosting from the game</a></li>
+</ul>
+<h2 id="what-a-game-author-must-know">What a game author must know<a class="anchor" href="#what-a-game-author-must-know" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>The server simulates, clients show.</strong> Fixed systems and scripts run on the server only. A client never steps its copy of the simulation, so its <code>StateHash</code> and journal mean nothing.</li>
+<li><strong>Keep client-visible state in components, not in script State.</strong> Script <code>State</code> (inventories, furnaces, skills kept in a table) stays on the server. What a client must display or read goes in a component, replicated to everyone, to the owner only or to nearby clients: see <a href="replication.html#component-visibility">Component visibility</a>.</li>
+<li><strong>All state changes are commands.</strong> A frame system that changes the simulation from local input (keyboard, mouse, UI clicks) must submit a command instead of applying it: the engine&#39;s command router (<code>App.SetCommandRouter</code>) takes such commands away and sends them to the server.</li>
+<li><strong>Read player input from the registry.</strong> <code>netsim.Lookup(e, id).Input</code> is the input the player sent for this tick: quantized integers (movement axes in thousandths, yaw and pitch in millidegrees, a button bit field). Use <code>netsim.Quantize</code> to build one from floats.</li>
+<li><strong>Client commands are whitelisted.</strong> By default a client may submit <code>net_player_input</code>, <code>set_block</code>, <code>block_use</code> (a right click on an interactive block), <code>fill_box</code> (at most 4096 voxels), <code>fill_sphere</code> (radius at most 8) and <code>micro_edit</code> (at most 16 edits and 128 listed voxels, no raw <code>put</code>), each with its own rate limit. Anything else is rejected and counted. A game adds its own kinds with <code>Whitelist.Allow</code>, with a validator that checks the payload and rewrites it into its canonical form; the simulation validates every command again when it applies it.</li>
+<li><strong>Do not trust a command&#39;s claim of who sent it.</strong> The default validator of <code>net_player_input</code> forces the player id to the sender.</li>
+<li><strong>Chat is not simulation state.</strong> It travels next to the frames. Moderation (kick, ban, whitelist), passwords, identity and TLS pinning are the same on every server.</li>
+<li><strong>Pins.</strong> The server rejects a client whose engine version, project content hash, configuration hash, seed or pinned rule versions (for example the fine water rules) differ. <code>netbase.HashFS</code> computes the project content hash.</li>
+<li><strong>World scale.</strong> A world with a voxel size other than one metre (or <code>texture_scale</code> <code>metre</code>) adds the pin rules <code>world.voxel_size</code> and <code>world.texture_scale</code>. A client with another size is refused with <code>CodeProject</code> and &#34;world voxel size: server 0.25 m, client 1 m&#34;; the player installs the matching project.</li>
+</ul>
+<h2 id="playing-host-join-editor">Playing: host, join, editor<a class="anchor" href="#playing-host-join-editor" aria-label="Link to this section">#</a></h2>
+<ol>
+<li>Add <code>&#34;net&#34;: true</code> to <code>runtime.plugins</code> in <code>vox.project</code>. Players need the same project files and engine version.</li>
+<li>Host: <code>burrow serve [dir | game.voxpak]</code>. It listens on <code>:7777</code> with TLS 1.3 (<code>--addr</code>), creates its certificate on first run in <code>&lt;user config dir&gt;/burrow/server</code> (<code>server.key</code> mode 0600), and prints
+<pre tabindex="0"><code>join link: burrow://host:7777?fp=&lt;certificate fingerprint&gt;&amp;key=&lt;password&gt;</code></pre>
+The key is random unless you pass <code>--password</code> (or the <code>BURROW_SERVE_PASSWORD</code> environment variable) or <code>--open</code>. <code>--advertise host:port</code> writes your public name in the link. Treat a link with a key as a secret. Chat lines arrive on stderr.</li>
+<li>Join: <code>burrowplay -connect &lt;link&gt; [-name ana] [project]</code>. The link&#39;s fingerprint pins the certificate; without one the first connection trusts the certificate and remembers it in <code>&lt;user config dir&gt;/burrow/known_servers</code>, and a changed certificate is refused. The reconnect token of each server is kept in <code>&lt;user config dir&gt;/burrow/tokens.json</code> (mode 0600): after a lost connection the client redials for about 30 s and takes its slot back. Lines typed on stdin (and <code>-say text</code>) are chat. <code>-headless -ticks N</code> follows the server for N ticks (for tests).</li>
+<li>Editor: <strong>Play &gt; Host multiplayer session</strong> runs the open project as a listen server whose first player is the editor user. While the session runs, editing, undo, redo and manual stepping are disabled (<code>ErrNetLocked</code>): the session owns the simulation. <strong>Stop</strong> ends the session and restores the document exactly as Play does.</li>
+</ol>
+<h2 id="engine-integration">Engine integration<a class="anchor" href="#engine-integration" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>The plugin.</strong> <code>runtime.plugins.net</code> installs <code>netsim.Plugin</code> (the player registry and the <code>net_player_*</code> commands).</li>
+<li><strong>Server ticks.</strong> A tick is <code>App.StepFixed</code>: flush the queued commands, run the plugins&#39; pre-tick hooks (<code>App.OnPreTick</code>), run exactly one fixed tick, flush again. Frames (input, UI, rendering) run on their own with <code>App.Frame</code>; the app is in manual step mode (<code>netapp.Attach</code>), so a frame never ticks. A host loop is: <code>Poll</code> the server, then <code>App.Frame</code>.</li>
+<li><strong>The command router.</strong> <code>netapp.Link</code> installs <code>App.SetCommandRouter</code>, so commands that frame systems queue never change the simulation on their own:
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">command</th><th scope="col">server (dedicated or listen)</th><th scope="col">client</th></tr></thead>
+<tbody>
+<tr><td><code>script_set_input</code>, <code>script_bind</code>, <code>script_module_changed</code></td><td>dropped</td><td>dropped</td></tr>
+<tr><td><code>gameui_event</code>, <code>set_block</code>, <code>block_use</code>, <code>fill_box</code>, <code>fill_sphere</code>, <code>micro_edit</code>, <code>net_player_input</code></td><td><code>Server.Submit</code></td><td><code>Client.Submit</code> (whitelisted)</td></tr>
+<tr><td>any other (for example <code>level_load</code>)</td><td><code>Server.Submit</code></td><td>dropped: the server&#39;s own frame produces it</td></tr>
+</tbody></table></div>
+<code>script_set_input</code> is replaced by the per-player input of the registry (<code>net_player_info</code>, <a href="scripting/08-multiplayer.html">scripting</a>). A game adds client-submittable kinds to <code>netapp.ClientKinds</code> and to the server whitelist (<code>netplay.WhitelistFor</code> shows how <code>gameui_event</code> is added).</li>
+<li><strong>The controller.</strong> With a session the first-person <code>app.Controller</code> sends its block edits through the link (<code>Controller.SetNetwork</code>) instead of <code>Do</code>, stops stepping the simulation, and its undo/redo are off.</li>
+<li><strong>Restore.</strong> <code>App.RestoreSnapshot</code> runs <code>App.OnRestore</code> hooks so each plugin rebuilds its frame-domain state (a dedicated server restoring its world, the editor stopping a session).</li>
+<li><strong>The lobby.</strong> <code>runtime.lobby</code> adds <code>lobby.Plugin</code> after <code>netsim.Plugin</code>: players, teams, colours, ready flags, settings, the countdown and the match results as simulation state replicated to every client (<code>lobby_*</code> commands go through the whitelist, <code>lobby.Rules()</code>). See <a href="lobby.html">lobby</a>.</li>
+<li><strong>Pins.</strong> <code>game.Game.NetPins</code> fills the handshake pins: toolchain version (<code>game.Version</code>), the content hash of the project files (<code>netbase.HashFS</code>; <code>saves/</code> and dot files are skipped), the hash of the <code>runtime</code> section without its presentation fields, the seed, the tick rate and the fine water rule version when fine water is on.</li>
+</ul>
+<h2 id="remote-player-movement">Remote player movement<a class="anchor" href="#remote-player-movement" aria-label="Link to this section">#</a></h2>
+<p>Every applied <code>net_player_input</code> also moves the player&#39;s node (<code>netsim/move.go</code>): yaw on the node, pitch on its camera, and one tick of walking along the move axes at <code>player.move</code> speeds against solid blocks. Jump, sprint and crouch follow the local controller&#39;s rules from fixed button bits (<code>netsim.ButtonJump</code>, <code>ButtonSprint</code>, <code>ButtonCrouch</code>); <code>internal/netplay.InputFromState</code> sets the bits from the input actions named <code>jump</code>, <code>sprint</code> and <code>crouch</code> (or <code>sneak</code>). A player without <code>player.move</code> does not move. A joining player appears at the <code>game.mode</code> spawns unless the server placed it with <code>net_player_spawn</code>. The local avatar is predicted on the client (<code>replica.Smoother</code>) and corrected by the server; the other players are interpolated.</p>
+<h2 id="using-the-api">Using the API<a class="anchor" href="#using-the-api" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-go"><span class="c">// server (dedicated): a listener, the authoritative simulation, the pins</span>
+ln, _ := transport.ListenTCP(<span class="s">&#34;:7777&#34;</span>, transport.TCPOptions{TLS: transport.ServerTLS(cert), Notify: wake})
+srv, _ := replica.NewServer(replica.ServerConfig{Sim: &amp;netapp.AppSim{A: app}, Listener: ln, Pins: pins, Password: <span class="s">&#34;optional&#34;</span>})
+<span class="k">for</span> { srv.Poll(time.Now()); app.Frame(dt) }
+
+<span class="c">// client: dial with the fingerprint of the join link, then poll from the frame loop</span>
+c, _ := replica.Connect(ctx, link.Addr, netbase.ConnectOptions{Fingerprint: link.Fingerprint},
+	replica.ClientConfig{Target: app, Pins: pins, Name: <span class="s">&#34;ana&#34;</span>, Password: link.Key})
+<span class="k">for</span> running {
+	c.SubmitInput(netsim.Quantize(moveX, moveY, yaw, pitch, buttons))
+	c.SetView(camX, camY, camZ)
+	c.Poll(time.Now())
+}</code></pre>
+<ul>
+<li><code>Server</code> and <code>Client</code> are poll-driven: <code>Poll(now)</code> does a bounded amount of work and never blocks, so a host can drive them from its frame loop and a test can drive a whole session from one goroutine on a virtual clock.</li>
+<li>Callbacks (<code>OnPlayerJoin</code>, <code>OnPlayerLeave</code>, <code>OnChat</code>, <code>OnEvent</code>, and <code>OnFrame</code>, <code>OnReconcile</code> on clients) run after the Poll&#39;s work, outside the session&#39;s lock. The shared types are in <code>net/netbase</code>.</li>
+<li>Host controls: <code>Submit</code>, <code>AddLocalPlayer</code> and <code>SubmitAs</code> (a listen server&#39;s own player), <code>Kick</code>, <code>Chat</code>, <code>Metrics</code>, <code>Peers</code>, <code>Close</code>; hooks <code>AllowConnect</code> (ban list by address) and <code>AllowJoin</code>.</li>
+<li>A join link looks like <code>burrow://host:7777?fp=&lt;certificate fingerprint&gt;&amp;key=&lt;password&gt;</code> (<code>netbase.JoinLink</code>, <code>netbase.ParseJoinLink</code>). Treat a link with a key as a secret.</li>
+</ul>
+<h2 id="protocol">Protocol<a class="anchor" href="#protocol" aria-label="Link to this section">#</a></h2>
+<h3 id="framing">Framing<a class="anchor" href="#framing" aria-label="Link to this section">#</a></h3>
+<p>The transport carries frames. On TCP each frame is a 4-byte big-endian length followed by the payload; a length of 0 or above the limit (1 MiB by default) closes the connection before anything is allocated. A frame is one message: a type byte, then the fields. Field encodings: <code>uv</code> is an unsigned LEB128 varint (minimal encoding only), <code>u8</code> one byte, <code>u64</code> eight bytes little endian, <code>[n]</code> n raw bytes, <code>str</code> a <code>uv</code> length then UTF-8 bytes, <code>bytes</code> a <code>uv</code> length then raw bytes, <code>bool</code> one byte 0 or 1. Decoding is strict: every length and count is checked against its limit and against the bytes that remain, trailing bytes are an error, and a value has exactly one encoding.</p>
+<h3 id="messages">Messages<a class="anchor" href="#messages" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">type</th><th scope="col">name</th><th scope="col">direction</th><th scope="col">fields</th></tr></thead>
+<tbody>
+<tr><td><code>0x01</code></td><td>Hello</td><td>C→S</td><td><code>[4]</code> magic <code>BRWN</code>, <code>uv</code> protocol version, <code>str</code> engine version (≤64), pins, <code>str</code> name (≤32), <code>[32]</code> client nonce, <code>[8]</code> token id (zero: new player), <code>[32]</code> identity (ed25519 public key, zero: anonymous)</td></tr>
+<tr><td><code>0x02</code></td><td>Challenge</td><td>S→C</td><td><code>[32]</code> server nonce, <code>[16]</code> salt, <code>uv</code> PBKDF2 iterations, <code>u8</code> flags (1 password, 2 token, 4 replication server)</td></tr>
+<tr><td><code>0x03</code></td><td>Auth</td><td>C→S</td><td><code>[32]</code> password proof, <code>[32]</code> token proof, <code>[64]</code> identity signature (zero when anonymous)</td></tr>
+<tr><td><code>0x04</code></td><td>Welcome</td><td>S→C</td><td><code>uv</code> player id, <code>[32]</code> reconnect token, <code>[32]</code> server proof, <code>uv</code> start tick, tick length (µs)</td></tr>
+<tr><td><code>0x05</code></td><td>Reject</td><td>S→C</td><td><code>u8</code> code, <code>str</code> detail (≤256)</td></tr>
+<tr><td><code>0x10</code></td><td>Input</td><td>C→S</td><td><code>uv</code> seq (strictly increasing), <code>uv</code> count (≤16), then per command <code>str</code> kind, <code>bytes</code> JSON payload (≤4 KiB)</td></tr>
+<tr><td><code>0x40</code></td><td>Ping</td><td>both</td><td><code>uv</code> seq, <code>u64</code> sender time, <code>uv</code> ack</td></tr>
+<tr><td><code>0x41</code></td><td>Pong</td><td>both</td><td><code>uv</code> seq, <code>u64</code> echoed time, <code>uv</code> server tick</td></tr>
+<tr><td><code>0x50</code></td><td>Chat</td><td>C→S</td><td><code>str</code> text (≤256)</td></tr>
+<tr><td><code>0x51</code></td><td>ChatMsg</td><td>S→C</td><td><code>uv</code> from, <code>str</code> text</td></tr>
+<tr><td><code>0x60</code></td><td>Kick</td><td>S→C</td><td><code>u8</code> code, <code>str</code> detail</td></tr>
+<tr><td><code>0x61</code></td><td>Bye</td><td>both</td><td><code>u8</code> code</td></tr>
+<tr><td><code>0x70</code>-<code>0x74</code></td><td>RepSchema, RepFrame, RepAck, RepView, RepFrameZ</td><td>both</td><td>the replication stream, see <a href="replication.html#protocol">Replication</a></td></tr>
+<tr><td><code>0x80</code></td><td>VoiceUp</td><td>C→S</td><td><code>bytes</code> voice frame (1..256, <a href="voice.html#format-and-bandwidth">voice chat</a>): the sender&#39;s own voice</td></tr>
+<tr><td><code>0x81</code></td><td>VoiceDown</td><td>S→C</td><td><code>uv</code> speaker (≥1), <code>bytes</code> voice frame (1..256), forwarded unchanged</td></tr>
+<tr><td><code>0x82</code></td><td>VoiceBlock</td><td>C→S</td><td><code>uv</code> player (≥1), <code>bool</code> blocked: a personal mute the server applies to the sender&#39;s copies</td></tr>
+</tbody></table></div>
+<p>Pins: <code>[32]</code> project content hash, <code>[32]</code> configuration hash, <code>uv</code> seed, <code>uv</code> rule count (≤32), then sorted unique <code>str</code> key and <code>str</code> value pairs (≤64 bytes each).</p>
+<p>Reject and kick codes: 1 version, 2 project, 3 authentication, 4 full, 5 banned, 6 timeout, 7 protocol, 8 rate limits, 11 shutdown, 12 kicked, 13 busy, 14 connected elsewhere, 15 quit, 16 identity required.</p>
+<p>The golden test in <code>net/wire</code> pins these bytes: a change is a protocol change and bumps the protocol version. (The wire package still defines the messages of the removed lockstep model; the server kicks a client that sends one.)</p>
+<h3 id="handshake-and-authentication">Handshake and authentication<a class="anchor" href="#handshake-and-authentication" aria-label="Link to this section">#</a></h3>
+<pre class="mermaid" tabindex="0">sequenceDiagram
+  participant C as Client
+  participant S as Server
+  C-&gt;&gt;S: Hello (nonce, versions, pins)
+  S--&gt;&gt;C: Challenge (nonce, salt, iterations, flags)
+  C-&gt;&gt;S: Auth (proof)
+  Note over S: Welcome at the next tick boundary
+  S--&gt;&gt;C: Welcome (player id, start tick)</pre>
+<ol>
+<li>The client sends Hello with a fresh nonce. The server checks the protocol version, the engine version and the pins (a mismatch is a Reject that names the field), and the player count.</li>
+<li>The server answers with a Challenge: its own nonce, the salt and iteration count of the password key, and flags.</li>
+<li>The client answers with Auth. With a password, the shared key is <code>PBKDF2-SHA256(password, salt, iterations)</code> and the proof is <code>HMAC-SHA256(key, &#34;burrow-net v1 client proof&#34; ‖ 0 ‖ SHA-256(Hello ‖ Challenge))</code>. A reconnecting client proves its token the same way; the Hello only carries the token id. Neither the password nor the token is ever sent again; proofs are compared in constant time.</li>
+<li>A client with an identity key (ed25519) names its public key in Hello and signs <code>&#34;burrow-net v2 identity proof&#34; ‖ 0 ‖ SHA-256(Hello ‖ Challenge)</code> in Auth. The server always verifies the signature when the key is not zero and keeps the key on the player&#39;s record; a reconnect must present the same key. A server with <code>RequireIdentity</code> rejects anonymous clients with code 16.</li>
+<li>With a password the Welcome carries the server proof, so the client knows the server has the password too.</li>
+</ol>
+<p>Client side states: <code>connecting → handshake → syncing → playing → closed</code>. <code>Reconnect</code> moves a lost client back to <code>connecting</code> with its token; the server keeps the slot for the reconnect grace period.</p>
+<h2 id="security-and-threat-model">Security and threat model<a class="anchor" href="#security-and-threat-model" aria-label="Link to this section">#</a></h2>
+<p>Network input is hostile until proven otherwise. What the core defends against:</p>
+<ul>
+<li><strong>Malformed and oversized input.</strong> Every length and count is bounded before allocation; a frame over the limit closes the connection; a malformed message ends that connection. Message handling recovers from panics at the connection boundary and counts them; no other peer is affected.</li>
+<li><strong>Flooding.</strong> Per connection: messages per second, bytes per second, commands per kind per second, pending commands, chat lines per 10 seconds. A rejected message or command is a violation; too many violations in the window disconnect the client. At most 64 messages per connection are read per Poll.</li>
+<li><strong>Forbidden or forged commands.</strong> Only whitelisted kinds pass, each with a size limit and a validator; the simulation validates again. Older Input sequence numbers are rejected. A client cannot submit joins, leaves, seeds, steps or editor commands, nor act for another player.</li>
+<li><strong>Slow clients and slowloris.</strong> Handshakes time out (10 s, 3 s while the Hello is still missing); the number of handshakes in progress is bounded (32 in total, 4 per address group); 5 failed authentications from one address group lock it out for 30 s; idle connections time out (15 s); TCP limits connections per address group (8) and in total (64); the TLS handshake runs off the accept loop with its own deadline.</li>
+<li><strong>Information.</strong> A client receives only its interest and the component values its visibility rules allow (<a href="replication.html#security">Replication</a>).</li>
+<li><strong>Passwords.</strong> Challenge-response with PBKDF2 and HMAC: the password never crosses the wire, even without TLS. A client that has a password refuses a server that does not ask for it, and refuses an iteration count outside [10 000, 4 000 000]. Without TLS an eavesdropper can still try passwords offline against a recorded handshake, and the reconnect token in the Welcome is visible: use TLS on untrusted networks.</li>
+<li><strong>TLS.</strong> TLS 1.3 only. The server generates a self-signed ECDSA P-256 certificate on first run. The client pins the certificate&#39;s SHA-256 fingerprint: from the join link, or trust on first use stored in <code>&lt;user config dir&gt;/burrow/known_servers</code>; a changed certificate is refused. There is no mode that accepts any certificate.</li>
+<li><strong>Logs.</strong> Events, logs and errors never contain passwords, keys or tokens.</li>
+<li><strong>Identity.</strong> A player is its ed25519 key, not its name: names are display only unless the server maps names to keys (the dedicated server refuses a name already owned by another identity). The key never leaves the client (<code>&lt;config dir&gt;/burrow/identity.key</code>, mode 0600). Keys are not certified: a new key is a new player.</li>
+</ul>
+<p>Not defended against: a malicious <em>server</em> (play on servers you trust), denial of service by bandwidth exhaustion below the transport, and an active attacker on a plaintext TCP connection after authentication (use TLS).</p>
+<h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">limit</th><th scope="col">default</th><th scope="col">where</th></tr></thead>
+<tbody>
+<tr><td>players per server</td><td>256 (max 1024)</td><td><code>ServerConfig.MaxPlayers</code></td></tr>
+<tr><td>tick rate</td><td>20 Hz (50 ms)</td><td><code>sim.TickRate</code>; <code>TickInterval</code> only for tests</td></tr>
+<tr><td>frame size</td><td>1 MiB</td><td><code>transport.Limits.MaxMessage</code></td></tr>
+<tr><td>send budget / receive budget per connection</td><td>4 MiB / 2 MiB</td><td><code>transport.Limits</code></td></tr>
+<tr><td>commands per Input message</td><td>16</td><td><code>wire.MaxCmdsPerInput</code></td></tr>
+<tr><td>client command payload</td><td>4 KiB (default rules: 256 bytes)</td><td><code>wire.MaxClientCmdData</code>, <code>Rule.MaxBytes</code></td></tr>
+<tr><td>commands of one player per tick</td><td>8 (the rest wait for the next ticks)</td><td><code>MaxCmdsPerTick</code></td></tr>
+<tr><td>pending commands per player</td><td>64</td><td><code>MaxPendingCmds</code></td></tr>
+<tr><td>messages per connection per Poll</td><td>64</td><td><code>MsgsPerPoll</code></td></tr>
+<tr><td>message rate / byte rate per client</td><td>200 /s, 256 KiB/s</td><td><code>MsgRate</code>, <code>ByteRate</code></td></tr>
+<tr><td>violations before disconnect</td><td>50 in 10 s</td><td><code>ViolationsToKick</code>, <code>ViolationWindow</code></td></tr>
+<tr><td>chat</td><td>256 bytes, 5 lines per 10 s</td><td><code>wire.MaxChat</code>, <code>ChatPer10s</code></td></tr>
+<tr><td>handshakes in progress</td><td>128, 4 per address group</td><td><code>MaxHandshakes</code>, <code>MaxHandshakesPerIP</code></td></tr>
+<tr><td>failed authentications</td><td>5 per address group, then 30 s lockout</td><td><code>AuthFailuresToLock</code>, <code>AuthLockout</code></td></tr>
+<tr><td>timeouts</td><td>hello 3 s, handshake 10 s, idle 15 s</td><td><code>*Timeout</code></td></tr>
+<tr><td>reconnect grace</td><td>60 s</td><td><code>ReconnectGrace</code></td></tr>
+<tr><td>TCP connections</td><td>64 total, 8 per address group, 2 TLS handshakes per address group, 32 waiting</td><td><code>TCPOptions</code></td></tr>
+<tr><td>password key</td><td>PBKDF2-SHA256, 600 000 iterations (clients accept 10 000 to 4 000 000)</td><td><code>Iterations</code>, <code>MinIterations</code>, <code>MaxIterations</code></td></tr>
+</tbody></table></div>
+<p>The replication limits (view distance, bandwidth, entities per client) are in <a href="replication.html#limits">Replication</a>.</p>
+<h2 id="how-it-is-tested">How it is tested<a class="anchor" href="#how-it-is-tested" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>net/wire</code>: round trip of every message, every truncation rejected, golden bytes, limit violations, and <code>FuzzDecode</code>.</li>
+<li><code>net/transport</code>: the in-memory fault injector is reproducible from its seed; budgets, oversized frames, close, break and partition; TCP framing, a forged 1 GiB length, per-address limits; TLS pinning with the expected fingerprint, a wrong one, trust on first use and a changed certificate.</li>
+<li><code>net/replica</code>: see <a href="replication.html#how-it-is-tested">Replication</a>: joins, leaves, chat, kicks, authentication, hostile clients, component visibility.</li>
+<li><code>net/netapp</code>, <code>internal/netplay</code>, <code>internal/dedicated</code>, <code>cmd/burrowplay</code>: the command router policy, the networked controller, a host and guests built from the sandbox template over loopback TCP with TLS, pins, the token store, the lobby and matchmaker modes, a dedicated server restarting from its save, and <code>burrowplay -connect -headless</code> against a running host.</li>
+<li><code>make net-test</code> runs the fast suite (net and internal/netplay) with <code>-race</code>.</li>
+</ul>
+<h2 id="what-is-not-covered">What is not covered<a class="anchor" href="#what-is-not-covered" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Chat has no on-screen box yet: it is a terminal line (<code>burrowplay</code>, <code>burrow serve</code>) and a log in <code>netplay.Host.Chat</code> / <code>Guest.Chat</code>.</li>
+<li>UDP, LAN discovery and relays. The in-memory transport models a reliable ordered stream, like TCP.</li>
+<li>The engine draws remote players only when the game gives their avatars the <code>character</code> component; otherwise a game draws them from the replicated avatars and <code>net_player_info</code>.</li>
+</ul>
+<h2 id="faq">FAQ<a class="anchor" href="#faq" aria-label="Link to this section">#</a></h2>
+<p><strong>Why server-authoritative replication and not lockstep?</strong> One model has to serve both a four-friend session and a persistent public world: the server holds the truth, a client downloads only what is around it, cannot read what a visibility rule withholds, and a slow or modified client cannot desynchronise anyone.</p>
+<p><strong>Can a client cheat by sending commands?</strong> Only whitelisted commands, within limits, validated twice. A client can always lie about its own input (like in any game); it cannot act for someone else or change the rules.</p>
+<p><strong>Does a slow player slow everyone down?</strong> No. The server ticks on time and each client has its own bandwidth budget.</p>
+<p><strong>Is my password safe on a LAN without TLS?</strong> It is never sent, but a recorded handshake allows offline guessing: use a long password, or TLS.</p>
+<h2 id="joining-and-hosting-from-the-game">Joining and hosting from the game<a class="anchor" href="#joining-and-hosting-from-the-game" aria-label="Link to this section">#</a></h2>
+<p>A windowed game does not need <code>burrowplay -connect</code>. Its menus (<code>net:join:&lt;link&gt;</code>, <code>net:host</code>, <code>net:server_add</code>, see <a href="game-ui.html">game UI</a>) and its scripts (<code>NetJoin</code>, <code>NetHost</code>) ask the launcher, which ends the current run and then:</p>
+<ul>
+<li><strong>join</strong>: plays on the server of the link, as <code>-connect</code> does. If the connection fails the launcher prints the error and returns to the title screen.</li>
+<li><strong>host</strong>: builds the game, starts the embedded server (<code>runtime.plugins.net</code> is required, same as <code>burrow serve</code>) with you as its local player, prints <code>join link: burrow://...</code> on the console and plays on it.</li>
+</ul>
+<p>Saved servers of the &#34;servers&#34; list live in <code>servers.json</code> in the user config directory (<code>&lt;config&gt;/burrow/servers.json</code>, at most 64 <code>burrow://</code> links).</p>
+<div class="pagemeta"><a href="networking.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#contents">Contents</a></li><li><a href="#what-a-game-author-must-know">What a game author must know</a></li><li><a href="#playing-host-join-editor">Playing: host, join, editor</a></li><li><a href="#engine-integration">Engine integration</a></li><li><a href="#remote-player-movement">Remote player movement</a></li><li><a href="#using-the-api">Using the API</a></li><li><a href="#protocol">Protocol</a></li><li><a class="l3" href="#framing">Framing</a></li><li><a class="l3" href="#messages">Messages</a></li><li><a class="l3" href="#handshake-and-authentication">Handshake and authentication</a></li><li><a href="#security-and-threat-model">Security and threat model</a></li><li><a href="#limits">Limits</a></li><li><a href="#how-it-is-tested">How it is tested</a></li><li><a href="#what-is-not-covered">What is not covered</a></li><li><a href="#faq">FAQ</a></li><li><a href="#joining-and-hosting-from-the-game">Joining and hosting from the game</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/mermaid.min.js" defer></script>
+<script src="../assets/mermaid-init.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

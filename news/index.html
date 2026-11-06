@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>News | Burrow</title>
+<meta name="description" content="Burrow release notes and changelog.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/news/">
+<meta property="og:title" content="News | Burrow">
+<meta property="og:description" content="Burrow release notes and changelog.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/news/">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="News | Burrow">
+<meta name="twitter:description" content="Burrow release notes and changelog.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<link rel="alternate" hreflang="en" href="https://burrow-engine.github.io/burrow-releases/news/">
+<link rel="alternate" hreflang="fr" href="https://burrow-engine.github.io/burrow-releases/fr/news/">
+<link rel="alternate" hreflang="x-default" href="https://burrow-engine.github.io/burrow-releases/news/">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="market" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html" aria-current="page">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/news/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main">
+<section class="layer sky pagehead"><div class="stars" aria-hidden="true"></div><div class="wrap"><h1>News and changelog</h1><p class="lead">What changed, newest first.</p></div></section>
+<section class="layer soil"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V1H5V2H9V1H12V0H25V1H27V2H29V3H34V2H36V3H39V2H42V1H44V2H45V3H46V2H47V1H49V2H50V1H60V0H66V1H67V2H71V1H73V0H88V1H94V2H95V3H96V2H99V1H100V2H104V1H106V2H108V1H109V2H115V3H120V5H0z"/><path class="pb" d="M99 3h1v1h-1zM8 4h1v1h-1zM80 3h1v1h-1zM115 4h1v1h-1zM29 4h1v1h-1zM70 2h1v1h-1zM40 2h1v1h-1zM86 4h1v1h-1zM13 3h1v1h-1zM100 3h1v1h-1zM50 4h1v1h-1zM119 3h1v1h-1zM74 3h1v1h-1zM43 4h1v1h-1zM93 2h1v1h-1zM113 2h1v1h-1zM38 3h1v1h-1zM108 2h1v1h-1zM30 4h1v1h-1zM27 3h1v1h-1zM44 3h1v1h-1zM90 2h1v1h-1zM28 3h1v1h-1zM16 3h1v1h-1zM98 3h1v1h-1zM0 2h1v1h-1z"/><path class="ec" d="M0 1h5v1h-5zM5 2h4v1h-4zM9 1h3v1h-3zM12 0h13v1h-13zM25 1h2v1h-2zM27 2h2v1h-2zM29 3h5v1h-5zM34 2h2v1h-2zM36 3h3v1h-3zM39 2h3v1h-3zM42 1h2v1h-2zM44 2h1v1h-1zM45 3h1v1h-1zM46 2h1v1h-1zM47 1h2v1h-2zM49 2h1v1h-1zM50 1h10v1h-10zM60 0h6v1h-6zM66 1h1v1h-1zM67 2h4v1h-4zM71 1h2v1h-2zM73 0h15v1h-15zM88 1h6v1h-6zM94 2h1v1h-1zM95 3h1v1h-1zM96 2h3v1h-3zM99 1h1v1h-1zM100 2h4v1h-4zM104 1h2v1h-2zM106 2h2v1h-2zM108 1h1v1h-1zM109 2h6v1h-6zM115 3h5v1h-5z"/></svg><div class="wrap">
+<p class="newsnote">Subscribe with the <a href="../feed.xml">Atom feed</a>. <a href="../docs/changelog-history.html">Detailed history</a> of the stages before 0.1.0.</p>
+<nav class="jump" lang="en" aria-label="Versions"><ul><li><a href="#0-8-3---2026-11-06">0.8.3 - 2026-11-06</a></li><li><a href="#0-8-2---2026-11-05">0.8.2 - 2026-11-05</a></li><li><a href="#0-8-1---2026-11-05">0.8.1 - 2026-11-05</a></li><li><a href="#0-7-1---2026-11-04">0.7.1 - 2026-11-04</a></li><li><a href="#0-7-0---2026-11-04">0.7.0 - 2026-11-04</a></li><li><a href="#0-6-1---2026-11-03">0.6.1 - 2026-11-03</a></li><li><a href="#0-6-0---2026-11-03">0.6.0 - 2026-11-03</a></li><li><a href="#0-5-2---2026-11-02">0.5.2 - 2026-11-02</a></li><li><a href="#0-5-1---2026-11-02">0.5.1 - 2026-11-02</a></li><li><a href="#0-5-0---2026-11-02">0.5.0 - 2026-11-02</a></li><li><a href="#0-4-2---2026-11-01">0.4.2 - 2026-11-01</a></li><li><a href="#0-4-1---2026-11-01">0.4.1 - 2026-11-01</a></li><li><a href="#0-4-0---2026-11-01">0.4.0 - 2026-11-01</a></li><li><a href="#0-3-2---2026-10-31">0.3.2 - 2026-10-31</a></li><li><a href="#0-3-1---2026-10-31">0.3.1 - 2026-10-31</a></li><li><a href="#0-3-0---2026-10-31">0.3.0 - 2026-10-31</a></li><li><a href="#0-2-3---2026-10-31">0.2.3 - 2026-10-31</a></li><li><a href="#0-2-2---2026-10-31">0.2.2 - 2026-10-31</a></li><li><a href="#0-2-1---2026-10-31">0.2.1 - 2026-10-31</a></li><li><a href="#0-2-0---2026-10-31">0.2.0 - 2026-10-31</a></li><li><a href="#0-1-0---2026-10-30">0.1.0 - 2026-10-30</a></li></ul></nav>
+<div class="news" lang="en">
+<article class="release px" id="0-8-3---2026-11-06"><header><h2>0.8.3 - 2026-11-06</h2><p class="rmeta"><span class="chip">Latest</span><time>2026-11-06</time></p></header>
+<ul>
+<li><strong>Fixed:</strong> two buttons bound to the mouse wheel, one per direction (<code>scroll</code> with scale 1 and scale -1), were both pressed by any notch: a button takes an analog input by its length, which ignored the sign, so a game that changes slot with <code>hotbar_prev</code>/<code>hotbar_next</code> saw one step forward and one back and nothing moved. A wheel binding now presses a button only in the direction of its scale. Test <code>TestScrollButtonsArePerDirection</code>.</li>
+<li><strong>Added:</strong> a game customizes its loading screen and a network client&#39;s wait: <code>gogame.Game.Loading</code> (<code>LoadingScreen</code>: <code>Title</code>, <code>Paint(cv, w, h, t, title, stage)</code> draws the whole screen, <code>Ready()</code>), <code>engine.LoadingScreenPlugin.Hold/Stage/Paint</code> and <code>game.Window.OnLoading</code>. For a client (<code>gogame.Connect/Join</code>) the screen stays up until the connection is complete (<code>netplay.Guest.Ready</code>: the server accepted it, its player exists, the terrain under it arrived) and the game says it is ready (<code>LoadingScreen.Ready</code>: its first data from the server): nothing of the world shows before. Stages given to <code>Paint</code>: <code>world</code>, <code>connect</code>, <code>terrain</code>, <code>arrival</code>. The simulation is not paused while a <code>Hold</code> keeps the screen up.</li>
+<li><strong>Fixed:</strong> Enter in a text field only sent its event; it now also runs the <code>ui:</code> parts of its action like a button (<code>sim:chat:say;ui:set:chat_text=;ui:hide:chat_input</code> sends, clears and closes). Test <code>TestInputSubmitRunsItsUIActions</code>.</li>
+<li><strong>Added:</strong> the server streams the terrain, as Minecraft does (<code>replica.ServerConfig.StreamBase</code>, always on for <code>netplay.StartHost</code>): every non-empty chunk of the base terrain in a client&#39;s view is sent whole (version 0, compressed once and shared: <code>basestream.go</code>), not only the chunks the game edited; the first edit of such a chunk is a delta from the terrain (the client holds it: <code>chunkEnt.baseDelta</code>, the whole chunk only past <code>MaxDeltaEdits</code>) and starts the delta references; terrain chunks are deflated at <code>BestCompression</code> (once, shared: 10% under <code>BestSpeed</code> on biome terrain; a shared dictionary added only 4% more and a protocol change, so none), and a client&#39;s frame generates at most 8 new terrain chunks (<code>maxGenPerFrame</code>), so a joining player does not stall the server&#39;s ticks. A client (<code>netplay.Join</code>) removes its base terrain (<code>ChunkMap.SetBase(0, 0, nil)</code>): it generates nothing, needs no seed and no generator of the game, and the pin <code>net.stream_base</code> makes a client of another kind refuse; the world seed is no longer a pin. The client&#39;s prediction waits for the chunk under the player (<code>Client.HoldsChunk</code>, 3 s at most) instead of walking through the void. Cost: the terrain in view crosses the network once per client (a few hundred KiB to a few MiB, at the 256 KiB/s budget). Tests <code>TestStreamBaseSendsTheTerrain</code>.</li>
+<li><strong>Added:</strong> <code>gogame.Ctx.BlockBoxes(x, y, z)</code>: the boxes that make the shape of the block at a cell, <code>{minX, minY, minZ, maxX, maxY, maxZ}</code> in blocks from the cell&#39;s corner (the selection boxes a ray tests, resolved for that cell: stairs with their corner shape, a slab low or high, a torch, a fence with its connections); nil for air and for a full cube. A game that draws something around or over a block (the mining cracks, an outline) follows the model with it instead of the whole cell. Test <code>TestBlockBoxesFollowTheShape</code>.</li>
+<li><strong>Fixed:</strong> on a network client, typing in a text field of the game UI also played the game: the input sent to the server carried the walking and the buttons of the keys pressed (typing &#34;wood&#34; in a command box walked the avatar and pressed the game&#39;s keys). While a text field has the focus (<code>UI.FocusedIsInput</code>), <code>internal/netplay.InputFromState</code> sends no walking and no buttons, only the look. Test <code>TestTypingSendsNoGameInput</code>.</li>
+<li><strong>Fixed:</strong> <code>gameui</code> grids and lists, found with the project&#39;s inventory: (1) a click that moved a few pixels between the press and the release became a drag, and released over its own cell the click was lost; at 4K a hand moves 6 pixels easily. The drag threshold now grows with the interface scale, and a release over the cell the press started on, without the pointer ever having left it, is a click (a drag that left the cell and came back still cancels); (2) an item picked up by a first click now follows the cursor like a dragged one until the next click puts it down (<code>UI.carried</code>); (3) <code>Widget.ScrollOffset()</code> exposes the offset a list uses to find the row under a click, for a painter that draws the list itself: the project&#39;s skin counted the wheel on its own and never saw it (a modal screen zeroes the app input before the skin reads it), so the engine scrolled the list while the skin drew the top rows, and clicks landed on rows other than the ones shown. Tests <code>TestClickWithJitterIsStillAClick</code>, <code>TestDragStillMovesAndCancels</code>, <code>TestListScrollOffsetIsExposed</code>, <code>TestClickPickedItemFollowsTheCursor</code>.</li>
+<li><strong>Fixed:</strong> in a network session the window and the server never agreed on where the player was (measured up to 1.6 blocks), so the server aimed, broke and picked up from a place the player did not see, and any correction felt like a rollback. The client and the server stepped the player with two different models (the first person controller at frame rate, with its own physics and creature collisions; the server one step per input received, about 15 a second), and the controller kept its prediction forever. Now, as in client-side prediction with server reconciliation (Gambetta; Overwatch&#39;s command frames): the server applies every movement input once, in order, one per tick (a backlog two per tick; <code>net/replica.Server.runTick</code>, test <code>TestServerAppliesEachInputOnceInOrder</code>); the walk model is one exported function, <code>netsim.Walk</code> (<code>netsim.WalkState</code>), that the server&#39;s <code>moveNode</code> and the client both call; a client with a first person controller builds one input per tick of real time, predicts it with <code>netsim.Walk</code>, keeps it until acknowledged and draws the prediction interpolated between its last two ticks (<code>app.Controller.SetPrediction</code> / <code>SetPredicted</code>: the controller runs no physics of its own then); each server frame compares the node&#39;s position for the acknowledged input (<code>FrameInfo.InputAck</code>, <code>replica.Client.InputSeq</code>) with the prediction, and on a difference (a knockback, a push, water, a teleport) restarts from the server&#39;s position and replays the inputs in flight, the on-screen jump fading over a few frames (<code>internal/netplay</code> predict.go). Same inputs, same positions: walking, turning, jumping and climbing steps need no correction (test <code>TestPredictionMatchesTheServerExactly</code>, a real <code>netsim</code> server four inputs behind).</li>
+<li><strong>Added:</strong> <code>BURROW_NETSTATS=1</code> on a dedicated server logs the replication every 10 s (chunks and fine water sent whole or as deltas, entity updates, paused ticks, and per client the pending updates and frame sizes).</li>
+<li><strong>Added:</strong> <code>netsim.Input.EyeX/EyeY/EyeZ/HasEye</code>: a network client sends where its camera is with every input (<code>internal/netplay.InputFromState</code>, from <code>app.FrameState.CameraPos</code>), and <code>gogame.Ctx.EyeOf(player)</code> reads it. The server walks the node a network trip behind what the player sees; a game aims the player&#39;s rules from this eye (after checking it is near the node) so the block or creature under the crosshair is the one hit. Stored in the player registry behind flag bit 4: a registry whose inputs carry no eye (alone, older saves) encodes and hashes exactly as before (test <code>TestInputEyeRoundTripAndOldEncodingUnchanged</code>).</li>
+<li><strong>Fixed:</strong> the wind sway still read as a loop: its sines kept one tempo. The phase of each spot now also wanders with a noise moving in time, and the whole field hurries and calms down together over tens of seconds (a bounded phase drift: a tempo varying with the time would grow without end on a long session). <code>voxel.vert.spv</code> rebuilt with <code>cmd/burrowshader</code>.</li>
+<li><strong>Fixed:</strong> a networked first person controller never followed a move of its player node by the game on the server (a respawn, a teleport, a return to a shelter, a knockback): it keeps its own predicted position and never wrote nor read its node in a session, so the camera stayed where the player had been while the server placed them elsewhere (and aimed their rules from there). <code>gogame.Ctx.SetTransform</code> / <code>SetPos</code> on a player node now count the move in <code>scene.Player.Warp</code> (replicated; 0 adds nothing to the hash), and the controller takes the node&#39;s position when it changes (<code>followWarp</code>), keeping its look. Tests <code>TestNetworkedControllerFollowsWarps</code>.</li>
+<li><strong>Fixed:</strong> sneaking did not reach the server: the actions <code>sneak</code> and <code>crouch</code> were plain sequential button bits, so the server&#39;s walk model (which reads <code>netsim.ButtonCrouch</code>) walked the player upright, at full speed and off ledges. Both now set <code>ButtonCrouch</code> on the client (<code>internal/netplay.specialButtons</code>) and read it on the server (<code>gogame</code> <code>buttonBits</code>); sequential bits stop at 28 (bit 29 is <code>ButtonCrouch</code>). Test <code>TestSneakIsSentAsCrouch</code>.</li>
+<li><strong>Added:</strong> <code>gogame.Game.RulesOnlyEdits</code> (and <code>dedicated.Options</code> / <code>netplay.HostOptions.RulesOnlyEdits</code>): the server refuses the block edits a client sends directly (<code>netplay.EditKinds</code>: <code>set_block</code>, <code>fill_box</code>, <code>fill_sphere</code>, <code>micro_edit</code>, <code>block_micro_event</code>). The default whitelist only limits their rate and range, and checks no capability: a modified client could edit the world freely in a game whose rules break and place blocks themselves.</li>
+<li><strong>Fixed:</strong> on a network client, the look sent to the server was not the one the player saw: <code>internal/netplay.InputFromState</code> accumulated the mouse into its own yaw and pitch, from 0 and with the opposite sign of the first person controller&#39;s (and without its sensitivity). The server aimed the player&#39;s rules (breaking, placing, hitting, using) in a mirrored direction, so the block under the crosshair was never the one hit and no crack showed. The input now carries the controller&#39;s <code>Look()</code> when there is one (the mouse delta, with the controller&#39;s sign, only without it). Test <code>TestInputCarriesTheControllersLook</code>.</li>
+<li><strong>Fixed:</strong> the wind sway of leaves and plants read as a loop: every block followed the same two sines with one phase (a period of 2 to 4 s) shifted by its position, so the same swing came back and a regular wave crossed the forest. <code>shaders/voxel.vert</code> now scales it by gusts (a slow value-noise field drifting with the wind), offsets the phase of each spot by noise and sums three sines with unrelated frequency ratios. It stays a continuous function of the world position (vertices shared by neighbouring blocks move together) and the wind strength settings are unchanged. <code>voxel.vert.spv</code> rebuilt with the embedded glslang (<code>cmd/burrowshader</code>; <code>make shaders</code> with glslc gives the optimised binary).</li>
+<li><strong>Added:</strong> project tint settings, <code>textures/tints.json</code> beside the block overrides (read again on every override reload): the fixed colour (<code>plains</code>) and the four climate corners (<code>biomes</code>) of the grass, foliage and water tints, a global <code>saturation</code> and <code>brightness</code>, the tint <code>gain</code> (replaces <code>blocktex.TintGain</code> on the CPU paths and the look&#39;s tint gain), whether a pack&#39;s tintable textures are normalised and to which <code>reference</code> level, and a per-block tint (<code>blocks</code>: <code>none</code>, <code>grass</code>, <code>foliage</code> or <code>water</code>). Every field is optional; without the file nothing changes (<code>blocktex.Tints</code>, <code>TintGainInForce</code>).</li>
+<li><strong>Added:</strong> block textures of several sizes. A project override (<code>textures/block/&lt;name&gt;.png</code>) keeps its own size, a power of two up to <code>blocktex.MaxOverrideSize</code> (256; another width goes down to the power of two under it) instead of being resampled to the pack&#39;s 16 px, and <code>blocktex.BuildLayers</code> brings every layer of the set to the largest texture size (nearest neighbour, so pixel art stays sharp), up to <code>blocktex.MaxMixedSize</code> (256). A project whose textures all share one size is unchanged. Memory grows with the square of the largest size (about 400 layers x 3 maps: 64 px ~ 25 MiB, 256 px ~ 400 MiB with mips).</li>
+</ul>
+</article>
+<article class="release px" id="0-8-2---2026-11-05"><header><h2>0.8.2 - 2026-11-05</h2><p class="rmeta"><time>2026-11-05</time></p></header>
+<ul>
+<li><strong>Added:</strong> a <code>render.voxmodel</code> node with a <code>render.material</code> is now drawn with it (<code>rworld.Input.VoxMat</code>, filled by the render plugin): tint (<code>base_color</code>) and glow (<code>emissive</code>) of one instance, for instance a creature that flashes red when hit. Before, the component was ignored on a voxel model; a model without one is drawn exactly as before.</li>
+<li><strong>Fixed:</strong> a project of the 0.7 line keeps the voxel edits of all its scenes in <code>runtime.world</code>; since scenes got a world of their own, only its default scene still opened with those blocks, the others showed the bare terrain (in the editor, and in a game after a scene switch). A saved scene without a <code>.voxworld</code> of its own now falls back to <code>runtime.world</code>, and the next save gives it its own file.</li>
+</ul>
+</article>
+<article class="release px" id="0-8-1---2026-11-05"><header><h2>0.8.1 - 2026-11-05</h2><p class="rmeta"><time>2026-11-05</time></p></header>
+<ul>
+<li><p><code>gogame</code>: network games for a Go game, dedicated server only (no listen server). <code>gogame.Serve</code> runs the game as a dedicated server (the <code>burrow-server</code> data directory, world saves, bans, admin console; <code>gogame.InitServer</code> writes it; <code>Game.NetScene</code> is the scene it runs), <code>gogame.Join</code> / <code>Connect</code> and the menu action <code>net:join:&lt;link&gt;</code> play on a server, and <code>Main</code> gets <code>-serve DIR</code>, <code>-init-server DIR</code>, <code>-connect LINK</code>, <code>-name</code>. The server alone runs <code>OnTick</code>; <code>OnFrame</code> and the UI run on the clients only.</p></li>
+<li><p><code>gogame</code>: <code>Ctx.Players</code> (the connected players, or the one local player when played alone), <code>Ctx.ActionOf</code> (a player&#39;s input action), <code>Ctx.PlayerBytes</code> / <code>SetPlayerBytes</code> / <code>DeletePlayerBytes</code> (per-player data, replicated to its owner only through component <code>gogame.pdata</code> tagged <code>owner:&lt;id&gt;</code>, saved with the world), <code>Ctx.InSession</code>, and on the client <code>Frame.LocalPlayer</code>, <code>Frame.PlayerBytes</code>, <code>Frame.Session</code> plus the frame-side effects <code>Frame.UISet</code>, <code>UISetItems</code>, <code>UIShow</code>, <code>UIHide</code>, <code>CameraShake</code>, <code>CameraCut</code>, <code>ParticleBurst</code>.</p></li>
+<li><p><code>gogame</code>: <code>Frame.View</code> (a read-only <code>WorldView</code> of the voxels and nodes, the same interface as <code>*Ctx</code> has), <code>Frame.LocalNode</code> and <code>Frame.MouseButtons</code>, so a network client can draw a minimap and animate the arm from its replicated copy; <code>Main</code> gets <code>-ctl DIR &lt;command&gt;</code>.</p></li>
+<li><p><code>gameui</code>: drag and drop in a grid: a press on a filled cell and a move of 6 pixels carry the item (drawn under the cursor, its cell lit); releasing over another cell of the grid emits the same <code>move</code> event as click then click, releasing anywhere else cancels. A plain click is unchanged.</p></li>
+<li><p><code>gameui</code>: Ctrl+V (Cmd+V) pastes the system clipboard into the focused input field and Ctrl+C (Cmd+C) copies the field (<code>UI.FocusedText</code>); a paste is one line of at most 512 printable characters. Declarative input fields had no clipboard.</p></li>
+<li><p><strong>Fixed:</strong> on a network client the first person controller did not know its player id, so the replicated copy of the player&#39;s own avatar was drawn like another player&#39;s (a full body a step behind the camera, and the torso visible when looking down); <code>netplay.Guest</code> now tells the controller its player id and the engine draws only the arm.</p></li>
+<li><p><strong>Fixed:</strong> a network client sent only the buttons held at the instant of a submission, so a click, a tap or one notch of the wheel between two submissions never reached the server; the buttons seen since the last submission are now sent together (<code>internal/netplay.Guest</code>).</p></li>
+<li><p><code>gameui/uiplug</code>: a <code>gameui_event</code> carries the sender (<code>EventCmd.Player</code>, <code>InEvent.Player</code>); the server&#39;s whitelist forces it to the sender&#39;s id. The hash of an event is unchanged when it is 0 (a game played alone).</p></li>
+<li><p><code>internal/dedicated</code>: <code>Options.Customize</code> lets the caller adjust the options the game is built with (used by <code>gogame.Serve</code>).</p></li>
+</ul>
+<ul>
+<li><strong>Fixed:</strong> a Go game (<code>gogame.Run</code>) ended when a menu asked for a world (<code>world:play</code>, <code>world:create</code>) or the title: it now rebuilds the game in the same window, like <code>burrowplay</code>. Joining or hosting a network game is not served by a Go game yet (back to the title).</li>
+<li><strong>Fixed:</strong> <code>Game.Generator</code> was ignored by a runtime scene switch (the switch rebuilt the plain project terrain), so a game that went through a menu lost its custom terrain. The wrapper is now process wide like the other project data and applies to every scene switch.</li>
+<li><code>gogame</code>: the game state holds up to 1 MiB per key and 4 MiB in all (was 64 KiB per key; <code>MaxStateTotalBytes</code> is new). The hash of an existing game is unchanged. A server still sends the state component to clients only when its JSON is at most 64 KiB (<code>wire.MaxCompData</code>), so a larger state is not mirrored to remote clients (documented in docs/gogame.md).</li>
+<li><code>gogame</code>: <code>Ctx.SetVoxels</code> (up to 65536 block edits in one call, all or nothing) and <code>Ctx.FillVoxels</code> (a box of up to 1 048 576 cells).</li>
+<li><code>gogame</code>: <code>Game.Generator</code> lets a Go game wrap or replace the terrain generator of <code>runtime.generator</code>, and <code>worldgen.Decorated</code> adds features (ores, ruins, structures) to any base generator while keeping its chunk layers, registry binding, far-terrain sampling and biome tint. <code>engine.SetBiomeGen</code> follows <code>Unwrap()</code> so a decorated biome world keeps its tint. The decoration <code>ID</code> is part of the world identity. A project without <code>Game.Generator</code> is unchanged (same StateHash).</li>
+<li><strong>Fixed:</strong> maps made with the full block registry no longer fail to open. A <code>.voxworld</code> is now matched to the registry by block name and renumbered (it used to require an identical list, and 0.7 had renumbered 332 of the 385 cubes). A block the registry lacks is named in the error.</li>
+<li><code>runtime.block_packs</code> (for example <code>[&#34;minecraft&#34;]</code>) lets a project enable the optional packs; <code>burrow migrate</code> adds <code>[&#34;minecraft&#34;]</code> to projects made before 0.7, when that catalog was built in.</li>
+<li><code>runtime.block_registry</code> + <code>burrow blocks export</code>: the project keeps its own copy of the block registry (ids and properties), independent of the engine version; <code>burrow new</code> creates it, <code>burrow build</code> ships it, and the StateHash of the templates is unchanged by it. <code>burrow blocks packs</code> lists the packs.</li>
+<li><strong>Breaking, removed:</strong> the player rules. The engine no longer has hit points, death, lives, respawn or a kill plane: the <code>player.health</code> component, the <code>lives</code>, <code>respawn_delay</code>, <code>respawn_at</code>, <code>kill_plane</code> and <code>kill_y</code> fields of <code>game.mode</code>, the commands <code>scene_player_hurt</code>, <code>scene_player_die</code>, <code>scene_player_respawn</code>, <code>scene_player_checkpoint</code> and <code>scene_player_rules</code>, the <code>player.died</code> and <code>player.respawned</code> events and the controller&#39;s &#34;dead&#34; input lock. A game keeps these in its own state and decides in its own code (a Go game: <code>Ctx.State</code>, <code>Ctx.SetPos</code>). A level&#39;s <code>kill_y</code> and <code>bounds</code> still return an actor to the level&#39;s default spawn. <code>game.mode</code> keeps the player prefab, the input map and the spawn points; the creative inventory and the player capabilities (<code>player.move</code>, <code>player.build</code>, <code>player.interact</code>, <code>player.inventory</code>, <code>player.controls</code>) stay. Scenes, prefabs and variants saved with the removed parts still load (they are dropped on load) and <code>burrow migrate</code> removes them from the files. <strong>The StateHash of every project changes</strong> (a hashed component is gone): saves and replays from before do not load, and <code>scripts/portability-golden.txt</code> is re-recorded (identical on darwin/arm64 and darwin/amd64; Windows and Linux are for CI to confirm).</li>
+<li><strong>Removed:</strong> matchmaking. The self-hosted matchmaker (<code>internal/matchmaker</code>, <code>burrow-server matchmaker ...</code>, ratings and queues), its wire contract (<code>net/mmapi</code>), the dedicated server&#39;s <code>&#34;matchmaking&#34;</code> mode and <code>matchmaker</code> section, <code>burrowplay -matchmaker/-queue/-party/-region/-accept-invites</code> and <code>docs/matchmaking.md</code>. A rating and queueing service is a platform product, not an engine feature. <code>burrow-server</code> still hosts persistent and lobby servers.</li>
+<li><strong>Removed:</strong> the <code>survival</code>, <code>topdown_strategy</code> and <code>physics_puzzle</code> templates and their <code>examples/tpl_*</code> pilots. They were complete games, not engine features. <code>platformer</code> stays as the reference template (the <code>burrow gen</code> and parity tests use it) and <code>lobby_match</code> as the lobby fixture. <code>burrow migrate</code> still converts projects made from them.</li>
+<li><code>gogame</code>: generic engine primitives on <code>Ctx</code>, so a game no longer needs the WASM SDK for them: <code>BlockInfo</code>, <code>VoxelInfo</code>, <code>BlockNames</code>, <code>Light</code>, <code>ParticleBurst</code>, <code>ParticleBlockBreak</code>, <code>CameraShake</code>, <code>CameraCut</code>, <code>CameraSwitch</code>, <code>UISetItems</code>, <code>SaveSet</code>, <code>SaveGet</code>, <code>SaveDelete</code>, <code>SaveSlot</code>, <code>Tags</code>, <code>HasTag</code>, <code>AddTag</code>, <code>RemoveTag</code>, <code>Children</code>, <code>Has</code>.</li>
+<li><code>burrow test</code> on a Go game builds once and runs <code>--runs</code> times under different <code>GOMAXPROCS</code>, requires identical StateHash (each run verifies its own journal replay), honours <code>--go-tests</code> and rejects <code>--parity</code> with a clear message.</li>
+<li><code>burrow gen</code> writes <code>burrow_gen.go</code> into the package that is already in <code>scripts/&lt;name&gt;/</code> (it used to force <code>package main</code> and break a library package).</li>
+<li>One engine version: <code>project.EngineVersion</code> is a variable set with <code>-ldflags</code> (like <code>internal/game.Version</code>), the MCP servers report it, <code>scripts/dist.sh</code> sets both; a test keeps them equal to the latest released changelog heading.</li>
+<li>A stale <code>script.hash</code> pinned in a saved scene now says how to fix it in the error.</li>
+<li><code>gogame</code> no longer imports the WebAssembly runtime and no longer needs <code>runtime.plugins.scripts</code>: the journaled input snapshot moved to <code>input/inputsnap</code>, the <code>tags</code> component to <code>scene</code> (built in). Component and command names (<code>script.input</code>, <code>script_set_input</code>, <code>tags</code>) and hashes are unchanged; <code>script</code> keeps type aliases.</li>
+<li><code>gogame</code>: <code>Parent</code>, <code>ScenePath</code>, <code>FindWith</code>, <code>Field</code>, <code>FieldNum</code>, <code>SetField</code>, <code>BlockEvents</code>, <code>FloodBlocks</code>, <code>SetLevelZone</code>, <code>DeleteLevelZone</code>, <code>ParticleEmit</code>, <code>ParticleStop</code>, <code>FluidAmount</code>, <code>FluidPour</code>, <code>FluidDrain</code>, typed blackboard values; <code>BlockInfo</code> carries <code>ID</code>, <code>Shape</code> and <code>LightLoss</code>.</li>
+<li><code>gogame</code>: navigation and AI (<code>NavGoal</code>, <code>NavStop</code>, <code>NavState</code>, <code>NavPath</code>, <code>SetBlackboard</code>, <code>Blackboard</code>, <code>DeleteBlackboard</code>, <code>NavSensed</code>).</li>
+<li><code>gogame</code>: animation player control (<code>PlayAnim</code>, <code>StopAnim</code>, <code>SetAnimSpeed</code>, <code>SetAnimParam</code>, <code>TriggerAnim</code>, <code>AnimTime</code>).</li>
+<li><code>gogame</code>: block data and scheduled cells (<code>BlockData</code>, <code>SetBlockData</code>, <code>DeleteBlockData</code>, <code>ScheduleBlock</code>, <code>UnscheduleBlock</code>, <code>DueBlocks</code>).</li>
+<li><code>gogame</code>: levels (<code>LoadLevel</code>, <code>CurrentLevel</code>, <code>LevelSpawns</code>, <code>LevelZoneAt</code>, <code>LevelSettings</code>).</li>
+<li><code>gogame</code>: audio (<code>PlaySound</code>, <code>StopSound</code>, <code>SetSound</code>, <code>SetBusVolume</code>, <code>StopAllSounds</code>, <code>SetListener</code>) and rigid-body queries (<code>RaycastBodies</code>, <code>OverlapBox</code>, <code>ApplyImpulse</code>).</li>
+<li><code>gogame</code>: <code>Ctx.SpawnPrefab</code> (name, parent, placement, components) and <code>Ctx.Tolerate</code> (a failed call returns its error without ending the run).</li>
+<li><code>gogame</code>: <code>Ctx.SwitchScene</code>; <code>Frame.Alpha</code>, <code>Frame.Find</code>, <code>Frame.VisualSet</code>, <code>Frame.VisualAdd</code>. <code>SceneSwitchRequest</code> moved to <code>app/appctl</code> (alias kept in <code>script</code>).</li>
+<li><code>gogame</code>: <code>SpawnNode</code>, <code>Patch</code> (RFC 7386 merge), <code>RemoveComponent</code>, <code>WorldInfo</code>, <code>Light.Level</code>.</li>
+<li><code>gogame</code>: <code>Ctx.State</code>, <code>SetState</code>, <code>StateOf</code>, <code>StateBytes</code>, <code>SetStateBytes</code>, <code>DeleteState</code>: the game&#39;s own state in a hashed simulation component (snapshots, saves, rollback and replay stay exact). Gameplay concepts (health, hunger, respawn) are deliberately not engine features.</li>
+</ul>
+</article>
+<article class="release px" id="0-7-1---2026-11-04"><header><h2>0.7.1 - 2026-11-04</h2><p class="rmeta"><time>2026-11-04</time></p></header>
+<ul>
+<li>Burrow Hub: a folder explorer in the Import dialog (Home, Desktop, Documents and Downloads shortcuts, breadcrumbs, projects marked) and in the dialog that locates a moved project.</li>
+<li>Burrow Hub: <strong>Browse...</strong> picks the location of a new project.</li>
+</ul>
+</article>
+<article class="release px" id="0-7-0---2026-11-04"><header><h2>0.7.0 - 2026-11-04</h2><p class="rmeta"><time>2026-11-04</time></p></header>
+<ul>
+<li>New <code>gogame</code> package: a trusted plain-Go game with <code>OnStart</code>, <code>OnTick</code>, <code>OnFrame</code> and <code>UI</code>.</li>
+<li>New <code>gogame</code> template: <code>burrow new g --template gogame</code>.</li>
+<li>New <code>imui</code> package: immediate-mode UI (windows, panels, buttons, sliders, text input).</li>
+<li><code>ui.Emit</code> sends journaled UI signals to <code>OnTick</code> (<code>Ctx.UIClicked</code>, <code>Ctx.UIValue</code>).</li>
+<li>Scripts get an <code>imui</code> bridge in <code>OnFrame</code>, with <code>Modal</code> pause menus; <code>OnFrame</code> keeps running while a menu pauses the game.</li>
+<li>New <code>burrow gen</code> writes typed constants for actions, scenes, prefabs, screens and nodes.</li>
+<li>New <code>burrow check</code> validates a project fast, with did-you-mean hints.</li>
+<li><code>keep_memory</code> keeps Go globals between ticks in single-player games.</li>
+<li>New agent cards <code>llms-gogame.txt</code> and <code>llms-script.txt</code>.</li>
+<li>New <code>docs/recipes/</code> with five compiled programs.</li>
+</ul>
+</article>
+<article class="release px" id="0-6-1---2026-11-03"><header><h2>0.6.1 - 2026-11-03</h2><p class="rmeta"><time>2026-11-03</time></p></header>
+<h4 id="0-6-1---2026-11-03-simulation-rate-and-scripts">Simulation rate and scripts<a class="anchor" href="#0-6-1---2026-11-03-simulation-rate-and-scripts" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>runtime.tick_rate</code> can be 20, 30, 40 or 60; journals record it and refuse a replay at another rate.</li>
+<li><code>runtime.physics_substeps</code> refines physics inside a tick without raising the gameplay rate.</li>
+<li>Scripts get <code>TickRate</code>, <code>TickDt</code>, <code>AfterSeconds</code> and <code>EverySeconds</code>.</li>
+<li><code>Seq</code> writes &#34;wait, do, wait until&#34; steps without a hand-made state machine.</li>
+<li><code>RootPredict</code> adds root-motion dashes to the client prediction.</li>
+<li>Child nodes can carry <code>root.move</code> too.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-script-debugger">Script debugger<a class="anchor" href="#0-6-1---2026-11-03-script-debugger" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>Break</code>, <code>BreakIf</code> and host breakpoints stop the simulation at the end of the tick, with the script&#39;s State, Props and host calls.</li>
+<li>The editor pauses on a stop; Step runs one tick; <code>editor_script_debug</code> does the same for agents.</li>
+<li><code>go test -tags slow ./cmd/burrow</code> now builds and runs every script template.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-templates">Templates<a class="anchor" href="#0-6-1---2026-11-03-templates" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The platformer, topdown strategy, survival and physics puzzle templates build again.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-root-motion">Root motion<a class="anchor" href="#0-6-1---2026-11-03-root-motion" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>A clip track <code>root.move</code> walks a character through <code>physics.character</code>, so collisions still apply.</li>
+<li>The velocity is local to the node and rotated by its yaw; it stops when the clip ends or is stopped.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-graphics-settings">Graphics settings<a class="anchor" href="#0-6-1---2026-11-03-graphics-settings" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The shader level can change while the game runs, with no restart.</li>
+<li>Every part of a level is also a setting of its own, such as <code>bloom</code>, <code>ao</code>, <code>god_rays</code> or <code>shadow_taps</code>.</li>
+<li>Settings sit on top of the level&#39;s preset and survive a level change.</li>
+<li><code>runtime.shaders</code> and <code>runtime.graphics</code> in <code>vox.project</code> set them at start.</li>
+<li>Scripts call <code>SetShaders</code>, <code>SetGraphics</code>, <code>SetGraphicsOn</code> and <code>ResetGraphics</code>.</li>
+<li>The editor has a Shaders entry in the View menu, a Graphics section in Preferences and the <code>editor_graphics</code> tool.</li>
+<li>Each change drains the GPU and rebuilds the post pipeline, so expect one frame hitch.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-frame-visuals">Frame visuals<a class="anchor" href="#0-6-1---2026-11-03-frame-visuals" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New components <code>visual.spring</code>, <code>visual.sway</code> and <code>visual.bind</code> animate what is drawn at the screen rate.</li>
+<li>They can drive position, rotation, scale, lights, shader parameters, the field of view and game UI numbers.</li>
+<li>They never enter the <code>StateHash</code> and never run on a server.</li>
+<li>They exist only when a scene uses one or <code>runtime.plugins.visual</code> is true, so other projects keep their hashes.</li>
+<li>A script can export <code>OnFrame</code> to write the same targets every frame (<a href="../docs/scripting/14-frame-scripts.html">frame scripts</a>).</li>
+<li><code>burrowsdk.Spring</code> is the same spring in simulation time, for gameplay that needs the value.</li>
+<li>A game UI number can be bound with <code>ui.&lt;key&gt;</code>.</li>
+<li>See <a href="../docs/visual-effects.html">frame visuals</a>.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-rendering">Rendering<a class="anchor" href="#0-6-1---2026-11-03-rendering" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Nodes moved by scripts or physics now glide between ticks instead of jumping 20 times a second.</li>
+<li>Meshes, sprites, voxel models and point lights are interpolated; teleports and new nodes are not.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-fixes-from-game-feedback">Fixes from game feedback<a class="anchor" href="#0-6-1---2026-11-03-fixes-from-game-feedback" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The script SDK builds against the kit again: it no longer imports an engine package the kit does not ship.</li>
+<li><code>anim.player</code> clips play in the game, not only in the editor (<code>runtime.plugins.anim</code>, on when a scene uses it).</li>
+<li>An unknown key in <code>vox.project</code> names its block and the keys valid there.</li>
+<li>A spawned prefab keeps its root&#39;s scale, and a prefab path without a name gives a valid node name.</li>
+<li>A scene with a bare <code>prefab.instance</code> link gets the prefab&#39;s nodes in the game.</li>
+<li><code>nav.agent</code> gets <code>feet</code> and <code>face</code> for creatures without <code>physics.character</code>.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-gameplay">Gameplay<a class="anchor" href="#0-6-1---2026-11-03-gameplay" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The first-person arm no longer shakes while walking; <code>fp_sway</code> and <code>fp_bob</code> tune it.</li>
+<li>A project block held in hand shows its textures, and a script can set the local player&#39;s <code>held</code> block.</li>
+<li><code>character</code> supports quadrupeds: four legs, tail, jaw and their own gaits.</li>
+<li><code>runtime.vox_front: &#34;magicavoxel&#34;</code> makes <code>render.voxmodel</code> face the same way as characters; new projects use it.</li>
+<li>The player climbs ladders and vines, collides with bodies and creatures, and takes knockback from <code>player.impulse</code>.</li>
+<li>Scripts get physics contacts with <code>OnContact</code>.</li>
+<li>Blocks can opt into random ticks (<code>random_tick</code>) for crops, grass and leaves.</li>
+<li>A truncated scene search now reports it.</li>
+<li>Block textures can animate.</li>
+<li>Lava flows with <code>runtime.plugins.lava</code>.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-worlds">Worlds<a class="anchor" href="#0-6-1---2026-11-03-worlds" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Creating or opening a world, or going back to the title, keeps the window open instead of closing and reopening it.</li>
+<li>A loading screen covers the frame and holds the simulation until the terrain around the player is loaded.</li>
+</ul>
+<h4 id="0-6-1---2026-11-03-character">Character<a class="anchor" href="#0-6-1---2026-11-03-character" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>recolor</code> on <code>render.voxmodel</code> and <code>character</code> makes colour variants of one <code>.vox</code> without a new file, with colour rows in the inspector.</li>
+<li><code>character.variant</code> picks a layer set of a layered model, so accessories need no copy of the animal.</li>
+<li>The character editor preview is drawn by the GPU at full resolution and every frame, no longer pixelated.</li>
+<li>Right drag orbits, middle drag pans, the wheel zooms smoothly and F frames the character.</li>
+<li>The particle preview is drawn by the GPU at the panel&#39;s size, runs live instead of replaying at 15 Hz, and orbits and zooms.</li>
+<li>The camera editor shows the world through the rig with the GPU, at full resolution.</li>
+<li>The game UI designer draws the screen as vectors at any zoom, so text and edges stay sharp.</li>
+<li>The <code>character</code> component has <code>fp_offset</code>, <code>fp_rot</code> and <code>fp_scale</code> to place the first-person arm and held object.</li>
+<li>The component has <code>held_model</code> and <code>held_scale</code> to hold any <code>.vox</code> prop instead of a block.</li>
+<li>A custom <code>.vox</code> model with an <code>arm_r</code> part is drawn as the first-person arm.</li>
+</ul>
+</article>
+<article class="release px" id="0-6-0---2026-11-03"><header><h2>0.6.0 - 2026-11-03</h2><p class="rmeta"><time>2026-11-03</time></p></header>
+<p>Everything in a scene is an entity, with shaders and materials, per-world voxel size and micro-voxels.</p>
+<h4 id="0-6-0---2026-11-03-breaking-changes">Breaking changes<a class="anchor" href="#0-6-0---2026-11-03-breaking-changes" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>audio_play</code>, <code>particle_burst</code> and <code>fx_shockwave</code> now need an emitter entity.</li>
+<li>Offsets replace absolute positions in those three calls.</li>
+<li><code>audio_music</code> now returns <code>DENIED</code>.</li>
+<li>The SDK calls <code>PlayOn</code>, <code>ParticleBurstOn</code>, <code>ParticleBlockBreakOn</code> and <code>Shockwave(emitter, ...)</code> replace the old audio and particle calls.</li>
+<li>See script/ABI.md for the removed SDK names.</li>
+<li>Escape opens the pause menu instead of quitting when the game UI plugin is on.</li>
+<li>The Outliner eye now hides nodes in the editor only.</li>
+<li>The inspector Enabled toggle stays the game&#39;s <code>render.mesh.hidden</code>.</li>
+<li>Every scene keeps its own world in <code>scenes/&lt;scene&gt;.voxworld</code>.</li>
+<li><code>runtime.world</code> remains the world of an older project&#39;s default scene until it is saved with its own.</li>
+<li>Changing the voxel size of a world with edits is refused.</li>
+<li>Multiplayer peers must share the voxel size and texture scale.</li>
+<li>Projects with no music, ambience or heat entities keep the former automatic behaviour.</li>
+<li>Removing or renaming a registered block, or changing its <code>facing</code>, needs an editor restart.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-player-and-game-mode">Player and game mode<a class="anchor" href="#0-6-0---2026-11-03-player-and-game-mode" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The player is now an entity, a linked instance of <code>builtin:player.prefab</code>.</li>
+<li>Journaled commands spawn the player, one per player in multiplayer.</li>
+<li>Remote movement is replicated into the player node.</li>
+<li>The player is kept across scene switches and spawned on Play in the editor.</li>
+<li>Scripts get <code>burrowsdk.Player(id)</code>, <code>LocalPlayer()</code> and the <code>player.died</code> and <code>player.respawned</code> events.</li>
+<li>Player capabilities are components on the prefab, and a missing component turns the feature off.</li>
+<li>The components are <code>player.move</code>, <code>player.build</code>, <code>player.interact</code>, <code>player.inventory</code>, <code>player.controls</code> and <code>player.health</code>.</li>
+<li>A project variant of the player prefab can remove or tune them.</li>
+<li><code>game.mode</code> is set per scene, like a game mode with a default pawn.</li>
+<li>It sets the player prefab, spawn, input map, respawn, kill plane, spawn points and lives.</li>
+<li><code>game.ui</code> chooses the HUD, inventory, pause, main menu, settings and lobby screens.</li>
+<li>A level&#39;s kill plane applies the game mode death rules.</li>
+<li>Respawn keeps the death bookkeeping.</li>
+<li>Remote players now jump, sprint, swim and crouch.</li>
+<li>Remote swimmers climb out onto a one-block ledge.</li>
+<li><code>player.sounds.pack</code> sets the sound pack per player.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-built-in-assets">Built-in assets<a class="anchor" href="#0-6-0---2026-11-03-built-in-assets" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Built-in particle effects, sprites, meshes, prefabs, game UI screens, shaders and materials ship in the <code>builtinassets</code> package.</li>
+<li>The 17 game UI screens are generated from the former Go templates.</li>
+<li>They are listed in the read-only Content &gt; Engine folder of the editor.</li>
+<li>Copy to project can optionally replace references in the open scene.</li>
+<li>Projects override effects with <code>runtime.particle_overrides</code>.</li>
+<li>The HUD is a built-in game UI drawn by the game UI plugin.</li>
+<li>The game UI gets the widgets <code>crosshair</code>, <code>hotbar</code> and <code>inventory_view</code>.</li>
+<li>The game HUD draws &#34;Right click: &lt;prompt&gt;&#34; under the crosshair.</li>
+<li>The game UI designer shows a read-only banner on built-in screens.</li>
+<li>The designer palette lists the HUD widgets.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-environment">Environment<a class="anchor" href="#0-6-0---2026-11-03-environment" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New components <code>env.time</code>, <code>env.weather</code>, <code>env.sun</code>, <code>env.sky</code>, <code>env.fog</code> and <code>env.post</code> describe the environment.</li>
+<li><code>env.post</code> covers exposure, bloom, saturation, contrast, fill light and distortion.</li>
+<li>Fog and post can be global or box and sphere volumes blended around the camera.</li>
+<li>The environment renders in Vulkan, in the soft renderer and in the editor viewport.</li>
+<li>Old <code>scene.settings</code> time, exposure and fill light are still read and migrated on save.</li>
+<li>New projects get an Environment node.</li>
+<li>Classic fog colour is separate from the horizon.</li>
+<li>The soft renderer draws stars and bloom.</li>
+<li>Scene meshes and particles fade into the fog colour.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-shaders-and-materials">Shaders and materials<a class="anchor" href="#0-6-0---2026-11-03-shaders-and-materials" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>.shader</code> assets are GLSL with <code>@param</code> and <code>@texture</code> annotations.</li>
+<li>Compile errors map back to file and line.</li>
+<li><code>.material.json</code> assets support parent inheritance for variants.</li>
+<li>Built-in materials are standard, emissive, glass and foliage.</li>
+<li>Each draw gets 16 material floats and 4 texture slots.</li>
+<li>Projects can override built-in pipeline shaders in <code>shaders/override/</code>.</li>
+<li>Overrides get an interface check and fall back on failure.</li>
+<li>Overrides are hot-reloaded in the editor and pipelines are rebuilt.</li>
+<li>Hot reload also rebuilds anti-aliasing, upscaling, particle and ray tracing pipelines.</li>
+<li>No install is needed since glslang and SPIRV-Tools run embedded through wazero.</li>
+<li><code>glslc</code> on PATH is used when present.</li>
+<li><code>burrow build</code> compiles <code>.shader</code> files.</li>
+<li>Custom material shaders now cast shadows and draw motion vectors.</li>
+<li><code>discard</code> or <code>// @shadow cutout</code> cuts the shadow.</li>
+<li><code>cast_shadow: false</code> is respected.</li>
+<li>The editor has a shader code editor with diagnostics, live preview, parameters and templates.</li>
+<li>The shader graph (<code>.shadergraph.json</code>) can be converted to code.</li>
+<li>The material editor covers parameters, textures, parent, render state and preview.</li>
+<li>The shader graph editor gains zoom, fit, pan, multi-select, copy and paste, groups and a minimap.</li>
+<li>Graph nodes can be searched and comment boxes edit in place on the canvas.</li>
+<li>Shader, graph and material editors are covered by the unsaved guard.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-prefabs">Prefabs<a class="anchor" href="#0-6-0---2026-11-03-prefabs" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Hierarchy right-click &gt; Create prefab turns a node into a linked <code>.prefab</code> instance.</li>
+<li>A <code>prefab.instance</code> component stores only the per-instance overrides.</li>
+<li>Open prefab edits the prefab in place of the scene.</li>
+<li>Save updates every instance and keeps its overrides.</li>
+<li>Apply to prefab, Revert and Unpack are available, and overridden fields are marked in the inspector.</li>
+<li>Changes of a <code>.prefab</code> on disk update its instances.</li>
+<li>Prefab cycles are refused.</li>
+<li>Create variant works on built-in and project prefabs, including chains.</li>
+<li>The prefab editor has a variant bar with Open base, Apply to base and per-field revert.</li>
+<li>Overrides now work per nested path, such as <code>props.on</code>.</li>
+<li>Child order and child renames are kept in overrides.</li>
+<li>Older shallow overrides apply as before.</li>
+<li>The prefab editor is a full-screen tool opened by double-clicking a <code>.prefab</code>.</li>
+<li>Each open prefab has its own document, world, selection and undo history.</li>
+<li>Save re-syncs the scene&#39;s instances as one scene undo step.</li>
+<li>Open prefab tabs without edits reload when the file changes on disk.</li>
+<li>Previews show live particles, optional sound and voxel groups with their blocks.</li>
+<li>Unsaved prefab tabs are covered by the unsaved guard.</li>
+<li>Prefab preview sound is occluded and rotated groups collide exactly.</li>
+<li>Inspectors for <code>game.mode</code> and <code>game.ui</code> offer pickers and Create variant.</li>
+<li>Generic asset pickers cover materials, effects, sounds, prefabs, game UI and input maps.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-usable-nodes-and-state">Usable nodes and state<a class="anchor" href="#0-6-0---2026-11-03-usable-nodes-and-state" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The <code>interact</code> component marks a node as usable, with a box, <code>range</code> and <code>prompt</code>.</li>
+<li>A right click on it sends the journaled <code>scene_use</code> command.</li>
+<li>The script runtime delivers <code>node.use</code> to the nearest script.</li>
+<li>The Go SDK exposes <code>OnUse</code>.</li>
+<li>The <code>state</code> script template toggles an on/off state on a right click.</li>
+<li>It listens to the <code>state.on</code>, <code>state.off</code> and <code>state.toggle</code> bus events.</li>
+<li>It switches model variants, particle emitters and muted audio sources under the node.</li>
+<li>A campfire walkthrough is in docs/prefabs.md.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-audio-and-effects">Audio and effects<a class="anchor" href="#0-6-0---2026-11-03-audio-and-effects" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>audio_source.mode</code> is <code>global</code>, <code>local</code> or <code>localized</code>.</li>
+<li>Music and ambience are the <code>audio.music</code> and <code>audio.ambient</code> components.</li>
+<li>The prefabs <code>builtin:music.prefab</code> and <code>builtin:ambience.prefab</code> ship built in.</li>
+<li><code>scene.settings.music</code> migrates on save.</li>
+<li>The player entity emits footsteps, jump and land sounds, block impacts, debris and UI clicks.</li>
+<li>Remote footsteps come from node motion.</li>
+<li><code>player.sounds</code> overrides the sound mapping.</li>
+<li>Heat columns follow an <code>fx.heat</code> component.</li>
+<li>Game UI sounds cover hover, open, close, back and error.</li>
+<li>Screens and widgets can override them in <code>.ui.json</code>, and <code>none</code> means silent.</li>
+<li>The slider sound and the <code>ui.slider</code> and <code>ui.tick</code> events are new.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-world-voxel-size">World voxel size<a class="anchor" href="#0-6-0---2026-11-03-world-voxel-size" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>A world chooses 1, 0.5, 0.25 or 0.125 m per voxel.</li>
+<li>The size is set by <code>runtime.generator.voxel_size</code> or in World settings in the editor.</li>
+<li>It is recorded in the <code>.voxworld</code> header and carried across scene switches.</li>
+<li>Player, physics, particles and audio distances are in metres.</li>
+<li>The heightmap generator samples finer for the same landscape with more detail.</li>
+<li>Other generators upsample.</li>
+<li>The view radius keeps its distance in metres.</li>
+<li>Scale 1 stays byte-identical.</li>
+<li>Block light reaches the same metres at every voxel size.</li>
+<li>Coarse water spreads 7 m and moves at the same speed.</li>
+<li><code>texture_scale: metre</code> tiles block textures per metre without seams.</li>
+<li>Far plane, <code>env.fog.distance</code> and precipitation are in metres.</li>
+<li>Precipitation covers 64 m at every voxel size.</li>
+<li>Nav agent profiles, AI ranges and camera rig distances are in metres.</li>
+<li>The editor shows metres next to voxels.</li>
+<li>The editor camera keeps its place in metres when the voxel size changes.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-distance-lod">Distance LOD<a class="anchor" href="#0-6-0---2026-11-03-distance-lod" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Chunk columns beyond 160, 320 and 640 m are meshed at 2, 4 and 8 voxels per cell.</li>
+<li>Seams between levels are watertight.</li>
+<li>Rings are in metres and follow the world voxel size.</li>
+<li><code>BURROW_LOD=0</code> disables the distance LOD.</li>
+<li><code>BURROW_LOD_RINGS</code> sets the rings.</li>
+<li>LOD1 is textured and level changes cross-fade in 350 ms.</li>
+<li>The cross-fade covers glass, water and shadows.</li>
+<li>Far columns are sampled coarsely for flat, biome and tree generators.</li>
+<li>Far LOD columns reach a maximum radius of 96.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-water">Water<a class="anchor" href="#0-6-0---2026-11-03-water" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The free water surface sits at 8/9 of a block like vanilla.</li>
+<li>Covered cells stay full and physics keeps full cells.</li>
+<li>The water shaders were retuned with biome-tinted absorption and a GGX sun glint.</li>
+<li>Shore foam is softer and sky reflection is occluded under cover.</li>
+<li>Fine water works in metres at every voxel size.</li>
+<li>Fine water caps, evaporation and burst sizes are in metres.</li>
+<li>The water scale follows a scene switch to another voxel size.</li>
+<li>Fine-water sources wake the bricks above.</li>
+<li>A lake fills to the same depth at 0.125 m.</li>
+<li>Nav treats fine water at least half a cell deep as water.</li>
+<li>Physics characters stand on fine water.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-micro-voxels">Micro-voxels<a class="anchor" href="#0-6-0---2026-11-03-micro-voxels" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>A cell can hold a brick of 2, 4, 8 or 16 micro voxels per side.</li>
+<li>A brick has a palette of up to 255 blocks, and uniform bricks collapse.</li>
+<li>Worlds without bricks stay byte-identical.</li>
+<li>The journaled <code>micro_edit</code> command replicates in multiplayer.</li>
+<li>Raycasts hit the exact micro face and collisions use the solid micro boxes.</li>
+<li>Bricks pass light unless fully opaque.</li>
+<li>Meshing happens at micro resolution with AO and glass.</li>
+<li>Far LOD uses the majority block of a brick.</li>
+<li>Fluids treat a brick as solid.</li>
+<li>The Chisel, Micro box and Micro smooth tools edit bricks.</li>
+<li>Resolution 4, 8 or 16 is chosen with Shift+C.</li>
+<li>The tools have mirror, radial symmetry and a ghost preview.</li>
+<li>Each stroke is one undo step.</li>
+<li>Copy and paste, voxel groups and prefabs keep bricks.</li>
+<li>Merge rules are <code>majority_solid</code> (default), <code>majority</code> and <code>keep_shape</code>.</li>
+<li>Chiselling a shaped or model block starts from its real shape.</li>
+<li>Stamp as micro-voxels turns a <code>.bmodel</code> or <code>.vox</code> into bricks.</li>
+<li>Scripts get <code>voxel_micro_res</code>, <code>voxel_micro_get</code>, <code>voxel_micro_set</code> and <code>voxel_micro_fill</code>.</li>
+<li>Block events on bricks carry the micro voxel.</li>
+<li><code>player.build.micro</code> breaks and places single micro voxels.</li>
+<li>Nav agents walk on micro slabs and steps and through carved doorways.</li>
+<li>Physics characters stand on micro bricks and shaped blocks.</li>
+<li>Hotbar blocks placed as micro voxels refuse plants, doors and liquids.</li>
+<li>The MCP tool <code>editor_micro</code> drives micro editing.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-scenes-and-worlds">Scenes and worlds<a class="anchor" href="#0-6-0---2026-11-03-scenes-and-worlds" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Opening a scene switches the terrain to its world.</li>
+<li>New scene starts on the project terrain without edits.</li>
+<li>The game loads the world of its start scene and <code>burrow build</code> packs it.</li>
+<li>The <code>.voxworld</code> header now records the generator.</li>
+<li><code>burrowsdk.SceneSwitch(path)</code> replaces the running scene and its whole world.</li>
+<li>It runs as one journaled <code>game_scene_switch</code> command.</li>
+<li>The player returns to the start position after a switch.</li>
+<li>A save made in a switched scene reloads there.</li>
+<li>Scripts of the scene left get <code>on_destroy</code>.</li>
+<li>Scenes whose generator is <code>empty</code> can have their own seed.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-editor-tools">Editor tools<a class="anchor" href="#0-6-0---2026-11-03-editor-tools" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The Outliner eye (H) hides any node and its subtree in the editor viewport.</li>
+<li>Hidden nodes are not pickable and are remembered in the scene&#39;s editor sidecar.</li>
+<li>Particle emitters of hidden nodes stop emitting in the viewport.</li>
+<li>Dragging a <code>.bmodel</code> or <code>.vox</code> into the viewport places a free <code>render.voxmodel</code> node.</li>
+<li>R turns the dropped model a quarter.</li>
+<li>Double-clicking a <code>.wasm</code> script opens its Go source.</li>
+<li>The world viewport grid shows voxel, metre and chunk lines with axes and rulers.</li>
+<li>Shift+G toggles the world grid.</li>
+<li>The grid is depth-tested in 3D with a 2D fallback.</li>
+<li>The world grid no longer leaks into the model, animation and prefab viewports.</li>
+<li>Modeler scale references include a player silhouette, a 1-block cube, a ruler and door lines.</li>
+<li>The modeler shows dimensions and a player ratio readout.</li>
+<li>A model stores its <code>voxels_per_block</code>.</li>
+<li><code>editor_model</code> gains a <code>scale</code> action.</li>
+<li>A <code>.bmodel</code> has up to 32 stacked layers.</li>
+<li>Named variants list the layers shown, such as a campfire <code>off</code> and <code>on</code>.</li>
+<li>The modeler Layers panel adds, duplicates, renames, reorders, hides and locks layers.</li>
+<li><code>render.voxmodel.variant</code> selects the variant, and the inspector shows a dropdown.</li>
+<li>Scripts can switch a variant with <code>set_component</code>.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-block-editor">Block editor<a class="anchor" href="#0-6-0---2026-11-03-block-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Right-click a PNG &gt; Create block, or Content &gt; New block.</li>
+<li>The docked panel has a rotating preview and block properties.</li>
+<li>It writes <code>data/blocks.json</code> and <code>textures/block/&lt;name&gt;.png</code>.</li>
+<li>Project blocks are added and edited live in the editor.</li>
+<li>A Restart editor action relaunches the editor on the project.</li>
+<li>Blocks can be renamed, and an unsaved-changes prompt guards the form.</li>
+<li>A face without texture takes the average colour of the block&#39;s textures.</li>
+<li>Rename and delete list the block&#39;s references.</li>
+<li>The editor can rewrite the safe references after a backup.</li>
+<li>Block reference restore merges only the renamed block.</li>
+<li>Clashing level palette entries merge.</li>
+<li>See docs/blocks.md for the full flow.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-fixes">Fixes<a class="anchor" href="#0-6-0---2026-11-03-fixes" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Offscreen hybrid targets now apply pending shader overrides.</li>
+<li>Fading chunks no longer lose glass shadows during a LOD cross-fade.</li>
+<li>Plain game UI labels no longer draw line breaks as &#34;?&#34;.</li>
+<li>Motion vectors follow custom vertex animation.</li>
+<li>The classic fog and temporal velocity GPU checks are now meaningful.</li>
+<li>Voxel groups restore the bricks under them.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-particles">Particles<a class="anchor" href="#0-6-0---2026-11-03-particles" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Particle collision is now continuous, so fast particles no longer tunnel through thin walls.</li>
+<li>Resting particles fall when the block under them is removed.</li>
+<li>Local-space emitters can now collide.</li>
+<li>Local space applies the node&#39;s full transform to gravity, wind and emission direction, including non-uniform scale.</li>
+<li>New <code>sub</code> param adds sub-emitters on death, collision or spawn, up to two generations.</li>
+<li>New <code>forces</code> param adds <code>vortex</code>, <code>attract</code>, <code>repel</code> and <code>turbulence</code> forces.</li>
+<li>New <code>inherit_velocity</code> param passes the emitter&#39;s motion on to particles.</li>
+<li>New <code>trail</code>, <code>mesh</code> and <code>light</code> groups are drawn by the GPU and CPU renderers.</li>
+<li><code>trail</code> draws ribbons that follow the particle path.</li>
+<li><code>mesh</code> draws instanced lit cubes or <code>.vox</code> models as particles.</li>
+<li><code>light</code> gives particles point lights, using the 16 nearest.</li>
+<li>New params are omitted from JSON while zero, so existing assets and hashes are unchanged.</li>
+<li>The editor inspector shows the new lists as JSON objects.</li>
+<li>Alpha and additive particles from different emitters are now sorted together by view depth.</li>
+<li>Overlapping emitters no longer interleave wrongly.</li>
+<li>New emitter option <code>lit</code> makes particles receive sun shadows and ambient light.</li>
+<li><code>lit</code> is on by default for alpha and off for additive, and the voxel passes also fog these particles.</li>
+<li>New emitter option <code>depth_collide</code> (<code>off</code>, <code>bounce</code>, <code>kill</code>) collides particles with the previous frame&#39;s depth buffer.</li>
+<li><code>depth_collide</code> only sees visible surfaces.</li>
+<li>The scene-only render path now draws particles.</li>
+<li>The editor model and animation viewports no longer show the world&#39;s particles.</li>
+<li>See docs/particles.md for details.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-air-distortion">Air distortion<a class="anchor" href="#0-6-0---2026-11-03-air-distortion" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Heat haze and shock waves are added to the HDR post chain.</li>
+<li>They need shader level medium or higher and are off in the classic pipeline and <code>render/soft</code>.</li>
+<li>Distortion offsets the HDR colour before bloom and tone mapping.</li>
+<li>It fades with distance and at screen edges and skips pixels where water already refracts.</li>
+<li>With no source in view, no pass runs.</li>
+<li>The passes appear by name in the GPU timings.</li>
+<li>Hot blocks produce heat columns automatically through the new <code>heat</code> block value (0 to 15).</li>
+<li>Lava, fire, campfire, magma, lit furnaces and torches have default heat.</li>
+<li><code>heat</code> can be set in <code>blocks.json</code> and in project custom blocks.</li>
+<li>New <code>fx.distortion</code> scene component with <code>shape</code>, <code>size</code>, <code>strength</code>, <code>speed</code>, <code>scale</code> and <code>rise</code>.</li>
+<li>The component is registered only when <code>runtime.plugins.distortion</code> is true or a scene uses it, so existing hashes stay identical.</li>
+<li>Particle emitters accept <code>distortion</code> and <code>distortion_only</code>.</li>
+<li>Scripts get <code>fx_shockwave(x, y, z, radius, strength, duration)</code> and the Go SDK gets <code>Shockwave</code>.</li>
+<li><code>distplug.Distortion.Shockwave</code> is available for host code.</li>
+<li>New <code>runtime.distortion</code> project setting takes <code>true</code>, <code>false</code>, <code>&#34;on&#34;</code>, <code>&#34;off&#34;</code> or a strength from 0 to 4.</li>
+<li>New <code>burrowplay -distortion off|on|&lt;strength&gt;</code> flag.</li>
+<li>New <code>distortion</code> package and <code>distortion/distplug</code> plugin.</li>
+<li>The editor shows the haze in the viewport.</li>
+<li>See docs/rendering.md for details.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-game-front-end-without-go-code">Game front-end without Go code<a class="anchor" href="#0-6-0---2026-11-03-game-front-end-without-go-code" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New <code>app/appctl</code> package carries the &#34;what next&#34; request of a run, such as quit, join, host, play world, new world or title.</li>
+<li><code>burrowplay</code> loops after a windowed run and serves that request.</li>
+<li>A failed join or host returns to the title.</li>
+<li>Game UI actions <code>app:quit</code>, <code>app:title</code>, <code>net:host</code> and <code>world:create</code> are handled by the engine.</li>
+<li>Game UI actions <code>net:join:&lt;link&gt;</code>, <code>net:server_add</code> and <code>net:server_remove:&lt;i&gt;</code> handle servers.</li>
+<li>Game UI actions <code>world:play[:slot]</code> and <code>world:delete[:slot]</code> handle save slots.</li>
+<li>Action arguments expand <code>{key}</code> values.</li>
+<li>Built-in <code>worlds</code> data lists save slots with metadata and a 256x144 thumbnail written on save.</li>
+<li>Built-in <code>servers</code> data is read from <code>servers.json</code>.</li>
+<li>Settings values <code>fov</code>, <code>render_distance</code>, <code>vol_*</code>, <code>fullscreen</code> and <code>locale</code> are saved in <code>settings.json</code>.</li>
+<li>New <code>runtime.gameui.pause</code> makes Escape open that screen instead of quitting, through a new <code>pause</code> input action.</li>
+<li>New script function <code>app_cmd</code> and Go SDK calls <code>AppQuit</code>, <code>NetJoin</code>, <code>NetHost</code>, <code>WorldPlay</code>, <code>WorldCreate</code> and <code>Title</code>.</li>
+<li>The world being played is now a hashed start parameter.</li>
+<li>A replay on another world diverges and a save from another world is refused.</li>
+<li>New script function <code>world_info</code>, SDK <code>ReadWorldInfo</code> and UI values <code>world_name</code> and <code>world_mode</code>.</li>
+<li>Settings apply live for <code>fov</code>, <code>fullscreen</code>, <code>locale</code> and <code>render_distance</code>.</li>
+<li>The far plane and fog follow <code>render_distance</code> unless <code>Far</code> is set.</li>
+<li>New <code>runtime.generator.kind: &#34;empty&#34;</code> generates all air.</li>
+<li>Save thumbnails are captured without the game UI or the HUD, and nothing is hidden on screen.</li>
+<li>Screens can set <code>music</code>, and the matching <code>music.&lt;context&gt;</code> plays while the screen is open.</li>
+<li>See docs/game-ui.md for details.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-game-ui">Game UI<a class="anchor" href="#0-6-0---2026-11-03-game-ui" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Images keep their aspect ratio, and a missing size side is taken from the image.</li>
+<li><code>contain</code> letterboxes an image.</li>
+<li>Images up to 8192 px are downscaled to 2048 instead of being refused.</li>
+<li>Load warnings now report unknown <code>builtin:</code> icons, downscaled or missing images and hot-reloaded screens.</li>
+<li>New <code>gameui.IconNames()</code> lists the built-in icons.</li>
+<li>New <code>hover_offset</code> style slides a widget toward an offset while hovered or focused.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-scenes">Scenes<a class="anchor" href="#0-6-0---2026-11-03-scenes" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New <code>scene.settings</code> component sets per-scene <code>controller</code>, <code>hud</code>, <code>time_of_day</code>, <code>exposure</code>, <code>fill_light</code> and <code>music</code>.</li>
+<li>A frozen <code>time_of_day</code> stops the weather simulation and leaves <code>StateHash</code> unchanged.</li>
+<li>New <code>world.edits</code> component fills or clears boxes when the scene loads.</li>
+<li><code>fill_light</code> adds a camera-side fill and a rim light to scene characters and the player avatar.</li>
+<li>A non-zero <code>exposure</code> fixes the exposure and turns auto exposure off.</li>
+<li>The soft renderer applies <code>time_of_day</code>, <code>exposure</code> and <code>hud</code>.</li>
+<li>A scene with <code>controller: false</code> frees the cursor for the UI.</li>
+<li>A scene with <code>controller: true</code> installs the controller even when <code>runtime.plugins.controller</code> is false.</li>
+<li>The controller is suspended in the other scenes.</li>
+<li>See docs/lighting.md for details.</li>
+</ul>
+<h4 id="0-6-0---2026-11-03-tools">Tools<a class="anchor" href="#0-6-0---2026-11-03-tools" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New <code>burrow config get|set|rm</code> edits project config by dotted path, with array indexes like <code>a.b[2]</code> and append like <code>a.b[]</code>.</li>
+<li>New <code>burrow scene get|set-component|rm-component</code> commands.</li>
+<li>New <code>burrow docs search</code> command.</li>
+<li>New <code>burrow ui icons</code> command.</li>
+<li>New <code>burrow icon from [--set]</code> command.</li>
+<li>The project <code>icon</code> is now used for the macOS app icon.</li>
+<li>On a Windows host with a checkout, the icon is embedded in the game exe with version info.</li>
+<li>New <code>project.CheckIconPNG</code> validates the icon.</li>
+<li>New <code>burrowplay -ui-screen &lt;name&gt;</code> flag opens a given UI screen.</li>
+<li>New <code>burrowplay -shot-at &lt;s,...&gt;</code> flag takes screenshots at given times.</li>
+<li>New <code>burrowplay -shot-every &lt;s&gt; -shot-count &lt;n&gt;</code> flags write numbered PNGs.</li>
+<li>New MCP tools <code>editor_ground_at</code>, <code>editor_find_view</code> and <code>editor_place_on_ground</code>.</li>
+</ul>
+</article>
+<article class="release px" id="0-5-2---2026-11-02"><header><h2>0.5.2 - 2026-11-02</h2><p class="rmeta"><time>2026-11-02</time></p></header>
+<p>An editor and assets release: glTF import, full-screen tools for every asset and world editor, a real Play, and a redesigned look.</p>
+<h4 id="0-5-2---2026-11-02-assets-and-gltf">Assets and glTF<a class="anchor" href="#0-5-2---2026-11-02-assets-and-gltf" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Import <code>.glb</code> and <code>.gltf</code> (glTF 2.0) models with their node hierarchy, multi-primitive meshes and materials.</li>
+<li>Reference a glTF mesh with <code>render.mesh</code> using <code>file.glb[#mesh[:joint node]]</code>.</li>
+<li>The editor adds a whole glTF scene as one undo step, with its animations written to a <code>.anim</code> file.</li>
+</ul>
+<h4 id="0-5-2---2026-11-02-changes-to-know">Changes to know<a class="anchor" href="#0-5-2---2026-11-02-changes-to-know" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Play (Ctrl+Shift+P) now runs the real game in its own window, with player, controller, HUD, game UI and saves.</li>
+<li>Play This Scene (Ctrl+Shift+Alt+P) starts the game on the scene open in the editor.</li>
+<li>Simulate (Ctrl+Alt+P) keeps the former in-editor run, and Stop restores the document.</li>
+<li>The Modeling and Animation layout presets and the Workspace menu are removed.</li>
+<li>Back to world now closes an asset editor&#39;s tabs, and the document stays loaded.</li>
+</ul>
+<h4 id="0-5-2---2026-11-02-editor">Editor<a class="anchor" href="#0-5-2---2026-11-02-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The main editor has a new look, shared by the tool bar, panels and every asset editor.</li>
+<li>The tool bar has a labelled Play with a scene menu, Simulate, Step, a Simulating badge and a layout picker.</li>
+<li>The tool rail is grouped under captions, with the one-key shortcut printed on each button.</li>
+<li>Hierarchy is now Outliner, with a type filter, an object count and coloured icons per kind.</li>
+<li>The Inspector has a header tile, an Enabled switch, a layer chip and components as cards.</li>
+<li>Assets is now the Content browser, with favorites, folders, breadcrumbs and kind chips.</li>
+<li>The hierarchy column is wider, with a draggable divider and a foldable World header.</li>
+<li>Panels have maximize and float buttons, and floating panels dock back when closed.</li>
+<li>A Game panel shows a live read-only link to the running game: scene tree, components, console and stats.</li>
+</ul>
+<h4 id="0-5-2---2026-11-02-model-editor">Model editor<a class="anchor" href="#0-5-2---2026-11-02-model-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The model editor has a wide tool rail with the shortcut letter on every button.</li>
+<li>Viewport chips show the camera menu, tool, pointer cell and a navigation reminder.</li>
+<li>An orientation cube with clickable faces replaces the axis gizmo.</li>
+</ul>
+<h4 id="0-5-2---2026-11-02-texture-editor">Texture editor<a class="anchor" href="#0-5-2---2026-11-02-texture-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The texture editor is restyled with a face selector, zoom group, tool rail and layer thumbnails.</li>
+<li>A block texture keeps separate top, side and bottom faces, saved as <code>_top</code> and <code>_bottom</code> files.</li>
+<li>Layers can be locked, and drawing tools refuse a locked layer.</li>
+<li>Layers have blend modes: normal, multiply, screen and overlay.</li>
+<li>A layer named <code>height</code> is a painted height map for the relief maps.</li>
+</ul>
+<h4 id="0-5-2---2026-11-02-animation">Animation<a class="anchor" href="#0-5-2---2026-11-02-animation" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The animation editor opens full screen from the Tools menu, a <code>.anim</code> double-click or a new animation.</li>
+<li>It has a dope sheet with an Events lane, a curves view and a transport bar.</li>
+<li>An isolated preview shows the animated node alone in a studio with an orbit camera.</li>
+<li>An In the game section plays an animation at start or waits for a script.</li>
+<li>Rig splits a multi-part <code>.bmodel</code> node into one node per part at its pivot, as one undo step.</li>
+<li><code>render.viewattach</code> draws a node in front of the active camera, for held items.</li>
+</ul>
+<h4 id="0-5-2---2026-11-02-world-tools">World tools<a class="anchor" href="#0-5-2---2026-11-02-world-tools" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Code, Character, Environment, Audio, Cameras and Levels now open full screen with their own settings.</li>
+<li>Code has a files column with error badges, a problems and build drawer, and Build on Ctrl+B.</li>
+<li>Environment has a 24 h strip with a draggable sun, a weather plan lane and a wind dial.</li>
+<li>Audio has mixer strips with meters, dB faders, mute and solo, and a saved mix applied in game.</li>
+<li>Audio has an output device picker, and builds with cgo play through miniaudio and switch devices live.</li>
+<li>Levels has spawn, zone and door tools, level cards and Play from here.</li>
+</ul>
+<h4 id="0-5-2---2026-11-02-game-ui-designer">Game UI designer<a class="anchor" href="#0-5-2---2026-11-02-game-ui-designer" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The Game UI editor has a widget library of tiles grouped by family, with search and a screen template picker.</li>
+<li>Drag library tiles onto the canvas, with Auto, Fixed and Fill size modes and a margin and padding box model.</li>
+<li>Settings are in tabs: Layout, Style, Behaviour and Screen.</li>
+<li>Header tabs switch between every screen of the project, and a Screens list shows layers, modals and pause.</li>
+<li>A Data card has try sliders, a translations table and a preview language.</li>
+<li>A widget can have several actions, separated by <code>;</code> in <code>.ui.json</code>.</li>
+</ul>
+<h4 id="0-5-2---2026-11-02-scripting">Scripting<a class="anchor" href="#0-5-2---2026-11-02-scripting" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The Go toolchain is found automatically or downloaded once, with a checksum check, and <code>BURROW_OFFLINE</code> opts out.</li>
+<li>Ready-made script templates: rotate, bob, door, pickup, platform, zone, spawner and follow.</li>
+<li>The Script panel creates a script from a template, attaches it to the selected node and builds it.</li>
+</ul>
+</article>
+<article class="release px" id="0-5-1---2026-11-02"><header><h2>0.5.1 - 2026-11-02</h2><p class="rmeta"><time>2026-11-02</time></p></header>
+<p>A small rendering fix for block textures.</p>
+<h4 id="0-5-1---2026-11-02-rendering">Rendering<a class="anchor" href="#0-5-1---2026-11-02-rendering" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Block textures no longer derive normals from the auto-generated height.</li>
+<li>Auto relief now only fills the height channel used for parallax.</li>
+<li>A flat normal map stays flat instead of reading as per-texel noise.</li>
+</ul>
+</article>
+<article class="release px" id="0-5-0---2026-11-02"><header><h2>0.5.0 - 2026-11-02</h2><p class="rmeta"><time>2026-11-02</time></p></header>
+<p>A multiplayer release with voice chat, replicated servers, matchmaking, a lobby, a dedicated server, game UI widgets and better agent tooling.</p>
+<h4 id="0-5-0---2026-11-02-voice-chat">Voice chat<a class="anchor" href="#0-5-0---2026-11-02-voice-chat" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Proximity voice chat is new and off by default, enabled through <code>runtime.plugins.voice</code>.</li>
+<li>Players can use push-to-talk (V) or voice activation with an adaptive noise floor.</li>
+<li>A noise gate, mic gain, output volume and per-player mute are included.</li>
+<li>Voice channels cover proximity, team and global, and global is for admins.</li>
+<li>Remote speakers play as spatial voices that fade to silence at the radius.</li>
+<li>A per-speaker jitter buffer hides reordering, late frames and packet loss.</li>
+<li>The HUD exposes <code>voice_talking</code>, <code>voice_talking_count</code> and <code>voice_transmitting</code>.</li>
+<li>Voice is never simulation state, never hashed and never recorded.</li>
+<li>Microphone capture needs no cgo on macOS, Linux and Windows.</li>
+<li>Game apps built by <code>burrow build</code> and the editor app declare the macOS microphone usage description.</li>
+<li>The codec is 16 kHz mono IMA ADPCM at about 67 kbit/s per speaker.</li>
+<li>The server routes voice by radius, block lists, team rules and per-speaker rate limits.</li>
+<li>Voice works over both the lockstep and the replicated network models.</li>
+<li>A listener with 64 KiB queued drops voice first, so batches and frames are never delayed.</li>
+<li>The dedicated server gains <code>voice mute|unmute &lt;name&gt;</code> and <code>voice status</code>.</li>
+<li>See <code>docs/voice.md</code> for the full guide.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-replication">Replication<a class="anchor" href="#0-5-0---2026-11-02-replication" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>A replicated network model is new for persistent public servers, set with <code>runtime.net_model: &#34;replicated&#34;</code>.</li>
+<li>The server alone runs the simulation and streams chunks and entities within each client&#39;s view distance.</li>
+<li>Clients only run frame stages and send the same whitelisted commands.</li>
+<li>One server now supports up to 1024 players.</li>
+<li>Network protocol version is now 3, and a lockstep client stops with <code>session.ErrReplicated</code> on a replicated server.</li>
+<li>The shared handshake, rate limit and command checks now live in <code>net/gate</code>.</li>
+<li>Frames are built and compressed in parallel, with identical output for any worker count.</li>
+<li>On the busy benchmark, 256 clients take 4.8 ms per tick instead of 33.7 ms.</li>
+<li>Component codecs send hot fields quantized and as deltas, built in for <code>transform</code> and rigid bodies.</li>
+<li>The busy benchmark drops from 99 KB to 29 KB per client per second.</li>
+<li>Remote entities are interpolated 100 ms behind a smoothed server clock.</li>
+<li>The local avatar is predicted by replaying unacknowledged inputs, with corrections blended or snapped.</li>
+<li>Fine water is replicated within each player&#39;s interest area.</li>
+<li>Interest is authoritative by default, so a client-reported view stays within 256 voxels of the player.</li>
+<li><code>runtime.proximity_chat</code> limits chat lines to nearby players on both models.</li>
+<li><code>burrow-server</code> hosts replicated games in persistent mode only, and lobby and matchmaking modes refuse them.</li>
+<li>See <code>docs/replication.md</code> for the full guide.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-matchmaking">Matchmaking<a class="anchor" href="#0-5-0---2026-11-02-matchmaking" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>burrow-server matchmaker</code> is a self-hosted matchmaker with an HTTPS JSON API and a pinned certificate.</li>
+<li>Players queue with their signed identity and are matched by rating window.</li>
+<li>Matches are snake-drafted into teams and assigned to free game servers by heartbeat.</li>
+<li>Results update Elo ratings.</li>
+<li><code>burrow-server</code> matchmaking mode admits only the assigned identities and seats players on their teams.</li>
+<li><code>burrowplay -matchmaker URL -queue Q</code> finds and joins a match.</li>
+<li>Tickets, assignments and running matches persist across restarts.</li>
+<li>Game servers authenticate with per-server tokens set by <code>burrow-server matchmaker add-server</code>.</li>
+<li>Players can dispute results, and a dispute reverts when half of the players object.</li>
+<li>Party tickets, invitations and regions are supported.</li>
+<li><code>matchmaker.json</code> reloads on file change and SIGHUP, and invalid files are rejected.</li>
+<li><code>burrow-server matchmaker remove-server</code> is new.</li>
+<li>See <code>docs/matchmaking.md</code> for the full guide.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-lobby">Lobby<a class="anchor" href="#0-5-0---2026-11-02-lobby" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>A multiplayer lobby is new as deterministic simulation state, enabled with <code>runtime.lobby</code>.</li>
+<li>It covers slots with team and colour, ready flags, host migration, settings, countdown and match results.</li>
+<li>Scripts can read the lobby and end the match with <code>lobby_phase</code>, <code>lobby_info</code> and <code>lobby_end_match</code>.</li>
+<li><code>burrow-server</code> lobby mode keeps no persistence and refuses joins while a match runs, unless <code>late_join</code> is set.</li>
+<li>A <code>Lobby</code> game UI screen template is new.</li>
+<li>A <code>lobby_match</code> project template is new and supports up to 64 players and 16 settings.</li>
+<li>Game UI lists gain read-only rows and aligned columns.</li>
+<li>See <code>docs/lobby.md</code> for the full guide.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-dedicated-server">Dedicated server<a class="anchor" href="#0-5-0---2026-11-02-dedicated-server" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>burrow-server</code> is a new headless dedicated server for Linux, macOS and Windows, with no cgo.</li>
+<li>It has a persistent world with autosave, rotated backups and save on SIGTERM.</li>
+<li>It keeps a stable player id per name, bans, a whitelist and a MOTD.</li>
+<li>An admin console and a control socket are available through <code>burrow-server ctl</code>.</li>
+<li>A deploy kit in <code>deploy/</code> has a systemd unit, an install script, a Dockerfile and a compose file.</li>
+<li><code>make server-dist</code> and <code>make server-image</code> build the server.</li>
+<li>Clients now sign the handshake with an ed25519 identity key, and the protocol version is 2.</li>
+<li><code>burrow-server</code> keys players, bans and the whitelist by identity, and <code>init</code> sets <code>require_identity</code> to true.</li>
+<li>Anonymous roster entries are no longer taken over by the first identity with the same name.</li>
+<li>Admins bind them with <code>claim &lt;name&gt; &lt;identity id&gt;</code>, or set <code>claim_anonymous</code>.</li>
+<li>The Hub no longer has a Multiplayer card, so use <code>burrow-server</code>, <code>burrow serve</code> or <code>burrowplay -connect</code>.</li>
+<li>The <code>known_servers</code> entry of <code>hub.json</code> is ignored.</li>
+<li>Long-running servers trim the journal before saving, so late-join snapshots stop growing.</li>
+<li>See <code>docs/dedicated-server.md</code> for the full guide.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-multiplayer-template">Multiplayer template<a class="anchor" href="#0-5-0---2026-11-02-multiplayer-template" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>burrow new -t multiplayer</code> creates a flat world with a first-person controller.</li>
+<li>A base <code>avatars</code> script moves one avatar per connected player from server-ordered input.</li>
+<li>The base script is overloadable and falls back to local input in solo play.</li>
+<li>Speed, sprint multiplier and jump bit are tunable through script props.</li>
+<li>The scripting guide on multiplayer now points to the ready-made base script.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-game-ui">Game UI<a class="anchor" href="#0-5-0---2026-11-02-game-ui" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New <code>toggle</code>, <code>slider</code>, <code>choice</code>, <code>separator</code>, <code>tabs</code> and <code>dropdown</code> widgets.</li>
+<li>Widgets gain hover and press colours, border width, opacity, gradients, shadows and tooltips.</li>
+<li>Images gain tint and fit, and widgets gain hover scale.</li>
+<li><code>show</code> and <code>hide</code> screen transitions are new.</li>
+<li><code>bg_image</code> supports nine-slice scaling.</li>
+<li>Per-widget <code>anim</code> supports <code>pulse</code>, <code>bob</code>, <code>wiggle</code>, <code>fade_in</code> and <code>slide_*</code>.</li>
+<li>Eight new templates: Title screen, Settings, Game over, Loading, Shop, Save slots, Credits and Confirm dialog.</li>
+<li>A new Tabbed menu template is included.</li>
+<li>Existing templates are restyled, and Settings uses tabs and a resolution dropdown.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-agent-ergonomics">Agent ergonomics<a class="anchor" href="#0-5-0---2026-11-02-agent-ergonomics" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Agent errors carry <code>did_you_mean</code> with the closest valid value.</li>
+<li>Agent errors also carry <code>example</code>, a full valid payload.</li>
+<li>An unknown MCP tool name suggests the closest tool.</li>
+<li><code>vox_build_plan</code> and <code>editor_build_plan</code> gain the macros <code>room</code>, <code>wall</code>, <code>pond</code> and <code>tower</code>.</li>
+<li><code>vox_blocks</code> takes <code>query</code>, <code>limit</code> and <code>names_only</code>.</li>
+<li><code>burrowd -compact</code> makes observations default to 4 KiB.</li>
+<li><code>burrowagenteval</code> scores any OpenAI-compatible model on the agent task set.</li>
+<li>Task cards for small models are new: <code>llms-voxel.txt</code>, <code>llms-project.txt</code> and <code>llms-editor.txt</code>.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-editor-and-zones">Editor and zones<a class="anchor" href="#0-5-0---2026-11-02-editor-and-zones" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Scripts can draw editor overlays with <code>DrawBox</code>, <code>DrawLine</code>, <code>DrawSphere</code> and <code>DrawLabel</code>.</li>
+<li>Scripts can queue zone and spawn edits, applied as one undo step when Play stops.</li>
+<li>Both are ignored outside the editor.</li>
+<li>Dynamic zones are created with <code>ZoneSet</code> and removed with <code>ZoneDel</code>.</li>
+<li>Dynamic zones are simulation state and are cleared on a level switch.</li>
+</ul>
+<h4 id="0-5-0---2026-11-02-editor">Editor<a class="anchor" href="#0-5-0---2026-11-02-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The hierarchy has fixed rows for World, Environment and Block lights.</li>
+<li>Roots can be reordered, and the order is stored in an editor-only sidecar.</li>
+<li>Voxel groups are new nodes that own their voxels, created from <code>.vox</code> stamps or Group Region Blocks (Ctrl+G).</li>
+<li>Groups move, delete, duplicate, undo and bake like objects.</li>
+<li>Clicking a block selects its group, and groups turn by quarter turns.</li>
+<li>Existing worlds and games are unchanged by voxel groups.</li>
+<li>The MCP tool <code>editor_voxel_group</code> is new.</li>
+<li>Layers are new, with a Layers panel and the MCP tool <code>editor_layers</code>.</li>
+<li>Layers give editor-only visibility and lock, inherited by children.</li>
+<li>Hidden layers also hide their voxel groups, and locked layers protect them from the voxel tools.</li>
+</ul>
+</article>
+<article class="release px" id="0-4-2---2026-11-01"><header><h2>0.4.2 - 2026-11-01</h2><p class="rmeta"><time>2026-11-01</time></p></header>
+<p>Reworked model, texture, game UI and animation tools, fire on torches, and fixes for placement and mounted blocks.</p>
+<h4 id="0-4-2---2026-11-01-model-editor">Model editor<a class="anchor" href="#0-4-2---2026-11-01-model-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>A slice cutaway with a layer slider reaches the inside of a model.</li>
+<li>Box, sphere, line and select tools can be drawn by dragging.</li>
+<li>The two-click workflow still works.</li>
+<li>Mirror planes are drawn in the viewport while they are on.</li>
+<li>Strokes render at half resolution to stay smooth.</li>
+<li>Selections can be copied and pasted through the replayable <code>model.StampOp</code>.</li>
+</ul>
+<h4 id="0-4-2---2026-11-01-texture-editor">Texture editor<a class="anchor" href="#0-4-2---2026-11-01-texture-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New ellipse and replace-colour tools.</li>
+<li>Rectangle and ellipse have a hollow toggle.</li>
+<li>Layers can be duplicated.</li>
+<li>One click generates a whole layer from a material style such as stone, planks, bricks or metal.</li>
+<li>The palette can be imported from a voxel model of the project.</li>
+</ul>
+<h4 id="0-4-2---2026-11-01-game-ui-designer">Game UI designer<a class="anchor" href="#0-4-2---2026-11-01-game-ui-designer" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Multi-select works with Ctrl+click and a rubber band.</li>
+<li>Group moves are a single undo step.</li>
+<li>Selected widgets can be grouped in one panel.</li>
+<li>New screens start from templates such as main menu, pause and HUD.</li>
+<li>A Test mode runs the draft with the real input, like the game would.</li>
+</ul>
+<h4 id="0-4-2---2026-11-01-animation-timeline">Animation timeline<a class="anchor" href="#0-4-2---2026-11-01-animation-timeline" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Events can be selected, renamed, retimed and deleted.</li>
+<li>Event arguments are editable.</li>
+<li>Motion presets Bob, Shuttle, Spin and Pulse generate seamless loop tweens.</li>
+<li>Each preset is added in one undo step.</li>
+</ul>
+<h4 id="0-4-2---2026-11-01-docking">Docking<a class="anchor" href="#0-4-2---2026-11-01-docking" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Double-click a tab to maximize the panel.</li>
+<li>Middle-click a tab to close it.</li>
+<li>Ctrl+Tab cycles the tabs of the group under the pointer.</li>
+</ul>
+<h4 id="0-4-2---2026-11-01-lighting-and-effects">Lighting and effects<a class="anchor" href="#0-4-2---2026-11-01-lighting-and-effects" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>partplug.Plugin.BlockFX</code> keeps a particle effect alive on every loaded block of a type.</li>
+<li>The sandbox lights torches with <code>builtin:fire</code> and soul torches with <code>builtin:soul_fire</code>.</li>
+<li>The fire follows the loaded chunks and dies with its block.</li>
+<li>It does not touch the <code>StateHash</code> or replays.</li>
+<li>Torches and emitters now light farther, from about 7 to about 10 blocks.</li>
+<li>Warm lights keep their hue longer.</li>
+<li>Shaders were rebuilt.</li>
+</ul>
+<h4 id="0-4-2---2026-11-01-blocks">Blocks<a class="anchor" href="#0-4-2---2026-11-01-blocks" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Torches, buttons, ladders and vines now need a solid block to mount on.</li>
+<li>Placing into a cell that holds a solid block or a liquid is refused.</li>
+<li>No more torches in water, on flowers, on other torches or floating.</li>
+</ul>
+<h4 id="0-4-2---2026-11-01-fixes">Fixes<a class="anchor" href="#0-4-2---2026-11-01-fixes" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>A held click now places again only after the aim moved.</li>
+<li>Placing a block no longer repeats while you are still aiming.</li>
+<li>Breaking keeps its hold-to-dig rhythm.</li>
+<li>Fixed multiplayer input being rejected after a stalled frame loop, such as a long first load or a suspended laptop.</li>
+<li>Input stamps now stay inside the server&#39;s acceptance window.</li>
+<li>Round-trip samples that straddle a stall are ignored, so the input delay no longer inflates.</li>
+</ul>
+</article>
+<article class="release px" id="0-4-1---2026-11-01"><header><h2>0.4.1 - 2026-11-01</h2><p class="rmeta"><time>2026-11-01</time></p></header>
+<p>Project-defined blocks and items, block logic for machine mods, scriptable and faster water, a redesigned website and a fix for double clicks.</p>
+<h4 id="0-4-1---2026-11-01-blocks">Blocks<a class="anchor" href="#0-4-1---2026-11-01-blocks" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Project blocks: <code>runtime.custom_blocks</code> names a JSON file of your own blocks.</li>
+<li>A block sets its name, colour, light, hardness and material.</li>
+<li>It can also set per-face textures from <code>textures/block/&lt;name&gt;.png</code>, plus an <code>interact</code> behaviour.</li>
+<li>Project blocks follow the built-in ones in file order.</li>
+<li>They appear in the palette and in <code>BlockByName</code>.</li>
+<li><code>burrow build</code> packs the blocks file.</li>
+<li><code>runtime.hotbar</code> puts up to nine project blocks in the first hotbar slots.</li>
+<li>The <code>blockset</code> package adds <code>Custom</code>, <code>ParseCustom</code> and <code>RegisterCustom</code>.</li>
+<li>A project block can replace its cube with up to 32 boxes.</li>
+<li>Boxes drive collision, selection, look and faces, shared by the mesher, physics, raycast and editor.</li>
+<li>A <code>facing</code> field gives a block four stored states, and the placed one faces the player.</li>
+<li>See <a href="../docs/blocks.html#project-blocks">docs/blocks.md</a>.</li>
+</ul>
+<h4 id="0-4-1---2026-11-01-block-logic">Block logic<a class="anchor" href="#0-4-1---2026-11-01-block-logic" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The opt-in <code>blocks</code> plugin gives scripts per-cell block data of up to 16 KiB per cell.</li>
+<li>Block data is saved, hashed, rolled back and replayed.</li>
+<li>Block events arrive on the bus as <code>block.change</code>, <code>block.set/&lt;name&gt;</code> and <code>block.break/&lt;name&gt;</code>.</li>
+<li><code>block.use/&lt;name&gt;</code> and <code>block.tick/&lt;name&gt;</code> complete the set.</li>
+<li>A right click on an <code>interact</code> block sends <code>block_use</code> instead of placing a block.</li>
+<li>Multiplayer clients may send <code>block_use</code>.</li>
+<li>New host calls read and write block data, such as <code>block_data_get</code> and <code>block_data_set</code>.</li>
+<li>The SDK wraps them as <code>BlockData</code>, <code>SetBlockData</code> and <code>OnBlockUse</code>.</li>
+<li>Machines tick only when due, through <code>block_schedule</code> and <code>OnBlockTick</code>.</li>
+<li>Due cells arrive in ordered binary batches of about 1,000, up to 65,536 per tick.</li>
+<li><code>block_flood</code> walks a cable, pipe or belt network of 60,000 cells in one call.</li>
+<li>50,000 machines with 5,000 due per tick cost 6.1 ms of the 50 ms tick.</li>
+<li><code>runtime.script_limits</code> raises scripting limits per project, such as gas, guest memory and per-tick budgets.</li>
+<li>See <a href="../docs/blocks.html#block-logic">docs/blocks.md</a>.</li>
+</ul>
+<h4 id="0-4-1---2026-11-01-items">Items<a class="anchor" href="#0-4-1---2026-11-01-items" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>runtime.items</code> names a JSON file of project items.</li>
+<li>Each item sets <code>name</code>, <code>display</code>, <code>max_stack</code> and the block it places.</li>
+<li>Item ids are stable, append only and capped at 4,096 items.</li>
+<li>Adding an item does not change the <code>StateHash</code>, so replays are unaffected.</li>
+<li>New host calls <code>item_count</code>, <code>item_name</code>, <code>item_by_name</code> and <code>item_info</code> read the registry.</li>
+<li>The SDK wraps them as <code>ItemCount</code>, <code>ItemName</code>, <code>ItemIDByName</code> and <code>ItemInfo</code>.</li>
+<li>The engine and the SDK share one 6-byte item stack format.</li>
+<li>There is no built-in inventory or dropped item.</li>
+<li>See <a href="../docs/items.html">docs/items.md</a>.</li>
+</ul>
+<h4 id="0-4-1---2026-11-01-water">Water<a class="anchor" href="#0-4-1---2026-11-01-water" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Scripts can read and move water with <code>fluid_amount</code>, <code>fluid_pour</code> and <code>fluid_drain</code>.</li>
+<li>A full cell counts 64 units, exposed in the SDK as <code>FluidFull</code>.</li>
+<li>These calls act at once and report the exact amount moved.</li>
+<li>They are enough for pumps, tanks, drains and fountains.</li>
+<li>See <a href="../docs/water-physics.html#interaction-physics">docs/water-physics.md</a>.</li>
+<li>Fine water runs on several threads, set by <code>fluid.Threads</code>.</li>
+<li>Results are identical whatever the thread count.</li>
+<li>The 1000-source plane and cave scenes run 1.8x faster.</li>
+<li>The fine-water brick cap now grows under pressure and shrinks back when calm.</li>
+<li>A 1000-source plane serves every source at tick 67 instead of 383.</li>
+<li><code>fluid_focus</code> simulates only bricks near the viewers and freezes the rest.</li>
+<li>A huge distant flood no longer starves the water in view.</li>
+<li>Widening the focus resumes the water to the same settled state.</li>
+<li>The sandbox gains <code>-fluid-focus</code> and <code>-fluid-burst</code> flags.</li>
+</ul>
+<h4 id="0-4-1---2026-11-01-game">Game<a class="anchor" href="#0-4-1---2026-11-01-game" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Fixed one click placing or breaking several blocks.</li>
+<li>The first repeat of a held click now waits 0.35 s.</li>
+<li>Holding still digs and builds at the same pace as before.</li>
+</ul>
+<h4 id="0-4-1---2026-11-01-editor">Editor<a class="anchor" href="#0-4-1---2026-11-01-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Creative-mode hints now show the key bound to <code>view.creative</code>.</li>
+<li>A new View toggle, Coordinate Readout, shows a chip in the viewport.</li>
+<li>The chip shows the camera position and the hovered cell with its block name.</li>
+</ul>
+<h4 id="0-4-1---2026-11-01-site">Site<a class="anchor" href="#0-4-1---2026-11-01-site" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The website has a dark, calm redesign.</li>
+<li>It uses a deep blue-black sky and one cyan-to-grass accent.</li>
+<li>Hairline borders and soft depth replace the notched pixel borders.</li>
+<li>Display type is larger.</li>
+<li>The sticky header blurs what passes under it.</li>
+<li>A short trust line sits under the hero call to action.</li>
+<li>Pages and content are unchanged in both languages.</li>
+</ul>
+</article>
+<article class="release px" id="0-4-0---2026-11-01"><header><h2>0.4.0 - 2026-11-01</h2><p class="rmeta"><time>2026-11-01</time></p></header>
+<p>An editor release: a real asset manager, a built-in code editor with VS Code hand-off, and every content creator one menu away.</p>
+<h4 id="0-4-0---2026-11-01-navigation-and-ai">Navigation and AI<a class="anchor" href="#0-4-0---2026-11-01-navigation-and-ai" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Scripts can store typed values on an agent&#39;s blackboard with <code>nav_bb_put</code>, <code>nav_bb_read</code> and <code>nav_bb_del</code>.</li>
+<li>The SDK wraps them as <code>NavPutBB</code>, <code>NavReadBB</code> and <code>NavDelBB</code>.</li>
+<li>Blackboards hold 64 keys instead of 32, and existing projects are unchanged.</li>
+<li><code>NavSetGoalPos</code> sends an agent to a world position.</li>
+</ul>
+<h4 id="0-4-0---2026-11-01-water">Water<a class="anchor" href="#0-4-0---2026-11-01-water" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Fixed hard triangles and a white chevron on fine water running over steps.</li>
+<li>Every top quad now splits along the flattest diagonal.</li>
+<li>Fixed water from a broken river or lake bank stopping at a quarter of a block.</li>
+<li>A source with two or more source neighbours now feeds its surroundings toward the level of its body.</li>
+<li>Basins, ditches and breaches now fill properly, tuned with <code>fluid.Config.FineBodyLevel</code>.</li>
+<li>Fine-water rules are now version 4, so the <code>StateHash</code> of projects with fine water changes.</li>
+<li>Older saves still load.</li>
+</ul>
+<h4 id="0-4-0---2026-11-01-rendering">Rendering<a class="anchor" href="#0-4-0---2026-11-01-rendering" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Added parallax relief on block faces near the camera, driven by the height channel of normal maps.</li>
+<li>Textures without a height channel get one derived from the albedo.</li>
+<li>Parallax is controlled by the <code>-parallax</code> flag and is off in the F6 plain preset.</li>
+<li>Parallax edges are sharper, and raised texels cast soft self-shadows toward the sun.</li>
+<li>Low-resolution block textures use anisotropic filtering up to 8x, so floors and walls stay sharp at grazing angles.</li>
+<li>Texel edges are antialiased over one pixel up close, for a crisp pixel-art look without shimmer.</li>
+<li>The default is <code>-texfilter linear</code>, and <code>nearest</code> keeps the old look.</li>
+<li>The default look is darker and more contrasted, closer to a shader pack.</li>
+<li>Brightness, saturation and contrast sliders live in Preferences &gt; Rendering.</li>
+<li>Wet surfaces follow the porosity of the specular map.</li>
+<li>Porous stone, dirt and wood darken most in rain, while hard surfaces stay glossy.</li>
+</ul>
+<h4 id="0-4-0---2026-11-01-editor">Editor<a class="anchor" href="#0-4-0---2026-11-01-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Preferences &gt; Rendering sets normal-map strength, specular boost and parallax depth live.</li>
+<li>The texture editor writes the matching <code>_n</code> and <code>_s</code> relief maps for your textures.</li>
+<li>The model, texture, script graph, particle and game-UI editors are now tool windows.</li>
+<li>Each tool runs in its own window from the new Tools menu, and <code>burrowedit -tool</code> opens one directly.</li>
+<li>Tools save into the project and the editor reloads the result.</li>
+<li>New Modeling, Animation and Coding layouts are available.</li>
+<li>Weather, Audio, Cameras and Levels are docked panels instead of popups.</li>
+<li>The visual script graph gained a node library with search, an inspector and box select.</li>
+<li>The script graph also gained copy and paste at the pointer, auto layout and a minimap.</li>
+<li>The new particle effect editor has a preset library and an animated preview.</li>
+<li>The particle editor also has a size-over-life curve and a colour gradient.</li>
+<li>The Game UI designer renders the screen with the game&#39;s renderer at a chosen device size.</li>
+<li>The Game UI designer edits the properties of every widget.</li>
+<li>The assets panel is now a file manager with a folder tree, multi-select, drag and drop, rename and Find usages.</li>
+<li>Deleted assets go to a project trash, restorable with Edit &gt; Undo Delete Asset.</li>
+<li>Asset thumbnails are sharper and resizable.</li>
+<li>The script panel is now a code editor with tabs, find and replace, autocomplete, format, folding and a minimap.</li>
+<li>It has syntax colours for eight languages and live errors for Go and JSON.</li>
+<li>Open in VS Code hands a file off to your own editor.</li>
+<li>Ctrl+E opens Go to File, and Ctrl+Shift+F searches the project with replace all.</li>
+<li>Console lines are clickable, and a History panel jumps to any undo step.</li>
+<li>A welcome window greets new sessions.</li>
+<li>The character panel has a turntable and opens the skin in the texture editor.</li>
+<li>The animation timeline gained keyboard transport keys.</li>
+<li>The inspector can filter properties, and the code editor can detach into its own window.</li>
+<li>Fixed voxel edits lost when a project was closed and reopened.</li>
+<li>Save now also writes <code>world.voxworld</code>, and opening a project loads it back.</li>
+</ul>
+</article>
+<article class="release px" id="0-3-2---2026-10-31"><header><h2>0.3.2 - 2026-10-31</h2><p class="rmeta"><time>2026-10-31</time></p></header>
+<p>Fine water fix: a stream running over a river bank no longer draws broken sheets.</p>
+<h4 id="0-3-2---2026-10-31-water">Water<a class="anchor" href="#0-3-2---2026-10-31-water" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Fixed: fine water spilling down a slope of 1-block steps drew loose rectangles flashing in the air.</li>
+<li>Fine water on such a slope now draws one sheet down each step.</li>
+</ul>
+</article>
+<article class="release px" id="0-3-1---2026-10-31"><header><h2>0.3.1 - 2026-10-31</h2><p class="rmeta"><time>2026-10-31</time></p></header>
+<p>Fine water by default, a game inventory, water particles and determinism fixes.</p>
+<h4 id="0-3-1---2026-10-31-game">Game<a class="anchor" href="#0-3-1---2026-10-31-game" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Inventory in the running game.</li>
+<li>Blocks placed on the ground follow the ground.</li>
+<li>Water particles, plus renderer and chunk stream tweaks.</li>
+</ul>
+<h4 id="0-3-1---2026-10-31-water">Water<a class="anchor" href="#0-3-1---2026-10-31-water" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>burrow migrate</code> turns the fine water on for projects that never chose, when the Hub upgrades the engine.</li>
+<li>Every <code>burrow new</code> template starts with the fine water.</li>
+<li>The StateHash of projects with water changes, and a coarse-water save is refused with an error.</li>
+<li>The Hub&#39;s backup and Revert go back after the upgrade.</li>
+</ul>
+<h4 id="0-3-1---2026-10-31-determinism">Determinism<a class="anchor" href="#0-3-1---2026-10-31-determinism" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>physics3d</code> rounds every float product explicitly, so results are identical on arm64 and amd64.</li>
+<li>Fixed an evaporation snapshot that could stall a brick until the clock caught up with it.</li>
+</ul>
+</article>
+<article class="release px" id="0-3-0---2026-10-31"><header><h2>0.3.0 - 2026-10-31</h2><p class="rmeta"><time>2026-10-31</time></p></header>
+<p>Buoyancy and swell for physics bodies, variable voxel size, a creative mode in the editor, a building guide for agents and multiplayer fixes.</p>
+<h4 id="0-3-0---2026-10-31-editor">Editor<a class="anchor" href="#0-3-0---2026-10-31-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Creative mode (F9): captured mouse, fullscreen viewport, hotbar, inventory, flying and walking.</li>
+<li>The finite full-water block is hidden from the creative inventory.</li>
+<li>Picking, selection and framing bounds of a voxel model follow the model size and its <code>scale</code>.</li>
+</ul>
+<h4 id="0-3-0---2026-10-31-multiplayer">Multiplayer<a class="anchor" href="#0-3-0---2026-10-31-multiplayer" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Fixed kicks for a too high input rate, a deadlock on submit, ghost joins, chat, message ordering and missing startup files.</li>
+</ul>
+<h4 id="0-3-0---2026-10-31-agents">Agents<a class="anchor" href="#0-3-0---2026-10-31-agents" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New package <code>buildguide</code> distils the public Minecraft building guides into building rules.</li>
+<li>It has 16 styles with block palettes, roof recipes, proportions and furniture recipes.</li>
+<li>Every block a palette names is checked against the block set.</li>
+<li>New tools <code>editor_build_guide</code>, <code>editor_build_plan</code> and <code>editor_build_review</code>, with <code>vox_*</code> twins on burrowd.</li>
+<li>The plan generates roofs, solids and whole houses from a style in one call.</li>
+<li>The review scores a finished structure and lists fixes.</li>
+<li><code>editor_blocks</code> gained query, category, material and family filters over the full block list (about 1500 entries).</li>
+</ul>
+<h4 id="0-3-0---2026-10-31-rendering">Rendering<a class="anchor" href="#0-3-0---2026-10-31-rendering" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Variable voxel size: <code>render.voxmodel</code> keeps its per-instance <code>scale</code>, with one source for the default.</li>
+<li>Fixed: dynamic voxel bodies drawn by <code>p3render</code> were invisible on the GPU.</li>
+</ul>
+<h4 id="0-3-0---2026-10-31-physics">Physics<a class="anchor" href="#0-3-0---2026-10-31-physics" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Variable voxel size for <code>physics3d</code> bodies (<code>RigidBody.cell</code>): mass, inertia, collision, buoyancy and rendering follow the cell size.</li>
+<li>Buoyancy is computed from displaced-volume samples instead of one immersion fraction.</li>
+<li>Floating bodies now right themselves, trim by their load and can capsize.</li>
+<li>A sealed hollow hull floats.</li>
+<li>Open hulls displace water and flood when the rim goes under, so an overloaded boat sinks.</li>
+<li>Optional swell (<code>Water.Swell</code>): three deterministic travelling waves, shared by buoyancy and the rendered water surface.</li>
+<li>A body asleep on water wakes when the water moves.</li>
+<li>Replays of worlds with bodies in water change.</li>
+<li>New host function <code>physics3d_water_at</code> reads the water surface height (swell included) and the depth of a point.</li>
+</ul>
+</article>
+<article class="release px" id="0-2-3---2026-10-31"><header><h2>0.2.3 - 2026-10-31</h2><p class="rmeta"><time>2026-10-31</time></p></header>
+<h4 id="0-2-3---2026-10-31-blocks">Blocks<a class="anchor" href="#0-2-3---2026-10-31-blocks" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>runtime.blocks: &#34;shapes&#34;</code> is now the default and the only supported block registry.</li>
+<li><code>classic</code> and <code>extended</code> still load but resolve to <code>shapes</code>.</li>
+<li>Classic worlds&#39; hashes and replay journals change.</li>
+</ul>
+<h4 id="0-2-3---2026-10-31-hub">Hub<a class="anchor" href="#0-2-3---2026-10-31-hub" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Simpler navigation: four tabs instead of six.</li>
+<li>One updates summary with a single <strong>Update all</strong> button.</li>
+<li>Optional background self-update (re-signed on macOS).</li>
+<li>Projects: secondary actions moved into a <strong>More</strong> menu.</li>
+<li>Home folds Multiplayer and Learn.</li>
+</ul>
+<h4 id="0-2-3---2026-10-31-editor">Editor<a class="anchor" href="#0-2-3---2026-10-31-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The left tool column scrolls when the window is short.</li>
+<li>Frame selection stays pinned at the bottom.</li>
+</ul>
+</article>
+<article class="release px" id="0-2-2---2026-10-31"><header><h2>0.2.2 - 2026-10-31</h2><p class="rmeta"><time>2026-10-31</time></p></header>
+<p>Sound, Hub and scripting fixes, plus a new Scripting documentation category. Upgrade recommended: the sound bug affects every game and the editor.</p>
+<h4 id="0-2-2---2026-10-31-audio">Audio<a class="anchor" href="#0-2-2---2026-10-31-audio" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Fixed a sound that looped, grew louder with every new sound and ended up saturating.</li>
+<li>The default pack gained rain, wind, thunder, flowing water and lava sounds.</li>
+<li>The harsh synthesized <code>builtin:*</code> sounds are removed.</li>
+<li>Block, jump and landing sounds no longer spam, and the low rumbling thuds are gone.</li>
+<li>Landing is silent unless you fall 1.6 blocks or more.</li>
+</ul>
+<h4 id="0-2-2---2026-10-31-hub">Hub<a class="anchor" href="#0-2-2---2026-10-31-hub" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Selection frames only show for keyboard navigation.</li>
+<li>Idle CPU use dropped from about 107% to about 2.5% of one core.</li>
+<li>The window is movable again by its title bar on macOS.</li>
+</ul>
+<h4 id="0-2-2---2026-10-31-editor">Editor<a class="anchor" href="#0-2-2---2026-10-31-editor" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>New Play &gt; Run as a Game: starts the project in its own game window, like <code>burrow run</code>.</li>
+</ul>
+<h4 id="0-2-2---2026-10-31-scripting">Scripting<a class="anchor" href="#0-2-2---2026-10-31-scripting" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>Spawn(&#34;name&#34;)</code> works in every runtime, loading prefabs from the project.</li>
+<li>Fixed <code>SetTransform</code> with a zero scale making the node invisible.</li>
+<li>Fixed the SDK vector accessors (<code>PhysicsBodyHalf</code>, <code>NavAgentVel</code>, ...) reading NaN and rejecting writes.</li>
+<li>Fixed <code>NetPlayerInfo</code> always reading zeros.</li>
+<li>Fixed the first <code>burrow script build</code> after <code>burrow script new</code> failing.</li>
+<li>Fixed Play mode not routing the mouse, keyboard and gamepad to the game.</li>
+<li>The project templates no longer call the removed <code>builtin:*</code> sounds.</li>
+<li>New Scripting category in the documentation (12 pages).</li>
+</ul>
+</article>
+<article class="release px" id="0-2-1---2026-10-31"><header><h2>0.2.1 - 2026-10-31</h2><p class="rmeta"><time>2026-10-31</time></p></header>
+<p>Performance and Windows fixes. Upgrade recommended on Windows.</p>
+<h4 id="0-2-1---2026-10-31-performance">Performance<a class="anchor" href="#0-2-1---2026-10-31-performance" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Moving the mouse no longer drops the frame rate (was 14 fps with a 1000 Hz mouse).</li>
+<li>The editor viewport runs at 60 fps on discrete GPUs (was 27 fps).</li>
+<li>Continuous block editing is lighter on the CPU.</li>
+</ul>
+<h4 id="0-2-1---2026-10-31-windows">Windows<a class="anchor" href="#0-2-1---2026-10-31-windows" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Security: a directory junction inside a project could write files outside it.</li>
+<li>Links and junctions are refused now.</li>
+<li>Importing a character skin without a project no longer stores an absolute path.</li>
+</ul>
+<h4 id="0-2-1---2026-10-31-installers">Installers<a class="anchor" href="#0-2-1---2026-10-31-installers" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Installers and archives rebuilt for Windows, macOS and Linux.</li>
+</ul>
+</article>
+<article class="release px" id="0-2-0---2026-10-31"><header><h2>0.2.0 - 2026-10-31</h2><p class="rmeta"><time>2026-10-31</time></p></header>
+<h4 id="0-2-0---2026-10-31-multiplayer">Multiplayer<a class="anchor" href="#0-2-0---2026-10-31-multiplayer" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Multiplayer is playable (<a href="../docs/networking.html">networking</a>).</li>
+<li>Host with <code>burrow serve</code> or from the editor.</li>
+<li>Join with a link from the Hub or <code>burrowplay -connect</code>.</li>
+<li>It has TLS, per-player input, late joins, reconnection and desync repair.</li>
+<li>Games without the <code>net</code> plugin are unchanged.</li>
+</ul>
+<h4 id="0-2-0---2026-10-31-display">Display<a class="anchor" href="#0-2-0---2026-10-31-display" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Windows follow the display scale on Windows, macOS and Linux.</li>
+<li>New UI scale setting and Ctrl/Cmd plus/minus/0.</li>
+</ul>
+<h4 id="0-2-0---2026-10-31-engine">Engine<a class="anchor" href="#0-2-0---2026-10-31-engine" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>The simulation, 3D physics included, gives the same result on arm64 and amd64 (<a href="../docs/determinism.html">determinism</a>).</li>
+</ul>
+<h4 id="0-2-0---2026-10-31-installers">Installers<a class="anchor" href="#0-2-0---2026-10-31-installers" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>One installer per OS: Windows setup, macOS disk image, Linux AppImage, <code>.tar.gz</code> and <code>.deb</code>.</li>
+<li>The installers are unsigned for now.</li>
+</ul>
+</article>
+<article class="release px" id="0-1-0---2026-10-30"><header><h2>0.1.0 - 2026-10-30</h2><p class="rmeta"><time>2026-10-30</time></p></header>
+<p>First public version of Burrow: a deterministic voxel game engine in Go, with an editor, scripting, a Vulkan renderer and an interface made for AI agents. Early version, MIT licensed.</p>
+<h4 id="0-1-0---2026-10-30-engine">Engine<a class="anchor" href="#0-1-0---2026-10-30-engine" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Same seed and same inputs always give the same world, so any session can be replayed (<code>burrow test</code>).</li>
+<li>Voxel worlds with biomes, rivers, mountains and caves, plus physics, pathfinding, particles, weather and water.</li>
+<li>Scene tree with prefabs and saves, a game UI toolkit and six camera types (first and third person, top-down, isometric, side-scroller, cinematic).</li>
+<li>Nine project templates: sandbox, builder, scripted, platformer, physics puzzle, top-down strategy, survival, models, empty.</li>
+</ul>
+<h4 id="0-1-0---2026-10-30-rendering">Rendering<a class="anchor" href="#0-1-0---2026-10-30-rendering" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Vulkan renderer with quality levels from off to ultra: sky, clouds, shadows, ambient occlusion, bloom, water reflections, rain, snow and storms.</li>
+<li>Anti-aliasing and upscaling (FXAA, SMAA, TAA, FSR 1 and 2) and optional ray tracing.</li>
+<li>A CPU renderer makes the same images without a window or GPU, for tests and screenshots.</li>
+</ul>
+<h4 id="0-1-0---2026-10-30-editor-and-tools">Editor and tools<a class="anchor" href="#0-1-0---2026-10-30-editor-and-tools" aria-label="Link to this section">#</a></h4>
+<ul>
+<li><code>burrowedit</code>: viewport, hierarchy, inspector, asset browser, profiler, terrain tools, undo and redo, Play mode and built-in tutorials.</li>
+<li><code>burrow</code> command line: new, run, edit, test, build, script, assets, doctor, docs.</li>
+<li>Everything the editor does also works headless over MCP and a JSON CLI.</li>
+</ul>
+<h4 id="0-1-0---2026-10-30-scripting">Scripting<a class="anchor" href="#0-1-0---2026-10-30-scripting" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Scripts are written in Go, compiled to WebAssembly, or built as visual graphs with no code.</li>
+<li>They run inside the simulation, so they replay like everything else.</li>
+</ul>
+<h4 id="0-1-0---2026-10-30-hub-and-distribution">Hub and distribution<a class="anchor" href="#0-1-0---2026-10-30-hub-and-distribution" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>Burrow Hub manages projects and engine versions, opens the editor, plays and exports.</li>
+<li>Update checks are optional and only signed manifests are accepted.</li>
+<li>No telemetry is sent.</li>
+<li>A Windows x64 download holds the editor, Hub, command line, script SDK, docs and templates.</li>
+<li>A website hosts the documentation, news and this changelog.</li>
+</ul>
+<h4 id="0-1-0---2026-10-30-known-limits">Known limits<a class="anchor" href="#0-1-0---2026-10-30-known-limits" aria-label="Link to this section">#</a></h4>
+<ul>
+<li>This is an early version and the API may change.</li>
+<li>Windows builds are untested on real hardware and unsigned, so SmartScreen may warn.</li>
+<li>Windowed use is supported on macOS Apple silicon only.</li>
+<li>There is no multiplayer yet.</li>
+<li>Textures are not animated, and blocks added after Minecraft 1.16 use flat colours.</li>
+</ul>
+</article>
+</div>
+</div></section>
+
+</main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

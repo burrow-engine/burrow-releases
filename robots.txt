@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://burrow-engine.github.io/burrow-releases/sitemap.xml
