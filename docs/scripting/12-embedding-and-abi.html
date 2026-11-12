@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Embedding and the ABI | Burrow</title>
+<meta name="description" content="The host side of scripting: running the runtime in your own program, and the plain-words contract for writing guests in a language other than Go. Everything the burrowplay game window does for you is…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/12-embedding-and-abi.html">
+<meta property="og:title" content="Embedding and the ABI | Burrow">
+<meta property="og:description" content="The host side of scripting: running the runtime in your own program, and the plain-words contract for writing guests in a language other than Go. Everything the burrowplay game window does for you is…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/12-embedding-and-abi.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Embedding and the ABI | Burrow">
+<meta name="twitter:description" content="The host side of scripting: running the runtime in your own program, and the plain-words contract for writing guests in a language other than Go. Everything the burrowplay game window does for you is…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html" aria-current="page">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="embedding-and-the-abi">Embedding and the ABI<a class="anchor" href="#embedding-and-the-abi" aria-label="Link to this section">#</a></h1>
+<p>The host side of scripting: running the runtime in your own program, and the plain-words contract for writing guests in a language other than Go. Everything the <code>burrowplay</code> game window does for you is described here so it can be done by hand.</p>
+<h2 id="the-pieces">The pieces<a class="anchor" href="#the-pieces" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">piece</th><th scope="col">package</th><th scope="col">role</th></tr></thead>
+<tbody>
+<tr><td><code>script.Runtime</code></td><td><code>burrow-engine/script</code></td><td>compiles, meters and runs modules; content-addressed module store; safe for concurrent use. One per <code>App</code>, shared with replays</td></tr>
+<tr><td><code>script.Plugin</code></td><td>same</td><td>installs the <code>script</code> / <code>script.input</code> / <code>tags</code> components, the journaled commands, the fixed system <code>script.run</code> and the frame systems that bind, reload and journal input</td></tr>
+<tr><td><code>script.Config</code></td><td>same</td><td>limits and budgets of a runtime (zero value is usable)</td></tr>
+<tr><td>host function registry</td><td><code>burrow-engine/script/api</code></td><td>every <code>vox</code> function once (name, params, doc, category, gas); read by tools</td></tr>
+</tbody></table></div>
+<h2 id="config">Config<a class="anchor" href="#config" aria-label="Link to this section">#</a></h2>
+<p><code>script.NewRuntime(script.Config{})</code>. Every field, with its default. Zero means default.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">default</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>Interpreter</code></td><td>false</td><td>wazero interpreter instead of the compiler (about 30 us per script call instead of 1.5-11; for platforms without a compiler backend). Same results</td></tr>
+<tr><td><code>MemoryPages</code></td><td>512</td><td>64 KiB pages per instance (32 MiB). A Go guest&#39;s post-init image is about 100-200 pages</td></tr>
+<tr><td><code>MaxModuleBytes</code></td><td>8 MiB</td><td>largest <code>.wasm</code> accepted</td></tr>
+<tr><td><code>MaxModules</code></td><td>256</td><td>distinct module versions kept loaded; the oldest version that is neither pinned nor registered by name is evicted (<code>Stats.Evicted</code>)</td></tr>
+<tr><td><code>GasPerInvocation</code></td><td>50,000,000</td><td>deterministic instruction budget per guest entry call; exhaustion is a fault</td></tr>
+<tr><td><code>Watchdog</code></td><td>0 (off)</td><td>wall-clock limit per call. Not deterministic: a trip journals <code>script_disable</code>, and the tick in which it fired may not replay identically. Costs about 10 us per call. Gas is the real bound</td></tr>
+<tr><td><code>MaxFaults</code></td><td>3</td><td>faults before a script is disabled until its module changes</td></tr>
+<tr><td><code>PerScript</code>, <code>PerTick</code></td><td>below</td><td><code>Budget</code> per transaction and per tick across all scripts</td></tr>
+<tr><td><code>StrictWASI</code></td><td>false</td><td>reject modules importing any WASI function beyond the startup set</td></tr>
+<tr><td><code>NoWriteTracking</code></td><td>false</td><td>skip store instrumentation; resets compare all memory (slower resets, faster guest code). Same results</td></tr>
+<tr><td><code>Limits</code></td><td>512 nesting, 100k functions, 8M instructions, 2 MiB per function</td><td>structural caps checked before compilation (<code>gas.Limits</code>)</td></tr>
+<tr><td><code>LoadTimeout</code></td><td>120 s</td><td>validation plus compilation of one module; longer is rejected and remembered as bad</td></tr>
+<tr><td><code>PoolSize</code></td><td>8</td><td>idle instances kept per module</td></tr>
+</tbody></table></div>
+<p><code>Budget</code> fields, per transaction / per tick: <code>Calls</code> 1,000 / 200,000; <code>Bytes</code> 1 MiB / 64 MiB; <code>Spawns</code> 32 / 1,024; <code>VoxelEdits</code> 4,096 / 262,144; <code>Events</code> 64 / 4,096 (events cover <code>Emit</code>, <code>Publish</code> and every <a href="07-effects.html">effect request</a>). What each limit means for authors: <a href="09-errors-and-limits.html">errors and limits</a>.</p>
+<p><strong>Result-affecting fields.</strong> <code>GasPerInvocation</code>, <code>MemoryPages</code>, <code>MaxFaults</code>, both budgets, <code>StrictWASI</code> and <code>MaxModuleBytes</code> are folded into <code>Runtime.Fingerprint()</code>. Each script remembers it when bound; restoring or replaying under a different fingerprint fails instead of diverging. Keep these identical between a recording and its replay.</p>
+<h2 id="modules">Modules<a class="anchor" href="#modules" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">call</th><th scope="col">does</th></tr></thead>
+<tbody>
+<tr><td><code>rt.Load(wasm) (*Module, error)</code></td><td>validate, instrument and compile; idempotent per content hash; failed loads are cached by hash</td></tr>
+<tr><td><code>rt.Register(name, wasm) (hash, error)</code></td><td><code>Load</code> plus a name: a <code>script</code> component with <code>&#34;module&#34;: &#34;name&#34;</code> binds to it</td></tr>
+<tr><td><code>rt.Hashes()</code></td><td>hashes of all loaded versions: with the journal, the replay identity of the module set</td></tr>
+<tr><td><code>rt.Pin(hash)</code> / <code>rt.Unpin(hashes...)</code></td><td>protect a version from eviction; the plugin pins every version it journals. <code>Unpin</code> versions older than your latest snapshot. When everything is pinned and <code>MaxModules</code> is reached, <code>Load</code> fails with an <code>Unpin</code> hint</td></tr>
+<tr><td><code>rt.Loader()</code></td><td>the <code>assets.Loader</code> for <code>.wasm</code> files (register it in <code>assets.Options.Loaders</code>): path and GUID modules, hot reload</td></tr>
+<tr><td><code>script.Inspect(wasm, cfg)</code></td><td>load in a throw-away runtime and report entries, imports, gas sites, memory (what <code>check</code> prints)</td></tr>
+</tbody></table></div>
+<p><strong>Resolution</strong> of <code>script.module</code>: first names registered on the runtime, then the asset database (GUID or project path). The engine writes the content hash into the component (<code>script_bind</code>, journaled), so replays use the bytes the journal names. Replaying a state whose module the runtime lacks fails the tick with an error naming the hash; it never skips. A changed <code>.wasm</code> asset recompiles and is applied at the next tick boundary (<code>script_module_changed</code>, journaled), clearing the fault count; a broken new file keeps the old module. Hot reload is off in multiplayer (<a href="08-multiplayer.html">multiplayer</a>).</p>
+<h2 id="plugin">Plugin<a class="anchor" href="#plugin" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-go">&amp;script.Plugin{Runtime: rt, Prefabs: prefabs, ReadAsset: read, PauseOnFault: <span class="k">true</span>}</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">field</th><th scope="col">default</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>Runtime</code></td><td>nil: a new runtime from <code>Config</code>, closed on cleanup</td><td>share one runtime across an app and its replays</td></tr>
+<tr><td><code>Config</code></td><td>zero</td><td>used only when <code>Runtime</code> is nil</td></tr>
+<tr><td><code>Prefabs</code></td><td>none</td><td>prefabs <code>Spawn(name, ...)</code> can instantiate</td></tr>
+<tr><td><code>PrefabSource</code></td><td>none</td><td><code>func(name string) ([]byte, error)</code> that serves <code>.prefab</code> bytes for a name <code>Prefabs</code> lacks (the game and the editor use the project&#39;s <code>&lt;name&gt;.prefab</code> and <code>prefabs/&lt;name&gt;.prefab</code>); results are cached</td></tr>
+<tr><td><code>ReadAsset</code></td><td>the <code>*assets.DB</code> resource, if present</td><td>serves <code>ReadAsset</code> (project data files)</td></tr>
+<tr><td><code>PauseOnFault</code></td><td>false</td><td>pause the simulation (<code>SetPausedBy(&#34;script.fault&#34;)</code>) when a script faults, so you can inspect it. Frame domain, replays unaffected</td></tr>
+</tbody></table></div>
+<p><strong>Order.</strong> The plugin fails to build (<code>script: needs the scene; add &amp;engine.ScenePlugin{} before script.Plugin</code>) unless <code>ScenePlugin</code> came first. Add <code>input</code>, <code>physics</code> and <code>physics3d</code> plugins before it: when <code>physics</code> is present <code>script.run</code> is ordered before <code>physics.character</code>, and when <code>input</code> is present the input snapshot system runs after <code>input.poll</code>. <code>netsim.Plugin</code> (multiplayer registry), nav, levels, saves, assets, audio, particles, camera and gameui plugins may come in any order: the plugin looks up levels, saves and the asset database after every plugin has built. The standard <code>game</code> assembly adds scene, net, window, assets, voxel world, fluid, input, physics, physics3d, nav, weather, then scripts, then render, audio, particles, camera, gameui, levels, saves.</p>
+<p><strong>Prefabs.</strong> <code>Prefabs</code> is a <code>map[string]*scene.Prefab</code>; build entries with <code>scene.LoadPrefab(voxscnBytes, schema)</code>, or set <code>PrefabSource</code> to load them on demand. A prefab is the only way for a script to spawn a node that carries a <code>script</code> component: <code>Spawn</code> with a <code>script</code> component in <code>SpawnOpts.Components</code> is <code>DENIED</code> (<code>script</code>, <code>script.input</code> and <code>graph_script</code> are protected). The <code>burrowplay</code> / <code>burrow run</code> game assembly and the editor set <code>PrefabSource</code> to the project&#39;s <code>&lt;name&gt;.prefab</code> and <code>prefabs/&lt;name&gt;.prefab</code> files.</p>
+<h2 id="example-run-headless-and-read-the-hash">Example: run headless and read the hash<a class="anchor" href="#example-run-headless-and-read-the-hash" aria-label="Link to this section">#</a></h2>
+<p>Two runs of the same program give the same <code>StateHash</code>, and a journal replay gives it again. <code>Seed</code> and <code>StrictCommands</code> (a failed command is an error, not a log line) are what tests usually want.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;encoding/json&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+
+	<span class="s">&#34;burrow-engine/engine&#34;</span>
+	<span class="s">&#34;burrow-engine/mathx&#34;</span>
+	<span class="s">&#34;burrow-engine/scene&#34;</span>
+	<span class="s">&#34;burrow-engine/script&#34;</span>
+)
+
+<span class="k">func</span> check(err <span class="k">error</span>) {
+	<span class="k">if</span> err != <span class="k">nil</span> {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(<span class="n">1</span>)
+	}
+}
+
+<span class="k">func</span> main() {
+	rt, err := script.NewRuntime(script.Config{})
+	check(err)
+	<span class="k">defer</span> rt.Close()
+	wasm, err := os.ReadFile(<span class="s">&#34;assets/scripts/spin.wasm&#34;</span>)
+	check(err)
+	hash, err := rt.Register(<span class="s">&#34;spin&#34;</span>, wasm) <span class="c">// scenes may now say &#34;module&#34;: &#34;spin&#34;</span>
+	check(err)
+
+	app := engine.New(engine.Options{Seed: <span class="n">1</span>, StrictCommands: <span class="k">true</span>})
+	app.AddPlugin(&amp;engine.ScenePlugin{})
+	app.AddPlugin(&amp;script.Plugin{Runtime: rt})
+	check(app.Build())
+
+	tr := scene.IdentityTransform()
+	tr.Pos = mathx.Vec3{X: <span class="n">4</span>, Y: <span class="n">3</span>, Z: <span class="n">4</span>}
+	check(app.Do(scene.SpawnNode{Name: <span class="s">&#34;spinner&#34;</span>, Transform: &amp;tr}))
+	comp := fmt.Sprintf(<span class="s">`{&#34;module&#34;:&#34;spin&#34;,&#34;hash&#34;:%q,&#34;props&#34;:{&#34;speed&#34;:90}}`</span>, hash)
+	check(app.Do(scene.SetComponent{Path: <span class="s">&#34;spinner&#34;</span>, Name: script.CompScript, Data: json.RawMessage(comp)}))
+
+	check(app.RunHeadless(<span class="n">100</span>))
+	fmt.Printf(<span class="s">&#34;tick=%d StateHash=%016x faults=%d\n&#34;</span>, app.Tick(), app.StateHash(), rt.Stats().Faults)
+	check(app.VerifyReplay())
+}</code></pre>
+<p>Putting the hash in the component pins the module for the journal. Without <code>hash</code> the plugin binds the module at the next frame with a journaled <code>script_bind</code>, which also works. Complete demo with seven scripts, built on the fly and run twice: <code>go run ./examples/scripting_demo</code>.</p>
+<p>Reading results: <code>rt.Stats()</code> (invocations, faults, gas, budget denials, evictions), <code>rt.Profile()</code> per script entity (<a href="10-debugging-and-testing.html">debugging</a>), the <code>*script.Console</code> resource (log lines and faults with guest stack), <code>ScriptFault</code> events.</p>
+<h2 id="writing-a-guest-in-another-language">Writing a guest in another language<a class="anchor" href="#writing-a-guest-in-another-language" aria-label="Link to this section">#</a></h2>
+<p>The raw contract is <span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span> (version 1, normative; the host-function table in it is what <a href="../reference/script-api.html">Script API</a> is generated from). In plain words:</p>
+<p><strong>Module shape.</strong></p>
+<ul>
+<li>A WebAssembly 2.0 core module (bulk memory, sign extension, multi-value and so on; <strong>no SIMD, threads or tail calls</strong>). It must be valid on its own.</li>
+<li>Imports: only module <code>vox</code> (the host functions; the name predates the engine rename and is part of the ABI) and a few WASI stubs. Any other import module (<code>env</code>, <code>gojs</code>, ...) is refused at load with a hint.</li>
+<li>Exports: <code>memory</code> (required); <code>vox_abi_version: () -&gt; i32</code> returning <code>1</code> (required); at least one of the entry points below; <code>vox_alloc</code> if you export <code>on_event</code>; <code>_initialize: ()</code> optional (run once at load). <code>_start</code> (a command build) is refused.</li>
+<li>No hidden state: a module that mutates tables or drops segments (<code>table.set/grow/fill/copy/init</code>, <code>data.drop</code>, <code>elem.drop</code>) is rejected.</li>
+</ul>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">entry export</th><th scope="col">signature</th><th scope="col">called</th></tr></thead>
+<tbody>
+<tr><td><code>on_start</code></td><td><code>(entity i64)</code></td><td>first tick of the script</td></tr>
+<tr><td><code>on_tick</code></td><td><code>(entity i64, dt_millis i32)</code></td><td>every tick, <code>dt_millis</code> is always 50</td></tr>
+<tr><td><code>on_event</code></td><td><code>(entity i64, kind i32, payload_ptr i32, len i32)</code></td><td>each pending event (<code>emit_event</code>, bus messages, fired timers) before <code>on_tick</code>; sender from <code>event_from()</code></td></tr>
+<tr><td><code>on_destroy</code></td><td><code>(entity i64)</code></td><td>the entity is despawned by a script</td></tr>
+<tr><td><code>vox_alloc</code></td><td><code>(size i32) -&gt; i32</code></td><td>the host writes an event payload at the returned address</td></tr>
+</tbody></table></div>
+<p><strong>Memory.</strong> Before every call the instance memory and mutable globals equal the image taken after <code>_initialize</code>. Nothing you store survives; persist through <code>state_set</code> (64 KiB, replaces <code>Script.State</code> at commit) and components. A module whose memory grew during a call is discarded afterwards, so reserve what you need before the image is taken (the Go SDK pre-grows 8 MiB).</p>
+<p><strong>Calls.</strong> Pointers and lengths are <code>i32</code>; strings are UTF-8, not NUL-terminated; one argument is at most 64 KiB, component names at most 128 bytes. A function returns <code>&gt;= 0</code> on success and <code>-code</code> on failure, never a trap for bad input. <code>i64</code>-returning functions return a negative error too. Output buffers are <code>(out_ptr, cap)</code>: the result is the length written, or <code>-4</code> and <code>last_required()</code> tells the size needed. Entity handles are <code>i64</code>; 0 is none.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">code</th><th scope="col">name</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>INVALID</code></td><td>bad value (NaN, out of range, unknown block id, empty name)</td></tr>
+<tr><td>2</td><td><code>MEMORY</code></td><td>pointer or length outside guest memory, or over the argument cap</td></tr>
+<tr><td>3</td><td><code>NOT_FOUND</code></td><td>entity, component, block or action does not exist</td></tr>
+<tr><td>4</td><td><code>TOO_SMALL</code></td><td>output buffer too small, see <code>last_required</code></td></tr>
+<tr><td>5</td><td><code>BUDGET</code></td><td>call, byte, spawn, edit or event budget exhausted</td></tr>
+<tr><td>6</td><td><code>DENIED</code></td><td>not allowed for scripts (the <code>script</code> component, hidden asset paths)</td></tr>
+<tr><td>7</td><td><code>UNAVAILABLE</code></td><td>subsystem not installed, or called outside a tick (during <code>_initialize</code>)</td></tr>
+<tr><td>8</td><td><code>REJECTED</code></td><td>JSON or schema validation failed</td></tr>
+<tr><td>9</td><td><code>LIMIT</code></td><td>a size cap hit (state, props, payload, inbox, timers)</td></tr>
+</tbody></table></div>
+<p><strong>Determinism for non-Go guests.</strong> The WASI clock is <code>tick*50ms</code>; <code>random_get</code> is a fixed stream seeded by the module hash; use <code>rand_u64</code> for gameplay randomness. Floats are IEEE and deterministic except NaN payload bits: host floats are canonicalised (any NaN becomes <code>0x7fc00000</code>) and non-finite values are refused by <code>transform_set</code>, <code>raycast</code> and others. Never store raw NaN bits in state.</p>
+<p><strong>ABI versioning.</strong> <code>vox_abi_version()</code> must equal the host&#39;s <code>script.ABIVersion</code> (1), otherwise the load fails (<code>guest ABI version N, host speaks 1</code>). Within a version the ABI is additive: functions are added, never changed. A module that imports a function this engine does not have fails to load (&#34;built against a newer SDK&#34;) and a signature mismatch fails with both signatures shown. A module built against an older SDK keeps working.</p>
+<h2 id="checking-a-module">Checking a module<a class="anchor" href="#checking-a-module" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-sh">burrow script check [dir|file.wasm]     <span class="c"># one file, or every module under dir/assets</span>
+burrowscript check [-max-bytes N] [-strict-wasi] file.wasm</code></pre>
+<p><code>check</code> loads the module in a throw-away runtime with the same validation as the game. Output on success (exit 0): <code>OK</code>, the ABI version, size and content hash, entry points present, the <code>vox</code> imports used, the WASI stub count, metering (gas checks and tracked stores), a warning for imports unknown to this engine, and memory pages (the reset image size). On failure it prints <code>FAIL &lt;file&gt;: &lt;reason and hint&gt;</code> and exits 1 (2 for a usage error). <code>-max-bytes</code> overrides the size cap and <code>-strict-wasi</code> also rejects the inert WASI imports. <code>burrow script build</code> runs the same check on every module it compiles; <code>burrowscript build [-o out.wasm] [-debug] dir</code> is the underlying compile (<code>GOOS=wasip1 GOARCH=wasm go build -buildmode=c-shared</code>, Go 1.24+; <code>-debug</code> keeps function names for fault traces).</p>
+<h2 id="packing">Packing<a class="anchor" href="#packing" aria-label="Link to this section">#</a></h2>
+<p><code>burrow build --pak game.voxpak</code> (or a packed executable or app) stores <code>vox.project</code>, every file under <code>asset_dirs</code> (compiled <code>.wasm</code> included), the default scene, input map and world overlay. Files are stored or zlib-compressed with a SHA-256 each, paths are sorted and the whole archive is hashed, so building twice gives identical bytes. Stale script sources are rebuilt first (<code>--no-scripts</code> on <code>burrow run</code> skips it). A Go module is about 4 MiB and about 1 MiB in the pak. The pak is untrusted data on load (size, ratio and path caps, no symlinks, a private 0700 extraction directory); the modules inside stay sandboxed. Modules are pinned by content hash, so a pak replays exactly what was recorded.</p>
+<h2 id="sandbox-facts">Sandbox facts<a class="anchor" href="#sandbox-facts" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>No files, sockets, threads, clocks or real randomness. The only imports are <code>vox</code> and inert WASI stubs: <code>args_*</code> and <code>environ_*</code> (empty), <code>clock_time_get</code> (tick based), <code>random_get</code> (fixed stream), <code>fd_write</code> on 1 and 2 (captured into fault text), <code>poll_oneoff</code> (returns at once), <code>sched_yield</code>, <code>proc_exit</code> (a fault). Go programs also link the rest of preview1 through <code>os</code> and <code>fmt</code>; those functions exist but always fail (<code>EBADF</code> / <code>ENOSYS</code>; no preopened directories). <code>StrictWASI</code> rejects even those.</li>
+<li>Gas is injected into the module before compilation, so a runaway loop traps at the same instruction on every machine. Memory, module size, call, byte, spawn, edit and event budgets are all enforced by the host (<a href="09-errors-and-limits.html">errors and limits</a>).</li>
+<li>A fault (trap, gas, panic, <code>proc_exit</code>, memory) drops the transaction&#39;s buffered effects, raises a <code>ScriptFault</code> event, and after <code>MaxFaults</code> disables the script until its module changes. The engine never crashes because of a script.</li>
+<li><strong>Native build.</strong> The same SDK also runs in-process: outside <code>GOOS=wasip1</code>, <code>sdk/burrowsdk/abi</code> forwards every call to the host installed with <code>abi.SetHost</code> (<code>script.Runtime</code> does this for natively linked modules, see <a href="15-native.html">Native scripts</a>); without a host each call returns <code>ErrUnavailable</code>. <code>abi_stub.go</code> is generated from <code>abi_wasip1.go</code> (<code>go run gen_native.go</code> in that directory); a test keeps them in sync.</li>
+<li>Scripts are trusted at <strong>build</strong> time (the Go toolchain runs on your project&#39;s source) and sandboxed at <strong>run</strong> time: see <a href="../security.html">security</a>.</li>
+</ul>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="02-execution-model.html">Execution model</a>, <a href="09-errors-and-limits.html">errors and limits</a>, <a href="10-debugging-and-testing.html">debugging and testing</a>.</li>
+<li><a href="08-multiplayer.html">Multiplayer</a>: what changes with <code>runtime.plugins.net</code>.</li>
+<li><span class="unpub" title="Source file of the repository, not part of this site">ABI.md</span>, <a href="../reference/script-api.html">Script API</a>, <a href="../reference/cli.html">CLI reference</a>.</li>
+<li><a href="../security.html">Security</a>, <a href="../determinism.html">Determinism</a>, <a href="../getting-started.html">Getting started</a>: building a <code>.voxpak</code>.</li>
+</ul>
+<div class="pagemeta"><a href="12-embedding-and-abi.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#the-pieces">The pieces</a></li><li><a href="#config">Config</a></li><li><a href="#modules">Modules</a></li><li><a href="#plugin">Plugin</a></li><li><a href="#example-run-headless-and-read-the-hash">Example: run headless and read the hash</a></li><li><a href="#writing-a-guest-in-another-language">Writing a guest in another language</a></li><li><a href="#checking-a-module">Checking a module</a></li><li><a href="#packing">Packing</a></li><li><a href="#sandbox-facts">Sandbox facts</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

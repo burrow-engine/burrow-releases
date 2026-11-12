@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>The Go SDK in depth | Burrow</title>
+<meta name="description" content="Everything a Go script can call lives in one package, burrow-engine/sdk/burrowsdk : one source file per domain, pure helpers mixed with host calls, and a generated file of typed component accessors.…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/13-go-sdk.html">
+<meta property="og:title" content="The Go SDK in depth | Burrow">
+<meta property="og:description" content="Everything a Go script can call lives in one package, burrow-engine/sdk/burrowsdk : one source file per domain, pure helpers mixed with host calls, and a generated file of typed component accessors.…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/13-go-sdk.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Go SDK in depth | Burrow">
+<meta name="twitter:description" content="Everything a Go script can call lives in one package, burrow-engine/sdk/burrowsdk : one source file per domain, pure helpers mixed with host calls, and a generated file of typed component accessors.…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html" aria-current="page">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="the-go-sdk-in-depth">The Go SDK in depth<a class="anchor" href="#the-go-sdk-in-depth" aria-label="Link to this section">#</a></h1>
+<p>Everything a Go script can call lives in one package, <code>burrow-engine/sdk/burrowsdk</code>: one source file per domain, pure helpers mixed with host calls, and a generated file of typed component accessors. This page is the map of that package; the generated <a href="../reference/script-api.html">script API reference</a> lists every function, type, constant and struct field with its doc comment, and <span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span> is the raw ABI underneath.</p>
+<h2 id="package-map">Package map<a class="anchor" href="#package-map" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">file</th><th scope="col">domain</th><th scope="col">highlights</th></tr></thead>
+<tbody>
+<tr><td><code>voxsdk.go</code></td><td>core: the entity handle, errors, logging, time, randomness, components, spawn, transform, voxels, light, raycasts, input, events, props and state, registration</td><td><code>Self</code>, <code>Tick</code>, <code>Rand</code>, <code>Log</code>, <code>Get</code>/<code>Set</code>/<code>Has</code>/<code>Remove</code>, <code>Spawn</code>/<code>Despawn</code>, <code>FindByName</code>/<code>FindByPath</code>, <code>GetTransform</code>/<code>SetTransform</code>, <code>Voxel</code>/<code>SetVoxel</code>, <code>LightAt</code>, <code>Raycast</code>, <code>PhysicsRaycast</code>, <code>Action</code>, <code>Emit</code>, <code>Props</code>, <code>SaveState</code>/<code>LoadState</code>, <code>Register</code>/<code>RegisterNamed</code></td></tr>
+<tr><td><code>fields.go</code></td><td>field-level component access by schema path</td><td><code>FieldRaw</code>, <code>GetFloat</code>/<code>GetFloats</code>/<code>GetInt</code>/<code>GetBool</code>/<code>GetString</code>, <code>SetFloat</code>/<code>SetInt</code>/<code>SetBool</code>/<code>SetString</code>/<code>SetFieldRaw</code>, <code>GetFields</code>, <code>Patch</code></td></tr>
+<tr><td><code>components_gen.go</code></td><td>generated typed accessors for the built-in components</td><td>one <code>Comp&lt;Name&gt;</code> constant per component, one getter and setter per scalar field (<code>make sdk-gen</code>, do not edit)</td></tr>
+<tr><td><code>scene.go</code></td><td>scene queries and tags</td><td><code>Parent</code>, <code>Children</code>, <code>ScenePath</code>, <code>FindWith</code>, <code>FindTag</code>, <code>SceneLoad</code>, <code>TagsOf</code>/<code>HasTag</code>/<code>AddTag</code>/<code>RemoveTag</code>, <code>MaxQueryResults</code></td></tr>
+<tr><td><code>blocks.go</code></td><td>block logic: block data, block events, schedules, networks</td><td><code>OnBlockChange</code>/<code>OnBlockSet</code>/<code>OnBlockBreak</code>/<code>OnBlockUse</code>/<code>OnBlockTick</code>/<code>OnBlockRandomTick</code>, <code>BlockSchedule</code>/<code>BlockUnschedule</code>, <code>BlockFlood</code>, <code>BlockData</code>/<code>SetBlockData</code>/<code>BlockDataJSON</code>/<code>BlockDataMany</code>/<code>BlockDataIn</code>/<code>BlockDataApply</code>, <code>BlockBase</code>/<code>BlockProp</code>, <code>KindBlockBatch</code>/<code>KindBlockTick</code></td></tr>
+<tr><td><code>bus.go</code></td><td>message bus and timers</td><td><code>OnMessage</code>, <code>Publish</code>, <code>Subscribe</code>/<code>Unsubscribe</code>, <code>OnTimer</code>, <code>After</code>, <code>Every</code>, <code>TimerStart</code>/<code>CancelTimer</code>/<code>TimerRemaining</code>, <code>BusKind</code>, <code>KindTimer</code></td></tr>
+<tr><td><code>tween.go</code></td><td>easing and tweens in tick time (pure data)</td><td><code>EaseKind</code> and its curves, <code>Lerp</code>, <code>Tween</code>/<code>NewTween</code>, <code>Cooldown</code></td></tr>
+<tr><td><code>codec.go</code></td><td>compact binary state codec (pure)</td><td><code>Writer</code>, <code>Reader</code>/<code>NewReader</code></td></tr>
+<tr><td><code>items.go</code></td><td>items and stacks (pure helpers over the registry)</td><td><code>ItemCount</code>/<code>ItemIDByName</code>/<code>ItemName</code>/<code>ItemInfo</code>, <code>ItemStack</code> with <code>Encode</code>/<code>Split</code>/<code>Merge</code>, <code>DecodeItemStack</code>, <code>ItemStackSize</code>, <code>ItemProps</code></td></tr>
+<tr><td><code>data.go</code></td><td>project data files and registries</td><td><code>ReadAsset</code>/<code>ReadAssetJSON</code>, <code>BlockCount</code>/<code>BlockName</code>/<code>BlockInfo</code>/<code>BlockProps</code>, <code>Registry</code></td></tr>
+<tr><td><code>level.go</code></td><td>levels, zones and saves</td><td><code>LevelLoad</code>/<code>LevelCurrent</code>/<code>LevelSpawnCount</code>/<code>LevelSpawnAt</code>/<code>LevelZoneAt</code>/<code>LevelSettings</code>, <code>SaveSet</code>/<code>SaveGet</code>/<code>SaveDelete</code>, <code>SaveSlot</code>/<code>LoadSlot</code>/<code>DeleteSlot</code></td></tr>
+<tr><td><code>nav.go</code></td><td>navigation goals and the AI blackboard</td><td><code>NavSetGoal</code>/<code>NavSetGoalPos</code>/<code>NavStop</code>/<code>NavGetState</code>/<code>NavPath</code>, <code>NavSetBB</code>/<code>NavGetBB</code>/<code>NavPutBB</code>/<code>NavReadBB</code>/<code>NavDelBB</code>, <code>NavSensed</code>, <code>NavNode</code>/<code>NavVec3</code>/<code>BBValue</code></td></tr>
+<tr><td><code>net.go</code></td><td>multiplayer player registry (reads)</td><td><code>NetPlayerCount</code>/<code>NetPlayerAt</code>/<code>NetPlayerInfo</code>, <code>NetPlayer</code>, <code>NetInput</code></td></tr>
+<tr><td><code>physics.go</code></td><td>rigid bodies, voxel bodies, water (physics3d plugin)</td><td><code>Physics3DRaycast</code>/<code>Physics3DOverlap</code>/<code>Physics3DApplyImpulse</code>/<code>Physics3DBody</code>/<code>Physics3DRemoveVoxel</code>/<code>Physics3DWaterAt</code>, <code>RayHit3D</code>, <code>Body3D</code>, <code>Water3D</code></td></tr>
+<tr><td><code>contact.go</code></td><td>physics3d contact and trigger events of the script&#39;s own body</td><td><code>OnContact</code>, <code>Contact</code>, <code>ContactKind</code>, <code>ContactBegin</code>/<code>ContactEnd</code>/<code>TriggerEnter</code>/<code>TriggerExit</code>, <code>KindContact</code></td></tr>
+<tr><td><code>fluid.go</code></td><td>water volumes in and out of the world</td><td><code>FluidAmount</code>/<code>FluidPour</code>/<code>FluidDrain</code>, <code>FluidFull</code></td></tr>
+<tr><td><code>anim.go</code></td><td>animation control (drives the <code>anim.player</code> component)</td><td><code>AnimPlay</code>/<code>AnimStop</code>/<code>AnimSetSpeed</code>/<code>AnimSetParam</code>/<code>AnimTrigger</code>/<code>AnimTime</code>, <code>AnimPlayOpts</code>, <code>AnimMode</code></td></tr>
+<tr><td><code>audio.go</code></td><td>sounds and music (frame domain)</td><td><code>PlayOn</code>/<code>AudioStop</code>/<code>AudioSet</code>/<code>AudioBus</code>/<code>AudioListener</code>, <code>SoundOpts</code>, <code>SoundMode</code>, <code>SoundHandle</code></td></tr>
+<tr><td><code>particles.go</code></td><td>particle effects (frame domain)</td><td><code>ParticleBurstOn</code>/<code>ParticleBlockBreakOn</code>/<code>ParticleEmit</code>/<code>ParticleStop</code>, <code>ParticleOpts</code></td></tr>
+<tr><td><code>fx.go</code></td><td>air distortion (frame domain)</td><td><code>Shockwave</code></td></tr>
+<tr><td><code>camera.go</code></td><td>camera rigs (frame domain)</td><td><code>CameraSwitch</code>/<code>CameraShake</code>/<code>CameraCut</code></td></tr>
+<tr><td><code>gameui.go</code></td><td>game UI (frame domain) and journaled UI events</td><td><code>UISetNum</code>/<code>UISetStr</code>/<code>UISetBool</code>/<code>UISetItems</code>, <code>UIShow</code>/<code>UIHide</code>/<code>UIToggle</code>, <code>UILocale</code>, <code>UILabel</code>/<code>UIPopup</code>/<code>UIRemoveLabel</code>, <code>UIEvents</code>, <code>UIEvent</code>, <code>UIItem</code></td></tr>
+<tr><td><code>model.go</code></td><td>spawning a voxel model node</td><td><code>SpawnModel</code></td></tr>
+<tr><td><code>warm.go</code></td><td>the pre-grown guest heap</td><td><code>WarmHeapBytes</code></td></tr>
+<tr><td><code>abi/</code></td><td>the raw host imports, one function per ABI row</td><td>for custom wrappers and conformance tests only; see <span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span></td></tr>
+</tbody></table></div>
+<h2 id="core-types">Core types<a class="anchor" href="#core-types" aria-label="Link to this section">#</a></h2>
+<p>Everything is keyed by <code>Entity</code>, a <code>uint64</code> handle to a scene node (0 = none). The full field-by-field reference is the <a href="../reference/script-api.html#types-sdkburrowsdk">Types section of the script API</a>:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">type</th><th scope="col">role</th></tr></thead>
+<tbody>
+<tr><td><code>Entity</code></td><td>a scene node handle; <code>Exists</code> checks it</td></tr>
+<tr><td><code>Script</code></td><td>the four hooks (<code>OnStart</code>, <code>OnTick</code>, <code>OnEvent</code>, <code>OnDestroy</code>), installed with <code>Register</code> or <code>RegisterNamed</code> from <code>init()</code></td></tr>
+<tr><td><code>Event</code></td><td>one delivered message: <code>From</code>, <code>Kind</code>, <code>Payload</code></td></tr>
+<tr><td><code>Error</code></td><td>a failed host call: <code>Op</code> (the host function) and <code>Code</code> (an <code>abi.Err*</code> code); <code>IsNotFound(err)</code> matches <code>ErrNotFound</code></td></tr>
+<tr><td><code>Transform</code></td><td><code>Pos</code>, <code>Rot</code> (Euler degrees), <code>Scale</code>; read/write with <code>GetTransform</code>/<code>SetTransform</code></td></tr>
+<tr><td><code>Writer</code>/<code>Reader</code></td><td>binary codec for <code>State</code> (see below)</td></tr>
+</tbody></table></div>
+<h2 id="calling-conventions">Calling conventions<a class="anchor" href="#calling-conventions" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Errors.</strong> Every host call returns an <code>error</code> that is an <code>*Error</code> (<code>Op</code> + <code>Code</code>), or <code>nil</code>. Check specific failures with <code>IsNotFound</code>. The error codes and their meanings are listed in <a href="09-errors-and-limits.html">errors and limits</a>; the raw codes are the <code>Err*</code> constants of <code>sdk/burrowsdk/abi</code>.</li>
+<li><strong>Budgets.</strong> Every call is charged gas (50,000,000 per hook) and most calls have their own limits (payload 1 KiB, state 64 KiB, 4,096 block edits per call, ...). A call that exceeds a budget faults the whole transaction: its writes are discarded, see <a href="02-execution-model.html">execution model</a>.</li>
+<li><strong>Results.</strong> Reads that return bytes or lists (<code>GetRaw</code>, <code>BlockDataIn</code>, <code>FindWith</code>, ...) grow their buffer internally until the data fits; large answers report <code>ErrTooSmall</code>-style resizing transparently.</li>
+</ul>
+<h3 id="simulation-domain-vs-frame-domain">Simulation domain vs frame domain<a class="anchor" href="#simulation-domain-vs-frame-domain" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">domain</th><th scope="col">files</th><th scope="col">what it means for your script</th></tr></thead>
+<tbody>
+<tr><td>Simulation (journaled, hashed, replayed)</td><td><code>voxsdk.go</code>, <code>fields.go</code>, <code>components_gen.go</code>, <code>scene.go</code>, <code>blocks.go</code>, <code>bus.go</code>, <code>level.go</code>, <code>nav.go</code>, <code>net.go</code>, <code>physics.go</code>, <code>fluid.go</code>, <code>model.go</code></td><td>Changes commit with the call, are saved, hashed and replayed exactly. <code>LightAt</code>, <code>Voxel</code> and the scene queries read the committed state (plus this call&#39;s own writes where documented).</td></tr>
+<tr><td>Frame (queued requests)</td><td><code>audio.go</code>, <code>particles.go</code>, <code>fx.go</code>, <code>anim.go</code>, <code>camera.go</code>, <code>gameui.go</code></td><td>Requests take effect after the tick, in call order. They are deterministic (a replay shows the same effects) but never part of the <code>StateHash</code>, and they are ignored when the matching <code>runtime.plugins.*</code> is off.</td></tr>
+<tr><td>Pure Go (no host call)</td><td><code>tween.go</code>, <code>codec.go</code>, parts of <code>items.go</code>, <code>bus.go</code>&#39;s <code>BusKind</code>, <code>voxsdk.go</code>&#39;s <code>Rand*</code>/<code>CanonF32</code></td><td>Free, safe to call anywhere — including from <code>init()</code> for everything except <code>Rand*</code>, which need a tick.</td></tr>
+</tbody></table></div>
+<h2 id="pure-helpers-worth-knowing">Pure helpers worth knowing<a class="anchor" href="#pure-helpers-worth-knowing" aria-label="Link to this section">#</a></h2>
+<p>These need no host call and no component, so they are the building blocks of <code>State</code> logic:</p>
+<ul>
+<li><strong>Binary state.</strong> <code>Writer</code> appends <code>U8</code>/<code>Bool</code>/<code>U32</code>/<code>I32</code>/<code>U64</code>/<code>F32</code>/<code>String</code> little-endian; <code>Reader</code> (from <code>NewReader</code>) reads them back, setting <code>Reader.Err</code> when it runs past the end. Encode with <code>w.Bytes()</code>, store with <code>SetStateRaw</code>, read with <code>StateRaw</code>. Faster and smaller than <code>SaveState</code> JSON, at the price of writing the layout yourself. <code>CanonF32</code> canonicalises NaN so its payload bits never reach hashed state.</li>
+<li><strong>Tweens and cooldowns in tick time.</strong> <code>Tween</code> is plain JSON-able data: <code>NewTween(from, to, durTicks, ease)</code> starts one now, <code>t.At(tick)</code>/<code>t.Now()</code> evaluate it, <code>t.Done(tick)</code> reports the end. <code>EaseKind</code> has 13 curves (<code>Linear</code>, <code>InQuad</code>, <code>OutCubic</code>, <code>OutBounce</code>, <code>SmoothStep</code>, ...) and <code>EaseKind.Apply</code> maps [0,1] through one; <code>Lerp(a, b, t)</code> is the linear case. <code>Cooldown</code> is a one-field deadline: <code>Start(n)</code>, <code>Ready()</code>.</li>
+<li><strong>Item stacks.</strong> <code>ItemStack{Item, Count}</code> with <code>Empty</code>, <code>Encode</code> (the 6-byte wire form, <code>ItemStackSize</code>), <code>DecodeItemStack</code>, <code>Split(n)</code> and <code>Merge(src, maxStack)</code>. Ids and limits come from the project: <code>ItemIDByName</code>, <code>ItemInfo</code> (<code>ItemProps.MaxStack</code>).</li>
+<li><strong>Block names with states.</strong> <code>BlockBase(&#34;mymod:belt[facing=east]&#34;)</code> gives <code>&#34;mymod:belt&#34;</code>, <code>BlockProp(name, &#34;facing&#34;)</code> gives <code>&#34;east&#34;</code>.</li>
+<li><strong>Deterministic randomness.</strong> <code>Rand()</code>, <code>RandFloat()</code> in [0,1), <code>RandN(n)</code> in [0,n): a private stream per script entity, derived from the seed, entity, tick and draw index; it never touches the shared simulation RNG.</li>
+<li><strong>Event kinds.</strong> <code>BusKind(topic)</code> computes the kind a bus message arrives with; <code>KindTimer</code>, <code>KindBlockBatch</code> and <code>KindBlockTick</code> are reserved kinds handled by <code>OnTimer</code>/<code>OnMessage</code> and the block handlers.</li>
+</ul>
+<h2 id="generated-component-accessors">Generated component accessors<a class="anchor" href="#generated-component-accessors" aria-label="Link to this section">#</a></h2>
+<p><code>components_gen.go</code> holds one <code>Comp&lt;Name&gt;</code> constant per built-in component (<code>CompTransform = &#34;transform&#34;</code>, <code>CompRenderCamera = &#34;render.camera&#34;</code>, ...) and, for every scalar field, a typed getter and setter (<code>TransformPos(e)</code>, <code>SetTransformPos(e, v)</code>, built on <code>GetFloats</code>/<code>SetFieldRaw</code>). It is generated from the same component schema as the inspector and the <a href="../reference/components.html">components reference</a>: regenerate it with <code>make sdk-gen</code> after changing the schema (<code>make sdk-check</code> fails when it is stale). For object fields and custom components use the generic <code>Get</code>/<code>Set</code>/<code>Patch</code> or the <code>fields.go</code> accessors.</p>
+<h2 id="a-complete-example">A complete example<a class="anchor" href="#a-complete-example" aria-label="Link to this section">#</a></h2>
+<p>One module using registration, props, state, the codec, a tween, the bus and the transform — the same shapes the <a href="11-cookbook.html">cookbook</a> recipes use:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Speed <span class="k">float32</span> <span class="s">`json:&#34;speed&#34;`</span> <span class="c">// degrees per second</span>
+}
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Turns <span class="k">int</span> <span class="s">`json:&#34;turns&#34;`</span> <span class="c">// ticks since start, kept as binary state</span>
+}
+
+<span class="k">const</span> kindDone <span class="k">int32</span> = <span class="n">1</span> <span class="c">// below 0x40000000: our own event kind</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.OnMessage(<span class="s">&#34;game.reset&#34;</span>, <span class="k">func</span>(self, from burrowsdk.Entity, payload []<span class="k">byte</span>) {
+		_ = burrowsdk.SetStateRaw(new(burrowsdk.Writer).Bytes()) <span class="c">// clear the state</span>
+	})
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			burrowsdk.Log(burrowsdk.LevelInfo, <span class="s">&#34;spinner ready&#34;</span>)
+		},
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			p, err := burrowsdk.Props[props]()
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			<span class="k">var</span> st state
+			r := burrowsdk.NewReader(burrowsdk.StateRaw())
+			st.Turns = <span class="k">int</span>(r.I32())
+			<span class="k">if</span> r.Err {
+				st.Turns = <span class="n">0</span> <span class="c">// first tick: empty state decodes as zeros anyway</span>
+			}
+			tw := burrowsdk.NewTween(<span class="n">0</span>, <span class="n">1</span>, <span class="n">20</span>, burrowsdk.OutQuad) <span class="c">// ease in over one second</span>
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			t.Rot[<span class="n">1</span>] += p.Speed * <span class="k">float32</span>(dt) * <span class="k">float32</span>(tw.Now())
+			<span class="k">if</span> err := burrowsdk.SetTransform(self, t); err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			st.Turns++
+			w := new(burrowsdk.Writer).I32(<span class="k">int32</span>(st.Turns))
+			_ = burrowsdk.SetStateRaw(w.Bytes())
+			<span class="k">if</span> st.Turns == <span class="n">20</span> {
+				_ = burrowsdk.Emit(<span class="n">0</span>, kindDone, []<span class="k">byte</span>(<span class="s">&#34;one second&#34;</span>))
+			}
+		},
+		OnEvent: <span class="k">func</span>(self burrowsdk.Entity, ev burrowsdk.Event) {
+			<span class="k">if</span> ev.Kind == kindDone {
+				burrowsdk.Logf(<span class="s">&#34;done, from=%d payload=%s&#34;</span>, <span class="k">uint64</span>(ev.From), ev.Payload)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="where-the-full-reference-lives">Where the full reference lives<a class="anchor" href="#where-the-full-reference-lives" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="../reference/script-api.html">Script API reference</a> (generated by <code>make docs-gen</code>): the <strong>host functions</strong> (the <code>vox</code> imports, from <span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span>), then the <strong>Go SDK functions</strong> grouped by source file, then every <strong>type</strong> with its struct fields, then every <strong>constant and variable</strong> — all with their doc comments.</li>
+<li>From the command line or your IDE: <code>go doc burrow-engine/sdk/burrowsdk</code> and <code>go doc burrow-engine/sdk/burrowsdk.&lt;Name&gt;</code> show the same comments.</li>
+<li><code>sdk/burrowsdk/abi</code> declares the raw imports one-to-one (one function per ABI row, same signatures as the host-function table); use it only for custom wrappers, and note that outside <code>wasip1</code> every call returns <code>ErrUnavailable</code> so tests can run on the host.</li>
+</ul>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="01-getting-started.html">Getting started</a> for building and attaching scripts, <a href="02-execution-model.html">execution model</a> for transactions and determinism.</li>
+<li><a href="03-state-and-props.html">State and props</a>, <a href="04-entities-and-scene.html">entities and scene</a>, <a href="05-world.html">world</a>, <a href="06-input-events-time.html">input, events and time</a>, <a href="07-effects.html">effects</a>.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a>, <a href="10-debugging-and-testing.html">debugging and testing</a>, <a href="11-cookbook.html">cookbook</a>.</li>
+<li><a href="12-embedding-and-abi.html">Embedding and the ABI</a> to run scripts from your own program.</li>
+</ul>
+<p>Application control (<code>app.go</code>, frame domain, windowed runs only): <code>AppQuit</code>, <code>NetJoin(link, name)</code>, <code>NetHost(name)</code>, <code>WorldPlay(slot)</code>, <code>WorldCreate(slot, name, seed, generator, mode)</code>, <code>Title</code>. See <a href="07-effects.html#application-control">effects</a>.</p>
+<div class="pagemeta"><a href="13-go-sdk.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#package-map">Package map</a></li><li><a href="#core-types">Core types</a></li><li><a href="#calling-conventions">Calling conventions</a></li><li><a class="l3" href="#simulation-domain-vs-frame-domain">Simulation domain vs frame domain</a></li><li><a href="#pure-helpers-worth-knowing">Pure helpers worth knowing</a></li><li><a href="#generated-component-accessors">Generated component accessors</a></li><li><a href="#a-complete-example">A complete example</a></li><li><a href="#where-the-full-reference-lives">Where the full reference lives</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

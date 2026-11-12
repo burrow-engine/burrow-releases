@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Replication | Burrow</title>
+<meta name="description" content="Burrow multiplayer is server-authoritative replication : the server alone runs the simulation and streams to each client the part of the state it needs, the chunks and entities around its player.…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/replication.html">
+<meta property="og:title" content="Replication | Burrow">
+<meta property="og:description" content="Burrow multiplayer is server-authoritative replication : the server alone runs the simulation and streams to each client the part of the state it needs, the chunks and entities around its player.…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/replication.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Replication | Burrow">
+<meta name="twitter:description" content="Burrow multiplayer is server-authoritative replication : the server alone runs the simulation and streams to each client the part of the state it needs, the chunks and entities around its player.…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html" aria-current="page">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="replication">Replication<a class="anchor" href="#replication" aria-label="Link to this section">#</a></h1>
+<p>Burrow multiplayer is <strong>server-authoritative replication</strong>: the server alone runs the simulation and streams to each client the part of the state it needs, the chunks and entities around its player. There is one network model; every way of playing online (<code>burrow serve</code>, <code>burrow-server</code>, the lobby, the editor&#39;s host session, join links) uses it. The shared parts (transports, handshake, authentication, identity, whitelist, rate limits) are described in <a href="networking.html">Networking</a>.</p>
+<h2 id="contents">Contents<a class="anchor" href="#contents" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="#the-model">The model</a></li>
+<li><a href="#what-runs-where">What runs where</a></li>
+<li><a href="#interest-management">Interest management</a></li>
+<li><a href="#replicated-state">Replicated state</a></li>
+<li><a href="#component-visibility">Component visibility</a></li>
+<li><a href="#dedicated-server-saves">Dedicated server saves</a></li>
+<li><a href="#protocol">Protocol</a></li>
+<li><a href="#bandwidth-budget">Bandwidth budget</a></li>
+<li><a href="#client-inputs-prediction-and-reconciliation">Client inputs, prediction and reconciliation</a></li>
+<li><a href="#proximity-chat">Proximity chat</a></li>
+<li><a href="#using-the-api">Using the API</a></li>
+<li><a href="#security">Security</a></li>
+<li><a href="#limits">Limits</a></li>
+<li><a href="#measurements">Measurements</a></li>
+<li><a href="#how-it-is-tested">How it is tested</a></li>
+<li><a href="#what-is-not-covered">What is not covered</a></li>
+</ul>
+<h2 id="the-model">The model<a class="anchor" href="#the-model" aria-label="Link to this section">#</a></h2>
+<pre class="mermaid" tabindex="0">sequenceDiagram
+  participant A as Client A (near)
+  participant B as Client B (far)
+  participant S as Server
+  A-&gt;&gt;S: Input (set_block, net_player_input)
+  Note over S: applies the commands, runs the fixed tick,&lt;br/&gt;scans what changed, builds one frame per client
+  S-&gt;&gt;A: RepFrame (chunk delta, entity updates)
+  S-&gt;&gt;B: RepFrame (only its own surroundings)
+  A-&gt;&gt;S: RepAck</pre>
+<ul>
+<li>The server is authoritative. It applies the clients&#39; commands (the whitelist of <a href="networking.html">Networking</a>) and runs every fixed system: scripts, physics, water, block logic, weather.</li>
+<li>After every tick it scans the simulation once (<code>tracker</code>): each overlay chunk, each component value of each entity and each replicated extra state gets a version that changes with its content.</li>
+<li>For every client it compares those versions with what that client holds and builds one <strong>frame</strong> of what changed inside the client&#39;s interest, nearest first, within the client&#39;s bandwidth budget.</li>
+<li>The client writes the frame into its copy of the simulation and runs only frame stages on it.</li>
+</ul>
+<p>Nothing is deterministic on the client side and nothing has to be: the client never steps its simulation, its <code>StateHash</code> and journal are meaningless, there is no desync and no resync.</p>
+<h2 id="what-runs-where">What runs where<a class="anchor" href="#what-runs-where" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col"></th><th scope="col">server</th><th scope="col">client</th></tr></thead>
+<tbody>
+<tr><td>fixed systems (scripts, physics, water, block logic, weather)</td><td>yes</td><td>no (the app is in manual step mode and never calls <code>StepFixed</code>)</td></tr>
+<tr><td>frame stages (input, UI, audio, particles, rendering, the voxel streamer and mesher)</td><td>yes (headless: no window)</td><td>yes, on the replicated copy</td></tr>
+<tr><td>command validation (whitelist, rate limits, the commands&#39; own checks)</td><td>yes</td><td>no</td></tr>
+<tr><td>base terrain generation</td><td>yes</td><td>yes (same seed and generator, pinned)</td></tr>
+<tr><td>overlay chunks (edits)</td><td>owner</td><td>copy, within the view distance</td></tr>
+<tr><td>entities and components</td><td>owner</td><td>copy, within the view distance</td></tr>
+<tr><td>local prediction</td><td>no</td><td>yes (frame domain)</td></tr>
+</tbody></table></div>
+<p>The base terrain is never sent: both sides generate it from the pinned seed and generator. Only the overlay (the chunks edited since the world was generated, which is what a snapshot stores) is replicated.</p>
+<p>The voxel streamer remeshes on the client exactly as after a local edit: <code>App.ApplyReplica</code> sends a <code>CommandsApplied</code> event after every frame and the mesher compares chunk versions.</p>
+<h2 id="interest-management">Interest management<a class="anchor" href="#interest-management" aria-label="Link to this section">#</a></h2>
+<p>Each client has an <strong>interest center</strong>, in voxels. The authoritative position comes first:</p>
+<ol>
+<li><code>replica.ServerConfig.PlayerPos(engine, player)</code>, the game&#39;s own rule;</li>
+<li>the player&#39;s <strong>avatar</strong>: the entity named <code>avatar_&lt;player id&gt;</code> (<code>scene.name</code>) or tagged <code>avatar_&lt;player id&gt;</code> or <code>player:&lt;player id&gt;</code> (<code>tags</code>), lowest entity index first (<code>replica.FindAvatar</code>). The <code>multiplayer</code> template&#39;s avatars script names and tags its avatars so: its servers are authoritative out of the box.</li>
+</ol>
+<p>Only when the game declares neither does the server use the view the client reports (<code>RepView</code>, the camera position; <code>netplay</code> sends the voxel streamer&#39;s focus). That view moves at most <code>ViewSpeed</code> voxels per second (128) from the last accepted position and is held within <code>ViewLeash</code> voxels (256) of the player&#39;s last authoritative position, or else of its registry spawn point (<code>net_player_spawn</code>). Without any of them it is only speed limited; without a view, the center is the spawn point, else the origin. A game without avatars that wants the leash calls <code>net_player_spawn</code>.</p>
+<p>The interest is the chunks within <code>View</code> chunks horizontally (a disc, default 8, at most 32) and <code>Vertical</code> chunks vertically (default 4) of the center&#39;s chunk, and the entities and fine water inside. Leaving uses one chunk of hysteresis so a player walking on a border does not make chunks flicker.</p>
+<h2 id="replicated-state">Replicated state<a class="anchor" href="#replicated-state" aria-label="Link to this section">#</a></h2>
+<p>What is replicated is a registry of names (<code>replica.Policy</code>); what is not listed is server-only.</p>
+<ul>
+<li><strong>Components</strong>: every registered component except those in <code>Policy.ServerOnly</code> (the default keeps <code>script</code>, <code>script.input</code> on the server: clients do not run scripts, and script <code>State</code> is private; see <a href="#component-visibility">Component visibility</a>). A component travels through its snapshot encoding (JSON), unless it has a <strong>codec</strong>: then, while the rest of the value (its cold part) is unchanged, only its hot fields travel, quantized, as a per-field delta against the value the client holds. See <a href="#component-codecs">Component codecs</a>.</li>
+<li><strong>Extra states</strong> (<code>sim.Extra</code>): only those in <code>Policy.Extras</code>, each with a check interval and an optional encoder. The default replicates the player registry <code>net.players</code> through <code>netsim.PublicState</code> (the registry without the players&#39; inputs, so it changes on joins, leaves and spawns, not on every input), the lobby <code>net.lobby</code> and the <code>weather</code>. Fluid state, block logic, animation libraries and the engine&#39;s fixed resources stay on the server.</li>
+<li><strong>Fine water</strong> (<code>fluid.Config.Fine</code>, <code>runtime.plugins.fine_water</code>): the bricks of sub-cell water, which live in the fluid state outside the chunks. The server exports them once per tick, groups them by chunk and versions each chunk; a client receives the chunks of its interest whole, then as brick deltas (the bricks that changed and the cells that lost theirs), under the same budget as the voxels, and drops them when they leave its interest. The client draws them through its own <code>voxel.FineSource</code>, which the voxel streamer meshes like local fine water. A chunk keeps its last 64 deltas, and a client that missed versions gets them merged into one delta (the whole chunk only past that history). Falling streams (<code>FineGrid.Streams</code>) are sent as a list: a frame carries <code>StreamsSet</code> and the whole list of the streams whose lip is in the client&#39;s range (256 at most) when it changed, judged like the streamer&#39;s re-mesh (position, which sub-columns flow, the debit in quarter octaves, the gaps in 64ths), so a steady cascade is not resent; the client&#39;s fine source exports them with its bricks and the cascade is drawn as on the server.</li>
+<li><strong>Chunks</strong>: the overlay chunks, sent whole on enter (deflate of <code>voxel.Chunk.MarshalBinary</code>, compressed once per version and shared by every client) and then as per-edit deltas (the voxels that changed between the version a client holds and the new one; more than 1024 edits and the whole chunk is cheaper). A removed overlay chunk is sent as <em>base</em>: the client shows the generated terrain again.</li>
+</ul>
+<h3 id="component-codecs">Component codecs<a class="anchor" href="#component-codecs" aria-label="Link to this section">#</a></h3>
+<p><code>replica.RegisterCodec(name, replica.NewCodec[T](version, fields, hot, set))</code> gives a component a compact binary form: <code>hot</code> quantizes its hot fields into at most 64 integers, <code>set</code> writes them back; the rest of the value is its cold part. When the cold part changes the value travels as JSON followed by its hot fields whole (the baseline); otherwise only the hot fields travel, whole (<code>CompFull</code>, zigzag varints) or as a delta from the version the client holds (<code>CompDelta</code>: a varint mask of the changed fields, then their differences). The codec versions are announced in <code>RepSchema</code> and must match on the client. Built in:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">component</th><th scope="col">hot fields</th><th scope="col">quantization</th></tr></thead>
+<tbody>
+<tr><td><code>transform</code></td><td>position, Euler rotation, scale (9)</td><td>1/256 voxel, 1/100 degree, 1/1024</td></tr>
+<tr><td><code>physics3d.rigidbody</code></td><td>position, rotation, velocity, angular velocity, sleeping (14)</td><td>1/256 voxel, smallest-three quaternion (15 bits per component), 1/256 voxel/s, 1/1024 rad/s</td></tr>
+</tbody></table></div>
+<p>A walking entity costs a few bytes per tick instead of about 70 bytes of JSON. <code>Policy.NoCodecs</code> sends JSON only.</p>
+<p>Versions are per item, not per client: one scan per tick, shared encodings, and per client only a version number per held chunk and entity. A component changes when its <code>HashBytes</code> changes (the same encoding as the state hash).</p>
+<h2 id="component-visibility">Component visibility<a class="anchor" href="#component-visibility" aria-label="Link to this section">#</a></h2>
+<p>Clients do not run scripts, so a game&#39;s <strong>script <code>State</code></strong> (the <code>script</code> component) never reaches them. Anything a client must show or read (inventory, furnace contents, skills, health) must live in a <strong>component</strong>, written by the script or a native system and replicated. Rule of thumb: <em>keep client-visible state in components, not in script State.</em></p>
+<p>By default a replicated component goes to every client that holds the entity. A game narrows that per component with a <strong>visibility rule</strong>:</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">rule</th><th scope="col">who receives the value</th></tr></thead>
+<tbody>
+<tr><td><code>VisAll</code> (default)</td><td>every client that holds the entity</td></tr>
+<tr><td><code>replica.Owner</code> (<code>VisOwner</code>)</td><td>only the player that owns the entity</td></tr>
+<tr><td><code>replica.Nearby(r)</code> (<code>VisNearby</code>)</td><td>only clients whose interest center is within <code>r</code> voxels of the entity</td></tr>
+</tbody></table></div>
+<pre tabindex="0"><code class="language-go"><span class="c">// next to the registration of the component, in the plugin that owns it (server and clients alike)</span>
+sim.RegisterComponent[Inventory](e, <span class="s">&#34;game.inventory&#34;</span>)
+replica.RegisterVisibility(<span class="s">&#34;game.inventory&#34;</span>, replica.Owner)
+replica.RegisterVisibility(<span class="s">&#34;game.nameplate&#34;</span>, replica.Nearby(<span class="n">24</span>))
+
+<span class="c">// or per server: replica.ServerConfig{Policy: &amp;replica.Policy{Visibility: map[string]replica.Visibility{...}}}</span></code></pre>
+<p>The <strong>owner</strong> of an entity is the player named by the entity itself: a node named <code>avatar_&lt;id&gt;</code>, or an entity tagged <code>avatar_&lt;id&gt;</code>, <code>player:&lt;id&gt;</code> or <code>owner:&lt;id&gt;</code> (<code>tags</code>). Put the inventory component on the player&#39;s avatar, or tag a pet, a chest or a furnace <code>owner:&lt;id&gt;</code>. An entity with no owner is owned by nobody, so an owner-only component on it is sent to no client.</p>
+<ul>
+<li>The entity and its other components stay visible to everyone in range; only the restricted component is withheld. Restricted values are never sent, so a modified client cannot read them.</li>
+<li>Visibility is re-evaluated every tick even when no value changes: a client that comes within <code>r</code> voxels, or an entity that changes owner, makes the server send the whole value; a client that moves away or loses the entity gets the component removed.</li>
+<li>The component is whole in the simulation and the saves: the rule changes the replication only.</li>
+<li>A script keeps its working data in <code>State</code> if it likes, but must write what clients show into the component each time it changes.</li>
+</ul>
+<h2 id="dedicated-server-saves">Dedicated server saves<a class="anchor" href="#dedicated-server-saves" aria-label="Link to this section">#</a></h2>
+<p>A dedicated server restores its saved world on start. When the game changed since the save:</p>
+<ul>
+<li>a component the game gained is added <strong>empty</strong>, with a log line (always safe);</li>
+<li>a component the game <strong>lost</strong> (removed or renamed) would lose data: the server refuses to start and names each component with its number of values (<code>the saved world holds component data the game no longer has: game.mana (14 values)</code>). Restore the previous name, set <code>&#34;migrate&#34;: true</code> in <code>server.json</code> to drop that data (the previous save stays in <code>world/backups</code>), or move the <code>world</code> directory away for a new world;</li>
+<li>a plugin turned on or off (lobby, weather, fluid: a fixed resource state) cannot be converted; the error names it.</li>
+</ul>
+<h2 id="protocol">Protocol<a class="anchor" href="#protocol" aria-label="Link to this section">#</a></h2>
+<p>The replicated model uses the transports and the handshake of <a href="networking.html#protocol">Networking</a> unchanged (Hello, Challenge, Auth, Welcome, Reject, Ping, Pong, Chat, ChatMsg, Kick, Bye, Input), protocol version 4. The Challenge flag <code>4</code> (<code>FlagReplicated</code>) announces the model. After the Welcome (whose snapshot fields are unused) the server sends one <code>RepSchema</code>, then one <code>RepFrame</code> (or <code>RepFrameZ</code>) after every tick.</p>
+<p><code>sv</code> is a zigzag varint (minimal encoding), <code>pos</code> three <code>sv</code> chunk coordinates within ±2^26.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">type</th><th scope="col">name</th><th scope="col">direction</th><th scope="col">fields</th></tr></thead>
+<tbody>
+<tr><td><code>0x70</code></td><td>RepSchema</td><td>S→C</td><td><code>uv</code> tick length (µs), <code>u8</code> view, <code>u8</code> vertical, <code>uv</code> count (≤256) of component names, <code>uv</code> count (≤64) of extra names (<code>str</code> ≤64 printable ASCII, unique), <code>uv</code> count of codecs, each <code>uv</code> component index (increasing) and <code>u8</code> codec version</td></tr>
+<tr><td><code>0x71</code></td><td>RepFrame</td><td>S→C</td><td><code>uv</code> seq (from 1, +1 per frame), <code>uv</code> server tick, <code>uv</code> input ack, leaves (<code>uv</code> count ≤4096, <code>pos</code> each), chunks (<code>uv</code> count ≤4096, then <code>pos</code>, <code>uv</code> version, <code>u8</code> kind: 0 full + <code>bytes</code> ≤128 KiB, 1 delta + <code>uv</code> from version + <code>uv</code> count ≤4096 of (<code>uv</code> index ≤32767, <code>uv</code> block ≤65535), 2 base), despawns (<code>uv</code> count ≤8192, <code>uv</code> entity), entities (<code>uv</code> count ≤8192, then <code>uv</code> entity, <code>uv</code> count ≤256 of (<code>uv</code> component index, <code>u8</code> encoding: 0 JSON, 1 hot fields whole, 2 hot fields delta, <code>bytes</code> ≤64 KiB), <code>uv</code> count ≤256 of removed component indexes), extras (<code>uv</code> count ≤64 of (<code>uv</code> index, <code>bytes</code> ≤512 KiB)), fine water (<code>uv</code> count ≤1024, then <code>pos</code>, <code>uv</code> version, <code>u8</code> kind: 0 full, 1 delta, 2 drop; for 0 and 1 <code>u8</code> N (2, 4 or 8), for 1 <code>uv</code> from version, <code>uv</code> count ≤4096 of (<code>uv</code> cell ≤32767, N³ fill bytes ≤32), for 1 <code>uv</code> count ≤4096 of removed cells)</td></tr>
+<tr><td><code>0x72</code></td><td>RepAck</td><td>C→S</td><td><code>uv</code> last frame applied</td></tr>
+<tr><td><code>0x73</code></td><td>RepView</td><td>C→S</td><td>three <code>sv</code> camera coordinates in thousandths of a voxel (±2^40)</td></tr>
+<tr><td><code>0x74</code></td><td>RepFrameZ</td><td>S→C</td><td><code>uv</code> raw size (≤1 MiB), <code>bytes</code> deflate of a whole RepFrame message (type byte included)</td></tr>
+<tr><td><code>0x80</code></td><td>VoiceUp</td><td>C→S</td><td><code>bytes</code> voice frame (1..256)</td></tr>
+<tr><td><code>0x81</code></td><td>VoiceDown</td><td>S→C</td><td><code>uv</code> speaker, <code>bytes</code> voice frame (1..256)</td></tr>
+<tr><td><code>0x82</code></td><td>VoiceBlock</td><td>C→S</td><td><code>uv</code> player, <code>bool</code> blocked</td></tr>
+</tbody></table></div>
+<p>The voice messages are shared with the other messages (<a href="networking.html#protocol">Networking</a>, <a href="voice.html#network">Voice chat</a>): the replicated server routes them on the interest centers and never lets them into a frame or the bandwidth budget.</p>
+<p>An entity is its 64-bit ECS handle (slot index and generation); the client mirrors the server&#39;s ids (<code>ecs.World.Revive</code>), so references between components stay valid. Within a frame, leaves and despawns apply first, then chunks, entity updates (an update of an unknown entity spawns it) and extras. The server keeps every frame under 960 KiB and compresses it (<code>RepFrameZ</code>) when that is smaller; JSON components compress about 3.5 times.</p>
+<p>Frames ride the reliable, ordered stream: a delta is computed against the version the server last sent to that client, which the client is guaranteed to have applied before the next frame. The acknowledgements are flow control: the server pauses a client&#39;s stream (it sends nothing and keeps the pending work) while <code>MaxUnacked</code> frames (40, two seconds) are unacknowledged or its send window is full, and resumes with the current state, not a backlog.</p>
+<h2 id="bandwidth-budget">Bandwidth budget<a class="anchor" href="#bandwidth-budget" aria-label="Link to this section">#</a></h2>
+<p>Every client has a token bucket of <code>BytesPerSecond</code> (256 KiB/s by default, burst half a second) on the bytes actually sent (compression is refunded). Each tick the server sorts the pending items of a client and adds them until the budget or the frame size is spent; the rest waits:</p>
+<ul>
+<li>entities without a position first, then by distance to the interest center; an entity update that has waited <code>age</code> ticks has its distance divided by <code>1 + age²</code>, so under a saturated budget far entities still move, less often;</li>
+<li>chunks and fine water chunks by distance (the chunk under the player first).</li>
+</ul>
+<p>Deltas and leaves are small; extra states are sent outside the budget (they are few and checked at most once per interval). A client never holds more than <code>MaxEntities</code> entities (2048).</p>
+<h2 id="client-inputs-prediction-and-reconciliation">Client inputs, prediction and reconciliation<a class="anchor" href="#client-inputs-prediction-and-reconciliation" aria-label="Link to this section">#</a></h2>
+<p>Clients send <code>Input</code> messages with the whitelist (<code>net_player_input</code>, <code>set_block</code>, <code>fill_box</code>, <code>fill_sphere</code>, <code>block_use</code>, <code>gameui_event</code>, the <code>lobby_*</code> kinds) and rate limits; the target tick is ignored. The server applies at most <code>MaxCmdsPerTick</code> commands per player per tick, in order, before the tick; server-only kinds (<code>net_player_join</code>, <code>net_player_leave</code>, <code>net_player_spawn</code>) are refused.</p>
+<p>Every frame carries the sequence number of the last <code>Input</code> the server applied for that client. The client keeps its sent commands in a prediction ring (<code>netbase.Pending</code>) and <code>replica.ClientConfig.OnReconcile(tick, pending)</code> runs after every frame with the commands still unapplied.</p>
+<h3 id="smoothing-and-prediction">Smoothing and prediction<a class="anchor" href="#smoothing-and-prediction" aria-label="Link to this section">#</a></h3>
+<p><code>replica.Smoother</code> (installed by <code>netplay</code> for a replicated guest; <code>GuestOptions.NoSmoothing</code> turns it off) works in the frame domain only: a PostUpdate system after <code>scene.hierarchy</code> recomputes the world transforms over <code>replica.SmoothNodes</code> (the replicated node tree with overriding local transforms). The replicated simulation is never written, so what the server sends stays exact.</p>
+<ul>
+<li><p><strong>Remote entities</strong> are drawn <code>Delay</code> (100 ms, <code>GuestOptions.InterpDelay</code>) behind a smoothed estimate of the server clock (the frames&#39; arrival times, filtered so jitter does not show), interpolated between the two replicated transforms around that time (positions and scales linearly, angles along the shortest arc). Past the newest sample, when frames are late, the motion is extrapolated for at most <code>MaxExtrapolate</code> (250 ms), then held.</p></li>
+<li><p><strong>The local avatar</strong> (<code>FindAvatar</code> of the local player) is predicted: the unacknowledged inputs are replayed with a <code>PredictFunc</code> on top of the replicated avatar after every frame. The misprediction is the prediction made for the last input the server applied minus where the server actually put the avatar: a correct prediction gives no correction whatever the latency; an error is blended away over <code>Correction</code> (100 ms) and snapped beyond <code>Snap</code> (4 voxels: a teleport). The server&#39;s movement code runs in its scripts (WebAssembly in the simulation), which the frame domain cannot call, so the game provides the <code>PredictFunc</code> (<code>GuestOptions.Predict</code>); the default, <code>replica.TemplatePredict</code>, mirrors the walk of the <code>multiplayer</code> template&#39;s avatars script (4.317 voxels per second along the input yaw, ×1.3 with the sprint button 21). Vertical motion (gravity, jumps, steps) is left to the corrections.</p></li>
+</ul>
+<ul>
+<li><p><strong>Movement authority</strong> (<code>net/netsim/authority.go</code>, as Minecraft): a predicting client claims its position with every input (<code>netsim.WithClaim</code>: feet, vertical speed, and the server teleport count it follows). The server takes the claim when it passes its checks (speed budget over time, climb without support, vertical speed, the body box swept against the blocks) and walks the input itself otherwise, counting a teleport (<code>netsim.Player.TP</code>, replicated). A node moved by a rule between two inputs counts one too. The client corrects only when the teleport count changes; a correct prediction is never rolled back, whatever the latency or the small differences of the replicated world.</p></li>
+</ul>
+<ul>
+<li><strong>Root-motion dashes</strong> are predicted by wrapping the predictor: <code>replica.RootPredict(base, root)</code> runs <code>base</code>, then adds the local-space velocity returned by the <code>RootFunc</code> for that input step (a clip&#39;s <code>root.move</code> sampled at a time the game derives from the input), rotated by the input yaw exactly as the animation system does; <code>ok == false</code> leaves the step to <code>base</code>.</li>
+</ul>
+<h2 id="proximity-chat">Proximity chat<a class="anchor" href="#proximity-chat" aria-label="Link to this section">#</a></h2>
+<p><code>runtime.proximity_chat</code> (a radius in voxels; <code>HostOptions.ChatRange</code>) makes chat local: a player&#39;s line reaches only the players within that distance, measured between interest centers (<code>replica.ServerConfig.ChatRange</code>). Lines of the server reach everyone, the sender always gets its own line, and the host&#39;s chat log (<code>OnChat</code>) sees every line. The server also takes a generic <code>ChatFilter(from, to)</code> hook. This is text chat; voice chat uses the same server-side positions (<a href="voice.html#network">Voice chat</a>).</p>
+<h2 id="using-the-api">Using the API<a class="anchor" href="#using-the-api" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code class="language-go"><span class="c">// server (a dedicated server, or a listen server polled from the game loop)</span>
+srv, err := replica.NewServer(replica.ServerConfig{Sim: &amp;netapp.AppSim{A: app}, Listener: ln, Pins: pins, Password: key,
+	Whitelist: netplay.WhitelistFor(), View: <span class="n">8</span>, BytesPerSecond: <span class="n">256</span> &lt;&lt; <span class="n">10</span>})
+<span class="k">for</span> { srv.Poll(time.Now()); app.Frame(dt) }
+
+<span class="c">// client</span>
+c, err := replica.Connect(ctx, addr, netbase.ConnectOptions{Fingerprint: fp}, replica.ClientConfig{Target: app, Pins: pins, Name: <span class="s">&#34;ana&#34;</span>})
+<span class="k">for</span> { c.SetView(camX, camY, camZ); c.Poll(time.Now()); app.Frame(dt) }</code></pre>
+<p><code>internal/netplay</code> does all of this: <code>Host.Srv</code> is the <code>netplay.Server</code> interface (the host API of <code>*replica.Server</code>: <code>Submit</code>, <code>SubmitAs</code>, <code>AddLocalPlayer</code>, <code>Kick</code>, <code>Chat</code>, <code>Peers</code>, <code>Tick</code>, <code>Close</code>), <code>Guest.Client</code> the <code>*replica.Client</code>. The hooks of the dedicated server (<code>AllowConnect</code>, <code>AllowJoin</code>, <code>PlayerID</code>, <code>RequireIdentity</code>, <code>OnPlayerJoin</code>) are <code>HostOptions</code> fields. <code>replica.Server.Metrics</code> and <code>Clients</code> report the scan size and time, chunk and entity counts and the frame bytes of every client.</p>
+<h2 id="security">Security<a class="anchor" href="#security" aria-label="Link to this section">#</a></h2>
+<p>The threat model is that of <a href="networking.html#security-and-threat-model">Networking</a>: clients are hostile, the server is trusted. The handshake, the authentication lockout, the identity, the whitelist, the per-kind command rates, the message and byte rates and the violation budget are the shared code of <code>net/gate</code>. Specific to this model:</p>
+<ul>
+<li><strong>Information.</strong> A client receives only its interest: it cannot see chunks, entities or fine water beyond its view distance (no wallhack beyond it, no world download). With an authoritative position (<code>PlayerPos</code> or an avatar) the center is the server&#39;s and the client&#39;s view is ignored; a client-reported view moves at <code>ViewSpeed</code> at most and stays within <code>ViewLeash</code> of the player&#39;s authoritative or spawn position. Server-only components and extra states are never sent.</li>
+<li><strong>Forged acknowledgements.</strong> An ack beyond the last frame sent or going backwards is a violation; too many kick the client. Acks only gate the stream, so a lying client can only slow its own stream down.</li>
+<li><strong>Floods.</strong> Inputs, views, acks and chat are counted by the message and byte buckets; commands by the whitelist rates; pending commands are bounded per client.</li>
+<li><strong>Memory per client</strong> is bounded: held chunks by the view distance, entities by <code>MaxEntities</code>, pending commands by <code>MaxPendingCmds</code>, queued bytes by the transport&#39;s send window (the stream pauses instead of queuing).</li>
+<li><strong>Hostile server</strong> (client side): decoders are strict and bounded (fuzzed), inflation is bounded (a chunk to 70 KiB, a frame to its announced size within 1 MiB), block ids are checked against the registry, entity slots against <code>ecs.MaxReviveIndex</code> (4 Mi), the entity count against <code>ClientConfig.MaxEntities</code>; a frame that contradicts what the client holds (a delta from another version, a leave of an unknown chunk) ends the session.</li>
+</ul>
+<h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">limit</th><th scope="col">default</th><th scope="col">where</th></tr></thead>
+<tbody>
+<tr><td>players connected (plus those within their reconnect grace)</td><td>256, at most 1024</td><td><code>ServerConfig.MaxPlayers</code></td></tr>
+<tr><td>player registry records</td><td>4096</td><td><code>netsim.MaxRecords</code></td></tr>
+<tr><td>view distance</td><td>8 chunks (at most 32), vertical 4</td><td><code>View</code>, <code>Vertical</code></td></tr>
+<tr><td>bandwidth per client</td><td>256 KiB/s</td><td><code>BytesPerSecond</code></td></tr>
+<tr><td>entities held by one client</td><td>2048</td><td><code>MaxEntities</code></td></tr>
+<tr><td>unacknowledged frames before pausing</td><td>40</td><td><code>MaxUnacked</code></td></tr>
+<tr><td>send window before pausing</td><td>2 MiB</td><td><code>SendWindow</code></td></tr>
+<tr><td>client view speed</td><td>128 voxels/s</td><td><code>ViewSpeed</code></td></tr>
+<tr><td>client view distance from the authoritative or spawn position</td><td>256 voxels</td><td><code>ViewLeash</code></td></tr>
+<tr><td>frame workers</td><td>GOMAXPROCS</td><td><code>Workers</code></td></tr>
+<tr><td>fine water chunks in a frame, bricks per chunk</td><td>1024, 4096</td><td><code>wire.MaxFineChunks</code>, <code>wire.MaxFineBricks</code></td></tr>
+<tr><td>voxel edits of one delta</td><td>1024</td><td><code>MaxDeltaEdits</code></td></tr>
+<tr><td>frame</td><td>960 KiB</td><td><code>wire.MaxRepFrameSize</code></td></tr>
+<tr><td>one component value</td><td>64 KiB</td><td><code>wire.MaxCompData</code></td></tr>
+<tr><td>one extra state</td><td>512 KiB</td><td><code>wire.MaxExtraData</code></td></tr>
+<tr><td>handshakes in progress</td><td>128 (4 per address group)</td><td><code>MaxHandshakes</code>, <code>MaxHandshakesPerIP</code></td></tr>
+</tbody></table></div>
+<p>The other limits (rates, timeouts, reconnect grace) are those of the shared limits table in <a href="networking.html#limits">Networking</a>.</p>
+<h2 id="measurements">Measurements<a class="anchor" href="#measurements" aria-label="Link to this section">#</a></h2>
+<p><code>go test ./net/replica -run TestBandwidthReport -v</code> and <code>go test ./net/replica -bench BytesPerClient -benchtime 1x</code> on an Apple M2 Max (12 cores), 20 ticks per second, clients walking over a 512×512 area with edits every half second and mobs whose transform changes every tick. &#34;Before&#34; is the first version (JSON components, frames built on the server loop), &#34;after&#34; the current one (component codecs, frames built in parallel):</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">scenario</th><th scope="col">bytes/client/s before</th><th scope="col">after</th><th scope="col">server tick before</th><th scope="col">after</th></tr></thead>
+<tbody>
+<tr><td>8 clients, 200 mobs, view 4</td><td>13.5 KB/s (max 20 KB/s)</td><td>4.6 KB/s (max 6.2 KB/s)</td><td>0.4 ms</td><td>0.35 ms</td></tr>
+<tr><td>16 clients, 500 mobs, view 8</td><td>99 KB/s (max 141 KB/s)</td><td>28.7 KB/s (max 39.8 KB/s)</td><td>2.8 ms</td><td>1.0 ms</td></tr>
+<tr><td>64 clients, 500 mobs, view 8</td><td>99 KB/s (max 146 KB/s)</td><td>28.8 KB/s (max 41.1 KB/s)</td><td>9.4 ms</td><td>1.8 ms</td></tr>
+<tr><td>256 clients, 500 mobs, view 8</td><td>93 KB/s (max 146 KB/s)</td><td>27.2 KB/s (max 41.1 KB/s)</td><td>33.7 ms</td><td>4.4 to 4.8 ms</td></tr>
+</tbody></table></div>
+<p>A view of 8 chunks over that area holds about 390 mobs that all move every tick: the stream is dominated by their transforms, now about 4 bytes of position delta each instead of 70 bytes of JSON. A quiet world (8 walking clients and an edit every half second, no mobs) costs about 235 bytes per client per second.</p>
+<p>Capacity at 20 ticks per second (a 50 ms tick): the first version spent 0.13 ms per client per tick on one core, about 380 clients per server. With codecs the serial cost is 0.11 ms per client (<code>Workers: 1</code>: 27.7 ms for 256 clients), about 460 clients per core; with 12 workers 256 clients take 4.8 ms, about 2600 clients per server within the tick (about 220 per core: the scan, the views and the sends stay serial). The scan itself costs 0.06 to 0.6 ms per tick here (a codec component&#39;s cold part is hashed when its value changes).</p>
+<h2 id="how-it-is-tested">How it is tested<a class="anchor" href="#how-it-is-tested" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><code>net/wire</code>: round trip, golden bytes, limits and the decoder fuzz target cover the replicated messages, the codec encodings and the fine water entries.</li>
+<li><code>net/replica</code>: chunks enter, leave, deltas and removal; entities enter, leave, single-component updates (binary) and death; the registry without inputs; the budget (bytes over two seconds within the budget, nearest first, everything arrives eventually); inputs applied and the prediction ring confirmed; reconnect with the same player; frames identical with 1 and 8 workers (<code>TestParallelFramesDeterministic</code>, every byte on the network); the codecs (smallest-three quaternions within 0.0002 rad, field deltas); fine water replicated under interest with brick deltas; interpolation (midpoints, shortest arc, capped extrapolation, held entities), reconciliation with 0 to 7 ticks of latency (no correction on a steady walk, a snap on a teleport) and the render overrides that leave the simulation untouched; proximity chat; hostile clients (forged acks, ack floods, input floods, forbidden commands, malformed and server-only messages, view teleport, view walking away from its leash, an avatar overriding the view); a fuzz target that feeds arbitrary frames (binary components, fine water) to a client; a 64-client soak (<code>-tags slow</code>) and the bandwidth benchmark. The package runs under <code>-race</code> (the parallel frames).</li>
+<li><code>internal/netplay</code>: a dedicated replicated server built from the sandbox template with three guests over loopback TLS: only the near guests receive an edit, moving reveals it, a lost connection resumes with the same player and its state, the smoothing system is installed.</li>
+<li>Component visibility (owner-only, nearby, entering and leaving the radius) is tested in <code>net/replica</code>; the lobby and lobby mode and a restart from a save, including a game that gained or lost a component, in <code>internal/dedicated</code>.</li>
+</ul>
+<h2 id="what-is-not-covered">What is not covered<a class="anchor" href="#what-is-not-covered" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Vertical prediction.</strong> The default predictor walks on the horizontal plane; jumps, gravity and steps come from the server&#39;s corrections (blended, or snapped beyond 4 voxels). A game with its own movement passes its own <code>PredictFunc</code>.</li>
+<li><strong>Interpolation of children.</strong> Only replicated local transforms are interpolated; a parent&#39;s motion carries its children through the recomputed world transforms.</li>
+<li><strong>Unreliable transport.</strong> Over TCP a delta against the last sent state is safe; a UDP transport would move the baseline to the last acknowledged frame (the acks already exist).</li>
+<li><strong>Serial parts.</strong> The scan, the views, the reference counts and the sends stay on the server loop; beyond a few thousand clients they dominate.</li>
+</ul>
+<div class="pagemeta"><a href="replication.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#contents">Contents</a></li><li><a href="#the-model">The model</a></li><li><a href="#what-runs-where">What runs where</a></li><li><a href="#interest-management">Interest management</a></li><li><a href="#replicated-state">Replicated state</a></li><li><a class="l3" href="#component-codecs">Component codecs</a></li><li><a href="#component-visibility">Component visibility</a></li><li><a href="#dedicated-server-saves">Dedicated server saves</a></li><li><a href="#protocol">Protocol</a></li><li><a href="#bandwidth-budget">Bandwidth budget</a></li><li><a href="#client-inputs-prediction-and-reconciliation">Client inputs, prediction and reconciliation</a></li><li><a class="l3" href="#smoothing-and-prediction">Smoothing and prediction</a></li><li><a href="#proximity-chat">Proximity chat</a></li><li><a href="#using-the-api">Using the API</a></li><li><a href="#security">Security</a></li><li><a href="#limits">Limits</a></li><li><a href="#measurements">Measurements</a></li><li><a href="#how-it-is-tested">How it is tested</a></li><li><a href="#what-is-not-covered">What is not covered</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/mermaid.min.js" defer></script>
+<script src="../assets/mermaid-init.js" defer></script>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

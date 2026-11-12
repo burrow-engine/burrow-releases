@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Cookbook | Burrow</title>
+<meta name="description" content="Complete, compilable scripts for common jobs. Each block is a whole main.go : put it in scripts/&lt;name&gt;/ , run burrow script build , attach the module to a node ( &#34;script&#34;: {&#34;module&#34;:…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/11-cookbook.html">
+<meta property="og:title" content="Cookbook | Burrow">
+<meta property="og:description" content="Complete, compilable scripts for common jobs. Each block is a whole main.go : put it in scripts/&lt;name&gt;/ , run burrow script build , attach the module to a node ( &#34;script&#34;: {&#34;module&#34;:…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/11-cookbook.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cookbook | Burrow">
+<meta name="twitter:description" content="Complete, compilable scripts for common jobs. Each block is a whole main.go : put it in scripts/&lt;name&gt;/ , run burrow script build , attach the module to a node ( &#34;script&#34;: {&#34;module&#34;:…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html" aria-current="page">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="cookbook">Cookbook<a class="anchor" href="#cookbook" aria-label="Link to this section">#</a></h1>
+<p>Complete, compilable scripts for common jobs. Each block is a whole <code>main.go</code>: put it in <code>scripts/&lt;name&gt;/</code>, run <code>burrow script build</code>, attach the module to a node (<code>&#34;script&#34;: {&#34;module&#34;: &#34;assets/scripts/&lt;name&gt;.wasm&#34;, &#34;props&#34;: {...}}</code>).</p>
+<ul>
+<li>Input actions (<code>move</code>, <code>jump</code>, <code>pick</code>, <code>place</code>) are those of the <code>scripted</code>, <code>platformer</code> and <code>builder</code> templates and must exist in your <code>input.json</code>. <code>move</code> is an <code>axis2d</code>: <code>x</code> right, <code>y</code> forward. Forward is -Z; yaw is <code>Rot[1]</code> in degrees.</li>
+<li>Event kinds you pick yourself must stay below <code>0x40000000</code> (above are bus topics and timers).</li>
+<li><code>FindTag</code> scans the scene and is charged per node: cache the result in <code>State</code>.</li>
+<li>Ignored errors are ones that cannot matter for the recipe; see <a href="09-errors-and-limits.html">errors and limits</a>.</li>
+</ul>
+<h2 id="spin-an-entity">Spin an entity<a class="anchor" href="#spin-an-entity" aria-label="Link to this section">#</a></h2>
+<p>What: rotate around Y at <code>speed</code> degrees per second. When: decoration, pickups, fans.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;math&#34;</span>
+
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+)
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Speed <span class="k">float32</span> <span class="s">`json:&#34;speed&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			p, _ := burrowsdk.Props[props]()
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			t.Rot[<span class="n">1</span>] = <span class="k">float32</span>(math.Mod(<span class="k">float64</span>(t.Rot[<span class="n">1</span>]+p.Speed*<span class="k">float32</span>(dt)), <span class="n">360</span>))
+			_ = burrowsdk.SetTransform(self, t)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="move-with-input">Move with input<a class="anchor" href="#move-with-input" aria-label="Link to this section">#</a></h2>
+<p>What: walk on the XZ plane from the <code>move</code> action. When: a top-down or test avatar without physics.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			x, y, ok := burrowsdk.Action(<span class="s">&#34;move&#34;</span>)
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> !ok || err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			t.Pos[<span class="n">0</span>] += x * <span class="n">5</span> * <span class="k">float32</span>(dt) <span class="c">// 5 blocks per second</span>
+			t.Pos[<span class="n">2</span>] -= y * <span class="n">5</span> * <span class="k">float32</span>(dt)
+			_ = burrowsdk.SetTransform(self, t)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="jump-pressed-edge">Jump pressed edge<a class="anchor" href="#jump-pressed-edge" aria-label="Link to this section">#</a></h2>
+<p>What: act once per press, not every tick the key is held. When: any button. Input is a level; derive the edge from your own <code>State</code>.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	WasDown <span class="k">bool</span> <span class="s">`json:&#34;was_down&#34;`</span>
+	Jumps   <span class="k">int</span>  <span class="s">`json:&#34;jumps&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			x, _, ok := burrowsdk.Action(<span class="s">&#34;jump&#34;</span>)
+			down := ok &amp;&amp; x &gt; <span class="n">0.5</span>
+			<span class="k">if</span> down &amp;&amp; !st.WasDown {
+				st.Jumps++
+				burrowsdk.Logf(<span class="s">&#34;jump %d&#34;</span>, st.Jumps)
+			}
+			st.WasDown = down
+			_ = burrowsdk.SaveState(st)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="despawn-after-a-lifetime">Despawn after a lifetime<a class="anchor" href="#despawn-after-a-lifetime" aria-label="Link to this section">#</a></h2>
+<p>What: remove yourself after <code>ticks</code>. When: bullets, effects, temporary blocks.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">const</span> timerLife = <span class="n">1</span>
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Ticks <span class="k">int</span> <span class="s">`json:&#34;ticks&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.OnTimer(timerLife, <span class="k">func</span>(self burrowsdk.Entity) {
+		_ = burrowsdk.Despawn(self) <span class="c">// the subtree goes too, at commit</span>
+	})
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			p, _ := burrowsdk.Props[props]()
+			_ = burrowsdk.After(timerLife, max(p.Ticks, <span class="n">1</span>))
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="coin-pickup-with-tags-and-events">Coin pickup with tags and events<a class="anchor" href="#coin-pickup-with-tags-and-events" aria-label="Link to this section">#</a></h2>
+<p>What: a coin tells the player it was taken, then vanishes; the player counts. When: collectibles. Tag the player node <code>&#34;tags&#34;: {&#34;tags&#34;: [&#34;player&#34;]}</code>. Two scripts, one event kind.</p>
+<p>Coin (<code>props</code>: <code>{&#34;radius&#34;: 1}</code>):</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">const</span> kindCoin <span class="k">int32</span> = <span class="n">1</span>
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Radius <span class="k">float32</span> <span class="s">`json:&#34;radius&#34;`</span>
+}
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Player burrowsdk.Entity <span class="s">`json:&#34;player&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			<span class="k">if</span> !burrowsdk.Exists(st.Player) {
+				found, _, err := burrowsdk.FindTag(<span class="s">&#34;player&#34;</span>, <span class="n">0</span>)
+				<span class="k">if</span> err != <span class="k">nil</span> || len(found) == <span class="n">0</span> {
+					<span class="k">return</span>
+				}
+				st.Player = found[<span class="n">0</span>]
+				_ = burrowsdk.SaveState(st)
+			}
+			a, errA := burrowsdk.GetTransform(self)
+			b, errB := burrowsdk.GetTransform(st.Player)
+			<span class="k">if</span> errA != <span class="k">nil</span> || errB != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			p, _ := burrowsdk.Props[props]()
+			dx, dy, dz := a.Pos[<span class="n">0</span>]-b.Pos[<span class="n">0</span>], a.Pos[<span class="n">1</span>]-b.Pos[<span class="n">1</span>], a.Pos[<span class="n">2</span>]-b.Pos[<span class="n">2</span>]
+			<span class="k">if</span> r := max(p.Radius, <span class="n">1</span>); dx*dx+dy*dy+dz*dz &lt;= r*r {
+				_ = burrowsdk.Emit(st.Player, kindCoin, <span class="k">nil</span>)
+				_ = burrowsdk.Despawn(self)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p>Player:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">const</span> kindCoin <span class="k">int32</span> = <span class="n">1</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Coins <span class="k">int</span> <span class="s">`json:&#34;coins&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnEvent: <span class="k">func</span>(self burrowsdk.Entity, ev burrowsdk.Event) {
+			<span class="k">if</span> ev.Kind == kindCoin {
+				st, _ := burrowsdk.LoadState[state]()
+				st.Coins++
+				_ = burrowsdk.SaveState(st)
+				burrowsdk.Logf(<span class="s">&#34;coins: %d&#34;</span>, st.Coins)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="door-that-toggles">Door that toggles<a class="anchor" href="#door-that-toggles" aria-label="Link to this section">#</a></h2>
+<p>What: swing a door open and shut with an eased rotation, from the <code>pick</code> key or the <code>door.toggle</code> message. When: doors, gates, lids.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Open    <span class="k">bool</span>            <span class="s">`json:&#34;open&#34;`</span>
+	Anim    burrowsdk.Tween <span class="s">`json:&#34;anim&#34;`</span>
+	WasDown <span class="k">bool</span>            <span class="s">`json:&#34;was_down&#34;`</span>
+}
+
+<span class="k">func</span> toggle(st *state) {
+	cur := <span class="n">0.0</span>
+	<span class="k">if</span> st.Anim.Dur &gt; <span class="n">0</span> {
+		cur = st.Anim.Now() <span class="c">// continue a half-finished swing</span>
+	}
+	st.Open = !st.Open
+	to := <span class="n">0.0</span>
+	<span class="k">if</span> st.Open {
+		to = <span class="n">90</span>
+	}
+	st.Anim = burrowsdk.NewTween(cur, to, <span class="n">10</span>, burrowsdk.OutQuad)
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.OnMessage(<span class="s">&#34;door.toggle&#34;</span>, <span class="k">func</span>(self, from burrowsdk.Entity, payload []<span class="k">byte</span>) {
+		st, _ := burrowsdk.LoadState[state]()
+		toggle(&amp;st)
+		_ = burrowsdk.SaveState(st)
+	})
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			x, _, ok := burrowsdk.Action(<span class="s">&#34;pick&#34;</span>)
+			down := ok &amp;&amp; x &gt; <span class="n">0.5</span>
+			<span class="k">if</span> down &amp;&amp; !st.WasDown {
+				toggle(&amp;st)
+			}
+			st.WasDown = down
+			<span class="k">if</span> t, err := burrowsdk.GetTransform(self); err == <span class="k">nil</span> &amp;&amp; st.Anim.Dur &gt; <span class="n">0</span> {
+				t.Rot[<span class="n">1</span>] = <span class="k">float32</span>(st.Anim.Now())
+				_ = burrowsdk.SetTransform(self, t)
+			}
+			_ = burrowsdk.SaveState(st)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="break-and-place-voxels">Break and place voxels<a class="anchor" href="#break-and-place-voxels" aria-label="Link to this section">#</a></h2>
+<p>What: on <code>pick</code> remove the block a ray hits, on <code>place</code> put a block against the hit face. When: digging, building. <code>props</code>: <code>{&#34;reach&#34;: 6, &#34;dir&#34;: [0,-1,0], &#34;block&#34;: &#34;stone&#34;}</code>. Edits apply at commit (budget 4,096 per tick); reads in the same call already see them.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Reach <span class="k">float32</span>    <span class="s">`json:&#34;reach&#34;`</span>
+	Dir   [<span class="n">3</span>]<span class="k">float32</span> <span class="s">`json:&#34;dir&#34;`</span>
+	Block <span class="k">string</span>     <span class="s">`json:&#34;block&#34;`</span>
+}
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Pick  <span class="k">bool</span> <span class="s">`json:&#34;pick&#34;`</span>
+	Place <span class="k">bool</span> <span class="s">`json:&#34;place&#34;`</span>
+}
+
+<span class="k">func</span> edge(action <span class="k">string</span>, was *<span class="k">bool</span>) <span class="k">bool</span> {
+	x, _, ok := burrowsdk.Action(action)
+	down := ok &amp;&amp; x &gt; <span class="n">0.5</span>
+	pressed := down &amp;&amp; !*was
+	*was = down
+	<span class="k">return</span> pressed
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			<span class="k">defer</span> burrowsdk.SaveState(&amp;st)
+			breaking, placing := edge(<span class="s">&#34;pick&#34;</span>, &amp;st.Pick), edge(<span class="s">&#34;place&#34;</span>, &amp;st.Place)
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> || !(breaking || placing) {
+				<span class="k">return</span>
+			}
+			p, _ := burrowsdk.Props[props]()
+			hit, ok, err := burrowsdk.Raycast(t.Pos, p.Dir, max(p.Reach, <span class="n">1</span>))
+			<span class="k">if</span> err != <span class="k">nil</span> || !ok {
+				<span class="k">return</span>
+			}
+			<span class="k">if</span> breaking {
+				_ = burrowsdk.SetVoxel(<span class="k">int</span>(hit.X), <span class="k">int</span>(hit.Y), <span class="k">int</span>(hit.Z), <span class="n">0</span>)
+			}
+			<span class="k">if</span> id, err := burrowsdk.BlockByName(p.Block); placing &amp;&amp; err == <span class="k">nil</span> {
+				_ = burrowsdk.SetVoxel(<span class="k">int</span>(hit.X+hit.NX), <span class="k">int</span>(hit.Y+hit.NY), <span class="k">int</span>(hit.Z+hit.NZ), id)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="wander-randomly">Wander randomly<a class="anchor" href="#wander-randomly" aria-label="Link to this section">#</a></h2>
+<p>What: walk a random heading, pick a new one every 1 to 3 seconds. When: ambient animals, crowds. <code>RandN</code> is a per-script deterministic stream, so replays and peers walk the same path.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;math&#34;</span>
+
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+)
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Heading <span class="k">float64</span> <span class="s">`json:&#34;heading&#34;`</span> <span class="c">// degrees</span>
+	Until   <span class="k">uint64</span>  <span class="s">`json:&#34;until&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			<span class="k">if</span> burrowsdk.Tick() &gt;= st.Until {
+				st.Heading = <span class="k">float64</span>(burrowsdk.RandN(<span class="n">360</span>))
+				st.Until = burrowsdk.Tick() + <span class="n">20</span> + <span class="k">uint64</span>(burrowsdk.RandN(<span class="n">40</span>))
+			}
+			t, err := burrowsdk.GetTransform(self)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			s, c := math.Sincos(st.Heading * math.Pi / <span class="n">180</span>)
+			t.Pos[<span class="n">0</span>] += <span class="k">float32</span>(s) * <span class="n">2</span> * <span class="k">float32</span>(dt)
+			t.Pos[<span class="n">2</span>] += <span class="k">float32</span>(c) * <span class="n">2</span> * <span class="k">float32</span>(dt)
+			t.Rot[<span class="n">1</span>] = <span class="k">float32</span>(st.Heading)
+			_ = burrowsdk.SetTransform(self, t)
+			_ = burrowsdk.SaveState(st)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="timer-and-countdown">Timer and countdown<a class="anchor" href="#timer-and-countdown" aria-label="Link to this section">#</a></h2>
+<p>What: count <code>seconds</code> down once per second and announce the end. When: round timers, fuses. <code>Every(id, 20)</code> fires every 20 ticks (1 s); <code>CancelTimer</code> stops it.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">const</span> timerSecond = <span class="n">1</span>
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Seconds <span class="k">int</span> <span class="s">`json:&#34;seconds&#34;`</span>
+}
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Left <span class="k">int</span> <span class="s">`json:&#34;left&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.OnTimer(timerSecond, <span class="k">func</span>(self burrowsdk.Entity) {
+		st, _ := burrowsdk.LoadState[state]()
+		st.Left--
+		burrowsdk.Logf(<span class="s">&#34;%d s left&#34;</span>, st.Left)
+		<span class="k">if</span> st.Left &lt;= <span class="n">0</span> {
+			_ = burrowsdk.CancelTimer(timerSecond)
+			_ = burrowsdk.Publish(<span class="s">&#34;countdown.done&#34;</span>, <span class="k">nil</span>)
+		}
+		_ = burrowsdk.SaveState(st)
+	})
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			p, _ := burrowsdk.Props[props]()
+			_ = burrowsdk.SaveState(state{Left: max(p.Seconds, <span class="n">1</span>)})
+			_ = burrowsdk.Every(timerSecond, <span class="n">20</span>)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="tween-a-property">Tween a property<a class="anchor" href="#tween-a-property" aria-label="Link to this section">#</a></h2>
+<p>What: pulse the scale between 1 and 1.5 with a sine ease, 1 s each way. When: any value that moves over time. A <code>Tween</code> is plain data kept in <code>State</code> and evaluated with the tick.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Anim burrowsdk.Tween <span class="s">`json:&#34;anim&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			<span class="k">if</span> st.Anim.Dur == <span class="n">0</span> {
+				st.Anim = burrowsdk.NewTween(<span class="n">1</span>, <span class="n">1.5</span>, <span class="n">20</span>, burrowsdk.InOutSine)
+			} <span class="k">else</span> <span class="k">if</span> st.Anim.Done(burrowsdk.Tick()) {
+				st.Anim = burrowsdk.NewTween(st.Anim.To, st.Anim.From, <span class="n">20</span>, burrowsdk.InOutSine)
+			}
+			<span class="k">if</span> t, err := burrowsdk.GetTransform(self); err == <span class="k">nil</span> {
+				s := <span class="k">float32</span>(st.Anim.Now())
+				t.Scale = [<span class="n">3</span>]<span class="k">float32</span>{s, s, s}
+				_ = burrowsdk.SetTransform(self, t)
+			}
+			_ = burrowsdk.SaveState(st)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="sound-particles-and-shake-on-an-event">Sound, particles and shake on an event<a class="anchor" href="#sound-particles-and-shake-on-an-event" aria-label="Link to this section">#</a></h2>
+<p>What: when <code>coin.pick</code> is published, play a positional sound, burst sparks and nudge the camera at the sender. When: feedback for gameplay events. Needs <code>runtime.plugins.audio</code> / <code>particles</code> / <code>camera</code> and a real sound file; otherwise each call is silently ignored (<a href="07-effects.html">effects</a>).</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.OnMessage(<span class="s">&#34;coin.pick&#34;</span>, <span class="k">func</span>(self, from burrowsdk.Entity, payload []<span class="k">byte</span>) {
+		_, err := burrowsdk.GetTransform(from)
+		<span class="k">if</span> err != <span class="k">nil</span> { <span class="c">// the sender is already gone</span>
+			_, _ = burrowsdk.PlayOn(self, <span class="s">&#34;assets/sfx/coin.ogg&#34;</span>, burrowsdk.SoundOpts{Bus: <span class="s">&#34;sfx&#34;</span>, Mode: burrowsdk.SoundGlobal})
+			<span class="k">return</span>
+		}
+		_, _ = burrowsdk.PlayOn(self, <span class="s">&#34;assets/sfx/coin.ogg&#34;</span>, burrowsdk.SoundOpts{Bus: <span class="s">&#34;sfx&#34;</span>, Volume: <span class="n">0.8</span>})
+		_ = burrowsdk.ParticleBurstOn(self, <span class="s">&#34;builtin:sparks&#34;</span>, burrowsdk.ParticleOpts{Offset: &amp;[<span class="n">3</span>]<span class="k">float32</span>{<span class="n">0</span>, <span class="n">1</span>, <span class="n">0</span>}, Count: <span class="n">12</span>, Scale: <span class="n">0.6</span>})
+		_ = burrowsdk.CameraShake(<span class="n">0.1</span>)
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="hud-counter-and-camera-shake">HUD counter and camera shake<a class="anchor" href="#hud-counter-and-camera-shake" aria-label="Link to this section">#</a></h2>
+<p>What: show a score in the game UI, pop a number where it was earned, bump the camera. When: any HUD. Needs <code>runtime.plugins.gameui</code> and a screen with a label <code>{coins}</code> or a bar bound to <code>coins</code>. Send only changed values: each UI call costs one event of the budget.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Coins <span class="k">int</span> <span class="s">`json:&#34;coins&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.OnMessage(<span class="s">&#34;coin.pick&#34;</span>, <span class="k">func</span>(self, from burrowsdk.Entity, payload []<span class="k">byte</span>) {
+		st, _ := burrowsdk.LoadState[state]()
+		st.Coins++
+		_ = burrowsdk.SaveState(st)
+		_ = burrowsdk.UISetNum(<span class="s">&#34;coins&#34;</span>, <span class="k">float64</span>(st.Coins))
+		<span class="k">if</span> t, err := burrowsdk.GetTransform(from); err == <span class="k">nil</span> {
+			_ = burrowsdk.UIPopup(t.Pos[<span class="n">0</span>], t.Pos[<span class="n">1</span>]+<span class="n">1</span>, t.Pos[<span class="n">2</span>], <span class="s">&#34;+1&#34;</span>, <span class="n">1</span>)
+		}
+		_ = burrowsdk.CameraShake(<span class="n">0.15</span>)
+	})
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) { <span class="c">// bind the initial value</span>
+			st, _ := burrowsdk.LoadState[state]()
+			_ = burrowsdk.UISetNum(<span class="s">&#34;coins&#34;</span>, <span class="k">float64</span>(st.Coins))
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="save-and-load-progress">Save and load progress<a class="anchor" href="#save-and-load-progress" aria-label="Link to this section">#</a></h2>
+<p>What: keep progress in <code>State</code> and mirror it into the save game. When: anything that must survive a quit. <code>State</code> is hashed and snapshotted with the world; <code>SaveSet</code> / <code>SaveGet</code> are game data of the save system and need <code>runtime.plugins.saves</code> (else <code>UNAVAILABLE</code>).</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;strconv&#34;</span>
+
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+)
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Score <span class="k">int</span> <span class="s">`json:&#34;score&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			st, _ := burrowsdk.LoadState[state]()
+			<span class="k">if</span> v, ok, err := burrowsdk.SaveGet(<span class="s">&#34;score&#34;</span>); err == <span class="k">nil</span> &amp;&amp; ok {
+				st.Score, _ = strconv.Atoi(v)
+			}
+			_ = burrowsdk.SaveState(st)
+		},
+		OnEvent: <span class="k">func</span>(self burrowsdk.Entity, ev burrowsdk.Event) {
+			st, _ := burrowsdk.LoadState[state]()
+			st.Score += <span class="n">10</span>
+			_ = burrowsdk.SaveState(st)
+			_ = burrowsdk.SaveSet(<span class="s">&#34;score&#34;</span>, strconv.Itoa(st.Score)) <span class="c">// written with the next save</span>
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="two-scripts-talking">Two scripts talking<a class="anchor" href="#two-scripts-talking" aria-label="Link to this section">#</a></h2>
+<p>What: a button publishes a message, a lamp reacts. When: decoupled objects that do not know each other&#39;s entity. Messages arrive on a later tick, to every subscriber in ascending entity order.</p>
+<p>Button (key <code>pick</code>):</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	WasDown <span class="k">bool</span> <span class="s">`json:&#34;was_down&#34;`</span>
+	On      <span class="k">bool</span> <span class="s">`json:&#34;on&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			x, _, ok := burrowsdk.Action(<span class="s">&#34;pick&#34;</span>)
+			down := ok &amp;&amp; x &gt; <span class="n">0.5</span>
+			<span class="k">if</span> down &amp;&amp; !st.WasDown {
+				st.On = !st.On
+				payload := []<span class="k">byte</span>{<span class="n">0</span>}
+				<span class="k">if</span> st.On {
+					payload[<span class="n">0</span>] = <span class="n">1</span>
+				}
+				_ = burrowsdk.Publish(<span class="s">&#34;lamp.set&#34;</span>, payload)
+			}
+			st.WasDown = down
+			_ = burrowsdk.SaveState(st)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p>Lamp (a node with a <code>render.pointlight</code>):</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.OnMessage(<span class="s">&#34;lamp.set&#34;</span>, <span class="k">func</span>(self, from burrowsdk.Entity, payload []<span class="k">byte</span>) {
+		intensity := <span class="n">0.0</span>
+		<span class="k">if</span> len(payload) &gt; <span class="n">0</span> &amp;&amp; payload[<span class="n">0</span>] == <span class="n">1</span> {
+			intensity = <span class="n">8</span>
+		}
+		<span class="k">if</span> err := burrowsdk.SetFloat(self, <span class="s">&#34;render.pointlight&#34;</span>, <span class="s">&#34;intensity&#34;</span>, intensity); err != <span class="k">nil</span> {
+			burrowsdk.Logf(<span class="s">&#34;lamp: %v&#34;</span>, err)
+		}
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="trigger-zone">Trigger zone<a class="anchor" href="#trigger-zone" aria-label="Link to this section">#</a></h2>
+<p>What: publish <code>zone.enter</code> and <code>zone.exit</code> once as the <code>player</code>-tagged node crosses a box. When: checkpoints, rooms, damage areas. <code>props</code>: <code>{&#34;min&#34;: [0,0,0], &#34;max&#34;: [4,3,4]}</code> in world coordinates. No physics plugin needed.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Min [<span class="n">3</span>]<span class="k">float32</span> <span class="s">`json:&#34;min&#34;`</span>
+	Max [<span class="n">3</span>]<span class="k">float32</span> <span class="s">`json:&#34;max&#34;`</span>
+}
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Inside <span class="k">bool</span>             <span class="s">`json:&#34;inside&#34;`</span>
+	Player burrowsdk.Entity <span class="s">`json:&#34;player&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			<span class="k">if</span> !burrowsdk.Exists(st.Player) {
+				found, _, err := burrowsdk.FindTag(<span class="s">&#34;player&#34;</span>, <span class="n">0</span>)
+				<span class="k">if</span> err != <span class="k">nil</span> || len(found) == <span class="n">0</span> {
+					<span class="k">return</span>
+				}
+				st.Player = found[<span class="n">0</span>]
+			}
+			t, err := burrowsdk.GetTransform(st.Player)
+			<span class="k">if</span> err != <span class="k">nil</span> {
+				<span class="k">return</span>
+			}
+			p, _ := burrowsdk.Props[props]()
+			in := <span class="k">true</span>
+			<span class="k">for</span> i := <span class="n">0</span>; i &lt; <span class="n">3</span>; i++ {
+				in = in &amp;&amp; t.Pos[i] &gt;= p.Min[i] &amp;&amp; t.Pos[i] &lt;= p.Max[i]
+			}
+			<span class="k">if</span> in != st.Inside {
+				st.Inside = in
+				topic := <span class="s">&#34;zone.exit&#34;</span>
+				<span class="k">if</span> in {
+					topic = <span class="s">&#34;zone.enter&#34;</span>
+				}
+				_ = burrowsdk.Publish(topic, <span class="k">nil</span>)
+			}
+			_ = burrowsdk.SaveState(st)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="spawn-every-n-ticks-with-limits">Spawn every N ticks, with limits<a class="anchor" href="#spawn-every-n-ticks-with-limits" aria-label="Link to this section">#</a></h2>
+<p>What: every <code>every</code> ticks (20 = 1 s) spawn a tagged node at a random point, never more than <code>max</code> alive and <code>total</code> overall. When: waves, loot, projectiles, ambient creatures. Alive counts come from the scene (<code>FindTag</code>), so despawned nodes free a slot. <code>Spawn(&#34;&#34;, ...)</code> makes a bare node; a prefab name loads <code>prefabs/&lt;name&gt;.prefab</code> from the project, and that is how a script spawns a node that carries a <code>script</code> component. Errors: <code>BUDGET</code> past 32 spawns per tick, <code>NOT_FOUND</code> for an unknown prefab.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;encoding/json&#34;</span>
+
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+)
+
+<span class="k">const</span> timerSpawn = <span class="n">1</span>
+
+<span class="k">type</span> props <span class="k">struct</span> {
+	Every  <span class="k">int</span>     <span class="s">`json:&#34;every&#34;`</span>
+	Max    <span class="k">int</span>     <span class="s">`json:&#34;max&#34;`</span>
+	Total  <span class="k">int</span>     <span class="s">`json:&#34;total&#34;`</span>
+	Radius <span class="k">float32</span> <span class="s">`json:&#34;radius&#34;`</span>
+}
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Spawned <span class="k">int</span> <span class="s">`json:&#34;spawned&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.OnTimer(timerSpawn, <span class="k">func</span>(self burrowsdk.Entity) {
+		p, _ := burrowsdk.Props[props]()
+		st, _ := burrowsdk.LoadState[state]()
+		<span class="k">if</span> st.Spawned &gt;= p.Total {
+			_ = burrowsdk.CancelTimer(timerSpawn)
+			<span class="k">return</span>
+		}
+		alive, _, err := burrowsdk.FindTag(<span class="s">&#34;mob&#34;</span>, <span class="n">0</span>)
+		t, errT := burrowsdk.GetTransform(self)
+		<span class="k">if</span> err != <span class="k">nil</span> || errT != <span class="k">nil</span> || len(alive) &gt;= p.Max {
+			<span class="k">return</span>
+		}
+		x := t.Pos[<span class="n">0</span>] + <span class="k">float32</span>(burrowsdk.RandFloat()*<span class="n">2</span>-<span class="n">1</span>)*p.Radius
+		z := t.Pos[<span class="n">2</span>] + <span class="k">float32</span>(burrowsdk.RandFloat()*<span class="n">2</span>-<span class="n">1</span>)*p.Radius
+		_, err = burrowsdk.Spawn(<span class="s">&#34;&#34;</span>, burrowsdk.SpawnOpts{
+			Transform:  &amp;burrowsdk.Transform{Pos: [<span class="n">3</span>]<span class="k">float32</span>{x, t.Pos[<span class="n">1</span>], z}, Scale: [<span class="n">3</span>]<span class="k">float32</span>{<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>}},
+			Components: <span class="k">map</span>[<span class="k">string</span>]json.RawMessage{<span class="s">&#34;tags&#34;</span>: json.RawMessage(<span class="s">`{&#34;tags&#34;:[&#34;mob&#34;]}`</span>)},
+		})
+		<span class="k">if</span> err == <span class="k">nil</span> {
+			st.Spawned++
+			_ = burrowsdk.SaveState(st)
+		}
+	})
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			p, _ := burrowsdk.Props[props]()
+			_ = burrowsdk.Every(timerSpawn, max(p.Every, <span class="n">1</span>))
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="sequences">Sequences<a class="anchor" href="#sequences" aria-label="Link to this section">#</a></h2>
+<p>What: &#34;wait 0.5 s, do X, wait until a condition, do Y&#34; without a hand-written state machine. When: dashes, cutscenes, timed abilities.</p>
+<p><code>Seq</code> is the immutable definition (build it once). Its position is a <code>SeqState</code> you keep in your <code>State</code>, so it is saved, replayed and hot-reload safe. Waits count simulation ticks (seconds round up at 20 Hz). Call <code>Tick</code> from <code>OnTick</code>.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> state <span class="k">struct</span> {
+	Dash burrowsdk.SeqState <span class="s">`json:&#34;dash&#34;`</span>
+}
+
+<span class="k">var</span> dash = burrowsdk.NewSeq(<span class="s">&#34;dash&#34;</span>).
+	Do(<span class="k">func</span>(self burrowsdk.Entity) { _ = burrowsdk.CameraShake(<span class="n">0.1</span>) }).
+	Wait(<span class="n">0.5</span>).
+	Do(<span class="k">func</span>(self burrowsdk.Entity) { _ = burrowsdk.CameraShake(<span class="n">0.3</span>) }).
+	WaitUntil(<span class="k">func</span>(self burrowsdk.Entity) <span class="k">bool</span> {
+		x, _, ok := burrowsdk.Action(<span class="s">&#34;jump&#34;</span>)
+		<span class="k">return</span> ok &amp;&amp; x &gt; <span class="n">0</span>
+	}).
+	Do(<span class="k">func</span>(self burrowsdk.Entity) { _ = burrowsdk.CameraShake(<span class="n">0.05</span>) })
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[state]()
+			<span class="k">if</span> !dash.Running(self, &amp;st.Dash) {
+				<span class="k">if</span> x, _, ok := burrowsdk.Action(<span class="s">&#34;pick&#34;</span>); ok &amp;&amp; x &gt; <span class="n">0</span> {
+					dash.Start(self, &amp;st.Dash)
+				}
+			}
+			dash.Tick(self, &amp;st.Dash)
+			_ = burrowsdk.SaveState(st)
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="01-getting-started.html">Getting started</a>, <a href="02-execution-model.html">execution model</a>, <a href="03-state-and-props.html">state and props</a>.</li>
+<li><a href="04-entities-and-scene.html">Entities and scene</a>, <a href="05-world.html">world</a>, <a href="06-input-events-time.html">input, events, time</a>.</li>
+<li><a href="07-effects.html">Effects</a> (audio, particles, cameras, UI, animation), <a href="08-multiplayer.html">multiplayer</a>, <a href="09-errors-and-limits.html">errors and limits</a>.</li>
+<li><code>examples/scripting_demo</code> and the <code>scripted</code>, <code>builder</code> and <code>platformer</code> templates for full projects.</li>
+</ul>
+<div class="pagemeta"><a href="11-cookbook.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#spin-an-entity">Spin an entity</a></li><li><a href="#move-with-input">Move with input</a></li><li><a href="#jump-pressed-edge">Jump pressed edge</a></li><li><a href="#despawn-after-a-lifetime">Despawn after a lifetime</a></li><li><a href="#coin-pickup-with-tags-and-events">Coin pickup with tags and events</a></li><li><a href="#door-that-toggles">Door that toggles</a></li><li><a href="#break-and-place-voxels">Break and place voxels</a></li><li><a href="#wander-randomly">Wander randomly</a></li><li><a href="#timer-and-countdown">Timer and countdown</a></li><li><a href="#tween-a-property">Tween a property</a></li><li><a href="#sound-particles-and-shake-on-an-event">Sound, particles and shake on an event</a></li><li><a href="#hud-counter-and-camera-shake">HUD counter and camera shake</a></li><li><a href="#save-and-load-progress">Save and load progress</a></li><li><a href="#two-scripts-talking">Two scripts talking</a></li><li><a href="#trigger-zone">Trigger zone</a></li><li><a href="#spawn-every-n-ticks-with-limits">Spawn every N ticks, with limits</a></li><li><a href="#sequences">Sequences</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

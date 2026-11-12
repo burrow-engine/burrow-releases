@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title>Burrow news</title>
+<subtitle>Release notes and changelog of the Burrow voxel engine</subtitle>
+<id>https://burrow-engine.github.io/burrow-releases/</id>
+<link href="https://burrow-engine.github.io/burrow-releases/"/>
+<link rel="self" href="https://burrow-engine.github.io/burrow-releases/feed.xml"/>
+<updated>2026-11-12T13:28:29Z</updated>
+<entry>
+<title>Burrow 0.8.4</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-4---2026-11-10</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-4---2026-11-10"/>
+<updated>2026-11-10T00:00:00Z</updated>
+<summary type="text">Fixed: the render scale (RenderSettings.RenderScale, BURROW_RENDER_SCALE, -render-scale) was silently ignored in hybrid frames (voxels plus scene meshes: any game with a held item, an animal or another player), which rendered at native size and also lost the SMAA the scaled request had replaced wit…</summary>
+</entry>
+<entry>
+<title>Burrow 0.8.3</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-3---2026-11-06</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-3---2026-11-06"/>
+<updated>2026-11-06T00:00:00Z</updated>
+<summary type="text">Fixed: two buttons bound to the mouse wheel, one per direction (scroll with scale 1 and scale -1), were both pressed by any notch: a button takes an analog input by its length, which ignored the sign, so a game that changes slot with hotbar_prev/hotbar_next saw one step forward and one back and not…</summary>
+</entry>
+<entry>
+<title>Burrow 0.8.2</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-2---2026-11-05</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-2---2026-11-05"/>
+<updated>2026-11-05T00:00:00Z</updated>
+<summary type="text">Added: a render.voxmodel node with a render.material is now drawn with it (rworld.Input.VoxMat, filled by the render plugin): tint (base_color) and glow (emissive) of one instance, for instance a creature that flashes red when hit. Before, the component was ignored on a voxel model; a model without…</summary>
+</entry>
+<entry>
+<title>Burrow 0.8.1</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-1---2026-11-05</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-1---2026-11-05"/>
+<updated>2026-11-05T00:00:00Z</updated>
+<summary type="text">gogame: network games for a Go game, dedicated server only (no listen server). gogame.Serve runs the game as a dedicated server (the burrow-server data directory, world saves, bans, admin console; gogame.InitServer writes it; Game.NetScene is the scene it runs), gogame.Join / Connect and the menu a…</summary>
+</entry>
+<entry>
+<title>Burrow 0.7.1</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-7-1---2026-11-04</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-7-1---2026-11-04"/>
+<updated>2026-11-04T00:00:00Z</updated>
+<summary type="text">Burrow Hub: a folder explorer in the Import dialog (Home, Desktop, Documents and Downloads shortcuts, breadcrumbs, projects marked) and in the dialog that locates a moved project.</summary>
+</entry>
+<entry>
+<title>Burrow 0.7.0</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-7-0---2026-11-04</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-7-0---2026-11-04"/>
+<updated>2026-11-04T00:00:00Z</updated>
+<summary type="text">New gogame package: a trusted plain-Go game with OnStart, OnTick, OnFrame and UI.</summary>
+</entry>
+<entry>
+<title>Burrow 0.6.1</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-6-1---2026-11-03</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-6-1---2026-11-03"/>
+<updated>2026-11-03T00:00:00Z</updated>
+<summary type="text">runtime.tick_rate can be 20, 30, 40 or 60; journals record it and refuse a replay at another rate.</summary>
+</entry>
+<entry>
+<title>Burrow 0.6.0</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-6-0---2026-11-03</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-6-0---2026-11-03"/>
+<updated>2026-11-03T00:00:00Z</updated>
+<summary type="text">Everything in a scene is an entity, with shaders and materials, per-world voxel size and micro-voxels.</summary>
+</entry>
+<entry>
+<title>Burrow 0.5.2</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-5-2---2026-11-02</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-5-2---2026-11-02"/>
+<updated>2026-11-02T00:00:00Z</updated>
+<summary type="text">An editor and assets release: glTF import, full-screen tools for every asset and world editor, a real Play, and a redesigned look.</summary>
+</entry>
+<entry>
+<title>Burrow 0.5.1</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-5-1---2026-11-02</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-5-1---2026-11-02"/>
+<updated>2026-11-02T00:00:00Z</updated>
+<summary type="text">A small rendering fix for block textures.</summary>
+</entry>
+<entry>
+<title>Burrow 0.5.0</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-5-0---2026-11-02</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-5-0---2026-11-02"/>
+<updated>2026-11-02T00:00:00Z</updated>
+<summary type="text">A multiplayer release with voice chat, replicated servers, matchmaking, a lobby, a dedicated server, game UI widgets and better agent tooling.</summary>
+</entry>
+<entry>
+<title>Burrow 0.4.2</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-4-2---2026-11-01</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-4-2---2026-11-01"/>
+<updated>2026-11-01T00:00:00Z</updated>
+<summary type="text">Reworked model, texture, game UI and animation tools, fire on torches, and fixes for placement and mounted blocks.</summary>
+</entry>
+<entry>
+<title>Burrow 0.4.1</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-4-1---2026-11-01</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-4-1---2026-11-01"/>
+<updated>2026-11-01T00:00:00Z</updated>
+<summary type="text">Project-defined blocks and items, block logic for machine mods, scriptable and faster water, a redesigned website and a fix for double clicks.</summary>
+</entry>
+<entry>
+<title>Burrow 0.4.0</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-4-0---2026-11-01</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-4-0---2026-11-01"/>
+<updated>2026-11-01T00:00:00Z</updated>
+<summary type="text">An editor release: a real asset manager, a built-in code editor with VS Code hand-off, and every content creator one menu away.</summary>
+</entry>
+<entry>
+<title>Burrow 0.3.2</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-3-2---2026-10-31</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-3-2---2026-10-31"/>
+<updated>2026-10-31T00:00:00Z</updated>
+<summary type="text">Fine water fix: a stream running over a river bank no longer draws broken sheets.</summary>
+</entry>
+<entry>
+<title>Burrow 0.3.1</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-3-1---2026-10-31</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-3-1---2026-10-31"/>
+<updated>2026-10-31T00:00:00Z</updated>
+<summary type="text">Fine water by default, a game inventory, water particles and determinism fixes.</summary>
+</entry>
+<entry>
+<title>Burrow 0.3.0</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-3-0---2026-10-31</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-3-0---2026-10-31"/>
+<updated>2026-10-31T00:00:00Z</updated>
+<summary type="text">Buoyancy and swell for physics bodies, variable voxel size, a creative mode in the editor, a building guide for agents and multiplayer fixes.</summary>
+</entry>
+<entry>
+<title>Burrow 0.2.3</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-2-3---2026-10-31</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-2-3---2026-10-31"/>
+<updated>2026-10-31T00:00:00Z</updated>
+<summary type="text">runtime.blocks: &#34;shapes&#34; is now the default and the only supported block registry.</summary>
+</entry>
+<entry>
+<title>Burrow 0.2.2</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-2-2---2026-10-31</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-2-2---2026-10-31"/>
+<updated>2026-10-31T00:00:00Z</updated>
+<summary type="text">Sound, Hub and scripting fixes, plus a new Scripting documentation category. Upgrade recommended: the sound bug affects every game and the editor.</summary>
+</entry>
+<entry>
+<title>Burrow 0.2.1</title>
+<id>https://burrow-engine.github.io/burrow-releases/news/index.html#0-2-1---2026-10-31</id>
+<link href="https://burrow-engine.github.io/burrow-releases/news/index.html#0-2-1---2026-10-31"/>
+<updated>2026-10-31T00:00:00Z</updated>
+<summary type="text">Performance and Windows fixes. Upgrade recommended on Windows.</summary>
+</entry>
+</feed>

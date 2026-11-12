@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Input, events and time | Burrow</title>
+<meta name="description" content="How a script reads player input, talks to other scripts through events and the message bus, schedules work with timers, and animates values with tweens, all in deterministic simulation time.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/06-input-events-time.html">
+<meta property="og:title" content="Input, events and time | Burrow">
+<meta property="og:description" content="How a script reads player input, talks to other scripts through events and the message bus, schedules work with timers, and animates values with tweens, all in deterministic simulation time.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/06-input-events-time.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Input, events and time | Burrow">
+<meta name="twitter:description" content="How a script reads player input, talks to other scripts through events and the message bus, schedules work with timers, and animates values with tweens, all in deterministic simulation time.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html" aria-current="page">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="input-events-and-time">Input, events and time<a class="anchor" href="#input-events-and-time" aria-label="Link to this section">#</a></h1>
+<p>How a script reads player input, talks to other scripts through events and the message bus, schedules work with timers, and animates values with tweens, all in deterministic simulation time.</p>
+<p>Signatures are in <a href="../reference/script-api.html">reference/script-api.md</a>. Error codes: <code>1 INVALID</code>, <code>3 NOT_FOUND</code>, <code>5 BUDGET</code>, <code>7 UNAVAILABLE</code>, <code>9 LIMIT</code> (<a href="09-errors-and-limits.html">errors and limits</a>).</p>
+<h2 id="time">Time<a class="anchor" href="#time" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>The simulation runs at a fixed rate: <strong>20 ticks per second</strong> unless <code>runtime.tick_rate</code> says 30, 40 or 60 (see <a href="../determinism.html#simulation-rate">determinism</a>). <code>OnTick</code> receives <code>dt = 1 / rate</code> (0.05 s at 20 Hz) every time; <code>burrowsdk.Tick()</code> is the index of the current tick and the only clock a script has. Everything below counts ticks (20 ticks = 1 second at the default rate); the <code>...Seconds</code> forms and <code>burrowsdk.TickRate()</code> keep a script right if the rate changes.</li>
+<li>There is no wall clock and no randomness outside <code>Rand</code>, so timers, tweens and cooldowns stop when the simulation pauses and replay exactly.</li>
+<li>Order inside one script run: <code>OnStart</code> (first tick only), then queued events and fired timers (see <a href="#delivery-order">delivery order</a>), then <code>OnTick</code>. One script&#39;s run is committed before the next script starts (<a href="02-execution-model.html">execution model</a>).</li>
+</ul>
+<h2 id="input">Input<a class="anchor" href="#input" aria-label="Link to this section">#</a></h2>
+<p><code>Action(name) (x, y float32, ok bool)</code> reads one input action as of the current tick.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">action kind</th><th scope="col"><code>x</code></th><th scope="col"><code>y</code></th></tr></thead>
+<tbody>
+<tr><td>button</td><td><code>0</code> or <code>1</code></td><td><code>0</code></td></tr>
+<tr><td><code>axis1d</code></td><td>the axis value</td><td><code>0</code></td></tr>
+<tr><td><code>axis2d</code></td><td>x of the value</td><td>y of the value</td></tr>
+</tbody></table></div>
+<ul>
+<li><code>ok</code> is <code>false</code> when no action has that name, when the project has no input plugin, or before any input has been sampled. No error value is returned.</li>
+<li>Precision is three decimals: the host passes thousandths (<code>float32(milli)/1000</code>), clamped to <code>+-1000</code>.</li>
+<li>Axes from sticks and composites are in <code>-1..1</code> after dead zone and sensitivity. <strong>Relative actions</strong> (mouse delta, scroll and mouse-axis bindings) are not levels but amounts: they are the sum of all motion since the previous tick, in pixels (or wheel steps) times the action&#39;s <code>sensitivity</code>, so they can exceed 1. The first tick after a frame consumes them: if the game runs several ticks to catch up, the later ticks read 0 and the motion is applied once.</li>
+<li>A script gets <strong>levels, not edges</strong>. Derive &#34;pressed&#34; and &#34;released&#34; from your own <code>State</code>, as below. The value is the latest snapshot taken before the tick; a press that starts and ends between two ticks (under 50 ms) is not seen, so do not rely on one-frame taps for critical actions.</li>
+<li>A paused game journals no input, and motion made while paused is dropped, so resuming does not replay it as one big camera turn.</li>
+</ul>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> jumpState <span class="k">struct</span> {
+	WasDown <span class="k">bool</span> <span class="s">`json:&#34;was_down&#34;`</span>
+	Presses <span class="k">int</span>  <span class="s">`json:&#34;presses&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[jumpState]()
+			down := <span class="k">false</span>
+			<span class="k">if</span> x, _, ok := burrowsdk.Action(<span class="s">&#34;jump&#34;</span>); ok {
+				down = x &gt; <span class="n">0.5</span>
+			}
+			<span class="k">if</span> down &amp;&amp; !st.WasDown { <span class="c">// rising edge</span>
+				st.Presses++
+				burrowsdk.Logf(<span class="s">&#34;jump pressed %d times&#34;</span>, st.Presses)
+			}
+			st.WasDown = down
+			_ = burrowsdk.SaveState(st)
+
+			mx, my, _ := burrowsdk.Action(<span class="s">&#34;move&#34;</span>) <span class="c">// axis2d: x strafe, y forward</span>
+			lx, ly, _ := burrowsdk.Action(<span class="s">&#34;look&#34;</span>) <span class="c">// mouse movement since the last tick</span>
+			_, _, _, _ = mx, my, lx, ly
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h3 id="input-map-inputjson">Input map (<code>input.json</code>)<a class="anchor" href="#input-map-inputjson" aria-label="Link to this section">#</a></h3>
+<p>Scripts read <strong>actions</strong>, never keys. The project file named by <code>input_map</code> in <code>vox.project</code> (conventionally <code>input.json</code>) defines them; without it the engine&#39;s default map is used (<a href="../reference/input-actions.html">reference/input-actions.md</a> lists its actions: <code>move</code>, <code>look</code>, <code>jump</code>, <code>sprint</code>, <code>break</code>, <code>place</code>, <code>hotbar1</code>..<code>hotbar9</code>, ...). A map that fails to load is logged and the default stays.</p>
+<pre tabindex="0"><code class="language-json">{
+  <span class="p">&#34;version&#34;</span>: <span class="n">1</span>,
+  <span class="p">&#34;contexts&#34;</span>: [
+    { <span class="p">&#34;name&#34;</span>: <span class="s">&#34;gameplay&#34;</span>, <span class="p">&#34;priority&#34;</span>: <span class="n">0</span>, <span class="p">&#34;enabled&#34;</span>: <span class="k">true</span>, <span class="p">&#34;actions&#34;</span>: [
+      { <span class="p">&#34;name&#34;</span>: <span class="s">&#34;move&#34;</span>, <span class="p">&#34;kind&#34;</span>: <span class="s">&#34;axis2d&#34;</span>, <span class="p">&#34;bindings&#34;</span>: [
+        { <span class="p">&#34;type&#34;</span>: <span class="s">&#34;composite2d&#34;</span>, <span class="p">&#34;up&#34;</span>: <span class="s">&#34;W&#34;</span>, <span class="p">&#34;down&#34;</span>: <span class="s">&#34;S&#34;</span>, <span class="p">&#34;left&#34;</span>: <span class="s">&#34;A&#34;</span>, <span class="p">&#34;right&#34;</span>: <span class="s">&#34;D&#34;</span> },
+        { <span class="p">&#34;type&#34;</span>: <span class="s">&#34;pad_stick&#34;</span>, <span class="p">&#34;scale&#34;</span>: <span class="n">1</span>, <span class="p">&#34;deadzone&#34;</span>: <span class="n">0.15</span> } ] },
+      { <span class="p">&#34;name&#34;</span>: <span class="s">&#34;look&#34;</span>, <span class="p">&#34;kind&#34;</span>: <span class="s">&#34;axis2d&#34;</span>, <span class="p">&#34;sensitivity&#34;</span>: <span class="n">0.12</span>, <span class="p">&#34;bindings&#34;</span>: [ { <span class="p">&#34;type&#34;</span>: <span class="s">&#34;mouse_delta&#34;</span> } ] },
+      { <span class="p">&#34;name&#34;</span>: <span class="s">&#34;jump&#34;</span>, <span class="p">&#34;kind&#34;</span>: <span class="s">&#34;button&#34;</span>, <span class="p">&#34;bindings&#34;</span>: [ { <span class="p">&#34;type&#34;</span>: <span class="s">&#34;key&#34;</span>, <span class="p">&#34;key&#34;</span>: <span class="s">&#34;Space&#34;</span> }, { <span class="p">&#34;type&#34;</span>: <span class="s">&#34;pad_button&#34;</span>, <span class="p">&#34;button&#34;</span>: <span class="n">0</span> } ] }
+    ] }
+  ]
+}</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">element</th><th scope="col">fields</th></tr></thead>
+<tbody>
+<tr><td>file</td><td><code>version</code> (must be <code>1</code>), <code>contexts</code></td></tr>
+<tr><td>context</td><td><code>name</code>, <code>priority</code> (higher wins), <code>enabled</code> (default true), <code>modal</code> (lower contexts are ignored while it is active), <code>actions</code></td></tr>
+<tr><td>action</td><td><code>name</code>, <code>kind</code> (<code>button</code>, <code>axis1d</code>, <code>axis2d</code>), <code>deadzone</code> (0..1, radial for 2D), <code>sensitivity</code> (multiplier after the dead zone, 0 = 1), <code>consume</code> (its bindings are hidden from lower-priority contexts)</td></tr>
+<tr><td>binding <code>type</code></td><td><code>key</code>, <code>mouse_button</code>, <code>mouse_axis</code>, <code>scroll</code>, <code>pad_button</code>, <code>pad_axis</code>, <code>composite1d</code> (<code>neg</code>, <code>pos</code>), <code>composite2d</code> (<code>up</code>, <code>down</code>, <code>left</code>, <code>right</code>), <code>mouse_delta</code>, <code>mouse_pos</code> (pointer position <code>-1..1</code>, needs a free cursor), <code>pad_stick</code> (<code>axis</code>, <code>scale</code>, <code>deadzone</code>)</td></tr>
+<tr><td>binding extras</td><td><code>mods</code> (<code>ctrl</code>, <code>shift</code>, <code>alt</code>), <code>exclusive</code>, <code>scale</code></td></tr>
+</tbody></table></div>
+<p>Which binding types suit which kind, key names and the parse errors (the loader names the JSON path and suggests the intended spelling) are in the <code>input</code> package (<a href="../reference/input-actions.html">input actions reference</a> lists them). Rules at runtime:</p>
+<ul>
+<li>A button is <code>1</code> while any of its bindings is active (an analog binding needs a value of at least 0.5). An axis takes the strongest of its bindings.</li>
+<li>The context with the highest priority that has the action active owns it; actions of a context with <code>enabled: false</code> read <code>0</code>. Scripts cannot enable or disable a context.</li>
+<li>The template projects (<code>burrow new</code>) ship an <code>input.json</code> ready to edit.</li>
+</ul>
+<h3 id="what-the-window-reports">What the window reports<a class="anchor" href="#what-the-window-reports" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">runner</th><th scope="col">keys and buttons that reach the map</th></tr></thead>
+<tbody>
+<tr><td>game window (<code>burrow run</code>, <code>burrowplay</code>, exported games)</td><td>every physical key by US-layout position (layout independent), all mouse buttons, mouse movement, scroll, modifiers, and the first connected gamepad</td></tr>
+<tr><td>editor Play mode</td><td>only while the pointer is over the viewport: letters <code>a</code>-<code>z</code>, digits <code>0</code>-<code>9</code>, Space, Tab, Enter, the arrow keys, left Shift, left Ctrl, the left, right and middle mouse buttons, mouse movement (pointer travel between two frames, none on the first frame over the viewport), the wheel, and the first connected gamepad. Not routed: Esc (it stops Play), function keys and the other modifiers. Before 0.2.2 movement, wheel, arrows and gamepad were missing. The pointer is not captured, so a mouse-look game turns only while you drag across the viewport.</td></tr>
+</tbody></table></div>
+<p>Typed text is for UI fields only; scripts do not receive it. In a multiplayer session the local device snapshot is replaced by per-player input (<a href="08-multiplayer.html">multiplayer</a>).</p>
+<h3 id="frame-look">Frame look<a class="anchor" href="#frame-look" aria-label="Link to this section">#</a></h3>
+<p>Mouse look read from <code>Action(&#34;look&#34;)</code> arrives once per tick (20 Hz). To make the <strong>view</strong> turn at frame rate without changing the simulation, set <code>frame_look</code> on the <code>camera_rig</code> component of a first or third person rig to the degrees per mouse pixel your script applies (range 0..10, 0 = off). The rig then adds the mouse motion no tick has consumed yet to the target&#39;s look angles and drops it when a tick completes. The script still receives the summed motion once per tick, so no double rotation happens. The value must equal the script&#39;s own sensitivity; other rig kinds ignore it. There is no script call for it: it is a field of the component (<a href="../cameras.html">cameras</a>).</p>
+<pre tabindex="0"><code class="language-json"><span class="p">&#34;camera_rig&#34;</span>: { <span class="p">&#34;name&#34;</span>: <span class="s">&#34;fp&#34;</span>, <span class="p">&#34;kind&#34;</span>: <span class="s">&#34;first_person&#34;</span>, <span class="p">&#34;frame_look&#34;</span>: <span class="n">0.12</span> }</code></pre>
+<h2 id="events-between-scripts">Events between scripts<a class="anchor" href="#events-between-scripts" aria-label="Link to this section">#</a></h2>
+<p><code>Emit(target, kind, payload)</code> queues an event for another script (or for all). The receiver gets it in <code>OnEvent(self, ev Event)</code> with <code>Event{From, Kind, Payload}</code>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>Emit(target, kind, payload)</code></td><td>queue an event; <code>target 0</code> = every script (the sender included)</td><td><code>NOT_FOUND</code> (dead target), <code>LIMIT</code> (payload over 1024 bytes), <code>BUDGET</code>, <code>MEMORY</code></td></tr>
+</tbody></table></div>
+<ul>
+<li><strong>Commit, then next tick.</strong> The event is queued with the call and appended to the receivers&#39; inboxes when the sender&#39;s run commits. It is delivered in the <strong>next tick</strong> or later, never in the tick that sent it, even to a receiver that runs after the sender.</li>
+<li><code>kind</code> is an application number (any <code>int32</code>). Use values below <code>0x40000000</code>: <code>0x40000000..0x7fff0000</code> are bus topics and <code>0x7fff0001</code> is the timer kind (<a href="#message-bus">below</a>), and the SDK routes them to bus and timer handlers before <code>OnEvent</code>.</li>
+<li><code>From</code> is the emitting entity. <code>Payload</code> is at most 1 KiB of opaque bytes; copy it if you keep it, because it is only valid during the handler.</li>
+<li>A target that has no <code>script</code> component, or is despawned before the commit, is skipped silently. A target that is a pending handle from this call (a node you just spawned) is resolved at commit.</li>
+<li>Budgets: 64 events per call and 4096 per tick (<code>BUDGET</code>). A broadcast counts as one.</li>
+<li><strong>Inbox.</strong> Each script holds at most 64 undelivered events. A further event to a full inbox is dropped and reported as a non-fatal fault in the console naming the receiver; the sender gets no error. The inbox is emptied each time the script runs, so overflow needs more than 64 events aimed at one script between two of its runs.</li>
+<li>A script without <code>OnEvent</code> still consumes its events (they are dropped).</li>
+</ul>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;encoding/binary&#34;</span>
+
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+)
+
+<span class="k">const</span> kindDamage = <span class="n">1</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			<span class="k">if</span> target, err := burrowsdk.FindByName(<span class="s">&#34;boss&#34;</span>); err == <span class="k">nil</span> &amp;&amp; burrowsdk.Tick()%<span class="n">40</span> == <span class="n">0</span> {
+				<span class="k">var</span> p [<span class="n">4</span>]<span class="k">byte</span>
+				binary.LittleEndian.PutUint32(p[:], <span class="n">7</span>)
+				<span class="k">if</span> err := burrowsdk.Emit(target, kindDamage, p[:]); err != <span class="k">nil</span> {
+					burrowsdk.Logf(<span class="s">&#34;emit: %v&#34;</span>, err)
+				}
+			}
+		},
+		OnEvent: <span class="k">func</span>(self burrowsdk.Entity, ev burrowsdk.Event) {
+			<span class="k">if</span> ev.Kind == kindDamage &amp;&amp; len(ev.Payload) == <span class="n">4</span> {
+				burrowsdk.Logf(<span class="s">&#34;%d took %d damage from %d&#34;</span>, self, binary.LittleEndian.Uint32(ev.Payload), ev.From)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p>Engine events (trigger enter/exit, collisions) are frame-domain and are <strong>not</strong> delivered to scripts. Poll instead: <code>PhysicsOverlap</code> diffed against the previous tick&#39;s result kept in <code>State</code>, <a href="07-effects.html">game UI events</a>, or <code>LevelCurrent</code>.</p>
+<h3 id="delivery-order">Delivery order<a class="anchor" href="#delivery-order" aria-label="Link to this section">#</a></h3>
+<p>Everything a script receives comes from one queue, in a fixed order:</p>
+<ol>
+<li><code>OnStart</code> (first tick of the script only).</li>
+<li>Inbox events in arrival order. Arrival order is the commit order: scripts run in ascending entity id, and one run&#39;s emits and publishes keep their call order. Direct events and bus messages share the queue.</li>
+<li>Fired timers, ordered by (due tick, timer id).</li>
+<li><code>OnTick</code>.</li>
+</ol>
+<p>A script that faults keeps its inbox and gets the same events again next tick (<a href="09-errors-and-limits.html">errors</a>).</p>
+<h2 id="message-bus">Message bus<a class="anchor" href="#message-bus" aria-label="Link to this section">#</a></h2>
+<p>The bus is publish/subscribe by topic name. Subscriptions are stored in the script component, so they survive the guest memory reset, snapshots and replays.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>OnMessage(topic, fn)</code></td><td>register a handler from <code>init()</code>; the SDK subscribes for you before <code>OnStart</code> and <code>OnTick</code></td><td>panics at load on two topics whose kinds collide</td></tr>
+<tr><td><code>Publish(topic, payload)</code></td><td>send to every script subscribed to <code>topic</code></td><td><code>INVALID</code> (bad topic), <code>LIMIT</code> (payload over 1024 bytes), <code>BUDGET</code></td></tr>
+<tr><td><code>Subscribe(topic)</code></td><td>subscribe without a handler; read it in <code>OnEvent</code> with <code>BusKind(topic)</code></td><td><code>INVALID</code>, <code>LIMIT</code> (more than 32 topics)</td></tr>
+<tr><td><code>Unsubscribe(topic)</code></td><td>drop a subscription (no error if not subscribed)</td><td><code>INVALID</code></td></tr>
+<tr><td><code>BusKind(topic)</code></td><td>the <code>Event.Kind</code> a topic arrives with: <code>0x40000000 + FNV-1a32(topic) % 0x3fff0000</code></td><td>none</td></tr>
+</tbody></table></div>
+<ul>
+<li>A topic is <code>[A-Za-z0-9_.:/-]{1,64}</code>. At most 32 subscriptions per script (idempotent: subscribing twice counts once).</li>
+<li><code>Publish</code> takes effect at commit. The message goes to every subscribed script in ascending entity order, <strong>the publisher included</strong> if it subscribed, and arrives in a later tick with <code>from</code> = the publisher. A subscription made in a run counts for publishes committed after that run commits; a message published earlier in the same tick is not delivered to it.</li>
+<li>Each delivery uses one unit of the per-tick event budget (4096), plus a small charge for scanning the scripts. When the tick budget runs out the remaining deliveries are dropped with a non-fatal fault, and a full inbox drops a message the same way.</li>
+<li><code>Publish</code> costs gas: 48 + 1 per 64 payload bytes + 1 per 8 scripts in the scene, even with no subscriber.</li>
+<li>A handler registered with <code>OnMessage</code> is re-subscribed by the SDK whenever the host holds fewer subscriptions than there are handlers. <code>Unsubscribe</code> on such a topic is therefore undone on the next call; remove the handler instead.</li>
+</ul>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">func</span> init() {
+	burrowsdk.OnMessage(<span class="s">&#34;door.open&#34;</span>, <span class="k">func</span>(self, from burrowsdk.Entity, payload []<span class="k">byte</span>) {
+		burrowsdk.Logf(<span class="s">&#34;door opened by %d: %q&#34;</span>, from, payload)
+		_ = burrowsdk.After(<span class="n">1</span>, <span class="n">60</span>) <span class="c">// close again in 3 s</span>
+	})
+	burrowsdk.OnTimer(<span class="n">1</span>, <span class="k">func</span>(self burrowsdk.Entity) {
+		_ = burrowsdk.Publish(<span class="s">&#34;door.close&#34;</span>, <span class="k">nil</span>)
+	})
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) { _ = burrowsdk.Every(<span class="n">2</span>, <span class="n">20</span>) },
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="timers">Timers<a class="anchor" href="#timers" aria-label="Link to this section">#</a></h2>
+<p>Timers are kept by the host in the script component, in ticks.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">function</th><th scope="col">what it does</th><th scope="col">errors</th></tr></thead>
+<tbody>
+<tr><td><code>After(id, n)</code></td><td>fire timer <code>id</code> once, <code>n</code> ticks from now (<code>n &lt; 1</code> is 1)</td><td><code>INVALID</code> (negative id), <code>LIMIT</code></td></tr>
+<tr><td><code>Every(id, n)</code></td><td>fire every <code>n</code> ticks, the first time <code>n</code> ticks from now (<code>n &lt; 1</code> is 1)</td><td>as above</td></tr>
+<tr><td><code>AfterSeconds(id, sec)</code> / <code>EverySeconds(id, sec)</code></td><td><code>After</code> / <code>Every</code> in seconds, rounded up to whole ticks; they stay correct when <code>runtime.tick_rate</code> changes</td><td>as above</td></tr>
+<tr><td><code>TimerStart(id, delay, every)</code></td><td>raw form: first firing <code>delay</code> ticks after the next tick, then every <code>every</code> ticks (0 = once)</td><td><code>INVALID</code> (negative, or over 2^30), <code>LIMIT</code></td></tr>
+<tr><td><code>CancelTimer(id)</code></td><td>disarm</td><td><code>NOT_FOUND</code> if not armed</td></tr>
+<tr><td><code>TimerRemaining(id)</code></td><td>ticks before it fires (<code>0</code> = at the start of the next tick)</td><td><code>NOT_FOUND</code> if not armed</td></tr>
+<tr><td><code>OnTimer(id, fn)</code></td><td>handler for a timer id, registered in <code>init()</code></td><td>none</td></tr>
+</tbody></table></div>
+<ul>
+<li>Ids are your own non-negative <code>int32</code> numbers, per script. At most 64 armed timers per script; arming an id that exists <strong>replaces</strong> it (no <code>LIMIT</code>).</li>
+<li><code>After(id, n)</code> armed in tick <code>T</code> fires at the start of tick <code>T + n</code>: <code>After(id, 1)</code> is the next tick. A timer never fires in the tick that armed it. The effect of arming is stored when your run commits.</li>
+<li><code>Every</code> keeps its phase: a period is never shifted by the time spent in handlers. If a script missed periods (it was disabled), the timer fires once and continues on its original phase.</li>
+<li>A one-shot timer is removed before its handler runs, so the handler can re-arm it. A firing is delivered as an event of kind <code>KindTimer</code> (<code>0x7fff0001</code>) with a 4-byte little-endian id payload; <code>OnTimer</code> handles it for you. A timer with no <code>OnTimer</code> handler arrives in <code>OnEvent</code> with that kind.</li>
+<li>All timers count simulation ticks: they stop with a paused game and replay exactly. Use <code>Cooldown</code> below for state kept by hand.</li>
+</ul>
+<h2 id="tweens-and-easing">Tweens and easing<a class="anchor" href="#tweens-and-easing" aria-label="Link to this section">#</a></h2>
+<p>A <code>Tween</code> is plain data evaluated at a tick. It runs no goroutine and holds no hidden state, so it can live in <code>State</code> as JSON and replays exactly.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">item</th><th scope="col">meaning</th></tr></thead>
+<tbody>
+<tr><td><code>Tween{From, To, Start, Dur, Ease}</code></td><td><code>Start</code> and <code>Dur</code> in ticks; JSON keys <code>from</code>, <code>to</code>, <code>start</code>, <code>dur</code>, <code>ease</code></td></tr>
+<tr><td><code>NewTween(from, to, dur, ease)</code></td><td>start now (<code>Start = Tick()</code>); <code>dur &lt; 1</code> becomes 1</td></tr>
+<tr><td><code>t.At(tick)</code></td><td>value at <code>tick</code>: <code>From</code> at or before <code>Start</code>, <code>To</code> from <code>Start+Dur</code> on (progress is clamped), and <code>From</code> always if <code>Dur</code> is 0</td></tr>
+<tr><td><code>t.Now()</code></td><td><code>At(Tick())</code></td></tr>
+<tr><td><code>t.Done(tick)</code></td><td><code>tick &gt;= Start + Dur</code></td></tr>
+<tr><td><code>Lerp(a, b, t)</code></td><td><code>a + (b-a)*t</code>, no clamping</td></tr>
+<tr><td><code>EaseKind.Apply(t)</code></td><td>the curve at progress <code>t</code>; <code>t</code> is clamped to <code>[0,1]</code>, NaN counts as 0</td></tr>
+</tbody></table></div>
+<p>A tween advances only because you evaluate it: call <code>Now()</code> in <code>OnTick</code>, store the tween once. Progress at tick <code>k</code> is <code>(k - Start) / Dur</code>, so a tween started at tick <code>S</code> with <code>Dur = 30</code> shows <code>From</code> at tick <code>S</code>, and reaches <code>To</code> at tick <code>S + 30</code>.</p>
+<p>Easing curves (<code>t</code> in <code>0..1</code>; the result is in <code>0..1</code> except where noted):</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col"><code>EaseKind</code></th><th scope="col">formula</th></tr></thead>
+<tbody>
+<tr><td><code>Linear</code></td><td><code>t</code></td></tr>
+<tr><td><code>InQuad</code> / <code>OutQuad</code> / <code>InOutQuad</code></td><td><code>t^2</code> / <code>1-(1-t)^2</code> / <code>2t^2</code> then <code>1-(2-2t)^2/2</code></td></tr>
+<tr><td><code>InCubic</code> / <code>OutCubic</code> / <code>InOutCubic</code></td><td><code>t^3</code> / <code>1-(1-t)^3</code> / <code>4t^3</code> then <code>1-(2-2t)^3/2</code></td></tr>
+<tr><td><code>InSine</code> / <code>OutSine</code> / <code>InOutSine</code></td><td><code>1-cos(t*pi/2)</code> / <code>sin(t*pi/2)</code> / <code>-(cos(pi*t)-1)/2</code></td></tr>
+<tr><td><code>OutBack</code></td><td><code>1 + 2.70158(t-1)^3 + 1.70158(t-1)^2</code>; overshoots 1 (to about 1.1) before settling</td></tr>
+<tr><td><code>OutBounce</code></td><td>the standard four-bounce curve (<code>7.5625 t^2</code> pieces, ends at exactly 1)</td></tr>
+<tr><td><code>SmoothStep</code></td><td><code>t^2 (3-2t)</code></td></tr>
+</tbody></table></div>
+<p><code>Cooldown{Until}</code> is a tick deadline for &#34;can act again in N ticks&#34;: <code>c.Start(n)</code> sets <code>Until = Tick()+n</code> (<code>n &lt; 0</code> is 0), <code>c.Ready()</code> is <code>Tick() &gt;= Until</code>; the zero value is ready. Keep it in <code>State</code> (JSON key <code>until</code>).</p>
+<p>Determinism: curves and <code>Lerp</code> are <code>float64</code> code compiled into the guest, so they give the same bits on every machine; a stored tween round-trips exactly through JSON.</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> <span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+
+<span class="k">type</span> doorState <span class="k">struct</span> {
+	Anim burrowsdk.Tween <span class="s">`json:&#34;anim&#34;`</span>
+	Cool burrowsdk.Cooldown <span class="s">`json:&#34;cool&#34;`</span>
+}
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnStart: <span class="k">func</span>(self burrowsdk.Entity) {
+			st, _ := burrowsdk.LoadState[doorState]()
+			st.Anim = burrowsdk.NewTween(<span class="n">0</span>, <span class="n">90</span>, <span class="n">30</span>, burrowsdk.OutBounce) <span class="c">// 1.5 s</span>
+			st.Cool.Start(<span class="n">100</span>)
+			_ = burrowsdk.SaveState(st)
+		},
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			st, _ := burrowsdk.LoadState[doorState]()
+			<span class="k">if</span> !st.Anim.Done(burrowsdk.Tick()) {
+				_ = burrowsdk.SetFloat(self, <span class="s">&#34;transform&#34;</span>, <span class="s">&#34;rot[1]&#34;</span>, st.Anim.Now())
+			}
+			<span class="k">if</span> st.Cool.Ready() {
+				<span class="c">// can act again</span>
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="02-execution-model.html">Execution model</a>: tick order, commit, faults.</li>
+<li><a href="03-state-and-props.html">State and props</a>: where tweens, cooldowns and edge flags live.</li>
+<li><a href="04-entities-and-scene.html">Entities and scene</a>: finding event targets.</li>
+<li><a href="05-world.html">World</a>: physics overlap polling, levels.</li>
+<li><a href="07-effects.html">Effects</a>: cameras, audio, UI events.</li>
+<li><a href="08-multiplayer.html">Multiplayer</a>: per-player input.</li>
+<li><a href="09-errors-and-limits.html">Errors and limits</a>.</li>
+<li><a href="../reference/input-actions.html">reference/input-actions.md</a>, <a href="../cameras.html">cameras</a>.</li>
+</ul>
+<div class="pagemeta"><a href="06-input-events-time.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#time">Time</a></li><li><a href="#input">Input</a></li><li><a class="l3" href="#input-map-inputjson">Input map ( input.json )</a></li><li><a class="l3" href="#what-the-window-reports">What the window reports</a></li><li><a class="l3" href="#frame-look">Frame look</a></li><li><a href="#events-between-scripts">Events between scripts</a></li><li><a class="l3" href="#delivery-order">Delivery order</a></li><li><a href="#message-bus">Message bus</a></li><li><a href="#timers">Timers</a></li><li><a href="#tweens-and-easing">Tweens and easing</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

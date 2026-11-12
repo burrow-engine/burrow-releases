@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Errors and limits | Burrow</title>
+<meta name="description" content="Every error code a host call can return, every limit with its default and what happens when a script exceeds it, and how faults, rollback and disabling work.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/scripting/09-errors-and-limits.html">
+<meta property="og:title" content="Errors and limits | Burrow">
+<meta property="og:description" content="Every error code a host call can return, every limit with its default and what happens when a script exceeds it, and how faults, rollback and disabling work.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/scripting/09-errors-and-limits.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Errors and limits | Burrow">
+<meta name="twitter:description" content="Every error code a host call can return, every limit with its default and what happens when a script exceeds it, and how faults, rollback and disabling work.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../../feed.xml">
+<script src="../../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><img src="../../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../../start/index.html">Start</a><a href="../../docs/index.html" aria-current="page">Documentation</a><a href="../../templates/index.html">Templates</a><a href="../../news/index.html">News</a><a href="../../download/index.html">Download</a><a href="../../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="../index.html">Burrow documentation</a></li><li><a href="../installing.html">Installing Burrow</a></li><li><a href="../getting-started.html">Getting started</a></li><li><a href="../concepts.html">Concepts</a></li><li><a href="../editor.html">The editor (burrowedit)</a></li><li><a href="../hub.html">Burrow Hub</a></li><li><a href="../windows-security.html">Windows security warnings</a></li><li><a href="../templates.html">Genre templates</a></li><li><a href="../branding.html">Branding and theme</a></li><li><a href="../documentation.html">Reading the docs in the editor</a></li><li><a href="../changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="../tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="../tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="../tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="../tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="../tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="../tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="../tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="../tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="../tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="../architecture.html">Architecture and package map</a></li><li><a href="../assets.html">Assets</a></li><li><a href="../builtin-assets.html">Builtin assets</a></li><li><a href="../materials.html">Materials</a></li><li><a href="../blocks.html">Blocks (extended set)</a></li><li><a href="../block-shapes.html">Block shapes (stage B2)</a></li><li><a href="../items.html">Items</a></li><li><a href="../texture-packs.html">Texture packs</a></li><li><a href="../prefabs.html">Linked prefabs</a></li><li><a href="../gogame.html">Go game (package gogame)</a></li><li><a href="../recipes/README.html">Recipes</a></li><li><a href="../recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="../recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="../recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="../recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="../recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="../physics.html">Rigid-body physics (physics3d)</a></li><li><a href="../navigation-ai.html">Navigation and AI</a></li><li><a href="../character.html">Characters</a></li><li><a href="../visual-effects.html">Frame visuals</a></li><li><a href="../animation.html">Animation</a></li><li><a href="../cameras.html">Cameras</a></li><li><a href="../game-ui.html">Game UI</a></li><li><a href="../levels-saves.html">Levels and saves</a></li><li><a href="../particles.html">Particles</a></li><li><a href="../audio.html">Audio</a></li><li><a href="../voice.html">Voice chat</a></li><li><a href="../lighting.html">Lighting: block light and skylight</a></li><li><a href="../modeling.html">Modelling and texturing</a></li><li><a href="../rendering.html">Rendering</a></li><li><a href="../anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="../ray-tracing.html">Ray tracing</a></li><li><a href="../weather.html">Weather</a></li><li><a href="../water-physics.html">Water physics</a></li><li><a href="../water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="../worldgen.html">World generation</a></li><li><a href="../ui-design.html">UI design system</a></li><li><a href="../agents.html">Agents</a></li><li><a href="../building-guide.html">Building guide for agents</a></li><li><a href="../security.html">Security and trust model</a></li><li><a href="../troubleshooting.html">Troubleshooting</a></li><li><a href="../platforms.html">Platforms</a></li><li><a href="../determinism.html">Determinism</a></li><li><a href="../networking.html">Networking</a></li><li><a href="../replication.html">Replication</a></li><li><a href="../dedicated-server.html">Dedicated server</a></li><li><a href="../lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="../scripting.html">Scripting</a></li><li><a href="01-getting-started.html">Getting started with scripts</a></li><li><a href="02-execution-model.html">Execution model</a></li><li><a href="03-state-and-props.html">State and props</a></li><li><a href="04-entities-and-scene.html">Entities and scene</a></li><li><a href="05-world.html">World</a></li><li><a href="06-input-events-time.html">Input, events and time</a></li><li><a href="07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="08-multiplayer.html">Multiplayer</a></li><li><a href="09-errors-and-limits.html" aria-current="page">Errors and limits</a></li><li><a href="10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="11-cookbook.html">Cookbook</a></li><li><a href="12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="13-go-sdk.html">The Go SDK in depth</a></li><li><a href="14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="../reference/index.html">Reference</a></li><li><a href="../reference/components.html">Scene components</a></li><li><a href="../reference/script-api.html">Script API</a></li><li><a href="../reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="../reference/cli.html">Command line</a></li><li><a href="../reference/project-config.html">Project file</a></li><li><a href="../reference/input-actions.html">Input actions</a></li><li><a href="../reference/blocks.html">Block list</a></li><li><a href="../reference/render-options.html">Render options</a></li><li><a href="../reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="errors-and-limits">Errors and limits<a class="anchor" href="#errors-and-limits" aria-label="Link to this section">#</a></h1>
+<p>Every error code a host call can return, every limit with its default and what happens when a script exceeds it, and how faults, rollback and disabling work.</p>
+<h2 id="two-kinds-of-failure">Two kinds of failure<a class="anchor" href="#two-kinds-of-failure" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col"></th><th scope="col">Error value</th><th scope="col">Fault</th></tr></thead>
+<tbody>
+<tr><td>What</td><td>A host call refused the request and returned a code</td><td>The call stopped: trap, panic, gas, memory</td></tr>
+<tr><td>Script sees</td><td><code>*burrowsdk.Error</code> (or <code>ok == false</code>) and keeps running</td><td>Nothing: the call ends</td></tr>
+<tr><td>Effects of the transaction</td><td>kept</td><td>all dropped</td></tr>
+<tr><td>Counted against the script</td><td>no</td><td>yes, 3 faults disable it</td></tr>
+</tbody></table></div>
+<p>Bad input, missing things and exhausted budgets are error values, never traps.</p>
+<h2 id="error-values">Error values<a class="anchor" href="#error-values" aria-label="Link to this section">#</a></h2>
+<p>Host calls return a negated code; the SDK turns it into <code>*burrowsdk.Error{Op, Code}</code>. <code>Op</code> is the host function (<code>voxel_set</code>), <code>Code</code> is the positive number. <code>Error()</code> reads <code>burrow voxel_set: invalid argument (1)</code>.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Code</th><th scope="col">Constant (<code>abi.Err...</code>)</th><th scope="col">Meaning</th><th scope="col">Typical causes</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>ErrInvalid</code></td><td>bad value</td><td>NaN or Inf, coordinate beyond +-16,777,216, unknown block id, empty or over-long name, invalid tag or topic, negative slack, bad log level, field path too long</td></tr>
+<tr><td>2</td><td><code>ErrMemory</code></td><td>pointer or length outside guest memory, or one argument over 64 KiB</td><td>a value or payload larger than 64 KiB</td></tr>
+<tr><td>3</td><td><code>ErrNotFound</code></td><td>no such entity, component, block name, action, field, timer, file</td><td>stale entity id, missing component, unknown block name, missing key</td></tr>
+<tr><td>4</td><td><code>ErrTooSmall</code></td><td>output buffer too small</td><td>handled for you: the SDK retries up to 3 times with the size from <code>last_required</code>; seen only when a result keeps growing</td></tr>
+<tr><td>5</td><td><code>ErrBudget</code></td><td>a per-transaction or per-tick budget is exhausted</td><td>too many host calls, voxel edits, spawns, events, asset reads, bytes, or 4,096 buffered operations</td></tr>
+<tr><td>6</td><td><code>ErrDenied</code></td><td>not allowed for scripts</td><td>writing or removing <code>script</code> and <code>script.input</code>; removing <code>transform</code>, <code>scene.name</code>, <code>scene.parent</code>, <code>scene.children</code>; <code>ReadAsset</code> of a hidden path, <code>..</code>, an absolute path or a disallowed extension</td></tr>
+<tr><td>7</td><td><code>ErrUnavailable</code></td><td>the subsystem is not installed, or the call was made outside a tick</td><td>no physics, <code>physics3d</code>, levels, saves, net or game UI plugin; any world call from <code>init()</code>; the editor&#39;s Play mode for levels and saves</td></tr>
+<tr><td>8</td><td><code>ErrRejected</code></td><td>schema or JSON validation failed</td><td>invalid component JSON, a field value the schema refuses, a spawn that clashes with a sibling name, too many tags, a pinned data file that changed</td></tr>
+<tr><td>9</td><td><code>ErrLimit</code></td><td>a size cap was hit</td><td>State over 64 KiB, event payload over 1 KiB, 33rd subscription, 65th timer, data file over 256 KiB, 65th data pin</td></tr>
+</tbody></table></div>
+<p><code>ErrRejected</code> carries no reason for the script; test the same JSON in the editor inspector to see the message. Test a code:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;errors&#34;</span>
+
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk&#34;</span>
+	<span class="s">&#34;burrow-engine/sdk/burrowsdk/abi&#34;</span>
+)
+
+<span class="k">func</span> init() {
+	burrowsdk.Register(burrowsdk.Script{
+		OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+			err := burrowsdk.SetVoxel(<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>, burrowsdk.BlockID(<span class="n">9999</span>))
+			<span class="k">var</span> e *burrowsdk.Error
+			<span class="k">switch</span> {
+			<span class="k">case</span> err == <span class="k">nil</span>:
+			<span class="k">case</span> burrowsdk.IsNotFound(err):
+				burrowsdk.Log(burrowsdk.LevelWarn, <span class="s">&#34;not found&#34;</span>)
+			<span class="k">case</span> errors.As(err, &amp;e) &amp;&amp; e.Code == abi.ErrBudget:
+				<span class="c">// out of budget this tick: try again on the next one</span>
+			<span class="k">default</span>:
+				burrowsdk.Logf(<span class="s">&#34;set voxel: %v&#34;</span>, err)
+			}
+		},
+	})
+}
+
+<span class="k">func</span> main() {}</code></pre>
+<p>Functions without an error result swallow failures by design: <code>Exists</code> and <code>Has</code> report <code>false</code>, <code>Action</code> reports <code>ok == false</code>, <code>PropsRaw</code> and <code>StateRaw</code> return empty bytes, <code>Log</code> returns nothing, <code>Rand</code> returns an undefined value from <code>init()</code>.</p>
+<h2 id="limits">Limits<a class="anchor" href="#limits" aria-label="Link to this section">#</a></h2>
+<p>Defaults of <code>script.Config{}</code>. A project raises or lowers them with <code>runtime.script_limits</code> in <code>vox.project</code> (gas per call, guest memory, <code>max_faults</code>, <code>per_script</code> and <code>per_tick</code> budgets: <a href="../blocks.html#scaling">blocks</a>); <code>burrow run</code>, <code>burrowplay</code>, the editor and <code>burrow test</code> all build their host from it. An embedding program tunes them in Go (<a href="#tuning-the-limits-on-the-host-side">tuning</a>).</p>
+<h3 id="execution">Execution<a class="anchor" href="#execution" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Limit</th><th scope="col">Default</th><th scope="col">Scope</th><th scope="col">When exceeded</th></tr></thead>
+<tbody>
+<tr><td>Gas</td><td>50,000,000</td><td>each guest call (<code>OnStart</code>, every event, <code>OnTick</code>, <code>OnDestroy</code>)</td><td>fault <code>gas exhausted (deterministic instruction budget)</code> at the same instruction on every machine. About 10-20 ms of pure arithmetic on an M2 Max; real scripts with host calls last longer. Module <code>init()</code> gets 4 times as much.</td></tr>
+<tr><td>Host-call gas</td><td>per function (base + units, e.g. <code>scene_find_tag</code> 16 + 1 per node scanned, <code>field_set</code> 64 + 1 per 64 bytes, <code>asset_read</code> 200 + 1 per 64 bytes)</td><td>drawn from the same gas</td><td>same fault; shown as <code>HostGas</code> in the profile</td></tr>
+<tr><td>Guest memory</td><td>512 pages = 32 MiB</td><td>per instance</td><td>growth refused; a Go guest aborts: fault. A Go guest starts near 180 pages because the SDK pre-grows an 8 MiB heap.</td></tr>
+<tr><td>Wall-clock watchdog</td><td>off</td><td>per guest call</td><td>off by default; when on, a trip disables the script at once and is journaled (not deterministic)</td></tr>
+<tr><td><code>MaxFaults</code></td><td>3</td><td>per node since its module last changed</td><td>node disabled</td></tr>
+</tbody></table></div>
+<h3 id="budgets">Budgets<a class="anchor" href="#budgets" aria-label="Link to this section">#</a></h3>
+<p>A host call that would exceed a budget returns <code>ErrBudget</code> (5) and counts in <code>Stats.BudgetDenied</code>; nothing traps. A refused call still counts as a call; its bytes, spawns, edits and events are refunded. One transaction = all hooks of one node in one tick.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Budget</th><th scope="col">Per transaction</th><th scope="col">Per tick (all scripts)</th></tr></thead>
+<tbody>
+<tr><td>Host calls</td><td>1,000</td><td>200,000</td></tr>
+<tr><td>Bytes copied between host and guest</td><td>1 MiB</td><td>64 MiB</td></tr>
+<tr><td>Spawns</td><td>32</td><td>1,024</td></tr>
+<tr><td>Voxel edits</td><td>4,096</td><td>262,144</td></tr>
+<tr><td>Events (<code>Emit</code>, <code>Publish</code>, plus bus deliveries)</td><td>64</td><td>4,096</td></tr>
+</tbody></table></div>
+<ul>
+<li>Every call except <code>tick</code>, <code>entity_self</code>, <code>event_from</code>, <code>last_required</code>, <code>entry_get</code>, <code>props_get</code>, <code>state_get</code>, <code>state_set</code> and <code>abi_version</code> costs one host call, <code>Log</code>, <code>Rand</code> and <code>Voxel</code> included. Once 1,000 are used the rest fail with <code>ErrBudget</code>, even <code>Log</code>. With the default, a transaction can place at most about 1,000 blocks (each <code>SetVoxel</code> is also a call) although the edit budget says 4,096.</li>
+<li>The per-tick budgets are shared by all scripts in entity order: early nodes can use up what later nodes need.</li>
+<li>Also per transaction: 4,096 buffered operations (<code>Set</code>, <code>Remove</code>, <code>SetTransform</code>, <code>Despawn</code>, <code>Emit</code>, <code>Spawn</code>) before <code>ErrBudget</code>; 16 <code>ReadAsset</code> reads; 64 data pins; 64 <code>Log</code> lines (the rest are dropped without an error).</li>
+<li>A bus delivery beyond the per-tick event budget and an event for a full inbox are dropped, with a non-fatal fault in the console, not an error to the sender.</li>
+</ul>
+<h3 id="sizes-and-counts">Sizes and counts<a class="anchor" href="#sizes-and-counts" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Limit</th><th scope="col">Value</th><th scope="col">When exceeded</th></tr></thead>
+<tbody>
+<tr><td>Module file</td><td>8 MiB (a Go module is about 4 MiB)</td><td>load refused: <code>module is N bytes, limit is 8388608</code></td></tr>
+<tr><td>Loaded module versions</td><td>256 (pinned ones never evicted)</td><td>load refused with a hint to <code>Unpin</code></td></tr>
+<tr><td>Module structure</td><td>block depth 512, 100,000 functions, 3,000,000 instructions in total, 512 KiB per function, 1,048,576 table entries</td><td>load refused before compilation. The caps are the engine&#39;s own <code>gas.Limits</code> checks (run before wazero compiles anything), not wazero limits. A block-depth refusal names the workaround: rebuild with <code>-gcflags=all=-l</code> (inlining off); <code>burrow script build</code> and <code>burrowscript build</code> retry that way automatically</td></tr>
+<tr><td><code>State</code></td><td>64 KiB (65,536 bytes)</td><td><code>ErrLimit</code>; old state kept</td></tr>
+<tr><td><code>Props</code></td><td>16 KiB (16,384 bytes)</td><td>component refused when set or loaded</td></tr>
+<tr><td>One host call argument</td><td>64 KiB</td><td><code>ErrMemory</code></td></tr>
+<tr><td>Component name</td><td>128 bytes</td><td><code>ErrInvalid</code></td></tr>
+<tr><td><code>Log</code> message</td><td>1 KiB, cut</td><td>cut, no error</td></tr>
+<tr><td>Event payload</td><td>1 KiB</td><td><code>ErrLimit</code></td></tr>
+<tr><td>Inbox</td><td>64 pending events</td><td>the new event is dropped (non-fatal fault)</td></tr>
+<tr><td>Bus topic</td><td><code>[A-Za-z0-9_.:/-]{1,64}</code>, 32 subscriptions</td><td><code>ErrInvalid</code>, <code>ErrLimit</code></td></tr>
+<tr><td>Timers</td><td>64 per script, id &gt;= 0, delay and period up to 2^30 ticks</td><td><code>ErrLimit</code>, <code>ErrInvalid</code></td></tr>
+<tr><td>Tags</td><td>16 per node, <code>[A-Za-z0-9_.:/-]{1,32}</code></td><td><code>ErrRejected</code></td></tr>
+<tr><td>Query results</td><td>4,096 entities per call; a search stops after 100,000 nodes scanned</td><td><code>truncated</code> flag</td></tr>
+<tr><td>Field path</td><td>256 bytes, 16 segments</td><td><code>ErrInvalid</code></td></tr>
+<tr><td>World coordinates</td><td>-16,777,216 to 16,777,216 per axis</td><td><code>ErrInvalid</code></td></tr>
+<tr><td><code>ReadAsset</code></td><td>256 KiB per file, extensions <code>.json .txt .csv .tsv .md .toml .yaml .yml .dat</code></td><td><code>ErrLimit</code>, <code>ErrDenied</code></td></tr>
+<tr><td>Save data</td><td>key <code>[A-Za-z0-9_.:/-]{1,128}</code>, value 64 KiB, 1,024 keys, 1 MiB total</td><td><code>ErrInvalid</code>, <code>ErrMemory</code>; total: non-fatal fault at commit</td></tr>
+<tr><td><code>PhysicsOverlap</code> buffer</td><td>4,096 bodies</td><td><code>ErrInvalid</code></td></tr>
+</tbody></table></div>
+<p>Smaller caps (animation, navigation, audio, camera and UI JSON) are listed per function in <span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span> and the <a href="../reference/script-api.html">API reference</a>.</p>
+<h3 id="what-the-sandbox-forbids">What the sandbox forbids<a class="anchor" href="#what-the-sandbox-forbids" aria-label="Link to this section">#</a></h3>
+<p>Checked when a module loads (<code>burrow script check</code> shows the reason):</p>
+<ul>
+<li>Imports other than the <code>vox</code> host module and the WASI preview1 startup stubs (<code>env</code>, <code>gojs</code>: built with <code>GOOS=js</code> by mistake). The WASI stubs for files and sockets exist but always fail; with <code>StrictWASI</code> they are rejected.</li>
+<li><code>_start</code> (a command build; use <code>-buildmode=c-shared</code>), a missing <code>vox_abi_version</code> (the module does not import the SDK), an ABI version other than 1, no <code>memory</code> export, no <code>on_*</code> export, <code>on_event</code> without <code>vox_alloc</code>.</li>
+<li>Table or segment mutation (<code>table.set/grow/fill/copy/init</code>, <code>data.drop</code>, <code>elem.drop</code>), SIMD, threads, tail calls.</li>
+<li>A <code>vox.*</code> function or signature this engine does not know (a script built with a newer SDK).</li>
+</ul>
+<h2 id="faults">Faults<a class="anchor" href="#faults" aria-label="Link to this section">#</a></h2>
+<p>In a natively linked game (<code>burrow build --native</code>, <a href="15-native.html">Native scripts</a>) there is no gas and no memory cap: an infinite loop or runaway allocation is not a fault but a hang. The debug watchdog (<code>BURROW_NATIVE_DEBUG=1</code>) turns a stuck call that still makes host calls into a <code>watchdog</code> fault. Everything else on this page (budgets, transactions, faults, <code>MaxFaults</code>) is identical.</p>
+<p>A fault is a trap, a Go panic (including a failed type assertion, a nil dereference, an index out of range), <code>os.Exit</code>, gas exhaustion, running out of memory, or a host-side panic.</p>
+<p>What happens, in order:</p>
+<ol>
+<li>The transaction&#39;s buffered effects are dropped. Nothing of it reached the world. State, inbox events, due timers and the <code>started</code> flag stay as they were, so the same events and timers arrive again next tick.</li>
+<li><code>Log</code> lines written before the fault are still delivered.</li>
+<li>A <code>script.ScriptFault{Entity, Module, Tick, Reason, Trace, Fatal, Disabled}</code> event is sent; the editor console and the <code>script.Console</code> ring buffer (512 rows) show it; <code>Stats.Faults</code> and the node&#39;s <code>faults</code> counter rise.</li>
+<li>At <code>MaxFaults</code> (3) the node is <code>disabled</code>: it no longer runs. Its other components stay.</li>
+<li>The node is re-enabled, with its counter cleared, when its module changes: a rebuild whose bytes differ, hot reload in the editor, or restoring a snapshot (Stop in the editor). Rebuilding to identical bytes does nothing.</li>
+</ol>
+<p>Faults of a node never affect other nodes or the engine. An effect that fails at commit time (a spawn whose name clashes with a sibling, a despawn of an entity already gone, a full inbox) is a non-fatal fault: shown in the console, effects before it stay applied, no counter change, the node keeps running.</p>
+<p>Failures that are not script faults and stop the whole tick (the engine rolls the tick back and reports an error naming the cause):</p>
+<ul>
+<li>a node bound to a module hash the runtime does not have (a replay or a restored save without the module bytes);</li>
+<li>a node bound under a different <code>script.Config</code> fingerprint than the runtime&#39;s;</li>
+<li>a data file read by <code>ReadAsset</code> whose content differs from the recorded one.</li>
+</ul>
+<h3 id="reading-a-fault">Reading a fault<a class="anchor" href="#reading-a-fault" aria-label="Link to this section">#</a></h3>
+<p>Editor console line (also <code>ConsoleEntry.Msg</code> and <code>.Trace</code>):</p>
+<pre tabindex="0"><code class="language-text">[script /bad tick 3] wasm error: unreachable; guest stderr: hello from println
+panic: runtime error: index out of range [8] with length 0
+
+goroutine 1 [running]:
+main.init.0.func1(0x100000001, 0x3fa999999999999a)
+	t1/scripts/idx/main.go:9 +0x6
+burrow-engine/sdk/burrowsdk.dispatchTick(...)
+ (script disabled)
+in on_tick
+	.$1333(i32) i32
+	.$697(i32) i32</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Part</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>[script &lt;path&gt; tick &lt;n&gt;]</code></td><td>node and tick of the fault</td></tr>
+<tr><td><code>gas exhausted (deterministic instruction budget)</code></td><td>the loop or the work is too long: <a href="10-debugging-and-testing.html#profiling">profile it</a>, reduce work per tick, spread it over ticks</td></tr>
+<tr><td><code>wasm error: unreachable; guest stderr: ...</code></td><td>a Go panic or <code>os.Exit</code>: the panic message, goroutine and <code>file:line</code> come from the guest&#39;s captured stderr (first 700 characters in the reason, 4,096 captured). Also contains what <code>fmt.Println</code> printed in that call</td></tr>
+<tr><td><code>wasm error: out of bounds memory access</code>, <code>integer divide by zero</code>, <code>indirect call type mismatch</code></td><td>trap from the module itself</td></tr>
+<tr><td><code>host panic: ...</code></td><td>an engine bug while serving a call: report it</td></tr>
+<tr><td><code>wall-clock watchdog fired</code></td><td>only when the host enabled the watchdog</td></tr>
+<tr><td><code>event has a payload but the module does not export vox_alloc</code></td><td>the module was not built with the SDK</td></tr>
+<tr><td><code>(script disabled)</code></td><td>this was the third fault</td></tr>
+<tr><td><code>in on_tick</code> + <code>$N</code> frames</td><td>the wasm stack, up to 2,048 bytes. Frames are function indexes (<code>$1333</code>) in a stripped build; function names need a debug build (<code>burrowscript build -debug</code>). There are no wasm line numbers because gas instrumentation rewrites the module, but a Go panic prints its own <code>file:line</code></td></tr>
+</tbody></table></div>
+<p><code>burrow test</code> and <code>burrowplay -headless -json</code> report the count (<code>script_faults</code>, <code>script_invocations</code>) and <code>burrow test</code> exits 1 when it is not zero. <code>PauseOnFault</code> (<a href="#tuning-the-limits-on-the-host-side">host side</a>) is not used by the editor or the game.</p>
+<h2 id="tuning-the-limits-on-the-host-side">Tuning the limits on the host side<a class="anchor" href="#tuning-the-limits-on-the-host-side" aria-label="Link to this section">#</a></h2>
+<p>The limits above are fields of <code>script.Config</code>, set when a Go program creates the runtime. The editor, <code>burrowplay</code> and <code>burrow</code> build theirs from the defaults and the project&#39;s <code>runtime.script_limits</code>; to change anything else, embed the engine and pass your own runtime to <code>script.Plugin</code>:</p>
+<pre tabindex="0"><code class="language-go">rt, err := script.NewRuntime(script.Config{
+	GasPerInvocation: <span class="n">200</span>_000_000,
+	MemoryPages:      <span class="n">1024</span>,                  <span class="c">// 64 MiB</span>
+	MaxFaults:        <span class="n">5</span>,
+	PerScript:        script.Budget{Calls: <span class="n">10</span>_000, VoxelEdits: <span class="n">8192</span>},
+	PerTick:          script.Budget{Calls: <span class="n">1</span>_000_000},
+})
+app.AddPlugins(&amp;script.Plugin{Runtime: rt, PauseOnFault: <span class="k">true</span>})</code></pre>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col"><code>script.Config</code> field</th><th scope="col">Default</th><th scope="col">Effect</th></tr></thead>
+<tbody>
+<tr><td><code>GasPerInvocation</code></td><td>50,000,000</td><td>gas per guest call</td></tr>
+<tr><td><code>MemoryPages</code></td><td>512</td><td>64 KiB pages per instance</td></tr>
+<tr><td><code>MaxModuleBytes</code></td><td>8 MiB</td><td>module size</td></tr>
+<tr><td><code>MaxModules</code></td><td>256</td><td>loaded module versions</td></tr>
+<tr><td><code>MaxFaults</code></td><td>3</td><td>faults before a node is disabled</td></tr>
+<tr><td><code>PerScript</code>, <code>PerTick</code> (<code>script.Budget</code>: <code>Calls</code>, <code>Bytes</code>, <code>Spawns</code>, <code>VoxelEdits</code>, <code>Events</code>; zero = default)</td><td>tables above</td><td>host-call budgets</td></tr>
+<tr><td><code>StrictWASI</code></td><td>false</td><td>reject every WASI import beyond the startup set</td></tr>
+<tr><td><code>Watchdog</code></td><td>0 (off)</td><td>wall-clock limit per call; not deterministic, costs about 10 us per call</td></tr>
+<tr><td><code>Limits</code> (<code>gas.Limits</code>)</td><td>see Sizes</td><td>module structure caps</td></tr>
+<tr><td><code>LoadTimeout</code></td><td>120 s</td><td>validation plus compilation of one module</td></tr>
+<tr><td><code>PoolSize</code></td><td>8</td><td>idle instances kept per module</td></tr>
+<tr><td><code>NoWriteTracking</code>, <code>Interpreter</code></td><td>false</td><td>reset strategy and engine; same results</td></tr>
+</tbody></table></div>
+<p>Rules:</p>
+<ul>
+<li>Gas, memory, budgets, <code>MaxFaults</code>, <code>StrictWASI</code> and <code>MaxModuleBytes</code> are part of the configuration fingerprint stored in each node (<code>cfg</code>). A replay or restore under another configuration fails the tick instead of diverging, so record and replay with the same <code>Config</code>.</li>
+<li><code>Plugin.PauseOnFault</code> pauses the simulation (reason <code>script.fault</code>) on a fatal fault; resume with <code>SetPausedBy(&#34;script.fault&#34;, false)</code>.</li>
+<li>Raising a limit raises the worst-case cost of every tick; the per-tick budgets exist to keep one script from starving the frame.</li>
+<li>The standalone checker accepts <code>-max-bytes</code> and <code>-strict-wasi</code> only for the check; they do not change what the game accepts.</li>
+</ul>
+<h2 id="see-also">See also<a class="anchor" href="#see-also" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="02-execution-model.html">Execution model</a>: transactions and what a fault drops.</li>
+<li><a href="03-state-and-props.html">State and props</a>: size limits in practice.</li>
+<li><a href="10-debugging-and-testing.html">Debugging and testing</a>: logs, profiling, FAQ.</li>
+<li><span class="unpub" title="Source file of the repository, not part of this site">script/ABI.md</span>: gas cost model, structural caps, WASI stubs.</li>
+<li><a href="12-embedding-and-abi.html">Embedding and the ABI</a>: <code>script.Config</code>, the plugin, the host side.</li>
+<li><a href="../reference/script-api.html">Script API reference</a>, <a href="../security.html">security</a>.</li>
+</ul>
+<div class="pagemeta"><a href="09-errors-and-limits.md">View this page as Markdown</a><a href="../index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#two-kinds-of-failure">Two kinds of failure</a></li><li><a href="#error-values">Error values</a></li><li><a href="#limits">Limits</a></li><li><a class="l3" href="#execution">Execution</a></li><li><a class="l3" href="#budgets">Budgets</a></li><li><a class="l3" href="#sizes-and-counts">Sizes and counts</a></li><li><a class="l3" href="#what-the-sandbox-forbids">What the sandbox forbids</a></li><li><a href="#faults">Faults</a></li><li><a class="l3" href="#reading-a-fault">Reading a fault</a></li><li><a href="#tuning-the-limits-on-the-host-side">Tuning the limits on the host side</a></li><li><a href="#see-also">See also</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../../licences/index.html">Licences</a> · <a href="../../feed.xml">Atom</a> · <a href="../../about/index.html">About</a> · <a href="../../roadmap/index.html">Roadmap</a> · <a href="../../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

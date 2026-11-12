@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Concepts | Burrow</title>
+<meta name="description" content="Inside the simulation (FixedUpdate systems, commands, scripts):">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/concepts.html">
+<meta property="og:title" content="Concepts | Burrow">
+<meta property="og:description" content="Inside the simulation (FixedUpdate systems, commands, scripts):">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/concepts.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Concepts | Burrow">
+<meta name="twitter:description" content="Inside the simulation (FixedUpdate systems, commands, scripts):">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html" aria-current="page">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="concepts">Concepts<a class="anchor" href="#concepts" aria-label="Link to this section">#</a></h1>
+<h2 id="two-domains">Two domains<a class="anchor" href="#two-domains" aria-label="Link to this section">#</a></h2>
+<pre tabindex="0"><code> frame domain (variable dt)                 simulation domain (fixed 20 Hz, deterministic)
+ OS input, window, render, UI, editor,      sim.Engine: ECS world, voxel chunks, block registry,
+ agents, chunk streaming workers            seeded RNG, journal, snapshots, undo
+        | Commands (queue)  ---------------&gt;  Do(cmd): journaled, hashed, replayable
+        | read-only View    &lt;---------------  StateHash, blocks, components</code></pre>
+<ul>
+<li>The <strong>simulation</strong> is everything that defines the game state: components, voxels, scripts, physics. It advances in fixed ticks of 50 ms (<code>FixedUpdate</code> systems). <code>StateHash</code> summarises it.</li>
+<li>The <strong>frame domain</strong> reads the simulation through a read-only <code>View</code> and changes it only by queueing <code>Commands</code> (set a block, spawn a node, set a component). Commands are applied between ticks and recorded in the <strong>journal</strong>.</li>
+<li>Input is frame-domain data. To affect the game it must become a journaled command or component: the controller turns clicks into <code>SetBlock</code> commands; <code>script.Plugin</code> turns changed input actions into a <code>script_set_input</code> command that scripts read.</li>
+</ul>
+<h2 id="determinism-rules">Determinism rules<a class="anchor" href="#determinism-rules" aria-label="Link to this section">#</a></h2>
+<p>Inside the simulation (FixedUpdate systems, commands, scripts):</p>
+<ul>
+<li>no wall clock, no global <code>math/rand</code> (use <code>Sim.Rand()</code> / the script <code>rand_u64</code>), no map-iteration order, no goroutines, no I/O;</li>
+<li>all state lives in registered components and voxels (components must be hashable); anything else is a derived cache;</li>
+<li>register the same components, commands and systems on every engine: they are part of the replay configuration;</li>
+<li>scripts run only in <code>FixedUpdate</code>, with no clock, files or network, deterministic gas metering and a reset memory image for every call (see <a href="scripting.html">scripting.md</a>).</li>
+</ul>
+<p>The engine enforces most of this (frame code cannot reach sim state; a failing tick rolls back completely). The result: same seed + same journal + same systems = same <code>StateHash</code>, for any <code>GOMAXPROCS</code>. Across machines it holds on macOS Apple silicon and Intel (tested). Windows and Linux are checked by the CI workflow against a golden hash, which has not run yet. The simulation uses integer math or explicitly rounded floats with a deterministic math library; rendering is not covered. See <a href="determinism.html">Determinism</a>.</p>
+<h2 id="journal-and-replay">Journal and replay<a class="anchor" href="#journal-and-replay" aria-label="Link to this section">#</a></h2>
+<p>Every applied command is appended to the journal (<code>tick</code>, <code>kind</code>, JSON <code>data</code>). <code>app.VerifyReplay()</code> rebuilds a fresh engine from <code>app.ReplayConfig()</code>, re-applies the journal and requires the same hash. This is how undo history, editor sessions, agent sessions and <code>burrow test</code> prove they are exact.</p>
+<pre tabindex="0"><code class="language-sh">burrowplay -headless -ticks <span class="n">200</span> -journal j.json -hash mygame     <span class="c"># tick=200 StateHash=ab12...</span>
+burrowplay -replay j.json -expect ab12... mygame                 <span class="c"># exit 0 only if the replay matches</span></code></pre>
+<p>The journal also carries the world identity (seed + generator parameters), so replaying it against a different world is an error instead of a silent divergence.</p>
+<h2 id="terrain-base--overlay">Terrain: base + overlay<a class="anchor" href="#terrain-base--overlay" aria-label="Link to this section">#</a></h2>
+<p>The world is a <strong>pure base terrain</strong>, a function <code>(seed, generator, chunk position) -&gt; chunk</code> that is never stored, plus a sparse <strong>overlay</strong> of edited chunks. Reads see the overlay, then the base, then air. Writes copy a chunk into the overlay. The base lives in an evictable cache and is not state; the overlay is what is hashed, snapshotted, journaled and saved.</p>
+<ul>
+<li>Streaming (<code>VoxelWorldPlugin</code>) only warms the cache and meshes chunks for the GPU, so the load radius cannot change a hash.</li>
+<li>A <code>.voxworld</code> file is the overlay plus the base identity: <code>&#34;VXWORLD&#34;</code>, header (seed, generator hash, block names), zlib chunks, SHA-256. Loading one onto a different seed or generator is refused. Each scene has its own (<code>scenes/x.voxscn</code> uses <code>scenes/x.voxworld</code>, written by the editor&#39;s Save); <code>runtime.world</code> in <code>vox.project</code> is the older project-wide file.</li>
+<li>The generator comes from <code>runtime.generator</code>: <code>heightmap</code> (fBm hills, optional caves, trees) or <code>flat</code>.</li>
+</ul>
+<h2 id="scenes-and-components">Scenes and components<a class="anchor" href="#scenes-and-components" aria-label="Link to this section">#</a></h2>
+<p>A scene (<code>.voxscn</code>, JSON) is a forest of nodes. Each node has an id, a name, an optional parent and components:</p>
+<pre tabindex="0"><code class="language-json">{ <span class="p">&#34;id&#34;</span>: <span class="n">2</span>, <span class="p">&#34;name&#34;</span>: <span class="s">&#34;spinner&#34;</span>, <span class="p">&#34;parent&#34;</span>: <span class="n">1</span>,
+  <span class="p">&#34;components&#34;</span>: {
+    <span class="p">&#34;transform&#34;</span>: { <span class="p">&#34;pos&#34;</span>: [<span class="n">8</span>, <span class="n">11</span>, <span class="n">8</span>], <span class="p">&#34;rot&#34;</span>: [<span class="n">0</span>, <span class="n">0</span>, <span class="n">0</span>], <span class="p">&#34;scale&#34;</span>: [<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>] },
+    <span class="p">&#34;render.mesh&#34;</span>: { <span class="p">&#34;mesh&#34;</span>: <span class="s">&#34;cube&#34;</span>, <span class="p">&#34;cast_shadow&#34;</span>: <span class="k">true</span> },
+    <span class="p">&#34;script&#34;</span>: { <span class="p">&#34;module&#34;</span>: <span class="s">&#34;assets/scripts/spin.wasm&#34;</span>, <span class="p">&#34;props&#34;</span>: { <span class="p">&#34;speed&#34;</span>: <span class="n">90</span> } } } }</code></pre>
+<p>Components are described by a <strong>schema</strong> (name, fields, types, ranges, tooltips), which drives validation, the editor inspector and scripts. Built-ins: <code>transform</code>, <code>script</code>, <code>physics.body</code>, <code>physics.velocity</code>, <code>physics.character</code>, <code>render.camera</code>, <code>render.dirlight</code>, <code>render.pointlight</code>, <code>render.mesh</code>, <code>render.sprite</code>, <code>render.voxmodel</code>, <code>render.material</code>. Register your own with <code>burrow.RegisterComponent</code> (simulation state) and <code>burrow.RegisterSceneComponent</code> (schema entry). Prefabs are scene documents instantiated with overrides.</p>
+<p>Node tree changes are scene commands (<code>scene_spawn</code>, <code>scene_set_component</code>, ...), so they are journaled like voxel edits.</p>
+<h2 id="plugins-and-stages">Plugins and stages<a class="anchor" href="#plugins-and-stages" aria-label="Link to this section">#</a></h2>
+<p>A game is an <code>App</code> plus plugins. Systems run in stages: <code>Startup</code>, then per frame <code>PreUpdate</code>, <code>FixedUpdate</code> (N ticks), <code>Update</code>, <code>PostUpdate</code>, <code>Render</code>, then <code>Shutdown</code>. Ordering inside a stage uses <code>Before</code> / <code>After</code> names. The built-in plugins are <code>ScenePlugin</code>, <code>WindowPlugin</code>, <code>VoxelWorldPlugin</code>, <code>ControllerPlugin</code>, <code>RenderPlugin</code>, <code>RenderWorldPlugin</code>, <code>SoftRenderPlugin</code>, <code>DebugPlugin</code>, <code>physics.PhysicsPlugin</code>, <code>input.InputPlugin</code>, <code>assets.Plugin</code> and <code>script.Plugin</code>; <code>burrowplay</code> assembles them from <code>vox.project</code>. The complete rules are in <span class="unpub" title="Source file of the repository, not part of this site">ARCHITECTURE.md</span>.</p>
+<p>A complete headless game with one FixedUpdate system, run twice, shows the guarantee:</p>
+<pre tabindex="0"><code class="language-go"><span class="k">package</span> main
+
+<span class="k">import</span> (
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+
+	<span class="s">&#34;burrow-engine&#34;</span>
+)
+
+<span class="k">func</span> build() *burrow.App {
+	app := burrow.NewApp(burrow.Options{Seed: <span class="n">42</span>, StrictCommands: <span class="k">true</span>})
+	app.AddFixedSystem(<span class="s">&#34;tower&#34;</span>, <span class="k">func</span>(c *burrow.FixedContext) <span class="k">error</span> {
+		<span class="k">if</span> c.Tick &lt; <span class="n">8</span> {
+			c.Commands.SetBlock(burrow.IVec3{X: <span class="n">0</span>, Y: <span class="k">int32</span>(c.Tick), Z: <span class="n">0</span>}, <span class="s">&#34;stone&#34;</span>)
+		}
+		<span class="k">return</span> <span class="k">nil</span>
+	})
+	<span class="k">return</span> app
+}
+
+<span class="k">func</span> main() {
+	a, b := build(), build()
+	<span class="k">for</span> _, app := <span class="k">range</span> []*burrow.App{a, b} {
+		<span class="k">if</span> err := app.RunHeadless(<span class="n">20</span>); err != <span class="k">nil</span> {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(<span class="n">1</span>)
+		}
+	}
+	<span class="k">if</span> a.StateHash() != b.StateHash() {
+		fmt.Fprintln(os.Stderr, <span class="s">&#34;not deterministic&#34;</span>)
+		os.Exit(<span class="n">1</span>)
+	}
+	<span class="k">if</span> err := burrow.VerifyReplay(a); err != <span class="k">nil</span> {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(<span class="n">1</span>)
+	}
+	fmt.Printf(<span class="s">&#34;tick=%d StateHash=%016x\n&#34;</span>, a.Tick(), a.StateHash())
+}</code></pre>
+<div class="pagemeta"><a href="concepts.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#two-domains">Two domains</a></li><li><a href="#determinism-rules">Determinism rules</a></li><li><a href="#journal-and-replay">Journal and replay</a></li><li><a href="#terrain-base--overlay">Terrain: base + overlay</a></li><li><a href="#scenes-and-components">Scenes and components</a></li><li><a href="#plugins-and-stages">Plugins and stages</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

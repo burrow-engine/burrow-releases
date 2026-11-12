@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Platforms | Burrow</title>
+<meta name="description" content="Burrow v1 targets the desktop: Windows, macOS and Linux, on x64 and ARM64, all through Vulkan (MoltenVK on macOS). Web and mobile are out of scope for now. This page states what is verified and what…">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/docs/platforms.html">
+<meta property="og:title" content="Platforms | Burrow">
+<meta property="og:description" content="Burrow v1 targets the desktop: Windows, macOS and Linux, on x64 and ARM64, all through Vulkan (MoltenVK on macOS). Web and mobile are out of scope for now. This page states what is verified and what…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/docs/platforms.html">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Platforms | Burrow">
+<meta name="twitter:description" content="Burrow v1 targets the desktop: Windows, macOS and Linux, on x64 and ARM64, all through Vulkan (MoltenVK on macOS). Web and mobile are out of scope for now. This page states what is verified and what…">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="docs-page" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html">Start</a><a href="../docs/index.html" aria-current="page">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/docs/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="docs has-toc">
+<details class="side" open><summary>Documentation menu</summary><nav aria-label="Documentation"><h2>Start here</h2><ul><li><a href="index.html">Burrow documentation</a></li><li><a href="installing.html">Installing Burrow</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="concepts.html">Concepts</a></li><li><a href="editor.html">The editor (burrowedit)</a></li><li><a href="hub.html">Burrow Hub</a></li><li><a href="windows-security.html">Windows security warnings</a></li><li><a href="templates.html">Genre templates</a></li><li><a href="branding.html">Branding and theme</a></li><li><a href="documentation.html">Reading the docs in the editor</a></li><li><a href="changelog-history.html">Changelog history</a></li></ul><h2>Tutorials</h2><ul><li><a href="tutorials/01-first-project.html">Tutorial 1: your first project</a></li><li><a href="tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li><li><a href="tutorials/03-place-blocks.html">Tutorial 3: place and shape blocks</a></li><li><a href="tutorials/04-scripted-entity.html">Tutorial 4: add a scripted entity</a></li><li><a href="tutorials/05-cameras-and-game-ui.html">Tutorial 5: cameras and game UI</a></li><li><a href="tutorials/06-levels-and-saves.html">Tutorial 6: levels and saves</a></li><li><a href="tutorials/07-particles.html">Tutorial 7: particles</a></li><li><a href="tutorials/08-audio-packs.html">Tutorial 8: audio and sound packs</a></li><li><a href="tutorials/09-export-windows.html">Tutorial 9: export for Windows</a></li></ul><h2>Guides</h2><ul><li><a href="architecture.html">Architecture and package map</a></li><li><a href="assets.html">Assets</a></li><li><a href="builtin-assets.html">Builtin assets</a></li><li><a href="materials.html">Materials</a></li><li><a href="blocks.html">Blocks (extended set)</a></li><li><a href="block-shapes.html">Block shapes (stage B2)</a></li><li><a href="items.html">Items</a></li><li><a href="texture-packs.html">Texture packs</a></li><li><a href="prefabs.html">Linked prefabs</a></li><li><a href="gogame.html">Go game (package gogame)</a></li><li><a href="recipes/README.html">Recipes</a></li><li><a href="recipes/door-zone.html">Recipe: door and trigger zone</a></li><li><a href="recipes/enemy-chase.html">Recipe: enemy that chases the player</a></li><li><a href="recipes/main-menu.html">Recipe: main menu that loads the game scene</a></li><li><a href="recipes/pause-menu.html">Recipe: pause menu</a></li><li><a href="recipes/pickup-score.html">Recipe: pickup and score HUD</a></li><li><a href="physics.html">Rigid-body physics (physics3d)</a></li><li><a href="navigation-ai.html">Navigation and AI</a></li><li><a href="character.html">Characters</a></li><li><a href="visual-effects.html">Frame visuals</a></li><li><a href="animation.html">Animation</a></li><li><a href="cameras.html">Cameras</a></li><li><a href="game-ui.html">Game UI</a></li><li><a href="levels-saves.html">Levels and saves</a></li><li><a href="particles.html">Particles</a></li><li><a href="audio.html">Audio</a></li><li><a href="voice.html">Voice chat</a></li><li><a href="lighting.html">Lighting: block light and skylight</a></li><li><a href="modeling.html">Modelling and texturing</a></li><li><a href="rendering.html">Rendering</a></li><li><a href="anti-aliasing.html">Anti-aliasing and temporal upscaling</a></li><li><a href="ray-tracing.html">Ray tracing</a></li><li><a href="weather.html">Weather</a></li><li><a href="water-physics.html">Water physics</a></li><li><a href="water-fine.html">Fine water (adaptive sub-cell bricks)</a></li><li><a href="worldgen.html">World generation</a></li><li><a href="ui-design.html">UI design system</a></li><li><a href="agents.html">Agents</a></li><li><a href="building-guide.html">Building guide for agents</a></li><li><a href="security.html">Security and trust model</a></li><li><a href="troubleshooting.html">Troubleshooting</a></li><li><a href="platforms.html" aria-current="page">Platforms</a></li><li><a href="determinism.html">Determinism</a></li><li><a href="networking.html">Networking</a></li><li><a href="replication.html">Replication</a></li><li><a href="dedicated-server.html">Dedicated server</a></li><li><a href="lobby.html">Lobby</a></li></ul><h2>Scripting</h2><ul><li><a href="scripting.html">Scripting</a></li><li><a href="scripting/01-getting-started.html">Getting started with scripts</a></li><li><a href="scripting/02-execution-model.html">Execution model</a></li><li><a href="scripting/03-state-and-props.html">State and props</a></li><li><a href="scripting/04-entities-and-scene.html">Entities and scene</a></li><li><a href="scripting/05-world.html">World</a></li><li><a href="scripting/06-input-events-time.html">Input, events and time</a></li><li><a href="scripting/07-effects.html">Effects: audio, particles, animation, cameras, UI, models</a></li><li><a href="scripting/08-multiplayer.html">Multiplayer</a></li><li><a href="scripting/09-errors-and-limits.html">Errors and limits</a></li><li><a href="scripting/10-debugging-and-testing.html">Debugging and testing</a></li><li><a href="scripting/11-cookbook.html">Cookbook</a></li><li><a href="scripting/12-embedding-and-abi.html">Embedding and the ABI</a></li><li><a href="scripting/13-go-sdk.html">The Go SDK in depth</a></li><li><a href="scripting/14-frame-scripts.html">OnFrame (frame domain)</a></li><li><a href="scripting/15-native.html">Native scripts</a></li></ul><h2>Reference</h2><ul><li><a href="reference/index.html">Reference</a></li><li><a href="reference/components.html">Scene components</a></li><li><a href="reference/script-api.html">Script API</a></li><li><a href="reference/mcp-tools.html">MCP tools of the editor</a></li><li><a href="reference/cli.html">Command line</a></li><li><a href="reference/project-config.html">Project file</a></li><li><a href="reference/input-actions.html">Input actions</a></li><li><a href="reference/blocks.html">Block list</a></li><li><a href="reference/render-options.html">Render options</a></li><li><a href="reference/build-styles.html">Building guide data</a></li></ul></nav></details>
+<article class="article">
+<h1 id="platforms">Platforms<a class="anchor" href="#platforms" aria-label="Link to this section">#</a></h1>
+<p>Burrow v1 targets the desktop: Windows, macOS and Linux, on x64 and ARM64, all through Vulkan (MoltenVK on macOS). Web and mobile are out of scope for now. This page states what is verified and what is not, because &#34;it builds&#34; and &#34;it runs&#34; are different claims.</p>
+<h2 id="current-status">Current status</h2>
+<p>This table is generated from <code>site/platform-status.json</code>, which the maintainer edits when a fact changes; nothing on this site says more than it does. Hardware tested: macOS Apple silicon. Verified on macOS Apple silicon and macOS Intel (x86-64 binary under Rosetta on Apple silicon). CI passed on: none yet. Last updated 2026-10-31.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Platform status"><table><thead><tr><th scope="col">Platform</th><th scope="col">Installer</th><th scope="col">Tested on hardware</th><th scope="col">CI</th><th scope="col">Determinism</th></tr></thead><tbody>
+<tr><td>Linux ARM64</td><td>Published</td><td>No</td><td>Not run yet</td><td>Not verified yet</td></tr>
+<tr><td>Linux x64</td><td>Published</td><td>No</td><td>Not run yet</td><td>Not verified yet</td></tr>
+<tr><td>macOS Apple silicon</td><td>Published</td><td>Yes</td><td>Not run yet</td><td>Verified</td></tr>
+<tr><td>macOS Intel</td><td>Published</td><td>No</td><td>Not run yet</td><td>Verified (x86-64 binary under Rosetta on Apple silicon)</td></tr>
+<tr><td>Windows ARM64</td><td>Not yet</td><td>No</td><td>Not run yet</td><td>Not verified yet</td></tr>
+<tr><td>Windows x64</td><td>Published</td><td>No</td><td>Not run yet</td><td>Not verified yet</td></tr>
+</tbody></table></div>
+<h2 id="support-matrix">Support matrix<a class="anchor" href="#support-matrix" aria-label="Link to this section">#</a></h2>
+<p>Status words: <strong>tested</strong> = run by a developer on that machine; <strong>CI</strong> = built and checked on a native GitHub Actions runner (the workflows are in the repository); <strong>cross-compiled</strong> = the binary was produced from another machine and never run; <strong>untested</strong> = not built yet.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">OS</th><th scope="col">CPU</th><th scope="col">Renderer</th><th scope="col">Windowed engine</th><th scope="col">Headless tools (<code>burrow</code>, <code>burrowplay -headless</code>, <code>burrowd</code>)</th></tr></thead>
+<tbody>
+<tr><td>macOS 11+</td><td>arm64 (Apple silicon)</td><td>Vulkan on Metal (MoltenVK)</td><td>tested (developer machine); CI on pushes to <code>main</code></td><td>tested; CI</td></tr>
+<tr><td>macOS 11+</td><td>x64 (Intel)</td><td>MoltenVK</td><td>cross-compiled from arm64; never run; optional CI runner</td><td>cross-compiled; the simulation hash matches arm64 under Rosetta</td></tr>
+<tr><td>Windows 10 1809+ / 11</td><td>x64</td><td>Vulkan 1.3 driver</td><td>cross-compiled with mingw from macOS; never run on real hardware; CI on pull requests</td><td>cross-compiled; CI</td></tr>
+<tr><td>Windows 11</td><td>arm64</td><td>Vulkan 1.3 driver</td><td>untested: no toolchain here; optional CI runner</td><td>cross-compiled (Go only)</td></tr>
+<tr><td>Linux (glibc, X11 or XWayland)</td><td>x64</td><td>Vulkan 1.3 driver (Mesa, NVIDIA)</td><td>never compiled before this work; CI native build plus a software-Vulkan (lavapipe) smoke</td><td>cross-compiled; CI</td></tr>
+<tr><td>Linux (glibc, X11 or XWayland)</td><td>arm64</td><td>Vulkan 1.3 driver</td><td>untested; optional CI runner</td><td>cross-compiled; optional CI</td></tr>
+</tbody></table></div>
+<p>Honest reading: today only macOS arm64 has ever shown a frame. The CI configuration exists so that the other five rows get a real answer; until its first green run, treat them as untested.</p>
+<p>Not supported: 32-bit systems, FreeBSD and other Unix systems, Android, iOS, the web, native Wayland (Wayland desktops run Burrow through XWayland).</p>
+<h2 id="requirements">Requirements<a class="anchor" href="#requirements" aria-label="Link to this section">#</a></h2>
+<p>All platforms: a GPU and driver exposing Vulkan 1.2 or newer with the 1.3 features <code>dynamicRendering</code> and <code>synchronization2</code> (the engine asks for 1.3, falls back to 1.2 with those features, and refuses a device without them). Rough guide, not a tested list: a GPU from roughly 2015 or later with a current driver (NVIDIA Maxwell and newer, AMD GCN and newer, Intel Skylake and newer), every Apple silicon Mac. If <code>vulkaninfo --summary</code> shows a Vulkan 1.3 device, Burrow should start.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">OS</th><th scope="col">What to install</th><th scope="col">Notes</th></tr></thead>
+<tbody>
+<tr><td>Windows</td><td>The graphics driver (NVIDIA, AMD, Intel) from the vendor, which provides <code>vulkan-1.dll</code>.</td><td>The loader is opened from <code>System32</code> only. Remote desktop and virtual machines without a GPU driver have no Vulkan.</td></tr>
+<tr><td>macOS</td><td>Nothing for a packaged app: the Vulkan loader and MoltenVK are inside the <code>.app</code> (<code>Contents/Frameworks</code>, driver manifest in <code>Contents/Resources/vulkan/icd.d</code>).</td><td>A development build uses Homebrew (<code>brew install molten-vk vulkan-loader</code>). Needs a Metal-capable GPU; virtual machines without Metal cannot run the windowed engine.</td></tr>
+<tr><td>Linux</td><td><code>libvulkan1</code> plus a driver: <code>mesa-vulkan-drivers</code> (AMD, Intel, and the lavapipe software renderer), or the NVIDIA proprietary driver. An X11 or XWayland session.</td><td>Fedora: <code>vulkan-loader mesa-vulkan-drivers</code>. Arch: <code>vulkan-icd-loader</code> plus <code>vulkan-radeon</code>, <code>vulkan-intel</code> or <code>nvidia-utils</code>. Check with <code>vulkaninfo --summary</code>. Sound uses PulseAudio or PipeWire (through its PulseAudio server) first, then ALSA (<code>libasound.so.2</code>); without either the game runs silent.</td></tr>
+</tbody></table></div>
+<p>Building from source on Linux needs the GLFW development packages: <code>libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libxxf86vm-dev libgl1-mesa-dev pkg-config</code> (Debian and Ubuntu names) and a C compiler. On Windows x64 use MinGW-w64 gcc (MSYS2); on Windows arm64 use clang from MSYS2 CLANGARM64. On macOS, Xcode command line tools.</p>
+<h2 id="how-the-vulkan-loader-is-found">How the Vulkan loader is found<a class="anchor" href="#how-the-vulkan-loader-is-found" aria-label="Link to this section">#</a></h2>
+<p>The lookup runs before the loader starts (<code>internal/vkenv</code>, used by <code>window.Init</code>).</p>
+<p>macOS, first match wins for the loader (<code>libvulkan.1.dylib</code>) and the MoltenVK driver manifest (<code>MoltenVK_icd.json</code>):</p>
+<ol>
+<li><code>BURROW_VULKAN_LIB</code> (absolute path of the loader file) and an already set <code>VK_ICD_FILENAMES</code> or <code>VK_DRIVER_FILES</code> (never overridden).</li>
+<li><code>BURROW_VULKAN_DIR</code> (a folder laid out like one of the places below).</li>
+<li>The app bundle: <code>Contents/Frameworks</code>, <code>Contents/Resources/vulkan</code>.</li>
+<li>Next to the executable, and <code>lib/</code> beside it.</li>
+<li>System: <code>/opt/homebrew/lib</code>, <code>/usr/local/lib</code>, <code>~/VulkanSDK/macOS/lib</code>.</li>
+</ol>
+<p>When a driver manifest is found the engine exports <code>VK_ICD_FILENAMES</code> and <code>VK_DRIVER_FILES</code> for the process; when only <code>libMoltenVK.dylib</code> is found it writes a manifest into a private temporary folder. Executables do not link MoltenVK: nothing in a shipped binary points at <code>/opt/homebrew</code>. The loader is opened by absolute path only (a bare name would let dyld search the working directory).</p>
+<p>Linux: the system loader <code>libvulkan.so.1</code> (no bundled copy). <code>BURROW_VULKAN_LIB</code> can point at another loader. Windows: <code>System32\vulkan-1.dll</code> only, overrides are ignored on purpose (DLL search-order hijacking).</p>
+<p>When no driver is found the editor, the Hub and <code>burrowplay</code> print the install hint to stderr and, on Windows and macOS, show a message box. On Windows the same text lands in the log file. <code>burrow doctor</code> runs the same checks ahead of time (loader, driver, display server, platform).</p>
+<h2 id="environment-variables">Environment variables<a class="anchor" href="#environment-variables" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">Variable</th><th scope="col">Effect</th></tr></thead>
+<tbody>
+<tr><td><code>BURROW_VULKAN_LIB</code></td><td>Absolute path of the Vulkan loader to open first (macOS, Linux).</td></tr>
+<tr><td><code>BURROW_VULKAN_DIR</code></td><td>macOS: folder holding <code>libvulkan.1.dylib</code> and the MoltenVK manifest or library.</td></tr>
+<tr><td><code>VK_ICD_FILENAMES</code>, <code>VK_DRIVER_FILES</code></td><td>Standard Vulkan variables; honoured and never overridden. On Linux, point at <code>lvp_icd.json</code> to force the software renderer.</td></tr>
+<tr><td><code>BURROW_NO_DIALOG=1</code></td><td>Never show a message box (used by CI and tests).</td></tr>
+<tr><td><code>BURROW_BREW_PREFIX</code></td><td>macOS development: Homebrew prefix when it is not <code>/opt/homebrew</code> or <code>/usr/local</code>.</td></tr>
+<tr><td><code>BURROW_SOUNDS</code>, <code>BURROW_SDK</code>, <code>BURROW_ROOT</code>, <code>BURROW_CACHE_DIR</code>, <code>BURROW_HUB_HOME</code></td><td>See <a href="audio.html">Audio</a>, <a href="getting-started.html">Getting started</a> and <a href="security.html">Security</a>.</td></tr>
+</tbody></table></div>
+<h2 id="where-things-live">Where things live<a class="anchor" href="#where-things-live" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead><tr><th scope="col">What</th><th scope="col">Windows</th><th scope="col">macOS</th><th scope="col">Linux</th></tr></thead>
+<tbody>
+<tr><td>Hub settings, projects, engine versions (<code>BURROW_HUB_HOME</code> overrides)</td><td><code>%AppData%\Burrow</code> (settings), <code>%LocalAppData%\Burrow</code> (engines)</td><td><code>~/Library/Application Support/Burrow</code></td><td><code>~/.config/burrow</code> (settings), <code>~/.local/share/burrow</code> (engines), XDG variables honoured</td></tr>
+<tr><td>Editor layout, appearance, autosave</td><td><code>%AppData%\burrow-editor</code> (from <code>os.UserConfigDir</code>)</td><td><code>~/Library/Application Support/burrow-editor</code></td><td><code>$XDG_CONFIG_HOME/burrow-editor</code> or <code>~/.config/burrow-editor</code></td></tr>
+<tr><td>Tool cache</td><td><code>$BURROW_CACHE_DIR</code>, else the user cache folder</td><td><code>~/Library/Caches/burrow</code></td><td><code>$XDG_CACHE_HOME/burrow</code> or <code>~/.cache/burrow</code></td></tr>
+<tr><td>Your sound packs</td><td><code>%USERPROFILE%\.burrow\sounds</code></td><td><code>~/.burrow/sounds</code></td><td><code>~/.burrow/sounds</code></td></tr>
+<tr><td>Log</td><td><code>Burrow.log</code>, <code>BurrowEditor.log</code> next to the program (else <code>%TEMP%</code>), only when there is no console</td><td>the terminal (no log file is written)</td><td>the terminal (no log file is written)</td></tr>
+<tr><td>Project cache and thumbnails</td><td><code>&lt;project&gt;/.burrow-cache</code></td><td>same</td><td>same</td></tr>
+</tbody></table></div>
+<p>Linux file systems are case sensitive: asset names in a project must match their case exactly (<code>Stone.png</code> is not <code>stone.png</code>). Windows and macOS usually are not, so a project can work there and fail on Linux: keep names consistent.</p>
+<h2 id="display-scaling-hidpi">Display scaling (HiDPI)<a class="anchor" href="#display-scaling-hidpi" aria-label="Link to this section">#</a></h2>
+<p>The Hub, the editor and runtime windows follow the display scale of the system, so the interface has a normal physical size on a 4K monitor.</p>
+<ul>
+<li><strong>Automatic (default).</strong> The window asks the system for its content scale (Windows display scaling per monitor, <code>Xft.dpi</code> on X11, the output scale on Wayland, the Retina factor on macOS), rounds it to the nearest step (100, 125, 150, 175, 200, 250 or 300 percent) and lays out and rasterises text, icons and borders at that size, so glyphs stay sharp. Moving a window to a monitor with another scale re-lays it out at once.</li>
+<li><strong>Setting.</strong> Hub: Settings, Display, UI scale (<code>ui_scale</code> in <code>hub.json</code>). Editor: Preferences, UI scale. A fixed value is a percentage of the platform&#39;s logical size: 100 is normal on a 1x display and on macOS (where the Retina factor is added on top), 150 is one and a half times larger than that.</li>
+<li><strong>Shortcuts.</strong> Ctrl and plus, Ctrl and minus, Ctrl and 0 (Cmd on macOS) in the Hub and the editor: larger, smaller, back to automatic. The choice is saved.</li>
+<li><strong>Environment.</strong> <code>BURROW_UI_SCALE</code> (<code>auto</code>, <code>150</code>, <code>150%</code> or <code>1.5</code>) overrides the setting. On Linux, when the window system reports no scaling at all, <code>GDK_SCALE</code> and <code>QT_SCALE_FACTOR</code> are used as a hint. The scale never goes so high that the window holds less than 800 by 480 logical pixels.</li>
+<li><strong>Window size.</strong> A window without a requested size covers about 70 percent of the work area of the primary monitor (at least 960 by 600 logical pixels), centred. Position and size are remembered per window in <code>&lt;user config dir&gt;/burrow/window/</code> and restored only when the window is still on a connected monitor.</li>
+<li><strong>Windows.</strong> Every executable embeds an application manifest that declares per-monitor DPI awareness v2, long path support and the requested execution level <code>asInvoker</code> (no administrator rights), together with a version resource (company, product, description, version, copyright). Without the DPI declaration Windows would stretch the window as a bitmap. The sources are in <code>assets/winres/</code>.</li>
+<li><strong>Game HUD.</strong> <code>gameui</code> scales with the window height (reference 720 px), so it grows with the resolution; its <code>Scale</code> option multiplies that.</li>
+</ul>
+<h2 id="determinism-across-platforms">Determinism across platforms<a class="anchor" href="#determinism-across-platforms" aria-label="Link to this section">#</a></h2>
+<p><code>StateHash</code> is meant to be the same on every OS and CPU; verified today on macOS Apple silicon and Intel (Rosetta), while Windows and Linux are checked by the CI workflow against the golden hash, which has not run yet. The simulation (voxel world, water, the standard game rules, 2D and 3D physics, navigation, animation, weather, scripts) uses integer math where it can, and its float math rounds every product explicitly and takes its trigonometry, exponentials and logarithms from a deterministic library instead of the platform&#39;s. <code>scripts/portability-hash.sh</code> runs the eight templates for 200 ticks and compares the hashes with the committed golden (<code>scripts/portability-golden.txt</code>); every CI job runs it. On one Mac the arm64 and the amd64 (Rosetta) binaries give identical hashes for all eight templates at 200 and 2000 ticks; the other operating systems are verified by CI once it has run. Rendering and other frame-domain code is not covered and does not need to be. Details, guards and rules for contributors: <a href="determinism.html">Determinism</a>.</p>
+<h2 id="known-limits">Known limits<a class="anchor" href="#known-limits" aria-label="Link to this section">#</a></h2>
+<ul>
+<li>Graphics: the windowed engine has been run on one GPU family (Apple M2 Max through MoltenVK). Other drivers (NVIDIA, AMD, Intel, Mesa) may expose driver bugs or missing features the renderer has not met.</li>
+<li>Windows binaries are not code signed and Microsoft SmartScreen warns on first run; macOS apps are ad-hoc signed and not notarised, so Gatekeeper asks for confirmation.</li>
+<li>Clipboard: macOS uses the system clipboard through <code>pbcopy</code>/<code>pbpaste</code>; Windows and Linux use GLFW&#39;s clipboard (new in this version, untested on those systems).</li>
+<li>Audio on Linux needs PulseAudio, PipeWire-Pulse or ALSA at run time.</li>
+<li>Wayland sessions run through XWayland (X11 build of GLFW).</li>
+<li>Software rendering (lavapipe, WARP) works for smoke tests but is far too slow to play.</li>
+</ul>
+<div class="pagemeta"><a href="platforms.md">View this page as Markdown</a><a href="index.html">All documentation</a><span lang="fr">La documentation n'est disponible qu'en anglais.</span></div>
+</article>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#support-matrix">Support matrix</a></li><li><a href="#requirements">Requirements</a></li><li><a href="#how-the-vulkan-loader-is-found">How the Vulkan loader is found</a></li><li><a href="#environment-variables">Environment variables</a></li><li><a href="#where-things-live">Where things live</a></li><li><a href="#display-scaling-hidpi">Display scaling (HiDPI)</a></li><li><a href="#determinism-across-platforms">Determinism across platforms</a></li><li><a href="#known-limits">Known limits</a></li></ul></nav>
+</div>
+</div></main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

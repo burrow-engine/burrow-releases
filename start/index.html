@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; media-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Play in two minutes | Burrow</title>
+<meta name="description" content="From the Hub installer to a running Burrow game in about two minutes: install the Hub, create a project from a template or play the Sandbox, then build a standalone game.">
+<meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070d17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://burrow-engine.github.io/burrow-releases/start/">
+<meta property="og:title" content="Play in two minutes | Burrow">
+<meta property="og:description" content="From the Hub installer to a running Burrow game in about two minutes: install the Hub, create a project from a template or play the Sandbox, then build a standalone game.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burrow-engine.github.io/burrow-releases/start/">
+<meta property="og:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="The Burrow mascot peeking out of a burrow of grass and dirt blocks, above a voxel landscape">
+<meta property="og:site_name" content="Burrow">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Play in two minutes | Burrow">
+<meta name="twitter:description" content="From the Hub installer to a running Burrow game in about two minutes: install the Hub, create a project from a template or play the Sandbox, then build a standalone game.">
+<meta name="twitter:image" content="https://burrow-engine.github.io/burrow-releases/social-preview.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/atom+xml" title="Burrow news" href="../feed.xml">
+<link rel="alternate" hreflang="en" href="https://burrow-engine.github.io/burrow-releases/start/">
+<link rel="alternate" hreflang="fr" href="https://burrow-engine.github.io/burrow-releases/fr/start/">
+<link rel="alternate" hreflang="x-default" href="https://burrow-engine.github.io/burrow-releases/start/">
+<script src="../assets/theme.js"></script>
+</head>
+<body class="market" data-root="../" data-copy="Copy" data-copied="Copied" data-copyaria="Copy the code">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><img src="../favicon-32.png" width="32" height="32" alt="">Burrow</a>
+<nav class="main" aria-label="Main"><a href="../start/index.html" aria-current="page">Start</a><a href="../docs/index.html">Documentation</a><a href="../templates/index.html">Templates</a><a href="../news/index.html">News</a><a href="../download/index.html">Download</a><a href="../about/index.html">About</a></nav>
+<div class="tools">
+<form class="search" role="search"><label class="sr" for="q" hidden>Search the docs</label><input id="q" type="search" autocomplete="off" placeholder="Search (press /)" aria-label="Search the docs" data-none="No result" data-offline="Search needs the site to be served over http(s), not opened from a file."><div id="results" role="region" aria-live="polite"></div></form>
+<a class="lang" hreflang="fr" lang="fr" href="../fr/start/index.html">Français</a>
+<button type="button" id="theme-toggle" aria-pressed="false" data-dark="Dark theme" data-light="Light theme">Dark theme</button>
+</div>
+</div></header>
+<main id="main">
+<section class="layer sky pagehead"><div class="stars" aria-hidden="true"></div><div class="wrap"><h1>Play in two minutes</h1><p class="lead">From the download to a running game, then to a standalone build.</p></div></section>
+<section class="layer soil"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V1H2V2H4V3H9V2H12V3H13V2H14V3H17V2H18V3H26V2H28V3H46V2H48V1H49V2H51V3H55V2H59V1H62V2H63V3H66V2H68V1H72V2H74V1H76V0H108V1H109V2H110V3H111V2H113V3H115V2H118V1H119V0H120V5H0z"/><path class="pb" d="M94 2h1v1h-1zM48 2h1v1h-1zM58 2h1v1h-1zM92 3h1v1h-1zM4 2h1v1h-1zM0 4h1v1h-1zM21 3h1v1h-1zM110 2h1v1h-1zM95 4h1v1h-1zM85 3h1v1h-1zM116 2h1v1h-1zM118 2h1v1h-1zM14 4h1v1h-1zM73 4h1v1h-1zM114 2h1v1h-1zM37 3h1v1h-1zM51 4h1v1h-1zM118 4h1v1h-1zM95 4h1v1h-1zM95 4h1v1h-1zM106 3h1v1h-1zM10 4h1v1h-1zM86 2h1v1h-1zM85 3h1v1h-1zM25 2h1v1h-1zM70 2h1v1h-1z"/><path class="ec" d="M0 1h2v1h-2zM2 2h2v1h-2zM4 3h5v1h-5zM9 2h3v1h-3zM12 3h1v1h-1zM13 2h1v1h-1zM14 3h3v1h-3zM17 2h1v1h-1zM18 3h8v1h-8zM26 2h2v1h-2zM28 3h18v1h-18zM46 2h2v1h-2zM48 1h1v1h-1zM49 2h2v1h-2zM51 3h4v1h-4zM55 2h4v1h-4zM59 1h3v1h-3zM62 2h1v1h-1zM63 3h3v1h-3zM66 2h2v1h-2zM68 1h4v1h-4zM72 2h2v1h-2zM74 1h2v1h-2zM76 0h32v1h-32zM108 1h1v1h-1zM109 2h1v1h-1zM110 3h1v1h-1zM111 2h2v1h-2zM113 3h2v1h-2zM115 2h3v1h-3zM118 1h1v1h-1zM119 0h1v1h-1z"/></svg><div class="wrap">
+<ol class="path-rows">
+<li class="row"><figure class="frame px row-media"><img src="../img/hub-home.jpg" alt="The Burrow Hub Home tab: a Play the Sandbox button above the projects and engine versions" width="1120" height="232" loading="lazy" decoding="async"><figcaption>The Hub, Home tab. The first run asks before it checks for updates.</figcaption></figure><div class="row-text"><p class="eyebrow">Step 1</p><h2>Download the Hub</h2><p>Download the Hub for your system. It is the only download: it installs the engine and the templates for you.</p><p class="cmd"><code>Download the Hub</code>, then run the installer or unzip it and start the Hub</p><p><a class="btn" href="../download/index.html">Download the Hub</a></p></div></li>
+<li class="row rev"><figure class="frame px row-media"><img src="../img/hub-templates.png" alt="The Burrow Hub Templates tab: nine template cards, each with a Use this template button" width="1120" height="720" loading="lazy" decoding="async"><figcaption>The Hub, Templates tab.</figcaption></figure><div class="row-text"><p class="eyebrow">Step 2</p><h2>Create a project from a template</h2><p>Pick a template and make your own project from it. The Sandbox template is the quickest way to play.</p><p class="cmd">Projects, then New project, then pick a template</p><p>Details: <a href="../docs/hub.html">the Hub guide</a>.</p></div></li>
+<li class="row"><figure class="frame px row-media"><img src="../img/editor-play.jpg" alt="The Burrow editor with a project open in Play mode" width="1280" height="720" loading="lazy" decoding="async"><figcaption>The editor in Play mode.</figcaption></figure><div class="row-text"><p class="eyebrow">Step 3</p><h2>Press Play, then build</h2><p>Open the project in the editor and press Play. When you like it, build a standalone game.</p><p class="cmd"><code>burrow build -o mygame</code></p><p>Details: <a href="../docs/tutorials/09-export-windows.html">export a game</a>.</p></div></li>
+</ol>
+<div class="tile px prefer"><h2>Prefer code?</h2><p>Create the project from the command line and write your gameplay as a short Go script. Scripts compile to WebAssembly with <code>burrow script build</code>.</p>
+<pre class="snip" tabindex="0"><code>burrow new mygame -template platformer
+<span class="k">cd</span> mygame
+burrow edit</code></pre>
+<pre class="snip" tabindex="0"><code>burrowsdk.Register(burrowsdk.Script{
+	OnTick: <span class="k">func</span>(self burrowsdk.Entity, dt <span class="k">float64</span>) {
+		t, _ := burrowsdk.GetTransform(self)
+		t.Rot[<span class="n">1</span>] += <span class="n">90</span> * <span class="k">float32</span>(dt) <span class="c">// spin</span>
+		burrowsdk.SetTransform(self, t)
+	}})</code></pre>
+<p class="capt"><code>scripts/spin/main.go</code>: spins whatever the script is attached to.</p></div>
+<h2 class="sec">Good to know</h2>
+<div class="notice" role="note"><ul>
+<li>Burrow is young and the API is v0: it may change between releases.</li>
+<li>The Hub asks before it checks for updates. Until you say yes, it contacts nothing.</li>
+<li>The installers are not signed yet. The download page explains the first launch on your system.</li>
+</ul><p><a href="../docs/platforms.html">Platform details and known limits</a> · <a href="../roadmap/index.html">Read the roadmap</a></p></div>
+<h2 class="sec">Keep going</h2>
+<p>The getting started guide covers installation and the command line. The tutorials walk through a project in the editor.</p>
+<ul class="links">
+<li><a href="../docs/getting-started.html">Getting started</a></li>
+<li><a href="../docs/tutorials/01-first-project.html">Tutorial 1: your first project</a></li>
+<li><a href="../docs/tutorials/02-sculpt-terrain.html">Tutorial 2: sculpt terrain</a></li>
+<li><a href="../docs/tutorials/04-scripted-entity.html">Tutorial 4: a scripted entity</a></li>
+</ul>
+</div></section>
+
+</main>
+<footer class="bottom layer bedrock"><svg class="edge" viewBox="0 0 120 5" preserveAspectRatio="xMinYMin slice" aria-hidden="true" focusable="false"><path class="eb" d="M0 5V2H2V1H8V2H10V1H11V2H13V1H16V0H17V1H19V0H24V1H25V0H35V1H43V2H45V3H55V2H59V1H61V0H66V1H67V0H68V1H72V2H76V1H78V2H79V1H82V2H87V1H89V0H94V1H97V0H107V1H108V0H110V1H115V0H120V5H0z"/><path class="pb" d="M93 2h1v1h-1zM91 3h1v1h-1zM49 4h1v1h-1zM1 3h1v1h-1zM77 2h1v1h-1zM1 3h1v1h-1zM87 4h1v1h-1zM114 4h1v1h-1zM95 3h1v1h-1zM27 3h1v1h-1zM71 4h1v1h-1zM20 2h1v1h-1zM95 4h1v1h-1zM60 3h1v1h-1zM103 3h1v1h-1zM39 4h1v1h-1zM37 4h1v1h-1zM109 4h1v1h-1zM82 3h1v1h-1zM46 3h1v1h-1zM21 3h1v1h-1zM39 3h1v1h-1zM61 2h1v1h-1zM32 4h1v1h-1zM84 2h1v1h-1zM68 2h1v1h-1z"/><path class="ec" d="M0 2h2v1h-2zM2 1h6v1h-6zM8 2h2v1h-2zM10 1h1v1h-1zM11 2h2v1h-2zM13 1h3v1h-3zM16 0h1v1h-1zM17 1h2v1h-2zM19 0h5v1h-5zM24 1h1v1h-1zM25 0h10v1h-10zM35 1h8v1h-8zM43 2h2v1h-2zM45 3h10v1h-10zM55 2h4v1h-4zM59 1h2v1h-2zM61 0h5v1h-5zM66 1h1v1h-1zM67 0h1v1h-1zM68 1h4v1h-4zM72 2h4v1h-4zM76 1h2v1h-2zM78 2h1v1h-1zM79 1h3v1h-3zM82 2h5v1h-5zM87 1h2v1h-2zM89 0h5v1h-5zM94 1h3v1h-3zM97 0h10v1h-10zM107 1h1v1h-1zM108 0h2v1h-2zM110 1h5v1h-5zM115 0h5v1h-5z"/></svg><div class="wrap"><p>Burrow is an early voxel engine, free to use and MIT licensed. This site sets no cookies, loads nothing from other servers and has no analytics.</p><p><a href="../licences/index.html">Licences</a> · <a href="../feed.xml">Atom</a> · <a href="../about/index.html">About</a> · <a href="../roadmap/index.html">Roadmap</a> · <a href="../for-you/index.html">Is it for you?</a></p></div></footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

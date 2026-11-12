@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Burrow 0.8.4",
+    "date": "2026-11-10",
+    "summary": "Fixed: the render scale (RenderSettings.RenderScale, BURROW_RENDER_SCALE, -render-scale) was silently ignored in hybrid frames (voxels plus scene meshes: any game with a held item, an animal or another player), which rendered at native size and also lost the SMAA the scaled request had replaced wit…",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-4---2026-11-10",
+    "version": "0.8.4",
+    "severity": "info"
+  },
+  {
+    "title": "Burrow 0.8.3",
+    "date": "2026-11-06",
+    "summary": "Fixed: two buttons bound to the mouse wheel, one per direction (scroll with scale 1 and scale -1), were both pressed by any notch: a button takes an analog input by its length, which ignored the sign, so a game that changes slot with hotbar_prev/hotbar_next saw one step forward and one back and not…",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-3---2026-11-06",
+    "version": "0.8.3",
+    "severity": "none"
+  },
+  {
+    "title": "Burrow 0.8.2",
+    "date": "2026-11-05",
+    "summary": "Added: a render.voxmodel node with a render.material is now drawn with it (rworld.Input.VoxMat, filled by the render plugin): tint (base_color) and glow (emissive) of one instance, for instance a creature that flashes red when hit. Before, the component was ignored on a voxel model; a model without…",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-2---2026-11-05",
+    "version": "0.8.2",
+    "severity": "none"
+  },
+  {
+    "title": "Burrow 0.8.1",
+    "date": "2026-11-05",
+    "summary": "gogame: network games for a Go game, dedicated server only (no listen server). gogame.Serve runs the game as a dedicated server (the burrow-server data directory, world saves, bans, admin console; gogame.InitServer writes it; Game.NetScene is the scene it runs), gogame.Join / Connect and the menu a…",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-8-1---2026-11-05",
+    "version": "0.8.1",
+    "severity": "none"
+  },
+  {
+    "title": "Burrow 0.7.1",
+    "date": "2026-11-04",
+    "summary": "Burrow Hub: a folder explorer in the Import dialog (Home, Desktop, Documents and Downloads shortcuts, breadcrumbs, projects marked) and in the dialog that locates a moved project.",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-7-1---2026-11-04",
+    "version": "0.7.1",
+    "severity": "none"
+  },
+  {
+    "title": "Burrow 0.7.0",
+    "date": "2026-11-04",
+    "summary": "New gogame package: a trusted plain-Go game with OnStart, OnTick, OnFrame and UI.",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-7-0---2026-11-04",
+    "version": "0.7.0",
+    "severity": "none"
+  },
+  {
+    "title": "Burrow 0.6.1",
+    "date": "2026-11-03",
+    "summary": "runtime.tick_rate can be 20, 30, 40 or 60; journals record it and refuse a replay at another rate.",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-6-1---2026-11-03",
+    "version": "0.6.1",
+    "severity": "none"
+  },
+  {
+    "title": "Burrow 0.6.0",
+    "date": "2026-11-03",
+    "summary": "Everything in a scene is an entity, with shaders and materials, per-world voxel size and micro-voxels.",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-6-0---2026-11-03",
+    "version": "0.6.0",
+    "severity": "none"
+  },
+  {
+    "title": "Burrow 0.5.2",
+    "date": "2026-11-02",
+    "summary": "An editor and assets release: glTF import, full-screen tools for every asset and world editor, a real Play, and a redesigned look.",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-5-2---2026-11-02",
+    "version": "0.5.2",
+    "severity": "none"
+  },
+  {
+    "title": "Burrow 0.5.1",
+    "date": "2026-11-02",
+    "summary": "A small rendering fix for block textures.",
+    "link": "https://burrow-engine.github.io/burrow-releases/news/index.html#0-5-1---2026-11-02",
+    "version": "0.5.1",
+    "severity": "none"
+  }
+]
